@@ -8,47 +8,66 @@ public class TileMap : MonoBehaviour
 
 		int[,] tiles;
 
-		int mapSizeX = 10;
-		int mapSizeY = 10;
+		int mapSizeX = 100;
+		int mapSizeY = 100;
 
 		void Start ()
 		{
-
+				GenerateMapData ();
+				GenerateMapVisuals ();
+				
+		}
+		void GenerateMapData ()
+		{
 				tiles = new int[mapSizeX, mapSizeY];
 
-				for (int x = 0; x < mapSizeX; x++) {
-						for (int y = 0; y < mapSizeY; y++) {
-								tiles [x, y] = 0;
+				int x, y;
+
+				for (x = 0; x < mapSizeX; x++) {
+						for (y = 0; y < mapSizeY; y++) {
+								tiles [x, y] = 1;
 						}
 				}
 
 				//U-Form Berg
 
-				tiles [4, 4] = 2;
-				tiles [5, 4] = 2;
-				tiles [6, 4] = 2;
-				tiles [7, 4] = 2;
-				tiles [8, 4] = 2;
+				tiles [4, 4] = 3;
+				tiles [5, 4] = 3;
+				tiles [6, 4] = 3;
+				tiles [7, 4] = 3;
+				tiles [8, 4] = 3;
 
-				tiles [4, 5] = 2;
-				tiles [4, 6] = 2;
-				tiles [8, 5] = 2;
-				tiles [8, 6] = 2;
+				tiles [4, 5] = 3;
+				tiles [4, 6] = 3;
+				tiles [8, 5] = 3;
+				tiles [8, 6] = 3;
 
-				GenerateMapVisuals ();
+				//Sumpf
+
+				for (x=3; x<=5; x++) {
+						for (y = 0; y < 4; y++) {
+								tiles [x, y] = 0;
+						}
+				}
+				
+				//Straße
+
+				for (x=1; x<10; x++) {
+						tiles [x, 8] = 2;
+				}
+				for (y=0; y<10; y++) {
+						tiles [1, y] = 2;
+				}
 
 		}
 		void GenerateMapVisuals ()
 		{
-				Debug.Log ("vor");
 				for (int x = 0; x < mapSizeX; x++) {
 						for (int y = 0; y < mapSizeY; y++) {
-								Debug.Log ("drin");
 								TileType tt = tileTypes [tiles [x, y]];
 								Instantiate (tt.tileVisualPrefab, new Vector3 (x, y, 0), Quaternion.identity);
 						}
 				}
-				Debug.Log ("nach");
 		}
 
 }

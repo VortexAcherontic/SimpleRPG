@@ -1,0 +1,15 @@
+shop refill einbauen
+
+magiebuch einbauen(seeeeeeeeeeeeeeeeeeeeeeeeeeeeeehr viel später)
+
+Events einbauen
+
+monster und npc's einbauen
+
+regionen system einbauen und minimap aktualisieren sowie mehr maps zusammenbasteln
+
+kampf system einbauen gegen computer / battlemode 1vs1 einbauen
+
+generell laden und speichern einbauen in einer taverne statt im inventar
+
+insgesamt nen gamescreen basteln (3 progressbars für HP MP und XP)

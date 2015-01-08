@@ -1,9 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TileMap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\player.cs">
     <Files>
-      <File FileName="Assets\TileMap.cs" Line="47" Column="48" />
-      <File FileName="Assets\TileType.cs" Line="11" Column="33" />
+      <File FileName="Assets\todo.txt" Line="18" Column="1" />
+      <File FileName="Assets\mainmenu.cs" Line="355" Column="43" />
+      <File FileName="Assets\inventory.cs" Line="73" Column="67" />
+      <File FileName="Assets\item.cs" Line="1" Column="1" />
+      <File FileName="Assets\player.cs" Line="185" Column="5" />
+      <File FileName="Assets\map.cs" Line="1" Column="1" />
+      <File FileName="Assets\shop.cs" Line="1" Column="1" />
+      <File FileName="Assets\registrierung.cs" Line="157" Column="157" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
