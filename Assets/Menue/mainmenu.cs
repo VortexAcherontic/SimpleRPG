@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class mainmenu : MonoBehaviour
-{
+public class mainmenu : MonoBehaviour {
 		public bool showinv = false;
 		public bool showmap = false;
 		public bool showequip = false;
@@ -12,8 +11,7 @@ public class mainmenu : MonoBehaviour
 		public Texture bg;
 		public shop s001;
 		// Use this for initialization
-		void Start ()
-		{
+		void Start () {
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
 				//p001.Beginn (1000, 1000, 1000, 1000, 80, 0, 100000, 0, 0, 0, "sascha", 50, 50);
 				s001 = GameObject.Find ("Main Camera").GetComponent<shop> ();
@@ -24,52 +22,52 @@ public class mainmenu : MonoBehaviour
 		bool ismoving = false;
 		float movecooldown = 0.2f;
 		float movetimer;
-		void Update ()
-		{
-				if (Input.GetKeyDown ("m")) {
-						showmap = !showmap;
-				}
-				if (Input.GetKeyDown ("i")) {
-						showinv = !showinv;
-				}
-				if (Input.GetKey ("w") && (ismoving == false)) { // 
-						p001.Move ("w");
-						ismoving = true;
-						movetimer = movecooldown;
-				}
-				if (Input.GetKey ("s") && (ismoving == false)) {
-						p001.Move ("s");
-						ismoving = true;
-						movetimer = movecooldown;
-				}
-				if (Input.GetKey ("a") && (ismoving == false)) {
-						p001.Move ("a");
-						ismoving = true;
-						movetimer = movecooldown;
-				}
-				if (Input.GetKey ("d") && (ismoving == false)) {
-						p001.Move ("d");
-						ismoving = true;
-						movetimer = movecooldown;
-				}
-				if (ismoving == false) {
-						p001.hp += p001.maxhp / 100;
-						p001.mana += p001.maxmana / 100;
-						if (p001.hp >= p001.maxhp) {
-								p001.hp = p001.maxhp;
+		void Update () {
+				if (p001 != null) {
+						if (Input.GetKeyDown ("m")) {
+								showmap = !showmap;
 						}
-						if (p001.mana >= p001.maxmana) {
-								p001.mana = p001.maxmana;
+						if (Input.GetKeyDown ("i")) {
+								showinv = !showinv;
 						}
-				}
-				movetimer -= Time.deltaTime;
-				if (movetimer <= 0) {
-						ismoving = false;
+						if (Input.GetKey ("w") && (ismoving == false)) { // 
+								p001.Move ("w");
+								ismoving = true;
+								movetimer = movecooldown;
+						}
+						if (Input.GetKey ("s") && (ismoving == false)) {
+								p001.Move ("s");
+								ismoving = true;
+								movetimer = movecooldown;
+						}
+						if (Input.GetKey ("a") && (ismoving == false)) {
+								p001.Move ("a");
+								ismoving = true;
+								movetimer = movecooldown;
+						}
+						if (Input.GetKey ("d") && (ismoving == false)) {
+								p001.Move ("d");
+								ismoving = true;
+								movetimer = movecooldown;
+						}
+						if (ismoving == false) {
+								p001.hp += p001.maxhp / 100;
+								p001.mana += p001.maxmana / 100;
+								if (p001.hp >= p001.maxhp) {
+										p001.hp = p001.maxhp;
+								}
+								if (p001.mana >= p001.maxmana) {
+										p001.mana = p001.maxmana;
+								}
+						}
+						movetimer -= Time.deltaTime;
+						if (movetimer <= 0) {
+								ismoving = false;
+						}
 				}
 		}
 		player p001;
-		void Startscreen ()
-		{
+		void Startscreen () {
 				if (showgamemenue) {
 						GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), bg);
 						//GUI.Label (new Rect (0, 0, 100, 100), "Dies ist ein Text");
@@ -92,14 +90,15 @@ public class mainmenu : MonoBehaviour
 		}
 
 		bool lvlupanzeige = false;
-		void Lvlupscreen ()
-		{
-				if (p001.skillpoints > 0) {
-						if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "LevelUp - Skillpoints available!")) {
-								lvlupanzeige = true;
+		void Lvlupscreen () {
+				if (p001 != null) {
+						if (p001.skillpoints > 0) {
+								if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "LevelUp - Skillpoints available!")) {
+										lvlupanzeige = true;
+								}
+						} else {
+								lvlupanzeige = false;
 						}
-				} else {
-						lvlupanzeige = false;
 				}
 				if (lvlupanzeige) {
 						GUI.Label (new Rect (600, 460, 100, 50), "Skillpoints : " + p001.skillpoints);
@@ -127,13 +126,14 @@ public class mainmenu : MonoBehaviour
 		List<items> item_liste = new List<items> ();
 		Vector2 scroller = new Vector2 ();
 		Rect Scrollbereich; // Weil ka wie sonst XD
-		void shopanzeige ()
-		{
-				if ((p001.pos == s001.pos) && (imshop == false)) {
-						if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "Click here to enter shop!")) {
-								item_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Item_List;
-								Scrollbereich = new Rect (0, 0, 0, 0);
-								imshop = true;
+		void shopanzeige () {
+				if (p001 != null) {
+						if ((p001.pos == s001.pos) && (imshop == false)) {
+								if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "Click here to enter shop!")) {
+										item_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Item_List;
+										Scrollbereich = new Rect (0, 0, 0, 0);
+										imshop = true;
+								}
 						}
 				}
 				if (imshop) {
@@ -176,168 +176,168 @@ public class mainmenu : MonoBehaviour
 						Rect Zeile1 = new Rect (0, 0, Scrollbereich.width, 20);
 						Rect Spalte;
 						switch (anzeige_kat) {
-						case 0:
-								break;
-						case 1:
-								foreach (items dieseitem in item_liste) {
+								case 0:
+										break;
+								case 1:
+										foreach (items dieseitem in item_liste) {
 					
-										if (dieseitem.type == itemtype.Nahkampf) {
-												GUILayout.BeginHorizontal ();
-												Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-												GUI.Label (Spalte, dieseitem.name);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Physical Damage: " + dieseitem.phy_dmg);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Magical Damage: " + dieseitem.mag_dmg);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												if (GUI.Button (Spalte, "Buy")) {
-														s001.kaufe_item (dieseitem);
-												}
-												Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
+												if (dieseitem.type == itemtype.Nahkampf) {
+														GUILayout.BeginHorizontal ();
+														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+														GUI.Label (Spalte, dieseitem.name);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Physical Damage: " + dieseitem.phy_dmg);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Magical Damage: " + dieseitem.mag_dmg);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														if (GUI.Button (Spalte, "Buy")) {
+																s001.kaufe_item (dieseitem);
+														}
+														Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 						
-												GUILayout.EndHorizontal ();
+														GUILayout.EndHorizontal ();
+												}
 										}
-								}
-								break;
-						case 2:
-								foreach (items dieseitem in item_liste) {
+										break;
+								case 2:
+										foreach (items dieseitem in item_liste) {
 					
-										if (dieseitem.type == itemtype.Fernkampf) {
-												GUILayout.BeginHorizontal ();
-												Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-												GUI.Label (Spalte, dieseitem.name);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Physical Damage: " + dieseitem.phy_dmg);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Magical Damage: " + dieseitem.mag_dmg);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												if (GUI.Button (Spalte, "Buy")) {
-														s001.kaufe_item (dieseitem);
-												}
-												Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
+												if (dieseitem.type == itemtype.Fernkampf) {
+														GUILayout.BeginHorizontal ();
+														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+														GUI.Label (Spalte, dieseitem.name);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Physical Damage: " + dieseitem.phy_dmg);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Magical Damage: " + dieseitem.mag_dmg);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														if (GUI.Button (Spalte, "Buy")) {
+																s001.kaufe_item (dieseitem);
+														}
+														Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 						
-												GUILayout.EndHorizontal ();
+														GUILayout.EndHorizontal ();
+												}
 										}
-								}
-								break;
-						case 3:
-								foreach (items dieseitem in item_liste) {
+										break;
+								case 3:
+										foreach (items dieseitem in item_liste) {
 					
-										if ((dieseitem.type == itemtype.Kopf_Rüstung) || (dieseitem.type == itemtype.Torso_Rüstung) || (dieseitem.type == itemtype.Beine_Rüstung) || (dieseitem.type == itemtype.Stiefel_Rüstung) || (dieseitem.type == itemtype.Handschuhe_Rüstung)) {
-												GUILayout.BeginHorizontal ();
-												Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-												GUI.Label (Spalte, dieseitem.name);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Physical Defense: " + dieseitem.phy_arm);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Magical Defense: " + dieseitem.mag_arm);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												if (GUI.Button (Spalte, "Buy")) {
-														s001.kaufe_item (dieseitem);
-												}
-												Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
+												if ((dieseitem.type == itemtype.Kopf_Rüstung) || (dieseitem.type == itemtype.Torso_Rüstung) || (dieseitem.type == itemtype.Beine_Rüstung) || (dieseitem.type == itemtype.Stiefel_Rüstung) || (dieseitem.type == itemtype.Handschuhe_Rüstung)) {
+														GUILayout.BeginHorizontal ();
+														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+														GUI.Label (Spalte, dieseitem.name);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Physical Defense: " + dieseitem.phy_arm);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Magical Defense: " + dieseitem.mag_arm);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														if (GUI.Button (Spalte, "Buy")) {
+																s001.kaufe_item (dieseitem);
+														}
+														Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 						
-												GUILayout.EndHorizontal ();
+														GUILayout.EndHorizontal ();
+												}
 										}
-								}
-								break;
-						case 4:
-								foreach (items dieseitem in item_liste) {
+										break;
+								case 4:
+										foreach (items dieseitem in item_liste) {
 					
-										if (dieseitem.type == itemtype.Tränke) {
-												GUILayout.BeginHorizontal ();
-												Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 6, Zeile1.height);
-												GUI.Label (Spalte, dieseitem.name);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Effect: " + dieseitem.effect + " " + dieseitem.effecttyp);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												if (GUI.Button (Spalte, "Buy")) {
-														s001.kaufe_item (dieseitem);
-												}
-												Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
+												if (dieseitem.type == itemtype.Tränke) {
+														GUILayout.BeginHorizontal ();
+														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 6, Zeile1.height);
+														GUI.Label (Spalte, dieseitem.name);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Effect: " + dieseitem.effect + " " + dieseitem.effecttyp);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														if (GUI.Button (Spalte, "Buy")) {
+																s001.kaufe_item (dieseitem);
+														}
+														Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 						
-												GUILayout.EndHorizontal ();
+														GUILayout.EndHorizontal ();
+												}
 										}
-								}
-								break;
-						case 5:
-								foreach (items dieseitem in item_liste) {
+										break;
+								case 5:
+										foreach (items dieseitem in item_liste) {
 					
-										if (dieseitem.type == itemtype.Munition) {
-												GUILayout.BeginHorizontal ();
-												Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 8, Zeile1.height);
-												GUI.Label (Spalte, dieseitem.name);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Physical Damage: " + dieseitem.phy_dmg);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Magical Damage: " + dieseitem.mag_dmg);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Amount: " + dieseitem.ammo_ammount);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												if (GUI.Button (Spalte, "Buy")) {
-														s001.kaufe_item (dieseitem);
-												}
-												Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
+												if (dieseitem.type == itemtype.Munition) {
+														GUILayout.BeginHorizontal ();
+														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 8, Zeile1.height);
+														GUI.Label (Spalte, dieseitem.name);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Physical Damage: " + dieseitem.phy_dmg);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Magical Damage: " + dieseitem.mag_dmg);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Amount: " + dieseitem.ammo_ammount);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														if (GUI.Button (Spalte, "Buy")) {
+																s001.kaufe_item (dieseitem);
+														}
+														Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 						
-												GUILayout.EndHorizontal ();
+														GUILayout.EndHorizontal ();
+												}
 										}
-								}
-								break;
-						case 6:
-								foreach (items dieseitem in item_liste) {
+										break;
+								case 6:
+										foreach (items dieseitem in item_liste) {
 					
-										if (dieseitem.type == itemtype.anglegbares) {
-												GUILayout.BeginHorizontal ();
-												Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 6, Zeile1.height);
-												GUI.Label (Spalte, dieseitem.name);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Effect: " + dieseitem.effecttyp);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												if (GUI.Button (Spalte, "Buy")) {
-														s001.kaufe_item (dieseitem);
-												}
-												Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
+												if (dieseitem.type == itemtype.anglegbares) {
+														GUILayout.BeginHorizontal ();
+														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 6, Zeile1.height);
+														GUI.Label (Spalte, dieseitem.name);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Price: " + dieseitem.price + " G");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Items in stock: " + dieseitem.stock / 10);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Effect: " + dieseitem.effecttyp);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														if (GUI.Button (Spalte, "Buy")) {
+																s001.kaufe_item (dieseitem);
+														}
+														Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 						
-												GUILayout.EndHorizontal ();
+														GUILayout.EndHorizontal ();
+												}
 										}
-								}
-								break;
+										break;
 
 						}
 						GUI.EndScrollView ();
@@ -351,8 +351,7 @@ public class mainmenu : MonoBehaviour
 		}
 		string loginname = "";
 		string passwort = "";
-		void ShowLogin ()
-		{
+		void ShowLogin () {
 				if (showlogin) {
 						Rect Anzeigebereich = new Rect (5, 5, Screen.width - 5, Screen.height - 5);
 						Rect ErsteZeile = new Rect (0, 20, Anzeigebereich.width, 20);
@@ -381,8 +380,7 @@ public class mainmenu : MonoBehaviour
 
 		}
 
-		void OnGUI ()
-		{
+		void OnGUI () {
 				Startscreen ();
 				Lvlupscreen ();
 				shopanzeige ();

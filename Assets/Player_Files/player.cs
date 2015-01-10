@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class player : MonoBehaviour
 {
-
 		public int Player_ID;
 		public int hp ; 
 		public int maxhp ; 

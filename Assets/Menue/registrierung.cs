@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class registrierung : MonoBehaviour
-{
+public class registrierung : MonoBehaviour {
 		int Player_ID;
 		public string loginname;
 		public string passwort;
@@ -24,12 +23,10 @@ public class registrierung : MonoBehaviour
 		string Datenbank_URL = "http://www.cards-of-destruction.com/SimpleRpg/";
 
 		// Use this for initialization
-		void Start ()
-		{
+		void Start () {
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
 		}
-		void OnGUI ()
-		{
+		void OnGUI () {
 				if (step > 0) {
 						Rect Anzeigebereich = new Rect (5, 5, Screen.width - 5, Screen.height - 5);
 						Rect ErsteZeile = new Rect (0, 20, Anzeigebereich.width, 20);
@@ -71,8 +68,7 @@ public class registrierung : MonoBehaviour
 				
 		}
 
-		IEnumerator account_generieren (string loginname, string password)
-		{
+		IEnumerator account_generieren (string loginname, string password) {
 				// Datenbank_URL
 				WWWForm LoginForm = new WWWForm ();
 				LoginForm.AddField ("user_name", loginname);
@@ -96,8 +92,7 @@ public class registrierung : MonoBehaviour
 				}
 		}
 
-		void difficulty (Rect ErsteZeile)
-		{
+		void difficulty (Rect ErsteZeile) {
 				GUI.Label (ErsteZeile, "Choose your Difficulty:");
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 				if (GUI.Button (new Rect (ErsteZeile), "Easy")) {
@@ -126,8 +121,10 @@ public class registrierung : MonoBehaviour
 				}
 		}
 
-		void charaktererstellung (Rect ErsteZeile)
-		{
+		void charaktererstellung (Rect ErsteZeile) {
+				if (p001 != null) {
+						p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				}
 				GUI.Label (ErsteZeile, "Choose your Class:");
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 				if (GUI.Button (new Rect (ErsteZeile), "Melee")) {
@@ -162,8 +159,9 @@ public class registrierung : MonoBehaviour
 		}
 
 		// Update is called once per frame
-		void Update ()
-		{
-	
+		void Update () {
+				if (p001 != null) {
+						p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				}
 		}
 }
