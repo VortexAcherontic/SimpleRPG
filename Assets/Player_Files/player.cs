@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class player : MonoBehaviour
-{
+public class player : MonoBehaviour {
 		public int Player_ID;
 		public int hp ; 
 		public int maxhp ; 
@@ -23,8 +22,7 @@ public class player : MonoBehaviour
 		/*, list equip*/
 
 		// Use this for initialization
-		public void Beginn (int hp, int maxhp, int mana, int maxmana, int xp, int lvl, int gold, int pwr, int armor, int agility, string pname, int posx, int posy, int p_ID/*, list equip*/)
-		{
+		public void Beginn (int hp, int maxhp, int mana, int maxmana, int xp, int lvl, int gold, int pwr, int armor, int agility, string pname, int posx, int posy, int p_ID/*, list equip*/) {
 				//Player = [] in python zum laden&speichern genutzte liste
 				this.hp = hp;
 				this.maxhp = maxhp;
@@ -44,8 +42,7 @@ public class player : MonoBehaviour
 				//Equip = equip ausrüstungsslots
 		}
 		bool equipcheck = false;
-		public void equip (items obj)
-		{
+		public void equip (items obj) {
 				foreach (items c_obj in Equip) {
 						if (c_obj.type == obj.type) {
 								equipcheck = true;
@@ -57,38 +54,35 @@ public class player : MonoBehaviour
 				}
 		}
 
-		public void unequip (items obj)
-		{
+		public void unequip (items obj) {
 				inv.add (obj);
 				Equip.Remove (obj);
 		}
 
-		public void Move (string direction)
-		{
+		public void Move (string direction) {
 				lastpos = pos;
 				//playerpointer
 				//Ereignis ();
 				switch (direction) {
-				case "w":
-						pos.y++;
-						break;
-				case "s":
-						pos.y--;
-						break;
-				case "a":
-						pos.x--;
-						break;
-				case "d":
-						pos.x++;
-						break;
+						case "w":
+								pos.y++;
+								break;
+						case "s":
+								pos.y--;
+								break;
+						case "a":
+								pos.x--;
+								break;
+						case "d":
+								pos.x++;
+								break;
 				}
 				Debug.Log (pos);
-	
+				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
 		}
 	
 		public int skillpoints;
-		void LVLUP ()
-		{
+		void LVLUP () {
 				if (xp >= 100 * (lvl + 1)) {
 						lvl++;
 						xp -= 100 * (lvl);
@@ -101,8 +95,7 @@ public class player : MonoBehaviour
 				}
 		}
 		
-		void Regen ()
-		{
+		void Regen () {
 				hp += maxhp / 100;
 				mana += maxmana / 100;
 				if (hp > maxhp) {
@@ -116,12 +109,10 @@ public class player : MonoBehaviour
 		//ereignis
 
 		// Update is called once per frame
-		void Update ()
-		{
+		void Update () {
 				LVLUP ();
 		}
-		public IEnumerator save (string Datenbank_URL, int player_id)
-		{
+		public IEnumerator save (string Datenbank_URL, int player_id) {
 				//Debug.Log ("Versuche zu speichern " + Datenbank_URL + "save_player.php");
 				WWWForm LoginForm = new WWWForm ();
 				LoginForm.AddField ("player_id", player_id);
@@ -147,8 +138,7 @@ public class player : MonoBehaviour
 				StartCoroutine (save_inv (Datenbank_URL, Player_ID));
 				
 		}
-		public IEnumerator load (string Datenbank_URL, string Name, string Password)
-		{
+		public IEnumerator load (string Datenbank_URL, string Name, string Password) {
 				
 				WWWForm TmpForm = new WWWForm ();
 				TmpForm.AddField ("user_name", Name);
@@ -185,8 +175,7 @@ public class player : MonoBehaviour
 						Debug.LogError ("### Login Fail: " + www.error);
 				}
 		}
-		public IEnumerator save_inv (string Datenbank_URL, int player_id)
-		{
+		public IEnumerator save_inv (string Datenbank_URL, int player_id) {
 			
 				// Clear inv vorm neuen speichern
 				WWWForm LoginForm = new WWWForm ();
@@ -205,8 +194,7 @@ public class player : MonoBehaviour
 				}
 				StartCoroutine (save_equip (Datenbank_URL, Player_ID));
 		}
-		public IEnumerator load_inv (string Datenbank_URL, int player_id)
-		{
+		public IEnumerator load_inv (string Datenbank_URL, int player_id) {
 				item tmp_item = GameObject.Find ("Main Camera").GetComponent<item> ();
 				items tmpobj = tmp_item.item_mit_name ("xyz");
 		
@@ -231,8 +219,7 @@ public class player : MonoBehaviour
 				StartCoroutine (load_equip (Datenbank_URL, Player_ID));
 				
 		}
-		public IEnumerator save_equip (string Datenbank_URL, int player_id)
-		{
+		public IEnumerator save_equip (string Datenbank_URL, int player_id) {
 				// Clear inv vorm neuen speichern
 				WWWForm LoginForm = new WWWForm ();
 				LoginForm.AddField ("player_id", player_id);
@@ -249,8 +236,7 @@ public class player : MonoBehaviour
 						yield return web;
 				}
 		}
-		public IEnumerator load_equip (string Datenbank_URL, int player_id)
-		{
+		public IEnumerator load_equip (string Datenbank_URL, int player_id) {
 				item tmp_item = GameObject.Find ("Main Camera").GetComponent<item> ();
 				items tmpobj = tmp_item.item_mit_name ("xyz");
 				WWWForm TmpForm = new WWWForm ();

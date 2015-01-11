@@ -3,7 +3,7 @@ using System.Collections;
 
 public class map : MonoBehaviour {
 
-		public Texture minimap;
+		public Texture2D minimap;
 		public mainmenu gui;
 		public player p001;
 
@@ -11,18 +11,20 @@ public class map : MonoBehaviour {
 		void Start () {
 				gui = GameObject.Find ("Main Camera").GetComponent<mainmenu> ();
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				LoadMap ();
 		}
 
 		void OnGUI () {
 				if (gui.showmap) {
-						// Map laden... http://docs.unity3d.com/ScriptReference/Resources.Load.html
-						GUI.DrawTexture (new Rect (1180, 0, 100, 100), minimap);
+						
+						//GUI.DrawTexture (new Rect (1180, 0, 100, 100), minimap);
+						GUI.DrawTexture (new Rect (0, 0, 100, 100), minimap); // Koords angepass weil mein Bildschrim zu klein SK
 				}
 				//if(p001.pos)
 		}
 
-		// Update is called once per frame
-		void Update () {
-	
+		public void LoadMap () {
+				// Map laden... http://docs.unity3d.com/ScriptReference/Resources.Load.html
+				gameObject.GetComponent<TileMap> ().GenerateMapData ();
 		}
 }

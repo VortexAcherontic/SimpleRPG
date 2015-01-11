@@ -7,6 +7,7 @@ Events einbauen
 monster und npc's einbauen
 
 regionen system einbauen und minimap aktualisieren sowie mehr maps zusammenbasteln
+- Map Load über Ressourse? Link im Map.cs
 
 kampf system einbauen gegen computer / battlemode 1vs1 einbauen
 
