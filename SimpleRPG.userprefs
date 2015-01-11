@@ -7,7 +7,7 @@
       <File FileName="Assets\Map\map.cs" Line="14" Column="5" />
       <File FileName="Assets\Player_Files\PlayerToPos.cs" Line="1" Column="1" />
       <File FileName="Assets\Player_Files\player.cs" Line="81" Column="73" />
-      <File FileName="Assets\Map\TileMap.cs" Line="19" Column="26" />
+      <File FileName="Assets\Map\TileMap.cs" Line="87" Column="24" />
       <File FileName="Assets\Map\TileType.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
