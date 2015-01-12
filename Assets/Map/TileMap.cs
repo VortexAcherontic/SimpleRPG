@@ -33,23 +33,23 @@ public class TileMap : MonoBehaviour {
 								FeldFarbe.a = Mathf.Round (FeldFarbe.a * 1000) / 1000;
 								// Tiles Ziffern noch anpassen
 								if (FeldFarbe.r == 0.965f && FeldFarbe.g == 0.635f && FeldFarbe.b == 0.455f && FeldFarbe.a == 0.094f) {
-										tiles [x, y] = 1;
+										tiles [x, y] = 5; //Sumpf
 								} else if (FeldFarbe.r == 0.996f && FeldFarbe.g == 0.678f && FeldFarbe.b == 0.784f && FeldFarbe.a == 0.125f) {
-										tiles [x, y] = 2;
+										tiles [x, y] = 2;//city
 								} else if (FeldFarbe.r == 0.988f && FeldFarbe.g == 0.118f && FeldFarbe.b == 0.149f && FeldFarbe.a == 0.118f) {
-										tiles [x, y] = 3;
+										tiles [x, y] = 3;//Vulkan
 								} else if (FeldFarbe.r == 0.976f && FeldFarbe.g == 0.976f && FeldFarbe.b == 0.976f && FeldFarbe.a == 0.098f) {
-										tiles [x, y] = 1;
+										tiles [x, y] = 3;//Berge
 								} else if (FeldFarbe.r == 0.000f && FeldFarbe.g == 0.675f && FeldFarbe.b == 0.969f && FeldFarbe.a == 0.118f) {
-										tiles [x, y] = 1;
+										tiles [x, y] = 4;//Wasser
 								} else if (FeldFarbe.r == 0.996f && FeldFarbe.g == 0.945f && FeldFarbe.b == 0.000f && FeldFarbe.a == 0.125f) {
-										tiles [x, y] = 1;
+										tiles [x, y] = 6;//Strand
 								} else if (FeldFarbe.r == 0.780f && FeldFarbe.g == 0.992f && FeldFarbe.b == 0.125f && FeldFarbe.a == 0.114f) {
-										tiles [x, y] = 1;
+										tiles [x, y] = 1;//Felder
 								} else if (FeldFarbe.r == 0.184f && FeldFarbe.g == 0.961f && FeldFarbe.b == 0.412f && FeldFarbe.a == 0.090f) {
-										tiles [x, y] = 1;
+										tiles [x, y] = 0;//Wald
 								} else if (FeldFarbe.r == 0.000f && FeldFarbe.g == 0.000f && FeldFarbe.b == 0.000f && FeldFarbe.a == 0.024f) {
-										tiles [x, y] = 1;
+										tiles [x, y] = 3;//Burg Eingang hinzufügen...
 								} else {
 										Debug.LogError ("Unbekannte Map Farbe: R" + FeldFarbe.r + " G" + FeldFarbe.g + " B" + FeldFarbe.b + " A" + FeldFarbe.a + " !");								
 										tiles [x, y] = 1;

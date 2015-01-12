@@ -16,6 +16,11 @@ public class mainmenu : MonoBehaviour {
 				//p001.Beginn (1000, 1000, 1000, 1000, 80, 0, 100000, 0, 0, 0, "sascha", 50, 50);
 				s001 = GameObject.Find ("Main Camera").GetComponent<shop> ();
 				s001.Create (50, 50);
+				/*
+				//Bewegungseffekte
+				int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [p001.pos.x, p001.pos.y];
+				float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
+				*/
 		}
 	
 		// Update is called once per frame
@@ -33,22 +38,34 @@ public class mainmenu : MonoBehaviour {
 						if (Input.GetKey ("w") && (ismoving == false)) { // 
 								p001.Move ("w");
 								ismoving = true;
-								movetimer = movecooldown;
+								//Bewegungseffekte
+								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
+								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
+								movetimer = moveeffect * movecooldown;
 						}
 						if (Input.GetKey ("s") && (ismoving == false)) {
 								p001.Move ("s");
 								ismoving = true;
-								movetimer = movecooldown;
+								//Bewegungseffekte
+								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
+								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
+								movetimer = moveeffect * movecooldown;
 						}
 						if (Input.GetKey ("a") && (ismoving == false)) {
 								p001.Move ("a");
 								ismoving = true;
-								movetimer = movecooldown;
+								//Bewegungseffekte
+								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
+								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
+								movetimer = moveeffect * movecooldown;
 						}
 						if (Input.GetKey ("d") && (ismoving == false)) {
 								p001.Move ("d");
 								ismoving = true;
-								movetimer = movecooldown;
+								//Bewegungseffekte
+								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
+								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
+								movetimer = moveeffect * movecooldown;
 						}
 						if (ismoving == false) {
 								p001.hp += p001.maxhp / 100;
