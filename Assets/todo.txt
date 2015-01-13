@@ -4,7 +4,7 @@ magiebuch einbauen(seeeeeeeeeeeeeeeeeeeeeeeeeeeeeehr viel später)
 
 Events einbauen
 
-monster und npc's einbauen
+npcs einbauen
 
 regionen system einbauen und minimap aktualisieren sowie mehr maps zusammenbasteln
 - Map Load über Ressourse? Link im Map.cs

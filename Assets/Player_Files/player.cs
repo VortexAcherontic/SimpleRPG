@@ -86,6 +86,24 @@ public class player : MonoBehaviour {
 				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
 		}
 	
+		public void OnGUI () {
+				// Anzeigen für Health, Mana und XP später durch grafische Elemente zu ersetzen.
+				GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Health: " + hp + " HP");
+				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + mana + "MP");
+				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + xp + "XP");
+				//Debug um Regeneration und Lvl up zu testen
+				if (GUI.Button (new Rect (5, Screen.height - 105, 170, 20), "Hp down")) {
+						hp = maxhp / 2;
+				}
+				if (GUI.Button (new Rect (5, Screen.height - 130, 170, 20), "Mana down")) {
+						mana = maxmana / 2;
+				}
+				if (GUI.Button (new Rect (5, Screen.height - 155, 170, 20), "Xp UP")) {
+						xp += 20;
+				}
+		
+		}
+	
 		public int skillpoints;
 		void LVLUP () {
 				if (xp >= 100 * (lvl + 1)) {
@@ -99,7 +117,8 @@ public class player : MonoBehaviour {
 
 				}
 		}
-		
+		//regen im menü
+		/*
 		void Regen () {
 				hp += maxhp / 100;
 				mana += maxmana / 100;
@@ -110,7 +129,7 @@ public class player : MonoBehaviour {
 						mana = maxmana;
 				}
 		}
-		
+		*/
 		//ereignis
 
 		// Update is called once per frame

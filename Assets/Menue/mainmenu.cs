@@ -27,6 +27,11 @@ public class mainmenu : MonoBehaviour {
 		bool ismoving = false;
 		float movecooldown = 0.2f;
 		float movetimer;
+		float regcooldown = 0.1f;
+		float regtimer;
+		bool isregging = false;
+	
+		public bool debugmode = false;
 		void Update () {
 				if (p001 != null) {
 						if (Input.GetKeyDown ("m")) {
@@ -35,6 +40,11 @@ public class mainmenu : MonoBehaviour {
 						if (Input.GetKeyDown ("i")) {
 								showinv = !showinv;
 						}
+						/*
+						if (Input.GetKeyDown ("+")) {
+								debugmode = !debugmode;
+						}
+						*/
 						if (Input.GetKey ("w") && (ismoving == false)) { // 
 								p001.Move ("w");
 								ismoving = true;
@@ -67,19 +77,25 @@ public class mainmenu : MonoBehaviour {
 								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
 								movetimer = moveeffect * movecooldown;
 						}
-						if (ismoving == false) {
-								p001.hp += p001.maxhp / 100;
-								p001.mana += p001.maxmana / 100;
+						if ((ismoving == false) && (isregging)) {
+								p001.hp += p001.maxhp / 1000;
+								p001.mana += p001.maxmana / 1000;
 								if (p001.hp >= p001.maxhp) {
 										p001.hp = p001.maxhp;
 								}
 								if (p001.mana >= p001.maxmana) {
 										p001.mana = p001.maxmana;
 								}
+								isregging = false;
+								regtimer = regcooldown;
 						}
 						movetimer -= Time.deltaTime;
+						regtimer -= Time.deltaTime;
 						if (movetimer <= 0) {
 								ismoving = false;
+						}
+						if (regtimer <= 0) {
+								isregging = true;
 						}
 				}
 		}

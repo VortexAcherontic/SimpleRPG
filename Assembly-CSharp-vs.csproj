@@ -46,6 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Enemy\EnemyBehaviour.cs" />
+     <Compile Include="Assets\Enemy\EnemySpawn.cs" />
+     <Compile Include="Assets\Enemy\EnemyType.cs" />
+     <Compile Include="Assets\Enemy\enemy.cs" />
      <Compile Include="Assets\Map\TileMap.cs" />
      <Compile Include="Assets\Map\TileType.cs" />
      <Compile Include="Assets\Map\map.cs" />
