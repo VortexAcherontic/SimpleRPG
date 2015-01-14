@@ -18,6 +18,8 @@ public class player : MonoBehaviour {
 		public Vector2 pos;
 		Vector2 lastpos;
 		public inventory inv;
+		public int rangeweapondistance = 5;
+		public bool gameover = false;
 		public List<items> Equip = new List<items> ();
 		/*, list equip*/
 
@@ -38,13 +40,14 @@ public class player : MonoBehaviour {
 				//this.name = pname;
 				this.pos = new Vector2 (posx, posy);
 				inv = GameObject.Find ("Main Camera").GetComponent<inventory> ();
-				;
+				
 				//Equip = equip ausrüstungsslots
 				GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
 				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 		}
 		bool equipcheck = false;
+		
 		public void equip (items obj) {
 				foreach (items c_obj in Equip) {
 						if (c_obj.type == obj.type) {
@@ -94,8 +97,10 @@ public class player : MonoBehaviour {
 				GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Health: " + hp + " HP");
 				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + mana + "MP");
 				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + xp + "XP");
+				
 				//Debug um Regeneration und Lvl up zu testen
-				if (GUI.Button (new Rect (5, Screen.height - 105, 170, 20), "Hp down")) {
+				/*		
+		if (GUI.Button (new Rect (5, Screen.height - 105, 170, 20), "Hp down")) {
 						hp = maxhp / 2;
 				}
 				if (GUI.Button (new Rect (5, Screen.height - 130, 170, 20), "Mana down")) {
@@ -104,7 +109,7 @@ public class player : MonoBehaviour {
 				if (GUI.Button (new Rect (5, Screen.height - 155, 170, 20), "Xp UP")) {
 						xp += 20;
 				}
-		
+		*/
 		}
 	
 		public int skillpoints;
@@ -135,9 +140,12 @@ public class player : MonoBehaviour {
 		*/
 		//ereignis
 
-		// Update is called once per frame
+
 		void Update () {
 				LVLUP ();
+				if (hp < 0) {
+						gameover = true;
+				}
 		}
 		public IEnumerator save (string Datenbank_URL, int player_id) {
 				//Debug.Log ("Versuche zu speichern " + Datenbank_URL + "save_player.php");

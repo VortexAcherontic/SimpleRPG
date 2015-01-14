@@ -27,7 +27,7 @@ public class mainmenu : MonoBehaviour {
 		bool ismoving = false;
 		float movecooldown = 0.2f;
 		float movetimer;
-		float regcooldown = 0.1f;
+		float regcooldown = 0.5f;
 		float regtimer;
 		bool isregging = false;
 	
@@ -413,6 +413,12 @@ public class mainmenu : MonoBehaviour {
 
 		}
 
+		void EndScreen () {
+				if (p001.gameover) {
+						Application.LoadLevel ("GameOverScreen");
+				}
+		}
+	
 		void OnGUI () {
 				Startscreen ();
 				Lvlupscreen ();

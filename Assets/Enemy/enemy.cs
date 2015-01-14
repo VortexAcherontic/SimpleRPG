@@ -43,6 +43,8 @@ public class enemy : MonoBehaviour {
 				thismob.pwr = mt.pwr;
 				thismob.armor = mt.armor;
 				thismob.agility = mt.agility;
+				thismob.xpdrop = mt.xpdrop;
+				thismob.golddrop = mt.golddrop;
 		}
 	
 		// Update is called once per frame

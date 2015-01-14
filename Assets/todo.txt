@@ -11,8 +11,10 @@ npcs einbauen
 regionen system einbauen und minimap aktualisieren sowie mehr maps zusammenbasteln
 - Map Load über Ressourse? Link im Map.cs
 
-kampf system einbauen gegen computer / battlemode 1vs1 einbauen
+battlemode 1vs1 einbauen
+
+Fernkampfwaffen mit reichweite versehen
 
 generell laden und speichern einbauen in einer taverne statt im inventar
 
-insgesamt nen gamescreen basteln (3 progressbars für HP MP und XP)
+insgesamt nen gamescreen basteln (3 progressbars für HP MP und XP) [anzeigen sind schon mal da :D]
