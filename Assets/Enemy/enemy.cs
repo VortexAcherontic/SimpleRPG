@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class thismonster {
+public struct thismonster {
+		
 		//GeneralStats
 		public int Monster_ID;
 		public string pname;
@@ -23,6 +24,7 @@ public class thismonster {
 		public int golddrop;
 		public int xpdrop;
 		//public List<items> loot = new List<items> ();
+		
 }
 public class enemy : MonoBehaviour {
 		public thismonster thismob;

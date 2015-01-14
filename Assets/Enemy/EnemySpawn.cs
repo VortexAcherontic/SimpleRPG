@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemySpawn : MonoBehaviour {
 		public EnemyType[] enemyTypes;
-		public int maxmobs = 15;
+		int maxmobs = 15;
 		public int mobs = 0;
 		float spawncooldown = 5.0f;
 		float spawntimer;
