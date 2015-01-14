@@ -40,8 +40,9 @@ public class player : MonoBehaviour {
 				inv = GameObject.Find ("Main Camera").GetComponent<inventory> ();
 				;
 				//Equip = equip ausrüstungsslots
-		
+				GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
 				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
+				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 		}
 		bool equipcheck = false;
 		public void equip (items obj) {
@@ -228,7 +229,7 @@ public class player : MonoBehaviour {
 				TmpForm.AddField ("player_id", player_id);
 				WWW www = new WWW (Datenbank_URL + "load_player_inv.php", TmpForm);
 				yield return www;
-				Debug.Log ("inv:: " + www.text);
+				//Debug.Log ("inv:: " + www.text);
 				if (www.text != "-1") {
 						//Debug.Log ("### LoginText: " + www.text);
 						string[] zeilen = www.text.Split ("\n" [0]);
@@ -269,7 +270,7 @@ public class player : MonoBehaviour {
 				TmpForm.AddField ("player_id", player_id);
 				WWW www = new WWW (Datenbank_URL + "load_player_equip.php", TmpForm);
 				yield return www;
-				Debug.Log ("equ:: " + www.text);
+				//Debug.Log ("equ:: " + www.text);
 				if (www.text != "-1") {
 						//Debug.Log ("### LoginText: " + www.text);
 						string[] zeilen = www.text.Split ("\n" [0]);

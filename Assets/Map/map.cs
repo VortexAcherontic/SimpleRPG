@@ -11,7 +11,7 @@ public class map : MonoBehaviour {
 		void Start () {
 				gui = GameObject.Find ("Main Camera").GetComponent<mainmenu> ();
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
-				LoadMap ();
+				//LoadMap (); // Nun nach Player Load
 		}
 
 		void OnGUI () {
