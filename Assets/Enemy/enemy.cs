@@ -24,10 +24,11 @@ public struct thismonster {
 		public int golddrop;
 		public int xpdrop;
 		//public List<items> loot = new List<items> ();
-		
 }
 public class enemy : MonoBehaviour {
 		public thismonster thismob;
+		Transform healthbar;
+		Transform healthbarFilled;
 
 		public void SettingStats (EnemyType mt) {
 				thismob.Monster_ID = mt.Monster_ID;
@@ -49,6 +50,18 @@ public class enemy : MonoBehaviour {
 	
 		// Update is called once per frame
 		void Update () {
-	
+				var offset = Vector3.up;  
+				if (healthbar == null) {
+						healthbar = transform.FindChild ("Health").transform;
+						healthbarFilled = transform.FindChild ("HealthBar").transform;
+				} else {
+						offset.y = 0.25f;
+						healthbar.position = Camera.main.WorldToViewportPoint (transform.position + offset);
+						offset.z -= 1;
+						healthbarFilled.position = Camera.main.WorldToViewportPoint (transform.position + offset);
+						Rect hpstatus = healthbar.GetComponent<GUITexture> ().pixelInset;
+						hpstatus.width = (thismob.hp / thismob.maxhp) * healthbarFilled.GetComponent<GUITexture> ().pixelInset.width;
+						healthbar.GetComponent<GUITexture> ().pixelInset = hpstatus;
+				}
 		}
 }
