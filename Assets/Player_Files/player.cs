@@ -40,6 +40,8 @@ public class player : MonoBehaviour {
 				inv = GameObject.Find ("Main Camera").GetComponent<inventory> ();
 				;
 				//Equip = equip ausrüstungsslots
+		
+				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
 		}
 		bool equipcheck = false;
 		public void equip (items obj) {

@@ -41,6 +41,6 @@ public class EnemySpawn : MonoBehaviour {
 				tmpobjct.transform.parent = GameObject.Find ("MonsterSpawner").transform;
 				tmpobjct.GetComponent<enemy> ().SettingStats (tt);
 				tmpobjct.GetComponent<enemy> ().thismob.pos = pos;
-				Debug.Log ("Mob: " + pos.x + "/" + pos.y);
+				//Debug.Log ("Mob: " + pos.x + "/" + pos.y);
 		}
 }

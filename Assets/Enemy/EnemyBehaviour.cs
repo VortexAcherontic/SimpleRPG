@@ -34,7 +34,7 @@ public class EnemyBehaviour : MonoBehaviour {
 				temp_y = Mathf.Abs (p001.pos.y - transform.position.y);
 				//distance_euklid = (int)Mathf.Sqrt (temp_x * temp_x + temp_y * temp_y);
 				distance_manhatten = (int)(temp_x + temp_y);
-				Debug.Log ("Distance: " + distance_manhatten);
+				//Debug.Log ("Distance: " + distance_manhatten);
 				return distance_manhatten;
 		}
 }

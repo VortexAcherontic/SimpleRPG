@@ -7,7 +7,8 @@ public class PlayerToPos : MonoBehaviour {
 		public void MovePlayer () { // Nicht in Update weil das die FPS von 60 auf 3 macht! Deswegen in p001.move()
 				if (p001 == null) {
 						p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
-				} else {
+				} 
+				if (p001 != null) {
 						Vector3 PosPlayer;
 						PosPlayer.x = p001.pos.x;
 						PosPlayer.y = p001.pos.y;
