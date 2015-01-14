@@ -2,6 +2,16 @@ SimpleRPG
 ========= 
  
  
+2015-01-14 19:18:34 +0100 UnitModel after Load (Sascha Kaufmann)
+
+2015-01-14 19:06:16 +0100 Fix: Screen Location After Login (Sascha Kaufmann)
+
+2015-01-14 18:58:59 +0100 Fix: Enemy Spawn Bug (Sascha Kaufmann)
+
+2015-01-13 22:38:21 +0100 Hp/mp/xp anzeige & enemy angefangen (Defender833)
+
+2015-01-12 19:20:34 +0100 Changelog Update (Sascha Kaufmann)
+
 2015-01-12 19:15:01 +0100 An Map weitergearbeitet (Defender833)
 
 2015-01-12 00:59:15 +0100 Clear (Sascha Kaufmann)

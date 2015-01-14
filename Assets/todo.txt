@@ -5,6 +5,8 @@ magiebuch einbauen(seeeeeeeeeeeeeeeeeeeeeeeeeeeeeehr viel später)
 Events einbauen
 
 npcs einbauen
+-Monster/Npc Sawn je Map? je Region? je Gebiet?
+-Monster spawn Gebiet festlegen (bisher 40-60)
 
 regionen system einbauen und minimap aktualisieren sowie mehr maps zusammenbasteln
 - Map Load über Ressourse? Link im Map.cs

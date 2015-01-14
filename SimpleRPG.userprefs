@@ -1,16 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Enemy\enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
     <Files>
-      <File FileName="Assets\Player_Files\player.cs" Line="21" Column="49" />
-      <File FileName="Assets\todo.txt" Line="17" Column="1" />
-      <File FileName="Assets\Menue\mainmenu.cs" Line="96" Column="8" />
-      <File FileName="Assets\Enemy\EnemyBehaviour.cs" Line="25" Column="24" />
-      <File FileName="Assets\Enemy\EnemySpawn.cs" Line="43" Column="44" />
-      <File FileName="Assets\Enemy\EnemyType.cs" Line="7" Column="3" />
-      <File FileName="Assets\Enemy\enemy.cs" Line="32" Column="30" />
-      <File FileName="Assets\Player_Files\inventory.cs" Line="8" Column="19" />
-      <File FileName="Assets\Objecte\item.cs" Line="44" Column="27" />
+      <File FileName="Assets\todo.txt" Line="9" Column="35" />
+      <File FileName="Assets\Enemy\EnemyBehaviour.cs" Line="37" Column="7" />
+      <File FileName="Assets\Enemy\EnemySpawn.cs" Line="44" Column="7" />
+      <File FileName="Assets\Enemy\EnemyType.cs" Line="5" Column="23" />
+      <File FileName="Assets\Enemy\enemy.cs" Line="27" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
