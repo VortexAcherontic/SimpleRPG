@@ -1,19 +1,147 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
+public struct regions {
+		public int Region_ID;
+		public string name;
+		public GameObject tileVisualPrefab;
+	
+		public bool isWalkable;
+		public float walkEffect;
+	
+		public Color mapColor;
+}
 
 public class TileMap : MonoBehaviour {
-
-		public TileType[] tileTypes;
-
+		public List<regions> tileTypes = new List<regions> ();
 		public int[,] tiles;
 
 		int mapSizeX = 100;
 		int mapSizeY = 100;
 
+		regions CreateEmpty () {
+				regions tmpreg = new regions ();
+				tmpreg.Region_ID = tileTypes.Count + 1;
+				tmpreg.name = "Tile";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileForest");
+				tmpreg.isWalkable = true;
+				tmpreg.walkEffect = 1;
+				return	tmpreg;
+		}
+	
 		void Start () {
-				//GenerateMapData ();
-				//GenerateMapVisuals ();
-				// Nun alles wo anders aufgerufen
+				regions tmpreg = CreateEmpty ();
+				tmpreg.name = "Forest";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileForest");
+				tmpreg.walkEffect = 2;
+				tmpreg.mapColor.r = 0.184f;
+				tmpreg.mapColor.g = 0.961f;
+				tmpreg.mapColor.b = 0.412f;
+				tmpreg.mapColor.a = 0.090f;
+				tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
+				tmpreg.name = "Grass";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileGrass");
+				tmpreg.mapColor.r = 0.780f;
+				tmpreg.mapColor.g = 0.992f;
+				tmpreg.mapColor.b = 0.125f;
+				tmpreg.mapColor.a = 0.114f;
+				tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
+				tmpreg.name = "Road";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileRoad");
+				tmpreg.walkEffect = 0.5f;
+				tmpreg.mapColor.r = 0.996f;
+				tmpreg.mapColor.g = 0.678f;
+				tmpreg.mapColor.b = 0.784f;
+				tmpreg.mapColor.a = 0.125f;
+				tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
+				tmpreg.name = "Mountain";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileMountain");
+				tmpreg.walkEffect = 8;
+				tmpreg.mapColor.r = 0.976f;
+				tmpreg.mapColor.g = 0.976f;
+				tmpreg.mapColor.b = 0.976f;
+				tmpreg.mapColor.a = 0.098f;
+				tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
+				tmpreg.name = "Water";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileWater");
+				tmpreg.walkEffect = 0;
+				tmpreg.isWalkable = false;
+				tmpreg.mapColor.r = 0.000f;
+				tmpreg.mapColor.g = 0.675f;
+				tmpreg.mapColor.b = 0.969f;
+				tmpreg.mapColor.a = 0.118f;
+				tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
+				tmpreg.name = "Swamp";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileSwamp");
+				tmpreg.walkEffect = 5;
+				tmpreg.mapColor.r = 0.965f;
+				tmpreg.mapColor.g = 0.635f;
+				tmpreg.mapColor.b = 0.455f;
+				tmpreg.mapColor.a = 0.094f;
+				tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
+				tmpreg.name = "Beach";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileBeach");
+				tmpreg.walkEffect = 1.1f;
+				tmpreg.mapColor.r = 0.996f;
+				tmpreg.mapColor.g = 0.945f;
+				tmpreg.mapColor.b = 0.000f;
+				tmpreg.mapColor.a = 0.125f;
+				tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
+				tmpreg.name = "Lava";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileLava");
+				tmpreg.walkEffect = 0;
+				tmpreg.isWalkable = false;
+				tmpreg.mapColor.r = 0.988f;
+				tmpreg.mapColor.g = 0.118f;
+				tmpreg.mapColor.b = 0.149f;
+				tmpreg.mapColor.a = 0.118f;
+				tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
+				tmpreg.name = "Entrance";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileDoor");
+				tmpreg.walkEffect = 0;
+				tmpreg.mapColor.r = 0.000f;
+				tmpreg.mapColor.g = 0.000f;
+				tmpreg.mapColor.b = 0.000f;
+				tmpreg.mapColor.a = 0.024f;
+				tileTypes.Add (tmpreg);
+		}
+	
+		public int GetRegionWithColor (Color Search) {
+				foreach (regions tmpreg in tileTypes) {
+						if (tmpreg.mapColor == Search) {
+								return tmpreg.Region_ID;	
+						}
+				}
+				regions tmpreg2 = CreateEmpty ();
+				Debug.LogError ("Unbekannte Map Farbe: R" + Search.r + " G" + Search.g + " B" + Search.b + " A" + Search.a + " !");								
+				return tmpreg2.Region_ID;
+		}
+		public int GetRegionWithName (string Search) {
+				foreach (regions tmpreg in tileTypes) {
+						if (tmpreg.name == Search) {
+								return tmpreg.Region_ID;	
+						}
+				}
+				regions tmpreg2 = CreateEmpty ();
+				Debug.LogError ("Unbekannter Region Name: " + Search + " !");								
+				return tmpreg2.Region_ID;
 		}
 		public void GenerateMapData () {
 				Texture2D Map = gameObject.GetComponent<map> ().minimap;
@@ -32,28 +160,7 @@ public class TileMap : MonoBehaviour {
 								FeldFarbe.b = Mathf.Round (FeldFarbe.b * 1000) / 1000;
 								FeldFarbe.a = Mathf.Round (FeldFarbe.a * 1000) / 1000;
 								// Tiles Ziffern noch anpassen
-								if (FeldFarbe.r == 0.965f && FeldFarbe.g == 0.635f && FeldFarbe.b == 0.455f && FeldFarbe.a == 0.094f) {
-										tiles [x, y] = 5; //Sumpf
-								} else if (FeldFarbe.r == 0.996f && FeldFarbe.g == 0.678f && FeldFarbe.b == 0.784f && FeldFarbe.a == 0.125f) {
-										tiles [x, y] = 2;//city
-								} else if (FeldFarbe.r == 0.988f && FeldFarbe.g == 0.118f && FeldFarbe.b == 0.149f && FeldFarbe.a == 0.118f) {
-										tiles [x, y] = 3;//Vulkan
-								} else if (FeldFarbe.r == 0.976f && FeldFarbe.g == 0.976f && FeldFarbe.b == 0.976f && FeldFarbe.a == 0.098f) {
-										tiles [x, y] = 3;//Berge
-								} else if (FeldFarbe.r == 0.000f && FeldFarbe.g == 0.675f && FeldFarbe.b == 0.969f && FeldFarbe.a == 0.118f) {
-										tiles [x, y] = 4;//Wasser
-								} else if (FeldFarbe.r == 0.996f && FeldFarbe.g == 0.945f && FeldFarbe.b == 0.000f && FeldFarbe.a == 0.125f) {
-										tiles [x, y] = 6;//Strand
-								} else if (FeldFarbe.r == 0.780f && FeldFarbe.g == 0.992f && FeldFarbe.b == 0.125f && FeldFarbe.a == 0.114f) {
-										tiles [x, y] = 1;//Felder
-								} else if (FeldFarbe.r == 0.184f && FeldFarbe.g == 0.961f && FeldFarbe.b == 0.412f && FeldFarbe.a == 0.090f) {
-										tiles [x, y] = 0;//Wald
-								} else if (FeldFarbe.r == 0.000f && FeldFarbe.g == 0.000f && FeldFarbe.b == 0.000f && FeldFarbe.a == 0.024f) {
-										tiles [x, y] = 3;//Burg Eingang hinzufügen...
-								} else {
-										Debug.LogError ("Unbekannte Map Farbe: R" + FeldFarbe.r + " G" + FeldFarbe.g + " B" + FeldFarbe.b + " A" + FeldFarbe.a + " !");								
-										tiles [x, y] = 1;
-								}
+								tiles [x, y] = GetRegionWithColor (FeldFarbe);
 						}
 				}
 /*
@@ -92,7 +199,7 @@ public class TileMap : MonoBehaviour {
 		void GenerateMapVisuals () {
 				for (int x = 0; x < mapSizeX; x++) {
 						for (int y = 0; y < mapSizeY; y++) {
-								TileType tt = tileTypes [tiles [x, y]];
+								regions tt = tileTypes [tiles [x, y] - 1];
 								GameObject tmpobjct = (GameObject)Instantiate (tt.tileVisualPrefab, new Vector3 (x, y, 0), Quaternion.identity);
 								tmpobjct.transform.parent = GameObject.Find ("Map").transform;
 						}
