@@ -60,6 +60,18 @@ public class EnemySpawn : MonoBehaviour {
 				monsters tmpmob;
 				tmpmob = CreatEmpty ();
 				tmpmob.pname = "Stefan";
+				tmpmob.maxhp = 200;
+				tmpmob.maxmana = 100;
+				tmpmob.pwr = 10;
+				tmpmob.armor = 10;
+				tmpmob.agility = 1;
+				tmpmob.golddrop = 80;
+				tmpmob.xpdrop = 35;
+				tmpmob.prefab = (GameObject)Resources.Load ("Mob/Gorilla");
+				enemyTypes.Add (tmpmob);
+		
+				tmpmob = CreatEmpty ();
+				tmpmob.pname = "Spider";
 				tmpmob.maxhp = 100;
 				tmpmob.maxmana = 100;
 				tmpmob.pwr = 5;
@@ -82,7 +94,6 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.boss = true;
 				tmpmob.pos = new Vector2 (50, 52);
 				enemyTypes.Add (tmpmob);
-		
 		
 				spawnbosses ();
 		}

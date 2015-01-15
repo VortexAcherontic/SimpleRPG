@@ -42,7 +42,7 @@ public class player : MonoBehaviour {
 				inv = GameObject.Find ("Main Camera").GetComponent<inventory> ();
 				
 				//Equip = equip ausrüstungsslots
-				GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
+				GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<SkinnedMeshRenderer> ().enabled = true;
 				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 		}
