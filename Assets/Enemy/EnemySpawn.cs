@@ -88,10 +88,10 @@ public class EnemySpawn : MonoBehaviour {
 				int maxtry = 10;
 				Vector3 pos = new Vector3 (Random.Range (40, 60), Random.Range (40, 60), 0);
 		
-				int mob_id = Random.Range (0, enemyTypes.Count + 1);
+				int mob_id = Random.Range (0, enemyTypes.Count);
 				monsters tt = enemyTypes [mob_id];
-				while (tt.boss && maxtry>0) { // Damit Standart keine Bosse gespawnt werden
-						mob_id = Random.Range (0, enemyTypes.Count + 1);
+				while (tt.boss && maxtry>0) { // Damit Standart keine Bosse gespawnt werden und er nicht unendlich oft versucht
+						mob_id = Random.Range (0, enemyTypes.Count);
 						tt = enemyTypes [mob_id];
 						maxtry--;
 				}
