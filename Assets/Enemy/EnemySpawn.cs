@@ -69,6 +69,22 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.xpdrop = 25;
 				enemyTypes.Add (tmpmob);
 		
+				tmpmob = CreatEmpty ();
+				tmpmob.pname = "Cyclop";
+				tmpmob.maxhp = 1000;
+				tmpmob.maxmana = 100;
+				tmpmob.pwr = 100;
+				tmpmob.armor = 50;
+				tmpmob.agility = 1;
+				tmpmob.golddrop = 1000;
+				tmpmob.xpdrop = 250;
+				tmpmob.prefab = (GameObject)Resources.Load ("Mob/Cyclop");
+				tmpmob.boss = true;
+				tmpmob.pos = new Vector2 (50, 52);
+				enemyTypes.Add (tmpmob);
+		
+		
+				spawnbosses ();
 		}
 	
 		// Update is called once per frame
@@ -105,5 +121,17 @@ public class EnemySpawn : MonoBehaviour {
 						mobs++;
 				}
 				//Debug.Log ("Mob: " + pos.x + "/" + pos.y);
+		}
+	
+		void spawnbosses () {
+				foreach (monsters tmpmob in enemyTypes) {
+						if (tmpmob.boss) {
+								Vector3 pos = new Vector3 (tmpmob.pos.x, tmpmob.pos.y, 0);	
+								GameObject tmpobjct = (GameObject)Instantiate (tmpmob.prefab, pos, Quaternion.identity);
+								tmpobjct.transform.parent = GameObject.Find ("MonsterSpawner").transform;
+								tmpobjct.GetComponent<enemy> ().SettingStats (tmpmob);
+								tmpobjct.GetComponent<enemy> ().thismob.pos = pos;
+						}
+				}
 		}
 }
