@@ -24,7 +24,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		// Update is called once per frame
 		void Update () {
 				loadtimer -= Time.deltaTime;
-				if (CheckDistance () > 20 && loadtimer <= 0) {
+				if (CheckDistance () > 40 && loadtimer <= 0) {
 						if (!e001.thismob.boss) {
 								mobspawn.mobs--;			
 								Destroy (gameObject);
@@ -32,8 +32,8 @@ public class EnemyBehaviour : MonoBehaviour {
 				}
 				if (e001.thismob.hp <= 0 && loadtimer <= 0) {
 						//gib lootitems
-						Debug.Log ("xp gained" + e001.thismob.xpdrop);
-						Debug.Log ("gold gained" + e001.thismob.golddrop);
+						//Debug.Log ("xp gained" + e001.thismob.xpdrop);
+						//Debug.Log ("gold gained" + e001.thismob.golddrop);
 						p001.xp += e001.thismob.xpdrop;
 						p001.gold += e001.thismob.golddrop;
 						mobspawn.mobs--;			
