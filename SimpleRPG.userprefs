@@ -1,9 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Enemy\EnemySpawn.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Menue\mainmenu.cs">
     <Files>
-      <File FileName="Assets\Enemy\EnemySpawn.cs" Line="69" Column="22" />
-      <File FileName="Assets\Player_Files\player.cs" Line="46" Column="73" />
+      <File FileName="Assets\Enemy\EnemySpawn.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player_Files\player.cs" Line="148" Column="6" />
+      <File FileName="Assets\Player_Files\PlayerToPos.cs" Line="1" Column="1" />
+      <File FileName="Assets\Menue\GameOverScreen\GameOverScreen.cs" Line="1" Column="1" />
+      <File FileName="Assets\Menue\mainmenu.cs" Line="430" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

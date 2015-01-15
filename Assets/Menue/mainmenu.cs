@@ -98,6 +98,7 @@ public class mainmenu : MonoBehaviour {
 								isregging = true;
 						}
 				}
+		EndScreen();
 		}
 		player p001;
 		void Startscreen () {
