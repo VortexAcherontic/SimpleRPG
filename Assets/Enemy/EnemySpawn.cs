@@ -75,7 +75,7 @@ public class EnemySpawn : MonoBehaviour {
 		void Update () {
 				if (mobs < maxmobs) {
 						if (isspawning) {
-								spawnmob ();
+								spawnmob (); // Counter und so jetzt in der Funktion
 						}
 						spawntimer -= Time.deltaTime;
 						if (spawntimer <= 0) {
@@ -89,12 +89,10 @@ public class EnemySpawn : MonoBehaviour {
 				Vector3 pos = new Vector3 (Random.Range (40, 60), Random.Range (40, 60), 0);
 		
 				int mob_id = Random.Range (0, enemyTypes.Count + 1);
-				monsters tt = enemyTypes [0];
-				Debug.LogWarning ("MobID: " + mob_id + "/" + enemyTypes.Count);
+				monsters tt = enemyTypes [mob_id];
 				while (tt.boss && maxtry>0) { // Damit Standart keine Bosse gespawnt werden
 						mob_id = Random.Range (0, enemyTypes.Count + 1);
 						tt = enemyTypes [mob_id];
-						Debug.LogWarning ("MobID: " + mob_id + "/" + enemyTypes.Count);
 						maxtry--;
 				}
 				if (tt.prefab != null) {
@@ -105,8 +103,6 @@ public class EnemySpawn : MonoBehaviour {
 						isspawning = false;
 						spawntimer = spawncooldown;
 						mobs++;
-				} else {
-						isspawning = false;
 				}
 				//Debug.Log ("Mob: " + pos.x + "/" + pos.y);
 		}
