@@ -2,6 +2,24 @@ SimpleRPG
 ========= 
  
  
+2015-01-15 02:29:41 +0100 Add Mob (Sascha Kaufmann)
+
+2015-01-15 02:15:55 +0100 Boss Add (Sascha Kaufmann)
+
+2015-01-15 02:04:42 +0100 Import Mobs (Sascha Kaufmann)
+
+2015-01-15 01:15:55 +0100 BugFix Spawn/Kommentare (Sascha Kaufmann)
+
+2015-01-15 01:12:50 +0100 Mob Spawn/Mob Liste (Sascha Kaufmann)
+
+2015-01-15 00:22:26 +0100 Monster HP Bar (Sascha Kaufmann)
+
+2015-01-14 23:46:10 +0100 Game Over Screen - Restart (Sascha Kaufmann)
+
+2015-01-14 22:12:47 +0100 Kampf hinzugefügt (Defender833)
+
+2015-01-14 19:35:08 +0100 Changelog Update (Sascha Kaufmann)
+
 2015-01-14 19:18:34 +0100 UnitModel after Load (Sascha Kaufmann)
 
 2015-01-14 19:06:16 +0100 Fix: Screen Location After Login (Sascha Kaufmann)
