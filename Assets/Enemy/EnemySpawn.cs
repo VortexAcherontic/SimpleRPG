@@ -24,6 +24,7 @@ public struct monsters {
 		public int golddrop;
 		public int xpdrop;
 		public List<items> loot;
+		public int[] spawnregion;
 }
 
 public class EnemySpawn : MonoBehaviour {
@@ -33,6 +34,8 @@ public class EnemySpawn : MonoBehaviour {
 		float spawncooldown = 1.0f;
 		float spawntimer;
 		bool isspawning = true;
+		player p001;
+		TileMap	map;
 		
 		// Use this for initialization
 		monsters CreatEmpty () {
@@ -56,7 +59,9 @@ public class EnemySpawn : MonoBehaviour {
 				return mob;
 		}
 		void Start () {
-				//spawnboss (); // Spawnt permanente gegner die bis zur zerstörung auf der map bleiben
+				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				map = GameObject.Find ("Map").GetComponent<TileMap> ();
+			
 				monsters tmpmob;
 				tmpmob = CreatEmpty ();
 				tmpmob.pname = "Stefan";
@@ -68,6 +73,8 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.golddrop = 80;
 				tmpmob.xpdrop = 35;
 				tmpmob.prefab = (GameObject)Resources.Load ("Mob/Gorilla");
+				tmpmob.spawnregion = new int[1];
+				tmpmob.spawnregion [0] = map.GetRegionWithName ("Forest");
 				enemyTypes.Add (tmpmob);
 		
 				tmpmob = CreatEmpty ();
@@ -79,6 +86,9 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.agility = 2;
 				tmpmob.golddrop = 100;
 				tmpmob.xpdrop = 25;
+				tmpmob.spawnregion = new int[2];
+				tmpmob.spawnregion [0] = map.GetRegionWithName ("Forest");
+				tmpmob.spawnregion [1] = map.GetRegionWithName ("Grass");
 				enemyTypes.Add (tmpmob);
 		
 				tmpmob = CreatEmpty ();
@@ -93,6 +103,8 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.prefab = (GameObject)Resources.Load ("Mob/Cyclop");
 				tmpmob.boss = true;
 				tmpmob.pos = new Vector2 (50, 52);
+				//tmpmob.spawnregion = new int[1];
+				//tmpmob.spawnregion [0] = map.GetRegionWithName ("Bei Boss egal");
 				enemyTypes.Add (tmpmob);
 		
 				spawnbosses ();
@@ -110,14 +122,24 @@ public class EnemySpawn : MonoBehaviour {
 						}
 				}
 		}
-	
+		bool MobInRegion (monsters mob, int region) {
+				bool check = false;
+				foreach (int mobregion in mob.spawnregion) {
+						if (mobregion == region) {
+								check = true;	
+						}
+				}
+				return check;
+		}
 		void spawnmob () {
 				int maxtry = 10;
-				Vector3 pos = new Vector3 (Random.Range (40, 60), Random.Range (40, 60), 0);
-		
+				Vector3 pos = new Vector3 (Random.Range (p001.pos.x - 30, p001.pos.x + 30), Random.Range (p001.pos.y - 30, p001.pos.y + 30), 0);
+				if (map.tiles [(int)pos.x, (int)pos.y] == null) {
+						return;
+				}
 				int mob_id = Random.Range (0, enemyTypes.Count);
 				monsters tt = enemyTypes [mob_id];
-				while (tt.boss && maxtry>0) { // Damit Standart keine Bosse gespawnt werden und er nicht unendlich oft versucht
+				while (tt.boss && maxtry>0 && !MobInRegion(tt, map.tiles[(int)pos.x, (int)pos.y])) { // Damit Standart keine Bosse gespawnt werden und er nicht unendlich oft versucht
 						mob_id = Random.Range (0, enemyTypes.Count);
 						tt = enemyTypes [mob_id];
 						maxtry--;

@@ -129,7 +129,6 @@ public class TileMap : MonoBehaviour {
 								return tmpreg.Region_ID - 1;	
 						}
 				}
-				regions tmpreg2 = CreateEmpty ();
 				Debug.LogError ("Unbekannte Map Farbe: R" + Search.r + " G" + Search.g + " B" + Search.b + " A" + Search.a + " !");								
 				return 0;
 		}
@@ -139,7 +138,6 @@ public class TileMap : MonoBehaviour {
 								return tmpreg.Region_ID - 1;	
 						}
 				}
-				regions tmpreg2 = CreateEmpty ();
 				Debug.LogError ("Unbekannter Region Name: " + Search + " !");								
 				return 0;
 		}
