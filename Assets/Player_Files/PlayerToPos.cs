@@ -16,7 +16,7 @@ public class PlayerToPos : MonoBehaviour {
 						transform.position = PosPlayer;
 			
 						// Camera To Player
-						GameObject.Find ("Main Camera").transform.position = new Vector3 (PosPlayer.x, PosPlayer.y, -10);
+						GameObject.Find ("Main Camera").transform.position = PosPlayer;
 				}
 		}
 }

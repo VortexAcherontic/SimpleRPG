@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class npc : MonoBehaviour
-{
+public class npc : MonoBehaviour {
 
 		public int hp;
 		public int armor;
@@ -18,8 +17,7 @@ public class npc : MonoBehaviour
 		player p001;
 
 		// Use this for initialization
-		void Beginn (int hp, int armor, int agility, int pwr, string NPC_name, int golddrop, int xpdrop, int posx, int posy)
-		{
+		void Beginn (int hp, int armor, int agility, int pwr, string NPC_name, int golddrop, int xpdrop, int posx, int posy) {
 				this.hp = hp;
 				this.armor = armor;
 				this.agility = agility;
@@ -41,8 +39,7 @@ public class npc : MonoBehaviour
 
 
 
-		void sprechen ()
-		{
+		void sprechen () {
 				Debug.Log ("blablabla");
 				//auswahl1 handeln (wenn npc handeln kann)
 				//auswahl2 quest (wenn npc)
@@ -57,8 +54,7 @@ public class npc : MonoBehaviour
 
 
 		// Update is called once per frame
-		void Update ()
-		{
+		void Update () {
 				if (p001 != null) {
 						if (p001.pos == pos) {
 								onposition = true;

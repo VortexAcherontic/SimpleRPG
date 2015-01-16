@@ -11,6 +11,13 @@ public class mainmenu : MonoBehaviour {
 		public bool gameloaded = false;
 		public Texture bg;
 		public shop s001;
+		bool ismoving = false;
+		float movecooldown = 0.2f;
+		float movetimer;
+		float regcooldown = 0.5f;
+		float regtimer;
+		bool isregging = false;
+		public bool debugmode = false;
 		// Use this for initialization
 		void Start () {
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
@@ -25,14 +32,7 @@ public class mainmenu : MonoBehaviour {
 		}
 	
 		// Update is called once per frame
-		bool ismoving = false;
-		float movecooldown = 0.2f;
-		float movetimer;
-		float regcooldown = 0.5f;
-		float regtimer;
-		bool isregging = false;
-	
-		public bool debugmode = false;
+		
 		void Update () {
 				if (p001 != null) {
 						if (Input.GetKeyDown ("m")) {

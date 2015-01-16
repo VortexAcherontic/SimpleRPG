@@ -87,7 +87,6 @@ public class player : MonoBehaviour {
 								pos.x++;
 								break;
 				}
-				Debug.Log (pos);
 				int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)pos.x, (int)pos.y];
 				bool movebool = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].isWalkable;
 				if (!movebool) {

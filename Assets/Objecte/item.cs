@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum itemtype
-{
+public enum itemtype {
 		Nahkampf,
 		Fernkampf,
 		Kopf_Rüstung,
@@ -17,8 +16,7 @@ public enum itemtype
 		utility
 
 }
-public class items_s
-{
+public class items_s {
 		public string name;
 		public itemtype type;
 		public int price;
@@ -38,40 +36,17 @@ public class items_s
 		public int addmaxmana;
 		public int addpwr;
 		public int addagility;
-		//public List<items> capacity;//muss noch irgendwas hin oder auch nicht
 		public int maxcapacity;
 }
-public class items:items_s
-{
-		/*public string name;
-		public itemtype type;
-		public int price;
-		public int mag_dmg;
-		public int phy_dmg;
-		public int stock;
-		public int refill_mod;
-		public int phy_arm;
-		public int mag_arm;
-		public int refill_hp;
-		public int refill_mana;
-		public float gewicht;
-		public int effect;
-		public string effecttyp;
-		public int ammo_ammount;
-		public int addmaxhp;
-		public int addmaxmana;
-		public int addpwr;
-		public int addagility;*/
+public class items:items_s {
+		// Alle Werte wie items_s
 		public List<items_s> capacity;
-		//public int maxcapacity;
 }
 
-public class item : MonoBehaviour
-{
+public class item : MonoBehaviour {
 		public List<items> Item_List = new List<items> ();
 		// Use this for initialization
-		items leeres_item ()
-		{
+		items leeres_item () {
 				items tmp_item = new items ();
 				tmp_item.name = "Standartwert";
 				tmp_item.type = itemtype.Nahkampf;
@@ -95,8 +70,7 @@ public class item : MonoBehaviour
 				tmp_item.maxcapacity = 0;
 				return tmp_item;
 		}
-		public items item_mit_name (string itembez)
-		{
+		public items item_mit_name (string itembez) {
 				foreach (items obj in Item_List) {
 						if (obj.name == itembez) {
 								return obj;
@@ -104,8 +78,7 @@ public class item : MonoBehaviour
 				}
 				return leeres_item ();
 		}
-		void Start ()
-		{
+		void Start () {
 				items tmp_item = new items ();
 
 				//Nahkampfwaffen
@@ -472,8 +445,7 @@ public class item : MonoBehaviour
 		}
 	
 		// Update is called once per frame
-		void Update ()
-		{
+		void Update () {
 	
 		}
 }

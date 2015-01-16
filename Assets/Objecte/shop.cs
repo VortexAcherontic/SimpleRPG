@@ -2,20 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class shop : MonoBehaviour
-{
+public class shop : MonoBehaviour {
 		public Vector2 pos;
 		player p001;
 		// Use this for initialization
-		public void Create (int posx, int posy)
-		{
-				this.pos = new Vector2 (posx, posy);
+	
+		void Start () {
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
 		}
+		public void Create (int posx, int posy) {
+				this.pos = new Vector2 (posx, posy);
+		}
 		
-		public bool kaufe_item (items diesesitem)
-		{
-				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+		public bool kaufe_item (items diesesitem) {
 				bool check = false;
 				if ((p001.gold >= diesesitem.price) && (diesesitem.stock >= 10)) {
 						p001.inv.add (diesesitem);
