@@ -8,6 +8,7 @@ public class mainmenu : MonoBehaviour {
 		public bool showequip = false;
 		public bool showgamemenue = true;
 		public bool showlogin = false;
+		public bool gameloaded = false;
 		public Texture bg;
 		public shop s001;
 		// Use this for initialization
@@ -98,7 +99,7 @@ public class mainmenu : MonoBehaviour {
 								isregging = true;
 						}
 				}
-		EndScreen();
+				EndScreen ();
 		}
 		player p001;
 		void Startscreen () {

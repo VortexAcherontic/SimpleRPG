@@ -31,7 +31,7 @@ public class EnemySpawn : MonoBehaviour {
 		public List<monsters> enemyTypes = new List<monsters> ();
 		int maxmobs = 15;
 		public int mobs = 0;
-		float spawncooldown = 1.0f;
+		float spawncooldown = 2.0f;
 		float spawntimer;
 		bool isspawning = true;
 		player p001;
@@ -56,6 +56,8 @@ public class EnemySpawn : MonoBehaviour {
 				mob.golddrop = 0;
 				mob.xpdrop = 0;
 				mob.loot = new List<items> ();
+				mob.spawnregion = new int[1];
+				mob.spawnregion [0] = map.GetRegionWithName ("Grass");
 				return mob;
 		}
 		void Start () {
@@ -106,13 +108,11 @@ public class EnemySpawn : MonoBehaviour {
 				//tmpmob.spawnregion = new int[1];
 				//tmpmob.spawnregion [0] = map.GetRegionWithName ("Bei Boss egal");
 				enemyTypes.Add (tmpmob);
-		
-				spawnbosses ();
 		}
 	
 		// Update is called once per frame
 		void Update () {
-				if (mobs < maxmobs) {
+				if (mobs < maxmobs && GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
 						if (isspawning) {
 								spawnmob (); // Counter und so jetzt in der Funktion
 						}
@@ -122,41 +122,63 @@ public class EnemySpawn : MonoBehaviour {
 						}
 				}
 		}
-		bool MobInRegion (monsters mob, int region) {
+		bool MobInRegion (monsters testmob, int region) {
+				Debug.Log ("Spawn " + testmob.spawnregion [0] + " In: " + region);
 				bool check = false;
-				foreach (int mobregion in mob.spawnregion) {
+				foreach (int mobregion in testmob.spawnregion) {
 						if (mobregion == region) {
 								check = true;	
 						}
 				}
 				return check;
 		}
-		void spawnmob () {
+		monsters random_mob;
+		bool RandomMobGen () {
+				bool return_mob = false;
+				bool mob_gefunden = false;
+				//int maxtry = 10;
 				int maxtry = 10;
-				Vector3 pos = new Vector3 (Random.Range (p001.pos.x - 30, p001.pos.x + 30), Random.Range (p001.pos.y - 30, p001.pos.y + 30), 0);
-				if (map.tiles [(int)pos.x, (int)pos.y] == null) {
-						return;
-				}
-				int mob_id = Random.Range (0, enemyTypes.Count);
-				monsters tt = enemyTypes [mob_id];
-				while (tt.boss && maxtry>0 && !MobInRegion(tt, map.tiles[(int)pos.x, (int)pos.y])) { // Damit Standart keine Bosse gespawnt werden und er nicht unendlich oft versucht
-						mob_id = Random.Range (0, enemyTypes.Count);
-						tt = enemyTypes [mob_id];
+				while (!mob_gefunden && maxtry>0) {
+						mob_gefunden = true;
+						int mob_id = Random.Range (0, enemyTypes.Count);
+						random_mob = enemyTypes [mob_id];
+						Vector3 pos = new Vector3 (Random.Range (p001.pos.x - 30, p001.pos.x + 30), Random.Range (p001.pos.y - 30, p001.pos.y + 30), 0);
+						if (map.tiles [(int)pos.x, (int)pos.y] == null) {
+								mob_gefunden = false;
+						}
+						if (random_mob.prefab == null) {
+								mob_gefunden = false;
+						} 
+						if (random_mob.boss) {
+								mob_gefunden = false;
+						} 
+						if (!MobInRegion (random_mob, map.tiles [(int)pos.x, (int)pos.y])) {
+								mob_gefunden = false;
+						}
+						if (mob_gefunden) {
+								random_mob.pos.x = pos.x;
+								random_mob.pos.y = pos.y;
+								return_mob = true;
+						}
 						maxtry--;
 				}
-				if (tt.prefab != null) {
-						GameObject tmpobjct = (GameObject)Instantiate (tt.prefab, pos, Quaternion.identity);
+		
+				return return_mob;	
+		}
+		void spawnmob () {
+				if (RandomMobGen ()) {
+						Vector3 pos = new Vector3 (random_mob.pos.x, random_mob.pos.y, 0);
+						GameObject tmpobjct = (GameObject)Instantiate (random_mob.prefab, pos, Quaternion.identity);
 						tmpobjct.transform.parent = GameObject.Find ("MonsterSpawner").transform;
-						tmpobjct.GetComponent<enemy> ().SettingStats (tt);
+						tmpobjct.GetComponent<enemy> ().SettingStats (random_mob);
 						tmpobjct.GetComponent<enemy> ().thismob.pos = pos;
 						isspawning = false;
 						spawntimer = spawncooldown;
 						mobs++;
 				}
-				//Debug.Log ("Mob: " + pos.x + "/" + pos.y);
 		}
 	
-		void spawnbosses () {
+		public void spawnbosses () {
 				foreach (monsters tmpmob in enemyTypes) {
 						if (tmpmob.boss) {
 								Vector3 pos = new Vector3 (tmpmob.pos.x, tmpmob.pos.y, 0);	

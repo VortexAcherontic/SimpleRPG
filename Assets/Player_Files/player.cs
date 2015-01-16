@@ -46,6 +46,9 @@ public class player : MonoBehaviour {
 				GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
 				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
+		
+				// Game ist fertig geladen!
+				GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded = true;
 		}
 		bool equipcheck = false;
 		
