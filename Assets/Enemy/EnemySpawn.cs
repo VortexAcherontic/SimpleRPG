@@ -123,7 +123,6 @@ public class EnemySpawn : MonoBehaviour {
 				}
 		}
 		bool MobInRegion (monsters testmob, int region) {
-				Debug.Log ("Spawn " + testmob.spawnregion [0] + " In: " + region);
 				bool check = false;
 				foreach (int mobregion in testmob.spawnregion) {
 						if (mobregion == region) {

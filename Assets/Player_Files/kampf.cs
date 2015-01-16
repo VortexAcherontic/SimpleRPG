@@ -30,65 +30,35 @@ public class kampf : MonoBehaviour {
 		}
 
 		void Angriffsrichtung () {
+				bool attack_ausgefuert = false;
 				if (Input.GetKeyDown ("left")) {
 						angriffsrichtung = "l";
-						switch (angriffstil) {
-								case "melee":
-										Debug.Log ("Angriff ausgeführt!");
-										Melee ();
-										break;
-								case "range":
-					//Range();
-										break;
-								case "magic":
-					//Mage();
-										break;
-						}
+						attack_ausgefuert = true;
 				}
 				if (Input.GetKeyDown ("right")) {
 						angriffsrichtung = "r";
-						switch (angriffstil) {
-								case "melee":
-										Melee ();
-										Debug.Log ("Angriff ausgeführt!");
-										break;
-								case "range":
-					//Range();
-										break;
-								case "magic":
-					//Mage();
-										break;
-						}
+						attack_ausgefuert = true;
 				}
 				if (Input.GetKeyDown ("up")) {
 						angriffsrichtung = "o";
-						switch (angriffstil) {
-								case "melee":
-										Melee ();
-										Debug.Log ("Angriff ausgeführt!");
-										break;
-								case "range":
-					//Range();
-										break;
-								case "magic":
-					//Mage();
-										break;
-						}
+						attack_ausgefuert = true;
 				}
 				if (Input.GetKeyDown ("down")) {
 						angriffsrichtung = "u";
+						attack_ausgefuert = true;
+				}
+				if (attack_ausgefuert) {
 						switch (angriffstil) {
 								case "melee":
 										Melee ();
-										Debug.Log ("Angriff ausgeführt!");
 										break;
 								case "range":
-					//Range();
+										Range ();
 										break;
 								case "magic":
-					//Mage();
+										Mage ();
 										break;
-						}
+						}	
 				}
 		}
 	
@@ -106,10 +76,7 @@ public class kampf : MonoBehaviour {
 		
 		void Melee () {
 				foreach (Transform tmp_monster in GameObject.Find("MonsterSpawner").transform) {
-						temp_x = (int)Mathf.Abs ((int)p001.pos.x - (int)tmp_monster.position.x);
-						temp_y = (int)Mathf.Abs ((int)p001.pos.y - (int)tmp_monster.position.y);
-						distance_manhatten = (int)(temp_x + temp_y);
-						if (distance_manhatten <= 1) {
+						if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= 1) {
 								if ((p001.pos.x < tmp_monster.position.x) && (angriffsrichtung == "r")) {
 										attack = true;
 								}
@@ -132,10 +99,7 @@ public class kampf : MonoBehaviour {
 	
 		void Range () {
 				foreach (Transform tmp_monster in GameObject.Find("MonsterSpawner").transform) {
-						temp_x = (int)Mathf.Abs ((int)p001.pos.x - (int)tmp_monster.position.x);
-						temp_y = (int)Mathf.Abs ((int)p001.pos.y - (int)tmp_monster.position.y);
-						distance_manhatten = (int)(temp_x + temp_y);
-						if (distance_manhatten <= p001.rangeweapondistance) {
+						if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= p001.rangeweapondistance) {
 								if ((p001.pos.x < tmp_monster.position.x) && (angriffsrichtung == "r")) {
 										attack = true;
 								}
@@ -154,6 +118,10 @@ public class kampf : MonoBehaviour {
 								attack = false;
 						}
 				}
+		}
+	
+		void Mage () {
+				Melee ();	
 		}
 	
 		public void OnGUI () {

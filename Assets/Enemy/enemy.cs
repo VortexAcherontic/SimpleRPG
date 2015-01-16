@@ -15,21 +15,27 @@ public class enemy : MonoBehaviour {
 	
 		// Update is called once per frame
 		void Update () {
+				DrawHP ();
+				
+		}
+	
+		void DrawHP () {
+				if (healthbar == null) {
+						healthbar = transform.FindChild ("Health").transform;
+						healthbarFilled = transform.FindChild ("HealthBar").transform;
+				}
 				if (thismob.maxhp > 0) {
-						thismob.pos = new Vector2 (transform.position.x, transform.position.y);
-						var offset = Vector3.up;  
-						if (healthbar == null) {
-								healthbar = transform.FindChild ("Health").transform;
-								healthbarFilled = transform.FindChild ("HealthBar").transform;
-						} else {
-								offset.y = 0.25f;
-								healthbar.position = Camera.main.WorldToViewportPoint (transform.position + offset);
-								offset.z -= 1;
-								healthbarFilled.position = Camera.main.WorldToViewportPoint (transform.position + offset);
-								Rect hpstatus = healthbar.GetComponent<GUITexture> ().pixelInset;
-								hpstatus.width = (thismob.hp / thismob.maxhp) * healthbarFilled.GetComponent<GUITexture> ().pixelInset.width;
-								healthbar.GetComponent<GUITexture> ().pixelInset = hpstatus;
-						}
+						float HpProzent = thismob.hp * 100 / thismob.maxhp;
+						// Bars Position
+						Vector3 Pos_Healthbar = Vector3.up;
+						Pos_Healthbar.y = 0.25f;
+						healthbar.position = Camera.main.WorldToViewportPoint (transform.position + Pos_Healthbar);
+						Pos_Healthbar.z -= 1;
+						healthbarFilled.position = Camera.main.WorldToViewportPoint (transform.position + Pos_Healthbar);
+						// Bar Fill Status
+						Rect hpstatus = healthbar.GetComponent<GUITexture> ().pixelInset;
+						hpstatus.width = (HpProzent * healthbarFilled.GetComponent<GUITexture> ().pixelInset.width) / 100;
+						healthbar.GetComponent<GUITexture> ().pixelInset = hpstatus;
 				}
 		}
 }
