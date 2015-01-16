@@ -156,8 +156,8 @@ public class EnemySpawn : MonoBehaviour {
 								mob_gefunden = false;
 						}
 						if (mob_gefunden) {
-								random_mob.pos.x = pos.x;
-								random_mob.pos.y = pos.y;
+								random_mob.pos.x = (int)pos.x;
+								random_mob.pos.y = (int)pos.y;
 								return_mob = true;
 						}
 						maxtry--;
