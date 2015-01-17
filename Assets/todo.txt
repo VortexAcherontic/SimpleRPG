@@ -1,4 +1,4 @@
-shop refill einbauen
+shop refill einbauen - Blöd weil websync benötigt wird
 
 magiebuch einbauen(seeeeeeeeeeeeeeeeeeeeeeeeeeeeeehr viel später)
 
@@ -7,7 +7,7 @@ Events einbauen
 npcs einbauen
 
 regionen system einbauen und minimap aktualisieren sowie mehr maps zusammenbasteln
-- Map Load über Ressourse? Link im Map.cs
+- Map Load über Ressourse? Link im Map.cs (Wie das Prefab bei Gebiete/Mobs)
 
 battlemode 1vs1 einbauen
 

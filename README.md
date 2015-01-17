@@ -2,6 +2,44 @@ SimpleRPG
 ========= 
  
  
+2015-01-17 20:14:04 +0100 Login mit Enter + Bugfix CameraPos (Sascha Kaufmann)
+
+2015-01-16 23:59:35 +0100 Überlegen/Durchschauen/Formatierung (Sascha Kaufmann)
+
+2015-01-16 23:44:02 +0100 Fix Healthbar + Diverse Verschönbesserungen (Sascha Kaufmann)
+
+2015-01-16 19:56:33 +0100 Fix Mob RandomSpawn Pos (Sascha Kaufmann)
+
+2015-01-16 19:40:29 +0100 Commit Test während Unity läuft (Sascha Kaufmann)
+
+2015-01-16 19:36:11 +0100 Version ohne Library (Sascha Kaufmann)
+
+2015-01-16 19:25:29 +0100 Test GitIgnore (Sascha Kaufmann)
+
+2015-01-16 19:22:17 +0100 Git Ignore Test (Sascha Kaufmann)
+
+2015-01-16 18:58:29 +0100 Fix Gebiets Monster Spawn (Sascha Kaufmann)
+
+2015-01-16 01:15:35 +0100 Arbeiten am Monster GebietsSpawn (Sascha Kaufmann)
+
+2015-01-16 00:23:53 +0100 Unity neustart (Sascha Kaufmann)
+
+2015-01-16 00:20:32 +0100 Fuer die Entwicklung besser ohne moddels ;) (Sascha Kaufmann)
+
+2015-01-16 00:16:49 +0100 Ladezeit ist mir wichtiger...  Moddels entfernt (Sascha Kaufmann)
+
+2015-01-16 00:04:03 +0100 Region List/MapGen (Sascha Kaufmann)
+
+2015-01-15 14:49:49 +0100 nur mal unity gestartet (Defender833)
+
+2015-01-15 12:14:29 +0100 test gitignore (Sascha Kaufmann)
+
+2015-01-15 10:21:52 +0100 endscreen nachsync (Defender833)
+
+2015-01-15 10:19:51 +0100 Endscreen auch hinzugefügt (Defender833)
+
+2015-01-15 02:41:44 +0100 Changelog Update (Sascha Kaufmann)
+
 2015-01-15 02:29:41 +0100 Add Mob (Sascha Kaufmann)
 
 2015-01-15 02:15:55 +0100 Boss Add (Sascha Kaufmann)
