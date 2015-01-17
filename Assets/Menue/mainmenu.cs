@@ -388,6 +388,10 @@ public class mainmenu : MonoBehaviour {
 		string passwort = "";
 		void ShowLogin () {
 				if (showlogin) {
+						if ((Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return)) {
+								StartCoroutine (p001.load ("http://www.cards-of-destruction.com/SimpleRpg/", loginname, passwort));
+								showlogin = false;
+						}
 						Rect Anzeigebereich = new Rect (5, 5, Screen.width - 5, Screen.height - 5);
 						Rect ErsteZeile = new Rect (0, 20, Anzeigebereich.width, 20);
 						Rect Spalte = ErsteZeile;
@@ -411,8 +415,8 @@ public class mainmenu : MonoBehaviour {
 								StartCoroutine (p001.load ("http://www.cards-of-destruction.com/SimpleRpg/", loginname, passwort));
 								showlogin = false;
 						}
+						
 				}
-
 		}
 
 		void EndScreen () {

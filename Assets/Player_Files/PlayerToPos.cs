@@ -14,6 +14,7 @@ public class PlayerToPos : MonoBehaviour {
 						PosPlayer.y = p001.pos.y;
 						PosPlayer.z = transform.position.z;
 						transform.position = PosPlayer;
+						PosPlayer.z = -10;
 			
 						// Camera To Player
 						GameObject.Find ("Main Camera").transform.position = PosPlayer;
