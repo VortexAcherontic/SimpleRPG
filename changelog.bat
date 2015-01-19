@@ -1,4 +1,4 @@
-cd "C:\Transfer\SimpleRpg\SimpleRPG"
+cd "C:\Transfer\SimpleRPG"
 git pull
 echo SimpleRPG > README.md
 echo ========= >> README.md
