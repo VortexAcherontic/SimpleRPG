@@ -197,7 +197,9 @@ public class inventory : MonoBehaviour {
 																sub (dieseitem);
 														}
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														if (GUI.Button (Spalte, "Use")) {/*usefunktion*/
+														if (GUI.Button (Spalte, "Use")) {
+																Use (dieseitem);
+																
 														}
 														Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 						
@@ -355,6 +357,22 @@ public class inventory : MonoBehaviour {
 				Inventar.Remove (diesesitem);
 		}
 
+		public void Use (items diesesitem) {
+				if (diesesitem.effecttyp == "m") {
+						p001.mana += diesesitem.effect;
+				}
+				if (diesesitem.effecttyp == "h") {
+						p001.hp += diesesitem.effect;
+				}
+				if (p001.hp >= p001.maxhp) {
+						p001.hp = p001.maxhp;
+				}
+				if (p001.mana >= p001.maxmana) {
+						p001.mana = p001.maxmana;
+				}
+				sub (diesesitem);
+		}
+	
 		// Update is called once per frame
 		void Update () {
 	

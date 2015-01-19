@@ -16,3 +16,11 @@ Fernkampfwaffen mit reichweite versehen
 generell laden und speichern einbauen in einer taverne statt im inventar
 
 insgesamt nen gamescreen basteln (3 progressbars für HP MP und XP) [anzeigen sind schon mal da :D]
+
+boss nerfen
+
+skillsystem anpassen (ab lvl 3 ziemlich op)
+
+geschwindigkeit abhängig von gewicht machen
+
+

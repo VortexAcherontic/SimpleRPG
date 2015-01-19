@@ -95,10 +95,10 @@ public class EnemySpawn : MonoBehaviour {
 		
 				tmpmob = CreatEmpty ();
 				tmpmob.pname = "Cyclop";
-				tmpmob.maxhp = 1000;
+				tmpmob.maxhp = 5000;
 				tmpmob.maxmana = 100;
-				tmpmob.pwr = 100;
-				tmpmob.armor = 50;
+				tmpmob.pwr = 75;
+				tmpmob.armor = 30;
 				tmpmob.agility = 1;
 				tmpmob.golddrop = 1000;
 				tmpmob.xpdrop = 250;

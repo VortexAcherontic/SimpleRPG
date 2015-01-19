@@ -1,8 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\Unity10000\Assets\Dice\DiceRoll.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player_Files\inventory.cs">
     <Files>
-      <File FileName="..\..\Unity10000\Assets\Dice\DiceRoll.cs" Line="24" Column="52" />
+      <File FileName="Assets\Player_Files\kampf.cs" Line="94" Column="73" />
+      <File FileName="Assets\Enemy\EnemySpawn.cs" Line="84" Column="24" />
+      <File FileName="Assets\Player_Files\player.cs" Line="90" Column="1" />
+      <File FileName="Assets\Menue\mainmenu.cs" Line="84" Column="1" />
+      <File FileName="Assets\Player_Files\inventory.cs" Line="373" Column="22" />
+      <File FileName="Assets\Objecte\item.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

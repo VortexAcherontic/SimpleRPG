@@ -91,7 +91,7 @@ public class kampf : MonoBehaviour {
 								}
 						}
 						if (attack) {
-								tmp_monster.GetComponent<enemy> ().thismob.hp -= (p001.pwr * 10);
+								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.pwr * 11) - tmp_monster.GetComponent<enemy> ().thismob.armor);
 								attack = false;
 						}
 				}
@@ -114,14 +114,34 @@ public class kampf : MonoBehaviour {
 								}
 						}
 						if (attack) {
-								tmp_monster.GetComponent<enemy> ().thismob.hp -= (p001.pwr * 10);
+								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.pwr * 10 * p001.agility) - tmp_monster.GetComponent<enemy> ().thismob.armor);
 								attack = false;
 						}
 				}
 		}
 	
 		void Mage () {
-				Melee ();	
+				foreach (Transform tmp_monster in GameObject.Find("MonsterSpawner").transform) {
+						if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= 2) {
+								if ((p001.pos.x < tmp_monster.position.x) && (angriffsrichtung == "r")) {
+										attack = true;
+								}
+								if ((p001.pos.x > tmp_monster.position.x) && (angriffsrichtung == "l")) {
+										attack = true;
+								}
+								if ((p001.pos.y < tmp_monster.position.y) && (angriffsrichtung == "o")) {
+										attack = true;
+								}
+								if ((p001.pos.y > tmp_monster.position.y) && (angriffsrichtung == "u")) {
+										attack = true;
+								}
+						}
+						if ((attack) && (p001.mana > 200)) {
+								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.maxmana * p001.pwr * Mathf.Abs ((1 - (p001.mana / p001.maxmana)))) - tmp_monster.GetComponent<enemy> ().thismob.armor);
+								p001.mana -= 200;
+								attack = false;
+						}
+				}
 		}
 	
 		public void OnGUI () {
