@@ -11,6 +11,8 @@ public class kampf : MonoBehaviour {
 		string angriffsrichtung;
 		string angriffstil = "melee";
 		bool attack = false;
+		int phy_damage;
+		int mag_damage;
 		
 		//public bool inarena; besser in map?
 		//monster m001;
@@ -91,7 +93,11 @@ public class kampf : MonoBehaviour {
 								}
 						}
 						if (attack) {
-								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.pwr * 11) - tmp_monster.GetComponent<enemy> ().thismob.armor);
+								CheckForMeleeWeapon (out phy_damage, out mag_damage);
+								//physischer Schaden
+								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.pwr * phy_damage) - tmp_monster.GetComponent<enemy> ().thismob.phy_armor);
+								//magischer Schaden
+								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((mag_damage) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
 								attack = false;
 						}
 				}
@@ -113,8 +119,16 @@ public class kampf : MonoBehaviour {
 										attack = true;
 								}
 						}
-						if (attack) {
-								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.pwr * 10 * p001.agility) - tmp_monster.GetComponent<enemy> ().thismob.armor);
+						if ((attack) && (CheckForArrow ())) {
+								CheckForRangeWeapon (out phy_damage, out mag_damage);
+								//physischer Schaden
+								if (phy_damage >= tmp_monster.GetComponent<enemy> ().thismob.phy_armor) {
+										tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.pwr * phy_damage * p001.agility) - tmp_monster.GetComponent<enemy> ().thismob.phy_armor);
+								}
+								//magischer Schaden
+								if (mag_damage >= tmp_monster.GetComponent<enemy> ().thismob.mag_armor) {
+										tmp_monster.GetComponent<enemy> ().thismob.hp -= ((mag_damage) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
+								}
 								attack = false;
 						}
 				}
@@ -137,7 +151,8 @@ public class kampf : MonoBehaviour {
 								}
 						}
 						if ((attack) && (p001.mana > 200)) {
-								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.maxmana * p001.pwr * Mathf.Abs ((1 - (p001.mana / p001.maxmana)))) - tmp_monster.GetComponent<enemy> ().thismob.armor);
+								//magischer Schaden
+								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.maxmana / p001.pwr * Mathf.Abs ((1 - (p001.mana / p001.maxmana)))) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
 								p001.mana -= 200;
 								attack = false;
 						}
@@ -148,6 +163,39 @@ public class kampf : MonoBehaviour {
 				if (!GameObject.Find ("Main Camera").GetComponent<mainmenu> ().showgamemenue) {
 						GUI.Label (new Rect (5, Screen.height - 105, 170, 20), "Battlemode: " + angriffstil);
 				}
+		}
+	
+		bool CheckForArrow () {
+				foreach (items tmp_item in p001.Equip) {
+						if (tmp_item.type == itemtype.utility) {
+								if (tmp_item.capacity.Count >= 1) {
+										return true;
+								}
+						}
+				}
+				return false;
+		}
+	
+		void CheckForMeleeWeapon (out int phy_damage, out int mag_damage) {
+				foreach (items tmp_item in p001.Equip) {
+						if (tmp_item.type == itemtype.Nahkampf) {
+								phy_damage = tmp_item.phy_dmg;
+								mag_damage = tmp_item.mag_dmg;
+						}
+				}
+				phy_damage = 5;
+				mag_damage = 5;
+		}
+	
+		void CheckForRangeWeapon (out int phy_damage, out int mag_damage) {
+				foreach (items tmp_item in p001.Equip) {
+						if (tmp_item.type == itemtype.Fernkampf) {
+								phy_damage = tmp_item.phy_dmg;
+								mag_damage = tmp_item.mag_dmg;
+						}
+				}
+				phy_damage = 5;
+				mag_damage = 5;
 		}
 	
 		/*magieschaden berechnen*/

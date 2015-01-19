@@ -17,7 +17,8 @@ public struct monsters {
 		public int maxmana ; 
 		public int lvl ; 
 		public int pwr ; 
-		public int armor ; 
+		public int phy_armor ; 
+		public int mag_armor ; 
 		public int agility ; 
 	
 		//Drops
@@ -51,7 +52,8 @@ public class EnemySpawn : MonoBehaviour {
 				mob.mana = mob.maxmana; 
 				mob.lvl = 1; 
 				mob.pwr = 1; 
-				mob.armor = 0; 
+				mob.phy_armor = 0;
+				mob.mag_armor = 0; 
 				mob.agility = 1; 
 				mob.golddrop = 0;
 				mob.xpdrop = 0;
@@ -70,7 +72,8 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.maxhp = 200;
 				tmpmob.maxmana = 100;
 				tmpmob.pwr = 10;
-				tmpmob.armor = 10;
+				tmpmob.phy_armor = 10;
+				tmpmob.mag_armor = 5; 
 				tmpmob.agility = 1;
 				tmpmob.golddrop = 80;
 				tmpmob.xpdrop = 35;
@@ -84,7 +87,8 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.maxhp = 100;
 				tmpmob.maxmana = 100;
 				tmpmob.pwr = 5;
-				tmpmob.armor = 10;
+				tmpmob.phy_armor = 10;
+				tmpmob.mag_armor = 5;
 				tmpmob.agility = 2;
 				tmpmob.golddrop = 100;
 				tmpmob.xpdrop = 25;
@@ -98,7 +102,8 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.maxhp = 5000;
 				tmpmob.maxmana = 100;
 				tmpmob.pwr = 75;
-				tmpmob.armor = 30;
+				tmpmob.phy_armor = 30;
+				tmpmob.mag_armor = 50;
 				tmpmob.agility = 1;
 				tmpmob.golddrop = 1000;
 				tmpmob.xpdrop = 250;
