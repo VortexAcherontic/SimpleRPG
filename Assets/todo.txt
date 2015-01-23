@@ -1,4 +1,4 @@
-- Player Scripts vielleicht wirklich mal auf den Player und nicht auf die Camera?
+- Player Scripts vielleicht wirklich mal auf den Player und nicht auf die Camera? Oder manchmal sogar in Player Script (z.b. Bewegen)
 
 // Balancing generell
 - boss nerfen 

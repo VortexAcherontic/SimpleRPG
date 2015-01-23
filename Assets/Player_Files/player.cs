@@ -94,6 +94,7 @@ public class player : MonoBehaviour {
 						pos = lastpos;
 				}
 				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
+				BerechneMovmentDelay ();
 		}
 	
 		public void OnGUI () {
@@ -147,13 +148,12 @@ public class player : MonoBehaviour {
 
 		void Update () {
 				LVLUP ();
-				BerechneMovmentDelay ();
 				if (hp < 0) {
 						gameover = true;
 				}
 				
 		}
-		void BerechneMovmentDelay () {
+		public void BerechneMovmentDelay () {
 				float GGewicht = 0.0f;
 				if (GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
 						foreach (items tmpitem in inv.Inventar) {

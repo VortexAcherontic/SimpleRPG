@@ -351,10 +351,12 @@ public class inventory : MonoBehaviour {
 
 		public void add (items diesesitem) {
 				Inventar.Add (diesesitem);
+				p001.BerechneMovmentDelay ();
 		}
 
 		public void sub (items diesesitem) {
 				Inventar.Remove (diesesitem);
+				p001.BerechneMovmentDelay ();
 		}
 
 		public void Use (items diesesitem) {
