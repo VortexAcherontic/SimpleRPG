@@ -16,15 +16,16 @@ public struct regions {
 public class TileMap : MonoBehaviour {
 		public List<regions> tileTypes = new List<regions> ();
 		public int[,] tiles;
-
-		int mapSizeX = 100;
-		int mapSizeY = 100;
+	
+	int map_abstand=30; // Sollte So Groß sein wie der Spawn Radius!
+	int mapSizeX;
+	int mapSizeY;
 
 		regions CreateEmpty () {
 				regions tmpreg = new regions ();
 				tmpreg.Region_ID = tileTypes.Count + 1;
-				tmpreg.name = "Tile";
-				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileForest");
+				tmpreg.name = "Void Tile";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileVoid");
 				tmpreg.isWalkable = true;
 				tmpreg.walkEffect = 1;
 				return	tmpreg;
@@ -53,7 +54,11 @@ public class TileMap : MonoBehaviour {
 	}
 	
 		void Start () {
-				regions tmpreg = CreateEmpty ();
+			regions tmpreg = CreateEmpty (); // Void Tile für Abstand zwischen den Karten
+			tmpreg.isWalkable = false;
+			tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
 				tmpreg.name = "Forest";
 				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileForest");
 				tmpreg.walkEffect = 2;
@@ -175,24 +180,42 @@ public class TileMap : MonoBehaviour {
 				return 0;
 		}
 		public void GenerateMapData () {
-				Texture2D Map = gameObject.GetComponent<map> ().minimap;
-				mapSizeX = Map.height;
-				mapSizeY = Map.width;
+				int start_x = map_abstand;
+				int start_y = map_abstand;
+				mapSizeX = start_x;
+				mapSizeY = start_y;
 		
+				List<Texture2D> ListMap = gameObject.GetComponent<map> ().Maps;
+				foreach (Texture2D AktlMap in ListMap) {
+					mapSizeX += map_abstand + AktlMap.height;
+					if (2*map_abstand + AktlMap.width>=mapSizeY) {
+							mapSizeY += map_abstand + AktlMap.width;
+					}
+				}
 				tiles = new int[mapSizeX, mapSizeY];
 				int x, y;
-
 				for (x = 0; x < mapSizeX; x++) {
 						for (y = 0; y < mapSizeY; y++) {
-								Color FeldFarbe = Map.GetPixel (x, y);
-								// Viele Stellen genau sollte das sein? Ich denke 3 muss reichen
-								FeldFarbe.r = Mathf.Round (FeldFarbe.r * 1000) / 1000;
-								FeldFarbe.g = Mathf.Round (FeldFarbe.g * 1000) / 1000;
-								FeldFarbe.b = Mathf.Round (FeldFarbe.b * 1000) / 1000;
-								FeldFarbe.a = Mathf.Round (FeldFarbe.a * 1000) / 1000;
-								// Tiles Ziffern noch anpassen
-								tiles [x, y] = GetRegionWithColor (FeldFarbe);
+								tiles [x, y] = 0;
 						}
+				}
+		
+				// Nun alle Bilder durchgehen
+				foreach (Texture2D AktlMap in ListMap) {
+			for (x = 0; x < AktlMap.height; x++) {
+				for (y = 0; y < AktlMap.width; y++) {
+									Color FeldFarbe = AktlMap.GetPixel (x, y);
+										// Viele Stellen genau sollte das sein? Ich denke 3 muss reichen
+										FeldFarbe.r = Mathf.Round (FeldFarbe.r * 1000) / 1000;
+										FeldFarbe.g = Mathf.Round (FeldFarbe.g * 1000) / 1000;
+										FeldFarbe.b = Mathf.Round (FeldFarbe.b * 1000) / 1000;
+										FeldFarbe.a = Mathf.Round (FeldFarbe.a * 1000) / 1000;
+										// Tiles Ziffern noch anpassen
+										tiles [start_x+x, start_y+y] = GetRegionWithColor (FeldFarbe);
+								}
+						}
+					start_x += map_abstand + AktlMap.height;
+					//start_y += map_abstand + AktlMap.width;
 				}
 				GenerateMapVisuals ();
 		}

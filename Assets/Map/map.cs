@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class map : MonoBehaviour {
 
@@ -7,6 +8,7 @@ public class map : MonoBehaviour {
 		public mainmenu gui;
 		public player p001;
 		public Transform MonsterSpawner;
+		public List<Texture2D> Maps;
 
 		// Use this for initialization
 		void Start () {
@@ -14,6 +16,10 @@ public class map : MonoBehaviour {
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
 				MonsterSpawner = GameObject.Find ("MonsterSpawner").transform;
 				//LoadMap (); // Nun nach Player Load
+		
+				// Achtung reihenfolge muss gleich bleiben! Damit die Koordinaten beim Porter noch klappen!
+				Maps.Add ((Texture2D)Resources.Load ("Map/world001"));
+				Maps.Add ((Texture2D)Resources.Load ("Map/town001"));
 		}
 
 		void OnGUI () {
@@ -25,9 +31,7 @@ public class map : MonoBehaviour {
 				//if(p001.pos)
 		}
 
-		public void LoadMap (string mapname) {
-				minimap = (Texture2D)Resources.Load ("Map/"+mapname);
-				// Map laden... http://docs.unity3d.com/ScriptReference/Resources.Load.html
+		public void LoadMap () {
 				foreach (Transform MonsterTrans in MonsterSpawner) {
 						MonsterTrans.position = new Vector3 (p001.pos.x - 100, MonsterTrans.position.y, MonsterTrans.position.z);	
 				}

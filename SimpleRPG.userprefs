@@ -1,8 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Map\TileMap.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Objecte\teleporter.cs">
     <Files>
-      <File FileName="Assets\Map\TileMap.cs" Line="47" Column="38" />
+      <File FileName="Assets\Map\TileMap.cs" Line="146" Column="3" />
+      <File FileName="Assets\Objecte\teleporter.cs" Line="16" Column="66" />
+      <File FileName="Assets\Map\map.cs" Line="35" Column="6" />
+      <File FileName="Assets\Player_Files\player.cs" Line="50" Column="64" />
+      <File FileName="Assets\Menue\mainmenu.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
