@@ -18,6 +18,7 @@ public class map : MonoBehaviour {
 				//LoadMap (); // Nun nach Player Load
 		
 				// Achtung reihenfolge muss gleich bleiben! Damit die Koordinaten beim Porter noch klappen!
+				// + Natürlich darf sich im nachhinnein nicht mehr die Größe der Karten ändern
 				Maps.Add ((Texture2D)Resources.Load ("Map/world001"));
 				Maps.Add ((Texture2D)Resources.Load ("Map/town001"));
 		}
@@ -36,7 +37,7 @@ public class map : MonoBehaviour {
 						MonsterTrans.position = new Vector3 (p001.pos.x - 100, MonsterTrans.position.y, MonsterTrans.position.z);	
 				}
 				foreach (Transform OldTile in  GameObject.Find ("Map").transform) {
-					Destroy(OldTile.gameObject);
+						Destroy (OldTile.gameObject);
 				}
 				gameObject.GetComponent<TileMap> ().GenerateMapData ();
 				MonsterSpawner.GetComponent<EnemySpawn> ().spawnbosses ();

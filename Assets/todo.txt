@@ -11,6 +11,7 @@
 - Mobs reagieren auf attacken? (Fernkampf/Magie)
 - Durch Mobs durchlaufen?
 - Equip/DeEuipt macht manchmal noch Porbleme
+- Warten bis speichern durch ist, bevor was anderes gemacht werden kann!
 
 // Mechanik
 - Stärkere Mobs oder Mob Level an Spieler Level anpassen?
