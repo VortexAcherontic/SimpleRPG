@@ -19,6 +19,7 @@ public class player : MonoBehaviour {
 		Vector2 lastpos;
 		public inventory inv;
 		public int rangeweapondistance = 5;
+		public float movement_delay = 0f;
 		public bool gameover = false;
 		public List<items> Equip = new List<items> ();
 		/*, list equip*/
@@ -146,10 +147,25 @@ public class player : MonoBehaviour {
 
 		void Update () {
 				LVLUP ();
+				BerechneMovmentDelay ();
 				if (hp < 0) {
 						gameover = true;
 				}
+				
 		}
+		void BerechneMovmentDelay () {
+				float GGewicht = 0.0f;
+				if (GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
+						foreach (items tmpitem in inv.Inventar) {
+								GGewicht += tmpitem.gewicht;
+						}
+						foreach (items tmpitem in Equip) {
+								GGewicht += tmpitem.gewicht;
+						}
+				}
+				movement_delay = GGewicht;
+		}
+		
 		public IEnumerator save (string Datenbank_URL, int player_id) {
 				//Debug.Log ("Versuche zu speichern " + Datenbank_URL + "save_player.php");
 				WWWForm LoginForm = new WWWForm ();

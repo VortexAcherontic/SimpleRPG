@@ -1,18 +1,21 @@
+- Player Scripts vielleicht wirklich mal auf den Player und nicht auf die Camera?
+
 // Balancing generell
 - boss nerfen 
 - Fernkampfwaffen mit reichweite versehen
+- skillsystem anpassen (ab lvl 3 ziemlich op)
 
 // Bug Fixes
 - Range Attack nur gerade aus!
 - Mage Attack Reichweite/Richtung?
 - Mobs reagieren auf attacken? (Fernkampf/Magie)
-- Durch Mobs durchlaufen? 
+- Durch Mobs durchlaufen?
+- Equip/DeEuipt macht manchmal noch Porbleme
 
 // Mechanik
-- geschwindigkeit abhängig von gewicht machen
+- Stärkere Mobs oder Mob Level an Spieler Level anpassen?
 - shop refill einbauen (+ websync)
 - magiebuch einbauen (Magie Skills?)
-- skillsystem anpassen (ab lvl 3 ziemlich op)
 - Events einbauen
 - npcs einbauen
 - battlemode 1vs1 einbauen

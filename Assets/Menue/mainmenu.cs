@@ -47,7 +47,7 @@ public class mainmenu : MonoBehaviour {
 								//Bewegungseffekte
 								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
 								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
-								movetimer = moveeffect * movecooldown;
+								movetimer = moveeffect * movecooldown + p001.movement_delay;
 						}
 						if (Input.GetKey ("s") && (ismoving == false)) {
 								p001.Move ("s");
@@ -55,7 +55,7 @@ public class mainmenu : MonoBehaviour {
 								//Bewegungseffekte
 								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
 								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
-								movetimer = moveeffect * movecooldown;
+								movetimer = moveeffect * movecooldown + p001.movement_delay;
 						}
 						if (Input.GetKey ("a") && (ismoving == false)) {
 								p001.Move ("a");
@@ -63,7 +63,7 @@ public class mainmenu : MonoBehaviour {
 								//Bewegungseffekte
 								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
 								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
-								movetimer = moveeffect * movecooldown;
+								movetimer = moveeffect * movecooldown + p001.movement_delay;
 						}
 						if (Input.GetKey ("d") && (ismoving == false)) {
 								p001.Move ("d");
@@ -71,7 +71,7 @@ public class mainmenu : MonoBehaviour {
 								//Bewegungseffekte
 								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
 								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
-								movetimer = moveeffect * movecooldown;
+								movetimer = moveeffect * movecooldown + p001.movement_delay;
 						}
 						if ((ismoving == false) && (isregging)) {
 								p001.hp += p001.maxhp / 1000;
