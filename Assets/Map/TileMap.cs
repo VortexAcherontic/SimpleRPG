@@ -65,7 +65,7 @@ public class TileMap : MonoBehaviour {
 			tmpreg = CreateEmpty ();
 			tmpreg.name = "Portal";
 			tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileDoor");
-			tmpreg.walkEffect = 0f;
+			tmpreg.walkEffect = 1;
 			tileTypes.Add (tmpreg);
 		
 				tmpreg = CreateEmpty ();

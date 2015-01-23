@@ -14,13 +14,13 @@ public class teleporter : MonoBehaviour {
 	
 	void Start () {
 		p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
-		AddTeleporter (new Vector2 (75, 81), new Vector2 (1, 25));
-		AddTeleporter (new Vector2 (75, 80), new Vector2 (1, 24));
-		AddTeleporter (new Vector2 (75, 79), new Vector2 (1, 23));
+		AddTeleporter (new Vector2 (75, 81), new Vector2 (161, 56));
+		AddTeleporter (new Vector2 (75, 80), new Vector2 (161, 55));
+		AddTeleporter (new Vector2 (75, 79), new Vector2 (161, 54));
 		
-		AddTeleporter (new Vector2 (0, 25), new Vector2 (44, 51));
-		AddTeleporter (new Vector2 (0, 24), new Vector2 (44, 50));
-		AddTeleporter (new Vector2 (0, 23), new Vector2 (44, 49));
+		AddTeleporter (new Vector2 (160, 56), new Vector2 (74, 81));
+		AddTeleporter (new Vector2 (160, 55), new Vector2 (74, 80));
+		AddTeleporter (new Vector2 (160, 54), new Vector2 (74, 79));
 	}
 	
 	public void AddTeleporter(Vector2 vonPos,Vector2 nachPos) {
