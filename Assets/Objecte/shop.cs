@@ -15,6 +15,8 @@ public class shop : MonoBehaviour {
 		int anzeige_kat = 0;
 		Vector2 scroller = new Vector2 ();
 		Rect Scrollbereich; // Weil ka wie sonst XD
+		float refill_timer = 1f;
+		float refill_cooldown = 10f;
 	
 		public ObjShop CreateEmptyShop (Vector2 Pos) {
 				ObjShop newShop;
@@ -27,6 +29,17 @@ public class shop : MonoBehaviour {
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
 				ObjShop newShop = CreateEmptyShop (new Vector2 (80, 80));
 				shops.Add (newShop);
+				refill_timer = refill_cooldown;
+		}
+	
+		void Update () {
+				if (GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
+						refill_timer -= Time.deltaTime;
+						if (refill_timer <= 0) {
+								shops_refill ();
+								refill_timer = refill_cooldown;
+						}
+				}
 		}
 	
 		void OnGUI () {
@@ -254,6 +267,12 @@ public class shop : MonoBehaviour {
 				}
 		}
 		
+		public void shops_refill () {
+				item_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Item_List;
+				foreach (items tmpitem in item_liste) {
+						tmpitem.stock += tmpitem.refill_mod;
+				}
+		}
 		public bool kaufe_item (items diesesitem) {
 				bool check = false;
 				if ((p001.gold >= diesesitem.price) && (diesesitem.stock >= 10)) {

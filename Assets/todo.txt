@@ -14,8 +14,9 @@
 - Warten bis speichern durch ist, bevor was anderes gemacht werden kann!
 
 // Mechanik
+- Elemente?
 - Stärkere Mobs oder Mob Level an Spieler Level anpassen?
-- shop refill einbauen (+ websync)
+- shop websync einbauen (+ Max Stock?)
 - magiebuch einbauen (Magie Skills?)
 - Events einbauen
 - npcs einbauen
