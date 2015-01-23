@@ -9,14 +9,14 @@ public struct ObjTele {
 	public Vector2 nachpos;
 }
 public class teleporter : MonoBehaviour {
-	List<ObjTele> Porter = new List<ObjTele>();
+	public List<ObjTele> Porter = new List<ObjTele>();
 	player p001;
 	
 	void Start () {
 		p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
-		AddTeleporter (new Vector2 (45, 51), new Vector2 (1, 25));
-		AddTeleporter (new Vector2 (45, 50), new Vector2 (1, 24));
-		AddTeleporter (new Vector2 (45, 49), new Vector2 (1, 23));
+		AddTeleporter (new Vector2 (75, 81), new Vector2 (1, 25));
+		AddTeleporter (new Vector2 (75, 80), new Vector2 (1, 24));
+		AddTeleporter (new Vector2 (75, 79), new Vector2 (1, 23));
 		
 		AddTeleporter (new Vector2 (0, 25), new Vector2 (44, 51));
 		AddTeleporter (new Vector2 (0, 24), new Vector2 (44, 50));

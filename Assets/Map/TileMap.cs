@@ -28,6 +28,10 @@ public class TileMap : MonoBehaviour {
 				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileVoid");
 				tmpreg.isWalkable = true;
 				tmpreg.walkEffect = 1;
+				tmpreg.mapColor.r = 1f;
+				tmpreg.mapColor.g = 1f;
+				tmpreg.mapColor.b = 1f;
+				tmpreg.mapColor.a = 1f;
 				return	tmpreg;
 		}
 
@@ -56,6 +60,12 @@ public class TileMap : MonoBehaviour {
 		void Start () {
 			regions tmpreg = CreateEmpty (); // Void Tile für Abstand zwischen den Karten
 			tmpreg.isWalkable = false;
+			tileTypes.Add (tmpreg);
+		
+			tmpreg = CreateEmpty ();
+			tmpreg.name = "Portal";
+			tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileDoor");
+			tmpreg.walkEffect = 0f;
 			tileTypes.Add (tmpreg);
 		
 				tmpreg = CreateEmpty ();
@@ -140,8 +150,8 @@ public class TileMap : MonoBehaviour {
 				tileTypes.Add (tmpreg);
 		
 				tmpreg = CreateEmpty ();
-				tmpreg.name = "Entrance";
-				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileDoor");
+				tmpreg.name = "Castel";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileCastel");
 				tmpreg.walkEffect = 0;
 				tmpreg.mapColor.r = 0.000f;
 				tmpreg.mapColor.g = 0.000f;
@@ -151,7 +161,7 @@ public class TileMap : MonoBehaviour {
 		
 				tmpreg = CreateEmpty ();
 				tmpreg.name = "Wall";
-				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileDoor");
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileWall");
 				tmpreg.walkEffect = 0;
 				tmpreg.isWalkable = false;
 				tmpreg.mapColor.r = 0.996f;
@@ -217,6 +227,7 @@ public class TileMap : MonoBehaviour {
 					start_x += map_abstand + AktlMap.height;
 					//start_y += map_abstand + AktlMap.width;
 				}
+				CheckForPortals ();
 				GenerateMapVisuals ();
 		}
 	
@@ -227,6 +238,13 @@ public class TileMap : MonoBehaviour {
 								GameObject tmpobjct = (GameObject)Instantiate (tt.tileVisualPrefab, new Vector3 (x, y, 0), Quaternion.identity);
 								tmpobjct.transform.parent = GameObject.Find ("Map").transform;
 						}
+				}
+		}
+	
+		void CheckForPortals () {
+				List<ObjTele> tmplist = GameObject.Find ("Main Camera").GetComponent<teleporter> ().Porter;
+				foreach (ObjTele tmpobj in tmplist) {
+					tiles [(int)tmpobj.vonpos.x,(int)tmpobj.vonpos.y] = GetRegionWithName ("Portal");
 				}
 		}
 
