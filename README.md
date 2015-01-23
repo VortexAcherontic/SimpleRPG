@@ -2,6 +2,14 @@ SimpleRPG
 ========= 
  
  
+2015-01-19 19:35:01 +0100 schadensberechnung nach phy und mag getrennt (Defender833)
+
+2015-01-19 18:35:12 +0100 Heiltränke und Mob Balancing und Magie Angriffe (Defender833)
+
+2015-01-19 12:22:40 +0100 test (Sascha Kaufmann)
+
+2015-01-17 20:20:02 +0100 Changelog Update (Sascha Kaufmann)
+
 2015-01-17 20:14:04 +0100 Login mit Enter + Bugfix CameraPos (Sascha Kaufmann)
 
 2015-01-16 23:59:35 +0100 Überlegen/Durchschauen/Formatierung (Sascha Kaufmann)

@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player_Files\inventory.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Map\TileMap.cs">
     <Files>
-      <File FileName="Assets\Player_Files\inventory.cs" Line="54" Column="13" />
-      <File FileName="Assets\Player_Files\kampf.cs" Line="198" Column="20" />
-      <File FileName="Assets\Player_Files\player.cs" Line="90" Column="1" />
-      <File FileName="Assets\Objecte\item.cs" Line="55" Column="26" />
+      <File FileName="Assets\Map\TileMap.cs" Line="47" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

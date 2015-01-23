@@ -15,6 +15,7 @@ public class player : MonoBehaviour {
 		public int armor ; 
 		public int agility ; 
 		public string pname;
+		public string map;
 		public Vector2 pos;
 		Vector2 lastpos;
 		public inventory inv;
@@ -38,6 +39,7 @@ public class player : MonoBehaviour {
 				this.agility = agility;
 				this.Player_ID = p_ID;
 				//this.name = pname;
+				this.map = "world001";
 				this.pos = new Vector2 (posx, posy);
 				inv = GameObject.Find ("Main Camera").GetComponent<inventory> ();
 				
@@ -45,7 +47,7 @@ public class player : MonoBehaviour {
 				//GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<SkinnedMeshRenderer> ().enabled = true;
 				GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
 				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
-				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
+				GameObject.Find ("Map").GetComponent<map> ().LoadMap (this.map);
 		
 				// Game ist fertig geladen!
 				GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded = true;

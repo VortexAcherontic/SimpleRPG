@@ -25,10 +25,14 @@ public class map : MonoBehaviour {
 				//if(p001.pos)
 		}
 
-		public void LoadMap () {
+		public void LoadMap (string mapname) {
+				minimap = (Texture2D)Resources.Load ("Map/"+mapname);
 				// Map laden... http://docs.unity3d.com/ScriptReference/Resources.Load.html
 				foreach (Transform MonsterTrans in MonsterSpawner) {
 						MonsterTrans.position = new Vector3 (p001.pos.x - 100, MonsterTrans.position.y, MonsterTrans.position.z);	
+				}
+				foreach (Transform OldTile in  GameObject.Find ("Map").transform) {
+					Destroy(OldTile.gameObject);
 				}
 				gameObject.GetComponent<TileMap> ().GenerateMapData ();
 				MonsterSpawner.GetComponent<EnemySpawn> ().spawnbosses ();

@@ -29,6 +29,28 @@ public class TileMap : MonoBehaviour {
 				tmpreg.walkEffect = 1;
 				return	tmpreg;
 		}
+
+	void OnGUI() {
+		// Ich will die farben sehen
+		bool farbensehen = false;
+		if (farbensehen) {
+			int breite=300;
+			GUILayout.BeginArea (new Rect(Screen.width-breite,0,breite,Screen.height)); {
+				foreach (regions tmpregion in tileTypes) {
+					GUILayout.BeginHorizontal();
+					GUILayout.Label (""+tmpregion.name);
+					GUILayout.Space (5);
+					Color32 tmpcolor=tmpregion.mapColor;
+					GUILayout.Label (""+tmpcolor.r);
+					GUILayout.Label (""+tmpcolor.g);
+					GUILayout.Label (""+tmpcolor.b);
+					GUILayout.Label (""+tmpcolor.a);
+					GUILayout.EndHorizontal();
+				}
+			}
+			GUILayout.EndArea ();
+		}
+	}
 	
 		void Start () {
 				regions tmpreg = CreateEmpty ();
@@ -120,6 +142,17 @@ public class TileMap : MonoBehaviour {
 				tmpreg.mapColor.g = 0.000f;
 				tmpreg.mapColor.b = 0.000f;
 				tmpreg.mapColor.a = 0.024f;
+				tileTypes.Add (tmpreg);
+		
+				tmpreg = CreateEmpty ();
+				tmpreg.name = "Wall";
+				tmpreg.tileVisualPrefab = (GameObject)Resources.Load ("Tiles/TileDoor");
+				tmpreg.walkEffect = 0;
+				tmpreg.isWalkable = false;
+				tmpreg.mapColor.r = 0.996f;
+				tmpreg.mapColor.g = 0.000f;
+				tmpreg.mapColor.b = 0.996f;
+				tmpreg.mapColor.a = 0.125f;
 				tileTypes.Add (tmpreg);
 		}
 	
