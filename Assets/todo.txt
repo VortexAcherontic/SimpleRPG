@@ -1,26 +1,25 @@
-shop refill einbauen - Blöd weil websync benötigt wird
+// Balancing generell
+- boss nerfen 
+- Fernkampfwaffen mit reichweite versehen
 
-magiebuch einbauen(seeeeeeeeeeeeeeeeeeeeeeeeeeeeeehr viel später)
+// Bug Fixes
+- Range Attack nur gerade aus!
+- Mage Attack Range?
 
-Events einbauen
+// Mechanik
+- geschwindigkeit abhängig von gewicht machen
+- shop refill einbauen (websync)
+- magiebuch einbauen (Magie Skills?)
+- skillsystem anpassen (ab lvl 3 ziemlich op)
+- Events einbauen
+- npcs einbauen
+- battlemode 1vs1 einbauen
+- Mobs mit Fernkampf?
+- Mobs reagieren auf Fernkampf attakcen?
+- Aggro Mobs? Reagieren auf Spieler nähe?
 
-npcs einbauen
-
-regionen system einbauen und minimap aktualisieren sowie mehr maps zusammenbasteln
-- Map Load über Ressourse? Link im Map.cs (Wie das Prefab bei Gebiete/Mobs)
-
-battlemode 1vs1 einbauen
-
-Fernkampfwaffen mit reichweite versehen
-
-generell laden und speichern einbauen in einer taverne statt im inventar
-
-insgesamt nen gamescreen basteln (3 progressbars für HP MP und XP) [anzeigen sind schon mal da :D]
-
-boss nerfen
-
-skillsystem anpassen (ab lvl 3 ziemlich op)
-
-geschwindigkeit abhängig von gewicht machen
-
-
+// GUI
+- minimap aktualisieren sowie mehr maps zusammenbasteln (minimap über Teleport aktualisieren?)
+- generell laden und speichern einbauen in einer taverne statt im inventar
+- insgesamt nen gamescreen basteln (3 progressbars für HP MP und XP) [anzeigen sind schon mal da :D]
+- Angriff/Schaden Anzeigen
