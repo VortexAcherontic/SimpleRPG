@@ -4,25 +4,29 @@
 
 // Bug Fixes
 - Range Attack nur gerade aus!
-- Mage Attack Range?
+- Mage Attack Reichweite/Richtung?
+- Mobs reagieren auf attacken? (Fernkampf/Magie)
+- Durch Mobs durchlaufen? 
 
 // Mechanik
 - geschwindigkeit abhängig von gewicht machen
-- shop refill einbauen (websync)
+- shop refill einbauen (+ websync)
 - magiebuch einbauen (Magie Skills?)
 - skillsystem anpassen (ab lvl 3 ziemlich op)
 - Events einbauen
 - npcs einbauen
 - battlemode 1vs1 einbauen
+- Mob Movement?
 - Mobs mit Fernkampf?
-- Mobs reagieren auf Fernkampf attakcen?
-- Aggro Mobs? Reagieren auf Spieler nähe?
+- Aggro Mobs? Reagieren auf Spieler nähe bzw laufen zum spieler?
+- Player & Mobs haben ja eigentlich die selben Stats... sollte man da nicht ein und das selbe Struct verwenden?
+- NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
 
 // GUI
 - minimap aktualisieren sowie mehr maps zusammenbasteln (minimap über Teleport aktualisieren?)
 - generell laden und speichern einbauen in einer taverne statt im inventar
 - insgesamt nen gamescreen basteln (3 progressbars für HP MP und XP) [anzeigen sind schon mal da :D]
-- Angriff/Schaden Anzeigen
+- Angriff/Schaden Anzeigen?!? (Gerade für Fernkampf/Magie bestimmt nicht schlecht - Schaden nur wenn touch)
 
 // GitHub
-GitHub nutzen für diese Datei? https://github.com/Defender833/SimpleRPG/issues 
+GitHub nutzen für diese Datei? https://github.com/Defender833/SimpleRPG/issues

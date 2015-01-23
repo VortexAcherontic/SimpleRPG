@@ -133,7 +133,7 @@ public class registrierung : MonoBehaviour {
 						diff_pwr = 7;
 						diff_MaxHP += 250;
 						diff_HP = diff_MaxHP;
-						p001.Beginn (diff_HP, diff_MaxHP, diff_MP, diff_MaxMP, diff_xp, start_lvl, diff_gold, diff_pwr, diff_armor, diff_agility, loginname, 50, 50, Player_ID);
+						p001.Beginn (diff_HP, diff_MaxHP, diff_MP, diff_MaxMP, diff_xp, start_lvl, diff_gold, diff_pwr, diff_armor, diff_agility, loginname, 80, 80, Player_ID);
 						step = 4;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
@@ -141,7 +141,7 @@ public class registrierung : MonoBehaviour {
 						diff_armor = 7;
 						diff_agility = 7;
 						diff_pwr = 5;
-						p001.Beginn (diff_HP, diff_MaxHP, diff_MP, diff_MaxMP, diff_xp, start_lvl, diff_gold, diff_pwr, diff_armor, diff_agility, loginname, 50, 50, Player_ID);
+						p001.Beginn (diff_HP, diff_MaxHP, diff_MP, diff_MaxMP, diff_xp, start_lvl, diff_gold, diff_pwr, diff_armor, diff_agility, loginname, 80, 80, Player_ID);
 						step = 4;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
@@ -151,7 +151,7 @@ public class registrierung : MonoBehaviour {
 						diff_pwr = 5;
 						diff_MaxMP += 200;
 						diff_MP = diff_MaxMP;
-						p001.Beginn (diff_HP, diff_MaxHP, diff_MP, diff_MaxMP, diff_xp, start_lvl, diff_gold, diff_pwr, diff_armor, diff_agility, loginname, 50, 50, Player_ID);
+						p001.Beginn (diff_HP, diff_MaxHP, diff_MP, diff_MaxMP, diff_xp, start_lvl, diff_gold, diff_pwr, diff_armor, diff_agility, loginname, 80, 80, Player_ID);
 						step = 4;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
