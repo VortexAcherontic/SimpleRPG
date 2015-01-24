@@ -61,6 +61,7 @@
      <Compile Include="Assets\Objecte\npc.cs" />
      <Compile Include="Assets\Objecte\shop.cs" />
      <Compile Include="Assets\Objecte\teleporter.cs" />
+     <Compile Include="Assets\Objecte\wesen.cs" />
      <Compile Include="Assets\Player_Files\PlayerToPos.cs" />
      <Compile Include="Assets\Player_Files\equip.cs" />
      <Compile Include="Assets\Player_Files\inventory.cs" />
