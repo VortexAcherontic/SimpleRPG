@@ -1,13 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Objecte\shop.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
     <Files>
-      <File FileName="Assets\Map\TileMap.cs" Line="68" Column="25" />
-      <File FileName="Assets\Objecte\teleporter.cs" Line="23" Column="38" />
-      <File FileName="Assets\Map\map.cs" Line="16" Column="68" />
-      <File FileName="Assets\Menue\mainmenu.cs" Line="12" Column="21" />
-      <File FileName="Assets\todo.txt" Line="28" Column="80" />
-      <File FileName="Assets\Objecte\shop.cs" Line="11" Column="46" />
+      <File FileName="Assets\todo.txt" Line="1" Column="1" />
+      <File FileName="Assets\Objecte\shop.cs" Line="19" Column="29" />
+      <File FileName="Assets\Objecte\item.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player_Files\player.cs" Line="52" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

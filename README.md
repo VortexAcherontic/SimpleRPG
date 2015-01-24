@@ -2,6 +2,32 @@ SimpleRPG
 ========= 
  
  
+2015-01-24 00:59:05 +0100 Shop Refill (Sascha Kaufmann)
+
+2015-01-24 00:46:46 +0100 Berechnung da sparen wo es geht XD (Sascha Kaufmann)
+
+2015-01-24 00:34:14 +0100 Test Git in Unity (unknown-user)
+
+2015-01-24 00:18:25 +0100 Geschwindigkeit abhängig von Gewicht (Sascha Kaufmann)
+
+2015-01-23 23:52:11 +0100 ToDo überarbeitet (Sascha Kaufmann)
+
+2015-01-23 23:33:09 +0100 Shopsystem umgebaut (Sascha Kaufmann)
+
+2015-01-23 22:53:52 +0100 ToDo überarbeitet (Sascha Kaufmann)
+
+2015-01-23 22:39:49 +0100 New Teleporter Position (Sascha Kaufmann)
+
+2015-01-23 22:31:18 +0100 Teleporter in Map Rendern (Sascha Kaufmann)
+
+2015-01-23 22:14:54 +0100 New Map Generation (Sascha Kaufmann)
+
+2015-01-23 19:55:56 +0100 bla (Defender833)
+
+2015-01-23 19:55:07 +0100 Scene für Port noch gesynct (Sascha Kaufmann)
+
+2015-01-23 18:39:36 +0100 Mapchange durch Teleporter eingebaut (Sascha Kaufmann)
+
 2015-01-19 19:35:01 +0100 schadensberechnung nach phy und mag getrennt (Defender833)
 
 2015-01-19 18:35:12 +0100 Heiltränke und Mob Balancing und Magie Angriffe (Defender833)
