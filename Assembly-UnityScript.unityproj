@@ -79,6 +79,7 @@
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
      <None Include="Assets\Import\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Import\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Import\Boomlagoon\JSON\Readme.txt" />
      <None Include="Assets\Import\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Import\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
      <None Include="Assets\Import\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
