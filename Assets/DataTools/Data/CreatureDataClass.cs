@@ -13,7 +13,7 @@ public enum BattleStance {
 }
 
 [System.Serializable]
-public class CreatureOriginStats { // Clean Own Stats
+public class CreatureOriginData { // Clean Own Stats
 		// Allround Stats
 		public string Name;
 		public Vector2 Position;
@@ -41,8 +41,8 @@ public class CreatureOriginStats { // Clean Own Stats
 
 
 [System.Serializable]
-public class CreatureStats : CreatureOriginStats { // Based on Creature Stats + Equipment etc. (For Battles)
-		public CreatureOriginStats InitalStats;
+public class CreatureData : CreatureOriginData { // Based on Creature Stats + Equipment etc. (For Battles)
+		public CreatureOriginData InitalStats;
 	
 		public int HP;
 		public int MP;

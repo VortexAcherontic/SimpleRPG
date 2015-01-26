@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Creature : MonoBehaviour {
 		public bool IsLoaded = false;
-		public CreatureStats Stats;
+		public CreatureData Stats;
 		
 		void Start () {
 				// Nichts kann geladen sein bevor es Spawned,
@@ -12,7 +12,7 @@ public class Creature : MonoBehaviour {
 				IsLoaded = false; 
 		}
 	
-		public void Spawn (CreatureOriginStats StatsCreature) {
+		public void Spawn (CreatureOriginData StatsCreature) {
 				Stats.InitalStats = StatsCreature;
 				Stats.CalculateStats ();
 				Stats.HP = Stats.MaxHP;
