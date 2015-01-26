@@ -56,6 +56,7 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 	
 		public void CalculateStats () {
 				// Getting normal Stats (Auch Equip und so, eigentlich alle Werte aus InitalStats den hier entsprechenden zuweisen...)
+				// also total nervig -.-
 				Str = InitalStats.Str;	
 				Agi = InitalStats.Agi;
 				Dex = InitalStats.Dex;
