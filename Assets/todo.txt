@@ -27,9 +27,10 @@
 - Mob Movement?
 - Mobs mit Fernkampf?
 - Aggro Mobs? Reagieren auf Spieler nähe bzw laufen zum spieler?
-- Player & Mobs haben ja eigentlich die selben Stats... sollte man da nicht ein und das selbe Struct verwenden?
+- Player & Mobs haben ja eigentlich die selben Stats... sollte man da nicht ein und das selbe verwenden?
 - NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
 - battlemode 1vs1 einbauen (oder so... Multiplayer)
+- Fractions? (Fraction vs Fraction ODER Creature vs Creature von Fraction?)
 
 // GUI
 - minimap aktualisieren sowie mehr maps zusammenbasteln (minimap über Teleport aktualisieren?)
@@ -42,5 +43,5 @@ GitHub nutzen für diese Datei? https://github.com/Defender833/SimpleRPG/issues
 
 
 Ich bin immer mehr am überlegen ob das mit dem Login so ne Coole Sache ist... 
-Das Online speichern ist zwar cool, aber relativ nervig wenn man bestimmte Sachen steuern will...
+Das Online speichern ist zwar cool, aber relativ nervig wenn man bestimmte Sachen steuern will... (z.b. Quests)
 Aber uns fällt wie immer schon was ein XD
