@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{F5457143-300F-2824-55C9-A513F45ADC04}</ProjectGuid>
+	<ProjectGuid>{109953A4-9BCD-1D1B-E750-E7DC3340CFEF}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,30 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DataTools\Creature.cs" />
-     <Compile Include="Assets\DataTools\Data\CreatureDataClass.cs" />
-     <Compile Include="Assets\Enemy\EnemyBehaviour.cs" />
-     <Compile Include="Assets\Enemy\EnemySpawn.cs" />
-     <Compile Include="Assets\Enemy\enemy.cs" />
-     <Compile Include="Assets\Import\Boomlagoon\JSON\JSONObject.cs" />
-     <Compile Include="Assets\Import\Boomlagoon\JSON\TestScene\JSONObjectTester.cs" />
-     <Compile Include="Assets\Import\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
-     <Compile Include="Assets\Import\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
-     <Compile Include="Assets\Import\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
-     <Compile Include="Assets\Map\TileMap.cs" />
-     <Compile Include="Assets\Map\map.cs" />
-     <Compile Include="Assets\Menue\GameOverScreen\GameOverScreen.cs" />
-     <Compile Include="Assets\Menue\mainmenu.cs" />
-     <Compile Include="Assets\Menue\registrierung.cs" />
-     <Compile Include="Assets\Objecte\item.cs" />
-     <Compile Include="Assets\Objecte\npc.cs" />
-     <Compile Include="Assets\Objecte\shop.cs" />
-     <Compile Include="Assets\Objecte\teleporter.cs" />
-     <Compile Include="Assets\Player_Files\PlayerToPos.cs" />
-     <Compile Include="Assets\Player_Files\equip.cs" />
-     <Compile Include="Assets\Player_Files\inventory.cs" />
-     <Compile Include="Assets\Player_Files\kampf.cs" />
-     <Compile Include="Assets\Player_Files\player.cs" />
+     <Compile Include="Assets\DataTools\Editor\CreatureDataInspector.cs" />
      <None Include="Assets\Import\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Import\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
@@ -93,6 +70,16 @@
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
      <None Include="Assets\Import\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>C:/Dropbox/ZoD/ZoDDevelopment/SimpleRPG/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>C:/Programme/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-vs.csproj">
+      <Project>{F5457143-300F-2824-55C9-A513F45ADC04}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
