@@ -19,3 +19,15 @@ public class CreatureStatsDrawer: PropertyDrawer {
 	}
 }
 */
+
+public class MakeCreatureData {
+		[MenuItem("DataTools/Create/CreatureList")]
+		public static void CreateCreatureData () {
+				CreatureDataList asset = ScriptableObject.CreateInstance<CreatureDataList> ();
+				AssetDatabase.CreateAsset (asset, "Assets/DataTools/Creature/Resources/Creatures.asset");
+				AssetDatabase.SaveAssets ();
+		
+				EditorUtility.FocusProjectWindow ();
+				Selection.activeObject = asset;
+		}
+}

@@ -46,7 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DataTools\Editor\CreatureDataInspector.cs" />
+     <Compile Include="Assets\DataTools\Creature\Editor\CreatureDataInspector.cs" />
      <None Include="Assets\Import\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Import\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />

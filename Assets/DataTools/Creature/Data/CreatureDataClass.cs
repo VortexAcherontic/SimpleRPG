@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /*
  *  Immer daran denken auch den Inspector zu erweitern wenn hier was dazu kommt!
@@ -78,4 +79,9 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 				PhyAttack += Str * 3;
 				MagAttack += Int * 3;
 		}
+}
+
+[System.Serializable]
+public class CreatureDataList : ScriptableObject {
+		public List<CreatureData> CreatureList;
 }

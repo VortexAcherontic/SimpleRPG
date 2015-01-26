@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DataTools\Creature.cs" />
-     <Compile Include="Assets\DataTools\Data\CreatureDataClass.cs" />
+     <Compile Include="Assets\DataTools\Creature\Data\CreatureDataClass.cs" />
      <Compile Include="Assets\Enemy\EnemyBehaviour.cs" />
      <Compile Include="Assets\Enemy\EnemySpawn.cs" />
      <Compile Include="Assets\Enemy\enemy.cs" />
