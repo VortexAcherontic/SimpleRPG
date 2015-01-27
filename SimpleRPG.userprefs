@@ -1,10 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataTools\Item\Editor\ItemDataInspector.cs">
     <Files>
-      <File FileName="Assets\DataTools\Creature.cs" Line="21" Column="4" />
+      <File FileName="Assets\DataTools\Item\Data\ItemDataClass.cs" Line="11" Column="3" />
       <File FileName="Assets\todo.txt" Line="1" Column="1" />
-      <File FileName="Assets\Player_Files\player.cs" Line="1" Column="1" />
+      <File FileName="Assets\DataTools\Creature\Editor\CreatureDataInspector.cs" Line="1" Column="1" />
+      <File FileName="Assets\DataTools\Item\Editor\ItemDataInspector.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
