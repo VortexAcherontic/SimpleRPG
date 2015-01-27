@@ -24,7 +24,7 @@ public class CreatureOriginData { // Clean Own Stats
 	
 		// Changeable by Level UP (Player) or Stick to Input (Monster/NPC)
 		public int Str; // Phy Dmg
-		public int Dex; // Hit Chance
+		public int Dex; // Hit Chance or Phy Dmg Range?
 		public int Agi;	// Avoid Chance
 		public int Int; // Mag Dmg & Mana & Ressistance to Mag Dmg?
 		public int Vit;	// Health
@@ -38,6 +38,11 @@ public class CreatureOriginData { // Clean Own Stats
 		public bool IsBoss;
 		public bool DoRespawn; // NPC/Bosses?
 		public regions[] SpawnRegions;
+	
+		// Item Drops & Inventory
+		public ItemData[] Inventory; // == ItemDrop
+		public ItemData[] Equipment;
+	
 }
 
 
@@ -57,7 +62,8 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 	
 		public void CalculateStats () {
 				// Getting normal Stats (Auch Equip und so, eigentlich alle Werte aus InitalStats den hier entsprechenden zuweisen...)
-				// also total nervig -.-
+				// also total nervig -.- Oder das geht irgendwie einfacher und ich weiß nicht wie
+				// Obwohl manche sachen brauch man villeicht doch nicht so
 				Str = InitalStats.Str;	
 				Agi = InitalStats.Agi;
 				Dex = InitalStats.Dex;
@@ -70,10 +76,78 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 				MagArmor = 0;
 				PhyAttack = 0;
 				MagAttack = 0;
+				int EffectHP = 0;
+				int EffectMP = 0;
+				foreach (ItemData tmp in InitalStats.Equipment) {
+						if (tmp.IsStaticEffect) {
+								switch (tmp.EffectType) {
+										case EffectType.Health:
+												EffectHP += tmp.Effect;
+												break;
+										case EffectType.Mana:
+												EffectMP += tmp.Effect;
+												break;
+										case EffectType.Str:
+												Str += tmp.Effect;
+												break;
+										case EffectType.Agi:
+												Agi += tmp.Effect;
+												break;
+										case EffectType.Dex:
+												Dex += tmp.Effect;
+												break;
+										case EffectType.Int:
+												Int += tmp.Effect;
+												break;
+										case EffectType.Vit:
+												Vit += tmp.Effect;
+												break;
+										case EffectType.Luc:
+												Luc += tmp.Effect;
+												break;
+								}
+						}
+						
+						// With BattleStance
+						switch (tmp.Type) {
+								case ItemType.accessorie:
+								case ItemType.armor_feet:
+								case ItemType.armor_hand:
+								case ItemType.armor_head:
+								case ItemType.armor_leg:
+								case ItemType.armor_torso:
+								case ItemType.potion:
+								case ItemType.utility:
+										PhyArmor += tmp.PhyArmor;
+										MagArmor += tmp.MagArmor;
+										PhyAttack += tmp.PhyAttack;
+										MagAttack += tmp.MagAttack;
+										break;
+								case ItemType.weapon_meele:
+										if (Stance == BattleStance.meele) {
+												PhyArmor += tmp.PhyArmor;
+												MagArmor += tmp.MagArmor;
+												PhyAttack += tmp.PhyAttack;
+												MagAttack += tmp.MagAttack;
+										}
+										break;
+								case ItemType.weapon_ammo:
+								case ItemType.weapon_range:
+										if (Stance == BattleStance.range) {
+												PhyArmor += tmp.PhyArmor;
+												MagArmor += tmp.MagArmor;
+												PhyAttack += tmp.PhyAttack;
+												MagAttack += tmp.MagAttack;
+										}
+										break;
+						// TODO: What gives Mage Bonus Dmg? Range Weapon? Meele Weapon? Both?
+						}
+			
+				}
 		
 				// Calculate Battle Relevant Stuff
-				MaxHP = Vit * 20;
-				MaxMP = Int * 20;
+				MaxHP = EffectHP + (Vit * 20);
+				MaxMP = EffectMP + (Int * 20);
 				PhyArmor += Vit * 3;
 				MagArmor += Int * 3;
 				PhyAttack += Str * 3;

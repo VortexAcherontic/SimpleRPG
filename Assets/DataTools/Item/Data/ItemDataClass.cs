@@ -8,23 +8,32 @@ using System.Collections.Generic;
  */
 
 public enum ItemType {
-		meele,
-		range,
+		weapon_meele,
+		weapon_range,
+		weapon_ammo,
 		armor_head,
 		armor_torso,
 		armor_leg,
 		armor_feet,
 		armor_hand,
+	
 		potion,
-		ammo,
 		accessorie,
 		utility
 }
 
 public enum EffectType {
 		None,
+		// Base Bonus
 		Health,
-		Mana
+		Mana,
+		// Stats Bonus
+		Str,
+		Dex,
+		Agi,
+		Int,
+		Vit,
+		Luc
 }
 
 [System.Serializable]
