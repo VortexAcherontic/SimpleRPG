@@ -7,76 +7,50 @@ using System.Collections.Generic;
  *	Falls wir uns wirklich noch dazu entscheiden den Inspector zu erstellen
  */
 
-public enum ItemTypes {
-		
+public enum ItemType {
+		meele,
+		range,
+		armor_head,
+		armor_torso,
+		armor_leg,
+		armor_feet,
+		armor_hand,
+		potion,
+		ammo,
+		accessorie,
+		utility
+}
+
+public enum EffectType {
+		None,
+		Health,
+		Mana
 }
 
 [System.Serializable]
-public class ItemOriginData { // Clean Own Stats
-		// Allround Stats
+public class ItemData { // erstmal aus dem alten übernommen und leicht abgeändert
 		public string Name;
-		public Vector2 Position;
-		public BattleStance Stance;
-		public int Gold; // For kills: GoldDrop
-		public int XP;	// For kills: XpDrop
+		public ItemType Type;
+		public int Gold;
+		public int Stock;
+		public int RefillMod;
+		public float Weigth;
 	
-		// Changeable by Level UP (Player) or Stick to Input (Monster/NPC)
-		public int Str; // Phy Dmg
-		public int Dex; // Hit Chance
-		public int Agi;	// Avoid Chance
-		public int Int; // Mag Dmg & Mana & Ressistance to Mag Dmg?
-		public int Vit;	// Health
-		public int Luc; // Crit Hit Chance?
-	
-		// Only Player
-		public int Level;
-		public int StatPoints;
-	
-		// Non for Player
-		public bool IsBoss;
-		public bool DoRespawn; // NPC/Bosses?
-		public regions[] SpawnRegions;
-}
-
-
-[System.Serializable]
-public class ItemData : ItemOriginData { // Based on Item Stats + Equipment etc. (For Battles)
-		public ItemOriginData InitalStats;
-	
-		public int HP;
-		public int MP;
-		public int MaxHP;
-		public int MaxMP;
-	
+		// Base Stats
+		public int MagAttack;
+		public int PhyAttack;
 		public int PhyArmor;
 		public int MagArmor;
-		public int PhyAttack;
-		public int MagAttack;
 	
-		public void CalculateStats () {
-				// Getting normal Stats (Auch Equip und so, eigentlich alle Werte aus InitalStats den hier entsprechenden zuweisen...)
-				// also total nervig -.-
-				Str = InitalStats.Str;	
-				Agi = InitalStats.Agi;
-				Dex = InitalStats.Dex;
-				Int = InitalStats.Int;
-				Vit = InitalStats.Vit;
-				Luc = InitalStats.Luc;
-		
-				// Adding Stats on Stuff like Equiptment (or Buffs)
-				PhyArmor = 0;
-				MagArmor = 0;
-				PhyAttack = 0;
-				MagAttack = 0;
-		
-				// Calculate Battle Relevant Stuff
-				MaxHP = Vit * 20;
-				MaxMP = Int * 20;
-				PhyArmor += Vit * 3;
-				MagArmor += Int * 3;
-				PhyAttack += Str * 3;
-				MagAttack += Int * 3;
-		}
+		// Potions, + AddStats(passive)?
+		public EffectType EffectType;
+		public int Effect;
+		public bool IsStaticEffect;
+	
+		// Quiever
+		public int Capacity;
+		public int MaxCapacity;
+		public ItemData Ammo;
 }
 
 [System.Serializable]
