@@ -2,6 +2,30 @@ SimpleRPG
 ========= 
  
  
+2015-01-27 19:03:18 +0100 BattleStats calculate in Creature (Sascha Kaufmann)
+
+2015-01-27 18:04:45 +0100 DataTools Items Struct (Sascha Kaufmann)
+
+2015-01-27 17:37:50 +0100 Begin Create Item Struct DataTools (Sascha Kaufmann)
+
+2015-01-26 22:36:32 +0100 Create Creature so kann man die einfach in ein neues Projekt kopieren (Sascha Kaufmann)
+
+2015-01-26 01:48:41 +0100 Jetzt wirklich ende (Sascha Kaufmann)
+
+2015-01-26 01:47:30 +0100 Eigentlich will ich ins Bett, aber kleinigkeiten fallen wir noch auf/ein (Sascha Kaufmann)
+
+2015-01-26 01:39:28 +0100 Creature Death Marker (Sascha Kaufmann)
+
+2015-01-26 01:25:31 +0100 Rename for better understanding (Sascha Kaufmann)
+
+2015-01-26 01:23:56 +0100 Begin Rewrite Creature Data (Sascha Kaufmann)
+
+2015-01-25 23:14:13 +0100 Add JSON for Save/Load (Sascha Kaufmann)
+
+2015-01-24 13:57:18 +0100 Videos schauen (Sascha Kaufmann)
+
+2015-01-24 01:10:35 +0100 Changelog Update (Sascha Kaufmann)
+
 2015-01-24 00:59:05 +0100 Shop Refill (Sascha Kaufmann)
 
 2015-01-24 00:46:46 +0100 Berechnung da sparen wo es geht XD (Sascha Kaufmann)
