@@ -13,7 +13,7 @@
 - Mage Attack Reichweite/Richtung?
 - Mobs reagieren auf attacken? (Fernkampf/Magie)
 - Durch Mobs durchlaufen?
-- Equip/DeEuipt macht manchmal noch Porbleme
+- Equip/DeEquipt macht manchmal noch Probleme
 - Warten bis speichern durch ist, bevor was anderes gemacht werden kann!
 
 // Mechanik
@@ -24,9 +24,8 @@
 - Buffs?
 - Events einbauen
 - npcs einbauen
-- Mob Movement?
 - Mobs mit Fernkampf?
-- Aggro Mobs? Reagieren auf Spieler nähe bzw laufen zum spieler?
+- Aggro Mobs fixen
 - Player & Mobs haben ja eigentlich die selben Stats... sollte man da nicht ein und das selbe verwenden?
 - NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
 - battlemode 1vs1 einbauen (oder so... Multiplayer)

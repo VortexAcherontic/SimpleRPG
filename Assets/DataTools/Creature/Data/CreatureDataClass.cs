@@ -141,6 +141,7 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 										}
 										break;
 						// TODO: What gives Mage Bonus Dmg? Range Weapon? Meele Weapon? Both?
+						// statt bonus - verschiedene zauber zB heilen/angriff/buff/debuffs entfernen
 						}
 			
 				}

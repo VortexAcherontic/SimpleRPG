@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyBehaviour : MonoBehaviour {
 		EnemySpawn mobspawn;
@@ -13,12 +13,14 @@ public class EnemyBehaviour : MonoBehaviour {
 		int distance_euklid;
 		int distance_manhatten;
 		int temp_dodge;
+		List<Vector2> Wegpunktliste = new List<Vector2> ();
 		
 		// Use this for initialization
 		void Start () {
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
 				e001 = gameObject.GetComponent<enemy> ();
 				mobspawn = GameObject.Find ("MonsterSpawner").GetComponent<EnemySpawn> ();
+				WaypointGeneration ();
 		}
 	
 		// Update is called once per frame
@@ -75,8 +77,135 @@ public class EnemyBehaviour : MonoBehaviour {
 				}
 		}
 	
+		float movetimer = 1.0f;
+		float movecooldown = 1.0f;
+		bool ismoving = false;
+		int idlevariante;
+	
+		void WaypointGeneration () {
+				idlevariante = Random.Range (0, 4);
+				switch (idlevariante) {
+						case 0:
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (-1, 0));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (-1, 0));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								ismoving = true;
+								break;
+						case 1:
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (-1, 0));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								ismoving = true;
+								break;
+						case 2:
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (-1, 0));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (-1, 0));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								ismoving = true;
+								break;
+						case 3:
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (-1, 0));
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (-1, 0));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								ismoving = true;
+								break;
+						case 4:
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (1, 0));
+								Wegpunktliste .Add (new Vector2 (-1, 0));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (0, -1));
+								Wegpunktliste .Add (new Vector2 (-1, 0));
+								Wegpunktliste .Add (new Vector2 (0, 1));
+								ismoving = true;
+								break;
+				}		
+		}
+	
+		Vector2 temp_wp = new Vector2 (0, 0);
+		int i = 0;
+	
+		void IdleMovement () {
+				if ((CheckDistance () <= 20) && (ismoving == false)) {
+						e001.thismob.pos += temp_wp;
+						ismoving = true;
+						transform.position = new Vector3 (e001.thismob.pos.x, e001.thismob.pos.y, transform.position.z);
+				}
+				if ((movetimer <= 0) && (ismoving)) {
+						temp_wp = Wegpunktliste [i];
+						movetimer = movecooldown;
+						ismoving = false;
+						i++;
+						if (i == Wegpunktliste.Count) {
+								i = 0;
+						}
+				}
+		}
+	
+		bool aggro = false;
+	
+		void PlayerAggro () {
+				if ((CheckDistance () <= 6) && (ismoving == false) && (CheckDistance () >= 2)) {
+						e001.thismob.pos += temp_wp;
+						Debug.Log ("Zum Player!");
+						ismoving = true;
+						aggro = true;
+						transform.position = new Vector3 (e001.thismob.pos.x, e001.thismob.pos.y, transform.position.z);
+				}
+				if (CheckDistance () >= 6) {
+						aggro = false;
+				}
+				if ((movetimer <= 0) && (ismoving)) {
+						if (p001.pos.x > e001.thismob.pos.x) {
+								temp_x = 1;
+						}
+						if (p001.pos.x < e001.thismob.pos.x) {
+								temp_x = -1;
+						}
+						if ((p001.pos.y > e001.thismob.pos.y) && (temp_x == 0)) {
+								temp_y = 1;
+						}
+						if ((p001.pos.y < e001.thismob.pos.y) && (temp_x == 0)) {
+								temp_y = -1;
+						}
+						temp_wp = new Vector2 (temp_x, temp_y);
+						temp_x = 0;
+						temp_y = 0;
+						movetimer = movecooldown;
+						ismoving = false;
+				}
+		}
+	
 		void Movement () {
 				e001.thismob.pos = new Vector2 (transform.position.x, transform.position.y);
+				PlayerAggro ();		
+				if (aggro == false) {
+						IdleMovement ();
+				}
+				movetimer -= Time.deltaTime;
 				// If Moveable Mob? Manche Bosse sollen vielleicht weg versperren!
+				
 		}
 }
