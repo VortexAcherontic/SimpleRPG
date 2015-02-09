@@ -90,6 +90,13 @@ public class player : MonoBehaviour {
 				}
 				int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)pos.x, (int)pos.y];
 				bool movebool = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].isWalkable;
+		
+				GameObject[] tmpmob = GameObject.FindGameObjectsWithTag ("Mob");
+				foreach (GameObject tmpobj in tmpmob) {
+						if (tmpobj.transform.position.x == pos.x && tmpobj.transform.position.y == pos.y) {
+								movebool = false;
+						}
+				}
 				if (!movebool) {
 						pos = lastpos;
 				}

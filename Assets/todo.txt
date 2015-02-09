@@ -12,7 +12,6 @@
 // Bug Fixes
 - Range Attack nur gerade aus!
 - Mage Attack Reichweite/Richtung?
-- Durch Mobs durchlaufen?
 - Equip/DeEquipt macht manchmal noch Probleme
 
 // Mechanik
