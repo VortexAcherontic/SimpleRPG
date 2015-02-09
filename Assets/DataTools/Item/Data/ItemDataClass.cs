@@ -53,6 +53,7 @@ public class ItemData { // erstmal aus dem alten übernommen und leicht abgeänd
 		public int PhyAttack;
 		public int PhyArmor;
 		public int MagArmor;
+		public int Range;
 	
 		// Potions, + AddStats(passive)?
 		public EffectType EffectType;

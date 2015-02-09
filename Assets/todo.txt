@@ -5,7 +5,6 @@
 // Balancing generell
 - player cd auf angriffe
 - boss nerfen 
-- Fernkampfwaffen mit reichweite versehen
 - skillsystem anpassen (ab lvl 3 ziemlich op)
 - Stärkere Mobs oder Mob Level an Spieler Level anpassen?
 
