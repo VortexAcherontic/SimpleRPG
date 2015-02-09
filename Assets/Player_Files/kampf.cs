@@ -14,7 +14,7 @@ public class kampf : MonoBehaviour {
 		int phy_damage;
 		int mag_damage;
 	
-		float attack_cooldown = 2.5f;
+		float attack_cooldown = 0.5f; // Veilleicht abhänig von agi? Gewicht? Waffe!
 		float attack_timer = 0;
 		
 		//public bool inarena; besser in map?

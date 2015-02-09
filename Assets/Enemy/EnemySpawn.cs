@@ -123,7 +123,7 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.xpdrop = 250;
 				tmpmob.prefab = (GameObject)Resources.Load ("Mob/Cyclop");
 				tmpmob.boss = true;
-				tmpmob.pos = new Vector2 (50, 52);
+				tmpmob.pos = new Vector2 (80, 70);
 				//tmpmob.spawnregion = new int[1];
 				//tmpmob.spawnregion [0] = map.GetRegionWithName ("Bei Boss egal");
 				enemyTypes.Add (tmpmob);
