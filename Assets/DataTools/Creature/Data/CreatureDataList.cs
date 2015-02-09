@@ -4,5 +4,5 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public class CreatureDataList : ScriptableObject {
-		public List<CreatureData> CreatureList;
+		public List<CreatureOriginData> CreatureList;
 }

@@ -21,6 +21,7 @@ public class CreatureOriginData { // Clean Own Stats
 		public BattleStance Stance;
 		public int Gold; // For kills: GoldDrop
 		public int XP;	// For kills: XpDrop
+		public GameObject Prefab;
 	
 		// Changeable by Level UP (Player) or Stick to Input (Monster/NPC)
 		public int Str; // Phy Dmg
