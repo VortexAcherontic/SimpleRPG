@@ -94,10 +94,18 @@ public class kampf : MonoBehaviour {
 						}
 						if (attack) {
 								CheckForMeleeWeapon (out phy_damage, out mag_damage);
+								
+								int phydmg = ((p001.pwr * phy_damage) - tmp_monster.GetComponent<enemy> ().thismob.phy_armor);
+								int magdmg = ((mag_damage) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
+				
 								//physischer Schaden
-								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.pwr * phy_damage) - tmp_monster.GetComponent<enemy> ().thismob.phy_armor);
+								tmp_monster.GetComponent<enemy> ().thismob.hp -= phydmg;
 								//magischer Schaden
-								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((mag_damage) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
+								tmp_monster.GetComponent<enemy> ().thismob.hp -= magdmg;
+				
+								if (tmp_monster.GetComponent<enemy> ().thismob.outPutDmg) {
+										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
+								}
 								attack = false;
 						}
 				}
@@ -121,13 +129,21 @@ public class kampf : MonoBehaviour {
 						}
 						if ((attack) && (CheckForArrow ())) {
 								CheckForRangeWeapon (out phy_damage, out mag_damage);
+				
+								int phydmg = ((p001.pwr * phy_damage * p001.agility) - tmp_monster.GetComponent<enemy> ().thismob.phy_armor);
+								int magdmg = ((mag_damage) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
+				
 								//physischer Schaden
 								if (phy_damage >= tmp_monster.GetComponent<enemy> ().thismob.phy_armor) {
-										tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.pwr * phy_damage * p001.agility) - tmp_monster.GetComponent<enemy> ().thismob.phy_armor);
+										tmp_monster.GetComponent<enemy> ().thismob.hp -= phydmg;
 								}
 								//magischer Schaden
 								if (mag_damage >= tmp_monster.GetComponent<enemy> ().thismob.mag_armor) {
-										tmp_monster.GetComponent<enemy> ().thismob.hp -= ((mag_damage) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
+										tmp_monster.GetComponent<enemy> ().thismob.hp -= magdmg;
+								}
+				
+								if (tmp_monster.GetComponent<enemy> ().thismob.outPutDmg) {
+										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
 								}
 								attack = false;
 						}
@@ -151,8 +167,16 @@ public class kampf : MonoBehaviour {
 								}
 						}
 						if ((attack) && (p001.mana > 200)) {
+				
+								int phydmg = 0;
+								int magdmg = ((p001.maxmana / p001.pwr * Mathf.Abs ((1 - (p001.mana / p001.maxmana)))) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
+				
 								//magischer Schaden
-								tmp_monster.GetComponent<enemy> ().thismob.hp -= ((p001.maxmana / p001.pwr * Mathf.Abs ((1 - (p001.mana / p001.maxmana)))) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
+								tmp_monster.GetComponent<enemy> ().thismob.hp -= magdmg;
+				
+								if (tmp_monster.GetComponent<enemy> ().thismob.outPutDmg) {
+										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
+								}
 								p001.mana -= 200;
 								attack = false;
 						}

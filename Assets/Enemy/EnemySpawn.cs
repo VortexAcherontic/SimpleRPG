@@ -26,6 +26,8 @@ public struct monsters {
 		public int xpdrop;
 		public List<items> loot;
 		public int[] spawnregion;
+		public bool outPutDmg;
+		public bool Moveable;
 }
 
 public class EnemySpawn : MonoBehaviour {
@@ -60,6 +62,8 @@ public class EnemySpawn : MonoBehaviour {
 				mob.loot = new List<items> ();
 				mob.spawnregion = new int[1];
 				mob.spawnregion [0] = map.GetRegionWithName ("Grass");
+				mob.outPutDmg = false;
+				mob.Moveable = true;
 				return mob;
 		}
 		void Start () {
@@ -67,6 +71,16 @@ public class EnemySpawn : MonoBehaviour {
 				map = GameObject.Find ("Map").GetComponent<TileMap> ();
 			
 				monsters tmpmob;
+				tmpmob = CreatEmpty ();
+				tmpmob.pname = "DmgDummy";
+				tmpmob.maxhp = 10000000;
+				tmpmob.boss = true;
+				tmpmob.pos = new Vector2 (80, 82);
+				tmpmob.prefab = (GameObject)Resources.Load ("Mob/DmgDummy");
+				tmpmob.outPutDmg = true;
+				tmpmob.Moveable = false;
+				enemyTypes.Add (tmpmob);
+		
 				tmpmob = CreatEmpty ();
 				tmpmob.pname = "Stefan";
 				tmpmob.maxhp = 200;

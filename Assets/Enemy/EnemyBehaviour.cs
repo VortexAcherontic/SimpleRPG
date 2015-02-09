@@ -51,7 +51,7 @@ public class EnemyBehaviour : MonoBehaviour {
 				if (attacktimer < 0) {
 						if (CheckDistance () <= 1) {
 								//Attackiert den Spieler
-								Debug.Log ("PlayerHp: " + p001.hp + e001.thismob.pname + "hp:" + e001.thismob.hp);
+								//Debug.Log ("PlayerHp: " + p001.hp + e001.thismob.pname + "hp:" + e001.thismob.hp);
 								temp_dodge = Random.Range (0, 100);
 								if (temp_dodge + p001.agility <= 90) {
 										p001.hp -= (e001.thismob.pwr * 10) - p001.armor;
@@ -236,10 +236,12 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		void Movement () {
 				e001.thismob.pos = new Vector2 (transform.position.x, transform.position.y);
-				if (CheckAggro ()) {
-						PlayerAggro ();
-				} else {
-						IdleMovement ();
+				if (e001.thismob.Moveable) {
+						if (CheckAggro ()) {
+								PlayerAggro ();
+						} else {
+								IdleMovement ();
+						}
 				}
 				movetimer -= Time.deltaTime;
 				// If Moveable Mob? Manche Bosse sollen vielleicht weg versperren!
