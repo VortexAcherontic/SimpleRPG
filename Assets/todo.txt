@@ -3,6 +3,7 @@
 (z.b. Bewegen)
 
 // Balancing generell
+- player cd auf angriffe
 - boss nerfen 
 - Fernkampfwaffen mit reichweite versehen
 - skillsystem anpassen (ab lvl 3 ziemlich op)
@@ -14,9 +15,9 @@
 - Mobs reagieren auf attacken? (Fernkampf/Magie)
 - Durch Mobs durchlaufen?
 - Equip/DeEquipt macht manchmal noch Probleme
-- Warten bis speichern durch ist, bevor was anderes gemacht werden kann!
 
 // Mechanik
+- fernkampf dummy einbauen der schaden on hit als debug zurückgibt zum testen der range der fernkampfwaffen
 - shop websync einbauen (+ Max Stock?)
 - magiebuch einbauen (Magie Skills?)
 - Elemente?
@@ -25,7 +26,6 @@
 - Events einbauen
 - npcs einbauen
 - Mobs mit Fernkampf?
-- Aggro Mobs fixen
 - Player & Mobs haben ja eigentlich die selben Stats... sollte man da nicht ein und das selbe verwenden?
 - NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
 - battlemode 1vs1 einbauen (oder so... Multiplayer)

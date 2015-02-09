@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class mainmenu : MonoBehaviour {
+		bool showoptions;
 		public bool showinv = false;
 		public bool showmap = false;
 		public bool showequip = false;
@@ -35,6 +36,9 @@ public class mainmenu : MonoBehaviour {
 						}
 						if (Input.GetKeyDown ("i")) {
 								showinv = !showinv;
+						}
+						if (Input.GetKeyDown (KeyCode.Escape)) {
+								showoptions = !showoptions;
 						}
 						/*
 						if (Input.GetKeyDown ("+")) {
@@ -191,6 +195,15 @@ public class mainmenu : MonoBehaviour {
 				}
 		}
 
+		void options () {
+				if (showoptions) {
+						Time.timeScale = 0;
+						GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "Pause");
+				} else {
+						Time.timeScale = 1;
+				}
+		}
+	
 		void EndScreen () {
 				if (p001.gameover) {
 						Application.LoadLevel ("GameOverScreen");
@@ -202,5 +215,6 @@ public class mainmenu : MonoBehaviour {
 				Lvlupscreen ();
 				shopanzeige ();
 				ShowLogin ();
+				options ();
 		}
 }

@@ -31,8 +31,11 @@ public class inventory : MonoBehaviour {
 				}
 				//a = templist.Count;
 				return a;
-		}	
-
+		}
+	
+		float savecooldown = 20.0f;
+		float savetimer = 0.0f;
+	
 		void OnGUI () {
 				if (gui.showequip == true) {
 						gui.showinv = false;
@@ -55,7 +58,12 @@ public class inventory : MonoBehaviour {
 										gui.showinv = false;
 								}
 								if (GUI.Button (new Rect (tmp_anzeige.width - 190, 0, 40, 20), "Save")) {
-										StartCoroutine (p001.save (Datenbank_URL, p001.Player_ID));
+										if (savetimer <= 0) {
+												StartCoroutine (p001.save (Datenbank_URL, p001.Player_ID));
+												savetimer = savecooldown;
+										} else {
+												Debug.Log ("noch nicht zum speichern bereit");
+										}
 								}
 								if (GUI.Button (new Rect (tmp_anzeige.width - 150, 0, 110, 20), "Swap to Equipped Items")) {
 										gui.showinv = false;
@@ -273,6 +281,7 @@ public class inventory : MonoBehaviour {
 						Scrollbereich.height = Zeile1.position.y + Zeile1.height;
 						GUILayout.EndArea ();
 				}
+				savetimer -= Time.deltaTime;
 				if (gui.showequip) {
 						GUILayout.BeginArea (tmp_anzeige);
 						{

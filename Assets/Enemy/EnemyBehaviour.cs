@@ -10,6 +10,8 @@ public class EnemyBehaviour : MonoBehaviour {
 		enemy e001;
 		float temp_x;
 		float temp_y;
+		int temp_wpx;
+		int temp_wpy;
 		int distance_euklid;
 		int distance_manhatten;
 		int temp_dodge;
@@ -165,34 +167,68 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 	
 		bool aggro = false;
+		bool moved = false;
+		string zuerst;
+	
+		bool CheckAggro () {
+				aggro = false;
+				if (CheckDistance () <= 6) {
+						aggro = true;
+				}
+				return aggro;
+		}
+	
+		float a_1;
+		float a_2;
+	
+		string zuerstfragezeichen () {
+				a_1 = Mathf.Abs (p001.pos.x - transform.position.x);
+				a_2 = Mathf.Abs (p001.pos.y - transform.position.y);
+				if (a_1 < a_2) {
+						zuerst = "y";
+				}
+				if (a_2 < a_1) {
+						zuerst = "x";
+				}
+				return zuerst;
+		}
+	
 	
 		void PlayerAggro () {
 				if ((CheckDistance () <= 6) && (ismoving == false) && (CheckDistance () >= 2)) {
 						e001.thismob.pos += temp_wp;
-						Debug.Log ("Zum Player!");
 						ismoving = true;
-						aggro = true;
+						moved = false;
 						transform.position = new Vector3 (e001.thismob.pos.x, e001.thismob.pos.y, transform.position.z);
 				}
 				if (CheckDistance () >= 6) {
 						aggro = false;
 				}
 				if ((movetimer <= 0) && (ismoving)) {
-						if (p001.pos.x > e001.thismob.pos.x) {
-								temp_x = 1;
+						temp_wp = new Vector2 (0, 0);
+						zuerstfragezeichen ();
+						if ((p001.pos.x != e001.thismob.pos.x) && (zuerst == "x")) {
+								if (p001.pos.x > e001.thismob.pos.x) {
+										temp_wpx = 1;
+								}
+								if (p001.pos.x < e001.thismob.pos.x) {
+										temp_wpx = -1;
+								}
 						}
-						if (p001.pos.x < e001.thismob.pos.x) {
-								temp_x = -1;
+						if ((p001.pos.y != e001.thismob.pos.y) && (zuerst == "y")) {
+								if (p001.pos.y > e001.thismob.pos.y) {
+										temp_wpy = 1;
+								}
+								if (p001.pos.y < e001.thismob.pos.y) {
+										temp_wpy = -1;
+								}
 						}
-						if ((p001.pos.y > e001.thismob.pos.y) && (temp_x == 0)) {
-								temp_y = 1;
-						}
-						if ((p001.pos.y < e001.thismob.pos.y) && (temp_x == 0)) {
-								temp_y = -1;
-						}
-						temp_wp = new Vector2 (temp_x, temp_y);
-						temp_x = 0;
-						temp_y = 0;
+						/*if (temp_wpx != 0) {
+								temp_wpy = 0;
+						}*/
+						temp_wp = new Vector2 (temp_wpx, temp_wpy);
+						temp_wpx = 0;
+						temp_wpy = 0;
 						movetimer = movecooldown;
 						ismoving = false;
 				}
@@ -200,8 +236,9 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		void Movement () {
 				e001.thismob.pos = new Vector2 (transform.position.x, transform.position.y);
-				PlayerAggro ();		
-				if (aggro == false) {
+				if (CheckAggro ()) {
+						PlayerAggro ();
+				} else {
 						IdleMovement ();
 				}
 				movetimer -= Time.deltaTime;
