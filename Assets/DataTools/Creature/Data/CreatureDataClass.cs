@@ -156,7 +156,4 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 		}
 }
 
-[System.Serializable]
-public class CreatureDataList : ScriptableObject {
-		public List<CreatureData> CreatureList;
-}
+

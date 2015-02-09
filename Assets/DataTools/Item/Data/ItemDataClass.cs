@@ -61,8 +61,3 @@ public class ItemData { // erstmal aus dem alten übernommen und leicht abgeänd
 		public int MaxCapacity;
 		public ItemData Ammo;
 }
-
-[System.Serializable]
-public class ItemDataList : ScriptableObject {
-		public List<ItemData> ItemList;
-}
