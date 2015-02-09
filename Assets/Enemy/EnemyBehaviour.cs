@@ -175,6 +175,10 @@ public class EnemyBehaviour : MonoBehaviour {
 				if (CheckDistance () <= 6) {
 						aggro = true;
 				}
+		
+				if (e001.thismob.hp < e001.thismob.maxhp) {	// wenn ich schaden habe, bin ich aggro XD
+						aggro = true;
+				}
 				return aggro;
 		}
 	
@@ -195,14 +199,11 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 	
 		void PlayerAggro () {
-				if ((CheckDistance () <= 6) && (ismoving == false) && (CheckDistance () >= 2)) {
+				if ((ismoving == false) && (CheckDistance () >= 2)) { // Da bei CheckAggro die Distanz eine Rolle Spielt, ist diese hier egal ;)
 						e001.thismob.pos += temp_wp;
 						ismoving = true;
 						moved = false;
 						transform.position = new Vector3 (e001.thismob.pos.x, e001.thismob.pos.y, transform.position.z);
-				}
-				if (CheckDistance () >= 6) {
-						aggro = false;
 				}
 				if ((movetimer <= 0) && (ismoving)) {
 						temp_wp = new Vector2 (0, 0);
