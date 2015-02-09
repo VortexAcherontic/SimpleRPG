@@ -21,7 +21,7 @@ public class player : MonoBehaviour {
 		public int rangeweapondistance = 5;
 		public float movement_delay = 0f;
 		public bool gameover = false;
-		public List<items> Equip = new List<items> ();
+		public List<ItemData> Equip = new List<ItemData> ();
 		/*, list equip*/
 
 		// Use this for initialization
@@ -53,9 +53,9 @@ public class player : MonoBehaviour {
 		}
 		bool equipcheck = false;
 		
-		public void equip (items obj) {
-				foreach (items c_obj in Equip) {
-						if (c_obj.type == obj.type) {
+		public void equip (ItemData obj) {
+				foreach (ItemData c_obj in Equip) {
+						if (c_obj.Type == obj.Type) {
 								equipcheck = true;
 						}
 				}
@@ -65,7 +65,7 @@ public class player : MonoBehaviour {
 				}
 		}
 
-		public void unequip (items obj) {
+		public void unequip (ItemData obj) {
 				inv.add (obj);
 				Equip.Remove (obj);
 		}
@@ -156,14 +156,14 @@ public class player : MonoBehaviour {
 		public void BerechneMovmentDelay () {
 				float GGewicht = 0.0f;
 				if (GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
-						foreach (items tmpitem in inv.Inventar) {
-								GGewicht += tmpitem.gewicht;
+						foreach (ItemData tmpitem in inv.Inventar) {
+								GGewicht += tmpitem.Weigth;
 						}
-						foreach (items tmpitem in Equip) {
-								GGewicht += tmpitem.gewicht;
+						foreach (ItemData tmpitem in Equip) {
+								GGewicht += tmpitem.Weigth;
 						}
 				}
-				movement_delay = GGewicht;
+				movement_delay = GGewicht / 10; // Movement Langsamer durch gewicht XD Selbst ausgetrickst beim testen
 		}
 		
 		public IEnumerator save (string Datenbank_URL, int player_id) {
@@ -237,12 +237,12 @@ public class player : MonoBehaviour {
 				WWW web = new WWW (Datenbank_URL + "clear_player_inv.php", LoginForm);
 				yield return web;
 				// neues inv speichern
-				foreach (items obj in inv.Inventar) {
+				foreach (ItemData obj in inv.Inventar) {
 					
 						//Debug.Log ("Save Inv: " + obj.name);
 						LoginForm = new WWWForm ();
 						LoginForm.AddField ("player_id", player_id);
-						LoginForm.AddField ("item_name", obj.name);
+						LoginForm.AddField ("item_name", obj.Name);
 						web = new WWW (Datenbank_URL + "save_player_inv.php", LoginForm);
 						yield return web;
 				}
@@ -250,7 +250,7 @@ public class player : MonoBehaviour {
 		}
 		public IEnumerator load_inv (string Datenbank_URL, int player_id) {
 				item tmp_item = GameObject.Find ("Main Camera").GetComponent<item> ();
-				items tmpobj = tmp_item.item_mit_name ("xyz");
+				ItemData tmpobj = tmp_item.item_mit_name ("xyz");
 		
 				WWWForm TmpForm = new WWWForm ();
 				TmpForm.AddField ("player_id", player_id);
@@ -280,11 +280,11 @@ public class player : MonoBehaviour {
 				WWW web = new WWW (Datenbank_URL + "clear_player_equip.php", LoginForm);
 				yield return web;
 
-				foreach (items obj in Equip) {
+				foreach (ItemData obj in Equip) {
 						//Debug.Log ("Save EQU: " + obj.name);
 						LoginForm = new WWWForm ();
 						LoginForm.AddField ("player_id", player_id);
-						LoginForm.AddField ("item_name", obj.name);
+						LoginForm.AddField ("item_name", obj.Name);
 
 						web = new WWW (Datenbank_URL + "save_player_equip.php", LoginForm);
 						yield return web;
@@ -292,7 +292,7 @@ public class player : MonoBehaviour {
 		}
 		public IEnumerator load_equip (string Datenbank_URL, int player_id) {
 				item tmp_item = GameObject.Find ("Main Camera").GetComponent<item> ();
-				items tmpobj = tmp_item.item_mit_name ("xyz");
+				ItemData tmpobj = tmp_item.item_mit_name ("xyz");
 				WWWForm TmpForm = new WWWForm ();
 				TmpForm.AddField ("player_id", player_id);
 				WWW www = new WWW (Datenbank_URL + "load_player_equip.php", TmpForm);

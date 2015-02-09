@@ -24,7 +24,7 @@ public struct monsters {
 		//Drops
 		public int golddrop;
 		public int xpdrop;
-		public List<items> loot;
+		public List<ItemData> loot;
 		public int[] spawnregion;
 		public bool outPutDmg;
 		public bool Moveable;
@@ -59,7 +59,7 @@ public class EnemySpawn : MonoBehaviour {
 				mob.agility = 1; 
 				mob.golddrop = 0;
 				mob.xpdrop = 0;
-				mob.loot = new List<items> ();
+				mob.loot = new List<ItemData> ();
 				mob.spawnregion = new int[1];
 				mob.spawnregion [0] = map.GetRegionWithName ("Grass");
 				mob.outPutDmg = false;

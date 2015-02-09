@@ -190,9 +190,9 @@ public class kampf : MonoBehaviour {
 		}
 	
 		bool CheckForArrow () {
-				foreach (items tmp_item in p001.Equip) {
-						if (tmp_item.type == itemtype.utility) {
-								if (tmp_item.capacity.Count >= 1) {
+				foreach (ItemData tmp_item in p001.Equip) {
+						if (tmp_item.Type == ItemType.utility) {
+								if (tmp_item.Capacity >= 1) {
 										return true;
 								}
 						}
@@ -201,10 +201,10 @@ public class kampf : MonoBehaviour {
 		}
 	
 		void CheckForMeleeWeapon (out int phy_damage, out int mag_damage) {
-				foreach (items tmp_item in p001.Equip) {
-						if (tmp_item.type == itemtype.Nahkampf) {
-								phy_damage = tmp_item.phy_dmg;
-								mag_damage = tmp_item.mag_dmg;
+				foreach (ItemData tmp_item in p001.Equip) {
+						if (tmp_item.Type == ItemType.weapon_meele) {
+								phy_damage = tmp_item.PhyAttack;
+								mag_damage = tmp_item.MagAttack;
 						}
 				}
 				phy_damage = 5;
@@ -212,10 +212,10 @@ public class kampf : MonoBehaviour {
 		}
 	
 		void CheckForRangeWeapon (out int phy_damage, out int mag_damage) {
-				foreach (items tmp_item in p001.Equip) {
-						if (tmp_item.type == itemtype.Fernkampf) {
-								phy_damage = tmp_item.phy_dmg;
-								mag_damage = tmp_item.mag_dmg;
+				foreach (ItemData tmp_item in p001.Equip) {
+						if (tmp_item.Type == ItemType.weapon_range) {
+								phy_damage = tmp_item.PhyAttack;
+								mag_damage = tmp_item.MagAttack;
 						}
 				}
 				phy_damage = 5;

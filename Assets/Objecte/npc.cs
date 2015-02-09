@@ -12,7 +12,7 @@ public class npc : MonoBehaviour {
 		public int golddrop;
 		public int xpdrop;
 		public Vector2 pos;
-		public List<items> Drops = new List<items> ();
+		public List<ItemData> Drops = new List<ItemData> ();
 		public bool onposition;
 		player p001;
 

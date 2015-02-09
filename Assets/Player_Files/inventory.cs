@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class inventory : MonoBehaviour {
 
-		public List<items> Inventar = new List<items> ();
+		public List<ItemData> Inventar = new List<ItemData> ();
 		//List<items> templist = new List<items> ();
 		public mainmenu gui;
 		int a;
@@ -21,11 +21,11 @@ public class inventory : MonoBehaviour {
 		Vector2 scroller = new Vector2 ();
 		Rect Scrollbereich; // Weil ka wie sonst XD
 	
-		int ItemCount (items obj) {
+		int ItemCount (ItemData obj) {
 				a = 0;
 				//templist = Inventar.FindAll (FindItem);
-				foreach (items c_obj in Inventar) {
-						if (c_obj.name == obj.name) {
+				foreach (ItemData c_obj in Inventar) {
+						if (c_obj.Name == obj.Name) {
 								a++;
 						}
 				}
@@ -98,20 +98,20 @@ public class inventory : MonoBehaviour {
 								case 0:
 										break;
 								case 1:
-										foreach (items dieseitem in Inventar) {
+										foreach (ItemData dieseitem in Inventar) {
 					
-												if (dieseitem.type == itemtype.Nahkampf) {
+												if (dieseitem.Type == ItemType.weapon_meele) {
 														GUILayout.BeginHorizontal ();
 														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-														GUI.Label (Spalte, dieseitem.name);
+														GUI.Label (Spalte, dieseitem.Name);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														GUI.Label (Spalte, "Items in inventory: " + ItemCount (dieseitem));
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Physical Damage: " + dieseitem.phy_dmg);
+														GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Magical Damage: " + dieseitem.mag_dmg);
+														GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														if (GUI.Button (Spalte, "Drop")) {
 																sub (dieseitem);
@@ -128,20 +128,19 @@ public class inventory : MonoBehaviour {
 										}
 										break;
 								case 2:
-										foreach (items dieseitem in Inventar) {
-					
-												if (dieseitem.type == itemtype.Fernkampf) {
+										foreach (ItemData dieseitem in Inventar) {
+												if (dieseitem.Type == ItemType.weapon_range) {
 														GUILayout.BeginHorizontal ();
 														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-														GUI.Label (Spalte, dieseitem.name);
+														GUI.Label (Spalte, dieseitem.Name);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														GUI.Label (Spalte, "Items in inventory: " + ItemCount (dieseitem));
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Physical Damage: " + dieseitem.phy_dmg);
+														GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Magical Damage: " + dieseitem.mag_dmg);
+														GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														if (GUI.Button (Spalte, "Drop")) {
 																sub (dieseitem);
@@ -158,20 +157,23 @@ public class inventory : MonoBehaviour {
 										}
 										break;
 								case 3:
-										foreach (items dieseitem in Inventar) {
-					
-												if ((dieseitem.type == itemtype.Kopf_Rüstung) || (dieseitem.type == itemtype.Torso_Rüstung) || (dieseitem.type == itemtype.Beine_Rüstung) || (dieseitem.type == itemtype.Stiefel_Rüstung) || (dieseitem.type == itemtype.Handschuhe_Rüstung)) {
+										foreach (ItemData dieseitem in Inventar) {
+												if ((dieseitem.Type == ItemType.armor_feet) || 
+														(dieseitem.Type == ItemType.armor_hand) ||
+														(dieseitem.Type == ItemType.armor_head) ||
+														(dieseitem.Type == ItemType.armor_leg) ||
+														(dieseitem.Type == ItemType.armor_torso)) {
 														GUILayout.BeginHorizontal ();
 														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-														GUI.Label (Spalte, dieseitem.name);
+														GUI.Label (Spalte, dieseitem.Name);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														GUI.Label (Spalte, "Items in inventory: " + ItemCount (dieseitem));
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Physical Defense: " + dieseitem.phy_arm);
+														GUI.Label (Spalte, "Physical Defense: " + dieseitem.PhyArmor);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Magical Defense: " + dieseitem.mag_arm);
+														GUI.Label (Spalte, "Magical Defense: " + dieseitem.MagArmor);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														if (GUI.Button (Spalte, "Drop")) {
 																sub (dieseitem);
@@ -188,18 +190,17 @@ public class inventory : MonoBehaviour {
 										}
 										break;
 								case 4:
-										foreach (items dieseitem in Inventar) {
-					
-												if (dieseitem.type == itemtype.Tränke) {
+										foreach (ItemData dieseitem in Inventar) {
+												if (dieseitem.Type == ItemType.potion) {
 														GUILayout.BeginHorizontal ();
 														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 6, Zeile1.height);
-														GUI.Label (Spalte, dieseitem.name);
+														GUI.Label (Spalte, dieseitem.Name);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														GUI.Label (Spalte, "Items in inventory: " + ItemCount (dieseitem));
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Effect: " + dieseitem.effect + " " + dieseitem.effecttyp);
+														GUI.Label (Spalte, "Effect: " + dieseitem.Effect + " " + dieseitem.EffectType.ToString ());
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														if (GUI.Button (Spalte, "Drop")) {
 																sub (dieseitem);
@@ -216,18 +217,17 @@ public class inventory : MonoBehaviour {
 										}
 										break;
 								case 5:
-										foreach (items dieseitem in Inventar) {
-					
-												if (dieseitem.type == itemtype.utility) {
+										foreach (ItemData dieseitem in Inventar) {
+												if (dieseitem.Type == ItemType.utility) {
 														GUILayout.BeginHorizontal ();
 														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-														GUI.Label (Spalte, dieseitem.name);
+														GUI.Label (Spalte, dieseitem.Name);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														GUI.Label (Spalte, "Items in inventory: " + ItemCount (dieseitem));
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Capacity: " + dieseitem.capacity.Count);
+														GUI.Label (Spalte, "Capacity: " + dieseitem.MaxCapacity); // ?
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														if (GUI.Button (Spalte, "Drop")) {
 																sub (dieseitem);
@@ -248,18 +248,17 @@ public class inventory : MonoBehaviour {
 										}
 										break;
 								case 6:
-										foreach (items dieseitem in Inventar) {
-					
-												if (dieseitem.type == itemtype.anglegbares) {
+										foreach (ItemData dieseitem in Inventar) {
+												if (dieseitem.Type == ItemType.accessorie) {
 														GUILayout.BeginHorizontal ();
 														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 6, Zeile1.height);
-														GUI.Label (Spalte, dieseitem.name);
+														GUI.Label (Spalte, dieseitem.Name);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														GUI.Label (Spalte, "Items in inventory: " + ItemCount (dieseitem));
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Effect: " + dieseitem.effecttyp);
+														GUI.Label (Spalte, "Effect: " + dieseitem.Effect + " " + dieseitem.EffectType.ToString ());
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+														GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														if (GUI.Button (Spalte, "Drop")) {
 																sub (dieseitem);
@@ -297,41 +296,41 @@ public class inventory : MonoBehaviour {
 								}
 								Zeile1.position = new Vector2 (Zeile1.position.x, Zeile1.position.y + 20);
 
-								foreach (items dieseitem in p001.Equip) {
+								foreach (ItemData dieseitem in p001.Equip) {
 
 										GUILayout.BeginHorizontal ();
 										Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-										GUI.Label (Spalte, dieseitem.name);
+										GUI.Label (Spalte, dieseitem.Name);
 										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 										GUI.Label (Spalte, "Items in inventory: " + ItemCount (dieseitem));
 										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-										switch (dieseitem.type) {
-												case itemtype.Nahkampf:
-												case itemtype.Fernkampf:
-														GUI.Label (Spalte, "Physical Damage: " + dieseitem.phy_dmg);
+										switch (dieseitem.Type) {
+												case ItemType.weapon_meele:
+												case ItemType.weapon_range:
+														GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Magical Damage: " + dieseitem.mag_dmg);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														break;
-												case itemtype.Kopf_Rüstung:
-												case itemtype.Torso_Rüstung:
-												case itemtype.Beine_Rüstung:
-												case itemtype.Stiefel_Rüstung:
-												case itemtype.Handschuhe_Rüstung:
-														GUI.Label (Spalte, "Physical Defense: " + dieseitem.phy_arm);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Magical Defense: " + dieseitem.mag_arm);
+														GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														break;
-												case itemtype.anglegbares:
-												case itemtype.Tränke:
-														GUI.Label (Spalte, "Effect: " + dieseitem.effect);
+												case ItemType.armor_feet:
+												case ItemType.armor_hand:
+												case ItemType.armor_head:
+												case ItemType.armor_leg:
+												case ItemType.armor_torso:
+														GUI.Label (Spalte, "Physical Defense: " + dieseitem.PhyArmor);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "" + dieseitem.effecttyp);
+														GUI.Label (Spalte, "Magical Defense: " + dieseitem.MagArmor);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														break;
-												case itemtype.utility:
-														GUI.Label (Spalte, "Capacity: " + dieseitem.capacity.Count + " / " + dieseitem.maxcapacity);
+												case ItemType.accessorie:
+												case ItemType.potion:
+														GUI.Label (Spalte, "Effect: " + dieseitem.Effect);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "" + dieseitem.EffectType.ToString ());
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														break;
+												case ItemType.utility:
+														GUI.Label (Spalte, "Capacity: " + dieseitem.Capacity + " / " + dieseitem.MaxCapacity);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														GUI.Label (Spalte, "");
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
@@ -339,7 +338,7 @@ public class inventory : MonoBehaviour {
 
 										}
 
-										GUI.Label (Spalte, "Weight: " + dieseitem.gewicht + " kg");
+										GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 										if (GUI.Button (Spalte, "Drop")) {
 												sub (dieseitem);
@@ -358,22 +357,22 @@ public class inventory : MonoBehaviour {
 				}
 		}
 
-		public void add (items diesesitem) {
+		public void add (ItemData diesesitem) {
 				Inventar.Add (diesesitem);
 				p001.BerechneMovmentDelay ();
 		}
 
-		public void sub (items diesesitem) {
+		public void sub (ItemData diesesitem) {
 				Inventar.Remove (diesesitem);
 				p001.BerechneMovmentDelay ();
 		}
 
-		public void Use (items diesesitem) {
-				if (diesesitem.effecttyp == "m") {
-						p001.mana += diesesitem.effect;
+		public void Use (ItemData diesesitem) {
+				if (diesesitem.EffectType == EffectType.Mana) {
+						p001.mana += diesesitem.Effect;
 				}
-				if (diesesitem.effecttyp == "h") {
-						p001.hp += diesesitem.effect;
+				if (diesesitem.EffectType == EffectType.Health) {
+						p001.hp += diesesitem.Effect;
 				}
 				if (p001.hp >= p001.maxhp) {
 						p001.hp = p001.maxhp;

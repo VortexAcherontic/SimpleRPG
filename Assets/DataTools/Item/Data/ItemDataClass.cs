@@ -8,6 +8,8 @@ using System.Collections.Generic;
  */
 
 public enum ItemType {
+		junk,
+	
 		weapon_meele,
 		weapon_range,
 		weapon_ammo,
@@ -19,7 +21,8 @@ public enum ItemType {
 	
 		potion,
 		accessorie,
-		utility
+		utility,
+		
 }
 
 public enum EffectType {
