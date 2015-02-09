@@ -198,7 +198,13 @@ public class mainmenu : MonoBehaviour {
 		void options () {
 				if (showoptions) {
 						Time.timeScale = 0;
-						GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "Pause");
+						Rect Pausemenue = new Rect (Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50);
+						int Zeilenhoehe = 20;
+						Rect ButtonZeile = new Rect (Pausemenue.position.x + 2, Pausemenue.position.y + Zeilenhoehe, Pausemenue.width - 5, Zeilenhoehe);
+						GUI.Box (Pausemenue, "Pause");
+						if (GUI.Button (ButtonZeile, "Quit Game")) {
+								Application.Quit ();
+						}
 				} else {
 						Time.timeScale = 1;
 				}

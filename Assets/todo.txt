@@ -17,7 +17,6 @@
 - Equip/DeEquipt macht manchmal noch Probleme
 
 // Mechanik
-- spiel verlassen button hinzufügen im optionsmenü
 - fernkampf dummy einbauen der schaden on hit als debug zurückgibt zum testen der range der fernkampfwaffen
 - shop websync einbauen (+ Max Stock?)
 - magiebuch einbauen (Magie Skills?)
