@@ -13,6 +13,9 @@ public class kampf : MonoBehaviour {
 		bool attack = false;
 		int phy_damage;
 		int mag_damage;
+	
+		float attack_cooldown = 2.5f;
+		float attack_timer = 0;
 		
 		//public bool inarena; besser in map?
 		//monster m001;
@@ -27,8 +30,11 @@ public class kampf : MonoBehaviour {
 	
 		// Update is called once per frame
 		void Update () {
-				SelectAttackStyle ();
-				Angriffsrichtung ();
+				if (attack_timer <= 0) {
+						SelectAttackStyle ();
+						Angriffsrichtung ();
+				}
+				attack_timer -= Time.deltaTime;
 		}
 
 		void Angriffsrichtung () {
@@ -53,12 +59,15 @@ public class kampf : MonoBehaviour {
 						switch (angriffstil) {
 								case "melee":
 										Melee ();
+										attack_timer = attack_cooldown;
 										break;
 								case "range":
 										Range ();
+										attack_timer = attack_cooldown;
 										break;
 								case "magic":
 										Mage ();
+										attack_timer = attack_cooldown;
 										break;
 						}	
 				}

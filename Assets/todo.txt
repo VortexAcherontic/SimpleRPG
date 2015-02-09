@@ -3,7 +3,6 @@
 (z.b. Bewegen)
 
 // Balancing generell
-- player cd auf angriffe
 - boss nerfen 
 - skillsystem anpassen (ab lvl 3 ziemlich op)
 - Stärkere Mobs oder Mob Level an Spieler Level anpassen?
@@ -14,6 +13,7 @@
 - Equip/DeEquipt macht manchmal noch Probleme
 
 // Mechanik
+- Pfeile in Quiver schieben usw
 - shop websync einbauen (+ Max Stock?)
 - magiebuch einbauen (Magie Skills?)
 - Elemente?
