@@ -46,13 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DataTools\Creature\Data\CreatureController.cs" />
      <Compile Include="Assets\DataTools\Creature\Data\CreatureDataClass.cs" />
      <Compile Include="Assets\DataTools\Creature\Data\CreatureDataList.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataClass.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataList.cs" />
      <Compile Include="Assets\Enemy\EnemyBehaviour.cs" />
      <Compile Include="Assets\Enemy\EnemySpawn.cs" />
-     <Compile Include="Assets\Enemy\enemy.cs" />
      <Compile Include="Assets\Import\Boomlagoon\JSON\JSONObject.cs" />
      <Compile Include="Assets\Import\Boomlagoon\JSON\TestScene\JSONObjectTester.cs" />
      <Compile Include="Assets\Import\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />

@@ -8,7 +8,9 @@ public class CreatureDataList : ScriptableObject {
 
 		public void Update () {
 				foreach (CreatureOriginData Creature in CreatureList) {
-						Creature.Create ();
+						foreach (string tmport in Creature.SpawnRegions_Strings) {
+								Creature.SpawnRegions.Add (GameObject.Find ("Map").GetComponent<TileMap> ().GetRegionWithName (tmport));
+						}
 				}
 		}
 }

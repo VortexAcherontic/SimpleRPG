@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class EnemySpawn : MonoBehaviour {
 		public CreatureDataList DataListObj;
-		public List<CreatureData> enemyTypes = new List<CreatureData> ();
-		CreatureData random_mob;
+		public List<CreatureOriginData> enemyTypes = new List<CreatureOriginData> ();
+		CreatureOriginData random_mob;
 		int maxmobs = 15;
 		public int mobs = 0;
 		float spawncooldown = 0.5f;
@@ -22,9 +22,7 @@ public class EnemySpawn : MonoBehaviour {
 				testmob = new CreatureOriginData[DataListObj.CreatureList.Count];
 				DataListObj.CreatureList.CopyTo (testmob);
 				foreach (CreatureOriginData tmp in testmob) {
-						CreatureData tmp2 = new CreatureData ();
-						tmp2.Start (tmp.Clone ());
-						enemyTypes.Add (tmp2.Clone ());
+						enemyTypes.Add (tmp);
 				}
 				//enemyTypes.();
 		}
@@ -43,9 +41,9 @@ public class EnemySpawn : MonoBehaviour {
 						}
 				}
 		}
-		bool MobInRegion (CreatureData testmob, int region) {
+		bool MobInRegion (CreatureOriginData testmob, int region) {
 				bool check = false;
-				foreach (int mobregion in testmob.InitalStats.SpawnRegions) {
+				foreach (int mobregion in testmob.SpawnRegions) {
 						if (mobregion == region) {
 								check = true;	
 						}
@@ -66,10 +64,10 @@ public class EnemySpawn : MonoBehaviour {
 						if (map.tiles [(int)pos.x, (int)pos.y] == null) {
 								mob_gefunden = false;
 						}
-						if (random_mob.InitalStats.Prefab == null) {
+						if (random_mob.Prefab == null) {
 								mob_gefunden = false;
 						} 
-						if (random_mob.InitalStats.IsBoss) {
+						if (random_mob.IsBoss) {
 								mob_gefunden = false;
 						} 
 						if (!MobInRegion (random_mob, map.tiles [(int)pos.x, (int)pos.y])) {
@@ -88,10 +86,10 @@ public class EnemySpawn : MonoBehaviour {
 		void spawnmob () {
 				if (RandomMobGen ()) {
 						Vector3 pos = new Vector3 (random_mob.Position.x, random_mob.Position.y, 0);
-						GameObject tmpobjct = (GameObject)Instantiate (random_mob.InitalStats.Prefab, pos, Quaternion.identity);
+						GameObject tmpobjct = (GameObject)Instantiate (random_mob.Prefab, pos, Quaternion.identity);
 						tmpobjct.transform.parent = GameObject.Find ("MonsterSpawner").transform;
-						tmpobjct.GetComponent<enemy> ().SettingStats (random_mob);
-						tmpobjct.GetComponent<enemy> ().thismob.Position = pos;
+						tmpobjct.GetComponent<CreatureController> ().Create (random_mob);
+						tmpobjct.GetComponent<CreatureController> ().Creat.Position = pos;
 						isspawning = false;
 						spawntimer = spawncooldown;
 						mobs++;
@@ -99,13 +97,13 @@ public class EnemySpawn : MonoBehaviour {
 		}
 	
 		public void spawnbosses () {
-				foreach (CreatureData tmpmob in enemyTypes) {
-						if (tmpmob.InitalStats.IsBoss) {
-								Vector3 pos = new Vector3 (tmpmob.InitalStats.Position.x, tmpmob.InitalStats.Position.y, 0);	
-								GameObject tmpobjct = (GameObject)Instantiate (tmpmob.InitalStats.Prefab, pos, Quaternion.identity);
+				foreach (CreatureOriginData tmpmob in enemyTypes) {
+						if (tmpmob.IsBoss) {
+								Vector3 pos = new Vector3 (tmpmob.Position.x, tmpmob.Position.y, 0);	
+								GameObject tmpobjct = (GameObject)Instantiate (tmpmob.Prefab, pos, Quaternion.identity);
 								tmpobjct.transform.parent = GameObject.Find ("MonsterSpawner").transform;
-								tmpobjct.GetComponent<enemy> ().SettingStats (tmpmob);
-								tmpobjct.GetComponent<enemy> ().thismob.Position = pos;
+								tmpobjct.GetComponent<CreatureController> ().Create (tmpmob);
+								tmpobjct.GetComponent<CreatureController> ().Creat.Position = pos;
 						}
 				}
 		}

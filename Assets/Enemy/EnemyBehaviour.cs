@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 public class EnemyBehaviour : MonoBehaviour {
 		EnemySpawn mobspawn;
-		float loadtimer = 0.5f;
+		CreatureController me;
+		
 		float attackcooldown = 1.0f;
 		float attacktimer;	
 		player p001;
-		enemy e001;
+		
 		float temp_x;
 		float temp_y;
 		int temp_wpx;
@@ -20,22 +21,19 @@ public class EnemyBehaviour : MonoBehaviour {
 		// Use this for initialization
 		void Start () {
 				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
-				e001 = gameObject.GetComponent<enemy> ();
+				me = gameObject.GetComponent<CreatureController> ();
 				mobspawn = GameObject.Find ("MonsterSpawner").GetComponent<EnemySpawn> ();
 				WaypointGeneration ();
 		}
 	
 		// Update is called once per frame
 		void Update () {
-				loadtimer -= Time.deltaTime;
-				attacktimer -= Time.deltaTime;
-				if (loadtimer <= 0) {
+				if (me.IsLoaded) {
 						CheckDieDistance ();
 						CheckDieHealth ();
 						AttackPlayer ();
 						Movement ();
 				}
-				e001.thismob.Update ();
 		}
 		//PlayerEntfernung checken
 		public int CheckDistance () {
@@ -50,13 +48,13 @@ public class EnemyBehaviour : MonoBehaviour {
 
 		void AttackPlayer () {
 				if (attacktimer < 0) {
-						if (CheckDistance () <= e001.thismob.AttackRange) {
+						if (CheckDistance () <= me.Creat.AttackRange) {
 								//Attackiert den Spieler
-								//Debug.Log ("PlayerHp: " + p001.hp + e001.thismob.pname + "hp:" + e001.thismob.hp);
+								//Debug.Log ("PlayerHp: " + p001.hp + me.Creat.pname + "hp:" + me.Creat.hp);
 								temp_dodge = Random.Range (0, 100);
 								if (temp_dodge + p001.agility <= 90) {
-										p001.hp -= e001.thismob.PhyAttack - p001.armor;
-										p001.hp -= e001.thismob.MagAttack - p001.armor;
+										p001.hp -= me.Creat.PhyAttack - p001.armor;
+										p001.hp -= me.Creat.MagAttack - p001.armor;
 								}
 						}
 						attacktimer = attackcooldown;
@@ -65,16 +63,16 @@ public class EnemyBehaviour : MonoBehaviour {
 		
 		void CheckDieDistance () {
 				if (CheckDistance () > 40) {
-						if (!e001.thismob.InitalStats.IsBoss) {
+						if (!me.Creat.InitalStats.IsBoss) {
 								mobspawn.mobs--;			
 								Destroy (gameObject);
 						}			
 				}
 		}
 		void CheckDieHealth () {
-				if (e001.thismob.HP <= 0) {
-						p001.xp += e001.thismob.XP;
-						p001.gold += e001.thismob.Gold;
+				if (me.Creat.HP <= 0) {
+						p001.xp += me.Creat.XP;
+						p001.gold += me.Creat.Gold;
 						mobspawn.mobs--;			
 						Destroy (gameObject);
 			
@@ -153,9 +151,9 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		void IdleMovement () {
 				if ((CheckDistance () <= 20) && (ismoving == false)) {
-						e001.thismob.Position += temp_wp;
+						me.Creat.Position += temp_wp;
 						ismoving = true;
-						transform.position = new Vector3 (e001.thismob.Position.x, e001.thismob.Position.y, transform.position.z);
+						transform.position = new Vector3 (me.Creat.Position.x, me.Creat.Position.y, transform.position.z);
 				}
 				if ((movetimer <= 0) && (ismoving)) {
 						temp_wp = Wegpunktliste [i];
@@ -174,11 +172,11 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		bool CheckAggro () {
 				aggro = false;
-				if (CheckDistance () <= e001.thismob.AggroRange) {
+				if (CheckDistance () <= me.Creat.AggroRange) {
 						aggro = true;
 				}
 		
-				if (e001.thismob.HP < e001.thismob.MaxHP) {	// wenn ich schaden habe, bin ich aggro XD
+				if (me.Creat.HP < me.Creat.MaxHP) {	// wenn ich schaden habe, bin ich aggro XD
 						aggro = true;
 				}
 				return aggro;
@@ -202,27 +200,27 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		void PlayerAggro () {
 				if ((ismoving == false) && (CheckDistance () >= 2)) { // Da bei CheckAggro die Distanz eine Rolle Spielt, ist diese hier egal ;)
-						e001.thismob.Position += temp_wp;
+						me.Creat.Position += temp_wp;
 						ismoving = true;
 						moved = false;
-						transform.position = new Vector3 (e001.thismob.Position.x, e001.thismob.Position.y, transform.position.z);
+						transform.position = new Vector3 (me.Creat.Position.x, me.Creat.Position.y, transform.position.z);
 				}
 				if ((movetimer <= 0) && (ismoving)) {
 						temp_wp = new Vector2 (0, 0);
 						zuerstfragezeichen ();
-						if ((p001.pos.x != e001.thismob.Position.x) && (zuerst == "x")) {
-								if (p001.pos.x > e001.thismob.Position.x) {
+						if ((p001.pos.x != me.Creat.Position.x) && (zuerst == "x")) {
+								if (p001.pos.x > me.Creat.Position.x) {
 										temp_wpx = 1;
 								}
-								if (p001.pos.x < e001.thismob.Position.x) {
+								if (p001.pos.x < me.Creat.Position.x) {
 										temp_wpx = -1;
 								}
 						}
-						if ((p001.pos.y != e001.thismob.Position.y) && (zuerst == "y")) {
-								if (p001.pos.y > e001.thismob.Position.y) {
+						if ((p001.pos.y != me.Creat.Position.y) && (zuerst == "y")) {
+								if (p001.pos.y > me.Creat.Position.y) {
 										temp_wpy = 1;
 								}
-								if (p001.pos.y < e001.thismob.Position.y) {
+								if (p001.pos.y < me.Creat.Position.y) {
 										temp_wpy = -1;
 								}
 						}
@@ -238,12 +236,13 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 	
 		void Movement () {
-				e001.thismob.Position = new Vector2 (transform.position.x, transform.position.y);
-				if (e001.thismob.InitalStats.IsMoveable) {
+				me.Creat.Position = new Vector2 (transform.position.x, transform.position.y);
+				me.Creat.InitalStats.Position = me.Creat.Position;
+				if (me.Creat.InitalStats.IsMoveable) {
 						if (CheckAggro ()) {
 								PlayerAggro ();
 						} else {
-								if (!e001.thismob.InitalStats.IsBoss) { // Damit der Boss nicht seinen punkt verlässt
+								if (!me.Creat.InitalStats.IsBoss) { // Damit der Boss nicht seinen punkt verlässt
 										IdleMovement ();
 								}
 						}

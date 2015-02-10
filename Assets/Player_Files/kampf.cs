@@ -104,13 +104,13 @@ public class kampf : MonoBehaviour {
 						if (attack) {
 								CheckForMeleeWeapon (out phy_damage, out mag_damage);
 								
-								int phydmg = ((p001.pwr * phy_damage) - tmp_monster.GetComponent<enemy> ().thismob.PhyArmor);
-								int magdmg = ((mag_damage) - tmp_monster.GetComponent<enemy> ().thismob.MagArmor);
+								int phydmg = ((p001.pwr * phy_damage) - tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor);
+								int magdmg = ((mag_damage) - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor);
 				
 								//physischer Schaden
-								tmp_monster.GetComponent<enemy> ().thismob.HP -= phydmg;
+								tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
 								//magischer Schaden
-								tmp_monster.GetComponent<enemy> ().thismob.HP -= magdmg;
+								tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
 				
 								Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
 								attack = false;
@@ -144,16 +144,16 @@ public class kampf : MonoBehaviour {
 										}
 								}
 				
-								int phydmg = ((p001.pwr * phy_damage * p001.agility) - tmp_monster.GetComponent<enemy> ().thismob.PhyArmor);
-								int magdmg = ((mag_damage) - tmp_monster.GetComponent<enemy> ().thismob.MagArmor);
+								int phydmg = ((p001.pwr * phy_damage * p001.agility) - tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor);
+								int magdmg = ((mag_damage) - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor);
 				
 								//physischer Schaden
-								if (phy_damage >= tmp_monster.GetComponent<enemy> ().thismob.PhyArmor) {
-										tmp_monster.GetComponent<enemy> ().thismob.HP -= phydmg;
+								if (phy_damage >= tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor) {
+										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
 								}
 								//magischer Schaden
-								if (mag_damage >= tmp_monster.GetComponent<enemy> ().thismob.MagArmor) {
-										tmp_monster.GetComponent<enemy> ().thismob.HP -= magdmg;
+								if (mag_damage >= tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor) {
+										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
 								}
 				
 								Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
@@ -183,10 +183,10 @@ public class kampf : MonoBehaviour {
 								int phydmg = 0;
 								float magdmg_tmp = (p001.maxmana / p001.pwr);
 								magdmg_tmp *= (1 - (((p001.mana + 0.001f) - 500) / (p001.maxmana + 0.001f)));
-								magdmg_tmp -= tmp_monster.GetComponent<enemy> ().thismob.MagArmor;
+								magdmg_tmp -= tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
 								int magdmg = (int)magdmg_tmp;			
 								//magischer Schaden
-								tmp_monster.GetComponent<enemy> ().thismob.HP -= magdmg;
+								tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
 				
 								Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
 								p001.mana -= 200;
