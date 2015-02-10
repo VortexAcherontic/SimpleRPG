@@ -172,7 +172,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		bool CheckAggro () {
 				aggro = false;
-				if (CheckDistance () <= 6) {
+				if (CheckDistance () <= e001.thismob.AggroRange) {
 						aggro = true;
 				}
 		
@@ -241,7 +241,9 @@ public class EnemyBehaviour : MonoBehaviour {
 						if (CheckAggro ()) {
 								PlayerAggro ();
 						} else {
-								IdleMovement ();
+								if (!e001.thismob.boss) { // Damit der Boss nicht seinen punkt verlässt
+										IdleMovement ();
+								}
 						}
 				}
 				movetimer -= Time.deltaTime;

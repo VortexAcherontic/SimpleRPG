@@ -36,6 +36,7 @@ public class CreatureOriginData { // Clean Own Stats
 		public int StatPoints;
 	
 		// Non for Player
+		public int AggroRange;
 		public bool IsBoss;
 		public bool DoRespawn; // NPC/Bosses?
 		public regions[] SpawnRegions;

@@ -20,6 +20,7 @@ public struct monsters {
 		public int phy_armor ; 
 		public int mag_armor ; 
 		public int agility ; 
+		public int AggroRange;
 	
 		//Drops
 		public int golddrop;
@@ -49,6 +50,7 @@ public class EnemySpawn : MonoBehaviour {
 				mob.prefab = (GameObject)Resources.Load ("Mob/Enemy");
 				mob.boss = false;
 				mob.maxhp = 1; 
+				mob.AggroRange = 6;
 				mob.hp = mob.maxhp;
 				mob.maxmana = 1; 
 				mob.mana = mob.maxmana; 
@@ -79,6 +81,7 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.prefab = (GameObject)Resources.Load ("Mob/DmgDummy");
 				tmpmob.outPutDmg = true;
 				tmpmob.Moveable = false;
+				tmpmob.AggroRange = 0;
 				enemyTypes.Add (tmpmob);
 		
 				tmpmob = CreatEmpty ();
@@ -121,6 +124,7 @@ public class EnemySpawn : MonoBehaviour {
 				tmpmob.agility = 1;
 				tmpmob.golddrop = 1000;
 				tmpmob.xpdrop = 250;
+				tmpmob.AggroRange = 1;
 				tmpmob.prefab = (GameObject)Resources.Load ("Mob/Cyclop");
 				tmpmob.boss = true;
 				tmpmob.pos = new Vector2 (80, 70);
