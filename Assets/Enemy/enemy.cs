@@ -9,7 +9,7 @@ public class enemy : MonoBehaviour {
 
 		public void SettingStats (CreatureData mt) {
 				thismob = mt;
-				//thismob.Start ();
+				thismob.Start (thismob.InitalStats);
 		}
 	
 		// Update is called once per frame

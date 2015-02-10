@@ -19,7 +19,9 @@ public class EnemySpawn : MonoBehaviour {
 				map = GameObject.Find ("Map").GetComponent<TileMap> ();
 				DataListObj = (CreatureDataList)Resources.Load ("Creatures");
 				//enemyTypes = DataListObj.CreatureList;
-				foreach (CreatureOriginData tmp in DataListObj.CreatureList) {
+				testmob = new CreatureOriginData[DataListObj.CreatureList.Count];
+				DataListObj.CreatureList.CopyTo (testmob);
+				foreach (CreatureOriginData tmp in testmob) {
 						CreatureData tmp2 = new CreatureData ();
 						tmp2.Start (tmp);
 						enemyTypes.Add (tmp2);

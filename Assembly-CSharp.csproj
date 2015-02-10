@@ -50,7 +50,6 @@
      <Compile Include="Assets\DataTools\Creature\Data\CreatureDataList.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataClass.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataList.cs" />
-     <Compile Include="Assets\DataTools\ObjectCopier.cs" />
      <Compile Include="Assets\Enemy\EnemyBehaviour.cs" />
      <Compile Include="Assets\Enemy\EnemySpawn.cs" />
      <Compile Include="Assets\Enemy\enemy.cs" />
