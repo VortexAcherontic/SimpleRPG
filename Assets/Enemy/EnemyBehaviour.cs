@@ -167,7 +167,6 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 	
 		bool aggro = false;
-		bool moved = false;
 		string zuerst;
 	
 		bool CheckAggro () {
@@ -202,7 +201,6 @@ public class EnemyBehaviour : MonoBehaviour {
 				if ((ismoving == false) && (CheckDistance () >= 2)) { // Da bei CheckAggro die Distanz eine Rolle Spielt, ist diese hier egal ;)
 						me.Creat.Position += temp_wp;
 						ismoving = true;
-						moved = false;
 						transform.position = new Vector3 (me.Creat.Position.x, me.Creat.Position.y, transform.position.z);
 				}
 				if ((movetimer <= 0) && (ismoving)) {

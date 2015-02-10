@@ -61,9 +61,6 @@ public class EnemySpawn : MonoBehaviour {
 						int mob_id = Random.Range (0, enemyTypes.Count);
 						random_mob = enemyTypes [mob_id];
 						Vector3 pos = new Vector3 (Random.Range (p001.pos.x - 30, p001.pos.x + 30), Random.Range (p001.pos.y - 30, p001.pos.y + 30), 0);
-						if (map.tiles [(int)pos.x, (int)pos.y] == null) {
-								mob_gefunden = false;
-						}
 						if (random_mob.Prefab == null) {
 								mob_gefunden = false;
 						} 

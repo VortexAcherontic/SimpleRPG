@@ -11,12 +11,13 @@ public class CreatureController : MonoBehaviour {
 		Transform healthbar;
 		Transform healthbarFilled;
 	
-		void Start () {
+		void Awake () {
 				IsLoaded = false; // Nur zur Absicherung
 		}
 		void Update () {
 				if (IsLoaded == true) {
 						CalculateStats ();
+						UpdatePosition ();
 						DrawHP ();
 				}
 		}
@@ -28,7 +29,7 @@ public class CreatureController : MonoBehaviour {
 				Creat.MP = Creat.MaxMP;
 				Creat.Gold = Creat.InitalStats.Gold;
 				Creat.XP = Creat.InitalStats.XP;
-				IsLoaded = true;
+				
 				ItemDataList DataListObj;
 				DataListObj = (ItemDataList)Resources.Load ("Items");
 				// Equipment richtig eintragen
@@ -41,6 +42,8 @@ public class CreatureController : MonoBehaviour {
 				}
 				Creat.Equipment = Creat.InitalStats.Equipment;
 				Creat.Inventory = Creat.InitalStats.Inventory;
+		
+				IsLoaded = true;
 		}
 	
 		void UpdatePosition () {
@@ -70,6 +73,9 @@ public class CreatureController : MonoBehaviour {
 				// also total nervig -.- Oder das geht irgendwie einfacher und ich weiß nicht wie
 				// Obwohl manche sachen brauch man villeicht doch nicht so
 				Creat.Name = Creat.InitalStats.Name;
+				Creat.AggroRange = Creat.InitalStats.AggroRange;
+				Creat.IsBoss = Creat.InitalStats.IsBoss;
+				Creat.IsMoveable = Creat.InitalStats.IsMoveable;
 				
 				Creat.Str = Creat.InitalStats.Str;	
 				Creat.Agi = Creat.InitalStats.Agi;
