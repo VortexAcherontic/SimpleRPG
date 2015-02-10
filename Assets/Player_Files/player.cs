@@ -111,6 +111,7 @@ public class player : MonoBehaviour {
 				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + xp + "XP");
 				
 				//Debug um Regeneration und Lvl up zu testen
+				GUI.Label (new Rect (5, Screen.height - 200, 170, 20), "Pos: " + pos.x + "/" + pos.y);
 				/*		
 		if (GUI.Button (new Rect (5, Screen.height - 105, 170, 20), "Hp down")) {
 						hp = maxhp / 2;
