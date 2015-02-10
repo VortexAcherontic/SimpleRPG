@@ -35,6 +35,7 @@ public class EnemyBehaviour : MonoBehaviour {
 						AttackPlayer ();
 						Movement ();
 				}
+				e001.thismob.Update ();
 		}
 		//PlayerEntfernung checken
 		public int CheckDistance () {
@@ -49,12 +50,13 @@ public class EnemyBehaviour : MonoBehaviour {
 
 		void AttackPlayer () {
 				if (attacktimer < 0) {
-						if (CheckDistance () <= 1) {
+						if (CheckDistance () <= e001.thismob.AttackRange) {
 								//Attackiert den Spieler
 								//Debug.Log ("PlayerHp: " + p001.hp + e001.thismob.pname + "hp:" + e001.thismob.hp);
 								temp_dodge = Random.Range (0, 100);
 								if (temp_dodge + p001.agility <= 90) {
-										p001.hp -= (e001.thismob.pwr * 10) - p001.armor;
+										p001.hp -= e001.thismob.PhyAttack - p001.armor;
+										p001.hp -= e001.thismob.MagAttack - p001.armor;
 								}
 						}
 						attacktimer = attackcooldown;
@@ -63,16 +65,16 @@ public class EnemyBehaviour : MonoBehaviour {
 		
 		void CheckDieDistance () {
 				if (CheckDistance () > 40) {
-						if (!e001.thismob.boss) {
+						if (!e001.thismob.InitalStats.IsBoss) {
 								mobspawn.mobs--;			
 								Destroy (gameObject);
 						}			
 				}
 		}
 		void CheckDieHealth () {
-				if (e001.thismob.hp <= 0) {
-						p001.xp += e001.thismob.xpdrop;
-						p001.gold += e001.thismob.golddrop;
+				if (e001.thismob.HP <= 0) {
+						p001.xp += e001.thismob.XP;
+						p001.gold += e001.thismob.Gold;
 						mobspawn.mobs--;			
 						Destroy (gameObject);
 			
@@ -151,9 +153,9 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		void IdleMovement () {
 				if ((CheckDistance () <= 20) && (ismoving == false)) {
-						e001.thismob.pos += temp_wp;
+						e001.thismob.Position += temp_wp;
 						ismoving = true;
-						transform.position = new Vector3 (e001.thismob.pos.x, e001.thismob.pos.y, transform.position.z);
+						transform.position = new Vector3 (e001.thismob.Position.x, e001.thismob.Position.y, transform.position.z);
 				}
 				if ((movetimer <= 0) && (ismoving)) {
 						temp_wp = Wegpunktliste [i];
@@ -176,7 +178,7 @@ public class EnemyBehaviour : MonoBehaviour {
 						aggro = true;
 				}
 		
-				if (e001.thismob.hp < e001.thismob.maxhp) {	// wenn ich schaden habe, bin ich aggro XD
+				if (e001.thismob.HP < e001.thismob.MaxHP) {	// wenn ich schaden habe, bin ich aggro XD
 						aggro = true;
 				}
 				return aggro;
@@ -200,27 +202,27 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		void PlayerAggro () {
 				if ((ismoving == false) && (CheckDistance () >= 2)) { // Da bei CheckAggro die Distanz eine Rolle Spielt, ist diese hier egal ;)
-						e001.thismob.pos += temp_wp;
+						e001.thismob.Position += temp_wp;
 						ismoving = true;
 						moved = false;
-						transform.position = new Vector3 (e001.thismob.pos.x, e001.thismob.pos.y, transform.position.z);
+						transform.position = new Vector3 (e001.thismob.Position.x, e001.thismob.Position.y, transform.position.z);
 				}
 				if ((movetimer <= 0) && (ismoving)) {
 						temp_wp = new Vector2 (0, 0);
 						zuerstfragezeichen ();
-						if ((p001.pos.x != e001.thismob.pos.x) && (zuerst == "x")) {
-								if (p001.pos.x > e001.thismob.pos.x) {
+						if ((p001.pos.x != e001.thismob.Position.x) && (zuerst == "x")) {
+								if (p001.pos.x > e001.thismob.Position.x) {
 										temp_wpx = 1;
 								}
-								if (p001.pos.x < e001.thismob.pos.x) {
+								if (p001.pos.x < e001.thismob.Position.x) {
 										temp_wpx = -1;
 								}
 						}
-						if ((p001.pos.y != e001.thismob.pos.y) && (zuerst == "y")) {
-								if (p001.pos.y > e001.thismob.pos.y) {
+						if ((p001.pos.y != e001.thismob.Position.y) && (zuerst == "y")) {
+								if (p001.pos.y > e001.thismob.Position.y) {
 										temp_wpy = 1;
 								}
-								if (p001.pos.y < e001.thismob.pos.y) {
+								if (p001.pos.y < e001.thismob.Position.y) {
 										temp_wpy = -1;
 								}
 						}
@@ -236,12 +238,12 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 	
 		void Movement () {
-				e001.thismob.pos = new Vector2 (transform.position.x, transform.position.y);
-				if (e001.thismob.Moveable) {
+				e001.thismob.Position = new Vector2 (transform.position.x, transform.position.y);
+				if (e001.thismob.InitalStats.IsMoveable) {
 						if (CheckAggro ()) {
 								PlayerAggro ();
 						} else {
-								if (!e001.thismob.boss) { // Damit der Boss nicht seinen punkt verlässt
+								if (!e001.thismob.InitalStats.IsBoss) { // Damit der Boss nicht seinen punkt verlässt
 										IdleMovement ();
 								}
 						}

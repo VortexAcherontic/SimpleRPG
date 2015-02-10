@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 
 public class enemy : MonoBehaviour {
-		public monsters thismob;
+		public CreatureData thismob;
 		Transform healthbar;
 		Transform healthbarFilled;
 
-		public void SettingStats (monsters mt) {
+		public void SettingStats (CreatureData mt) {
 				thismob = mt;
-				thismob.hp = thismob.maxhp;
-				thismob.mana = thismob.maxmana;
+				//thismob.Start ();
 		}
 	
 		// Update is called once per frame
 		void Update () {
+				thismob.Update ();
 				DrawHP ();
 				
 		}
@@ -24,8 +24,8 @@ public class enemy : MonoBehaviour {
 						healthbar = transform.FindChild ("Health").transform;
 						healthbarFilled = transform.FindChild ("HealthBar").transform;
 				}
-				if (thismob.maxhp > 0) {
-						float HpProzent = thismob.hp * 100 / thismob.maxhp;
+				if (thismob.MaxHP > 0) {
+						float HpProzent = thismob.HP * 100 / thismob.MaxHP;
 						// Bars Position
 						Vector3 Pos_Healthbar = Vector3.up;
 						Pos_Healthbar.y = 0.25f;

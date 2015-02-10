@@ -37,6 +37,7 @@ public class CreatureOriginData { // Clean Own Stats
 	
 		// Non for Player
 		public int AggroRange;
+		public bool IsMoveable;
 		public bool IsBoss;
 		public bool DoRespawn; // NPC/Bosses?
 		public float RespawnTimer;
@@ -46,7 +47,7 @@ public class CreatureOriginData { // Clean Own Stats
 		 * 
 		 */
 		[HideInInspector]
-		public int[]
+		public List<int>
 				SpawnRegions;
 		public string[] SpawnRegions_Strings;
 	
@@ -59,6 +60,24 @@ public class CreatureOriginData { // Clean Own Stats
 		public List<ItemData>
 				Equipment;
 		public string[] Equipment_Strings;
+
+		public void Create () {
+				ItemDataList DataListObj;
+				DataListObj = (ItemDataList)Resources.Load ("Items");
+				// Equipment richtig eintragen
+				foreach (string tmpitem in Equipment_Strings) {
+						Equipment.Add (DataListObj.item_mit_name (tmpitem));
+				}
+				// Iventory richtig eintragen
+				foreach (string tmpitem in Inventory_Strings) {
+						Inventory.Add (DataListObj.item_mit_name (tmpitem));
+				}
+				// Spawn regions richtig eintragen?
+				foreach (string tmport in SpawnRegions_Strings) {
+						SpawnRegions.Add (GameObject.Find ("Map").GetComponent<TileMap> ().GetRegionWithName (tmport));
+			
+				}
+		}
 	
 }
 
@@ -76,6 +95,8 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 		public int MagArmor;
 		public int PhyAttack;
 		public int MagAttack;
+
+		public int AttackRange;
 	
 		/*
 		 * ACHTUNG!
@@ -83,19 +104,13 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 		 * 
 		 */
 	
-		public void Start () { // Bekannte Namen, damit man weiß was des machen soll XD
-				ItemDataList DataListObj;
-				DataListObj = (ItemDataList)Resources.Load ("Items");
-				// Equipment richtig eintragen
-				foreach (string tmpitem in Equipment_Strings) {
-						InitalStats.Equipment.Add (DataListObj.item_mit_name (tmpitem));
-				}
-				// Iventory richtig eintragen
-				foreach (string tmpitem in Inventory_Strings) {
-						InitalStats.Inventory.Add (DataListObj.item_mit_name (tmpitem));
-				}
-				// Spawn regions richtig eintragen?
+		public void Start (CreatureOriginData CData) { // Bekannte Namen, damit man weiß was des machen soll XD
+				InitalStats = CData;
+				InitalStats.Create ();
+				Name = InitalStats.Name;
 				Update ();
+				HP = MaxHP;
+				MP = MaxMP;
 				// nun ist es so geladen das es los gehen kann!
 		}
 	
@@ -113,6 +128,7 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 				Int = InitalStats.Int;
 				Vit = InitalStats.Vit;
 				Luc = InitalStats.Luc;
+				AttackRange = 1;
 		
 				// Adding Stats on Stuff like Equiptment (or Buffs)
 				PhyArmor = 0;
@@ -165,6 +181,7 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 										MagArmor += tmp.MagArmor;
 										PhyAttack += tmp.PhyAttack;
 										MagAttack += tmp.MagAttack;
+										AttackRange += tmp.Range;
 										break;
 								case ItemType.weapon_meele:
 										if (Stance == BattleStance.meele) {
@@ -172,6 +189,7 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 												MagArmor += tmp.MagArmor;
 												PhyAttack += tmp.PhyAttack;
 												MagAttack += tmp.MagAttack;
+												AttackRange += tmp.Range;
 										}
 										break;
 								case ItemType.weapon_ammo:
@@ -181,6 +199,7 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 												MagArmor += tmp.MagArmor;
 												PhyAttack += tmp.PhyAttack;
 												MagAttack += tmp.MagAttack;
+												AttackRange += tmp.Range;
 										}
 										break;
 						// TODO: What gives Mage Bonus Dmg? Range Weapon? Meele Weapon? Both?

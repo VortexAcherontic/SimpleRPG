@@ -58,7 +58,7 @@ public class TileMap : MonoBehaviour {
 				}
 		}
 	
-		void Start () {
+		void Awake () {
 				regions tmpreg = CreateEmpty (); // Void Tile für Abstand zwischen den Karten
 				tmpreg.isWalkable = false;
 				tileTypes.Add (tmpreg);
