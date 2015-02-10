@@ -239,7 +239,7 @@ public class inventory : MonoBehaviour {
 														}
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														if (GUI.Button (Spalte, "Show content.")) {
-																//ShowContentfunktion
+																anzeige_kat = 7;
 														}
 														Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 						
@@ -270,6 +270,35 @@ public class inventory : MonoBehaviour {
 														}
 														Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 						
+														GUILayout.EndHorizontal ();
+												}
+										}
+										break;
+								case 7:
+										foreach (ItemData dieseitem2 in Inventar) {
+												if (dieseitem2.Type == ItemType.utility) {
+														GUILayout.BeginHorizontal ();
+														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+														foreach (ItemData dieseitem in dieseitem2.Ammo) {
+																GUI.Label (Spalte, dieseitem.Name);
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI.Label (Spalte, "Items in inventory: " + ItemCount (dieseitem));
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																if (GUI.Button (Spalte, "Drop")) {
+																		sub (dieseitem);
+																}
+																Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
+								
+																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+							
+							
+														}
 														GUILayout.EndHorizontal ();
 												}
 										}

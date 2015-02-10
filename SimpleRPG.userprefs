@@ -1,16 +1,13 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataTools\Creature\Data\CreatureDataClass.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player_Files\player.cs">
     <Files>
-      <File FileName="Assets\todo.txt" Line="21" Column="9" />
-      <File FileName="Assets\Map\TileMap.cs" Line="184" Column="31" />
-      <File FileName="Assets\DataTools\Item\Data\ItemDataClass.cs" Line="66" Column="3" />
-      <File FileName="Assets\Player_Files\kampf.cs" Line="113" Column="1" />
-      <File FileName="Assets\Enemy\EnemySpawn.cs" Line="28" Column="23" />
-      <File FileName="Assets\Enemy\EnemyBehaviour.cs" Line="244" Column="80" />
-      <File FileName="Assets\Objecte\item.cs" Line="6" Column="15" />
-      <File FileName="Assets\DataTools\Creature\Data\CreatureDataClass.cs" Line="58" Column="20" />
-      <File FileName="Assets\DataTools\Item\Data\ItemDataList.cs" Line="6" Column="21" />
+      <File FileName="Assets\todo.txt" Line="16" Column="25" />
+      <File FileName="Assets\Player_Files\inventory.cs" Line="298" Column="107" />
+      <File FileName="Assets\Player_Files\player.cs" Line="116" Column="47" />
+      <File FileName="Assets\Player_Files\kampf.cs" Line="145" Column="33" />
+      <File FileName="Assets\Enemy\EnemySpawn.cs" Line="1" Column="1" />
+      <File FileName="Assets\Objecte\shop.cs" Line="312" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

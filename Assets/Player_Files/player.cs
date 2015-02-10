@@ -68,6 +68,7 @@ public class player : MonoBehaviour {
 		public void unequip (ItemData obj) {
 				inv.add (obj);
 				Equip.Remove (obj);
+				Debug.Log ("content in equip" + Equip);
 		}
 
 		public void Move (string direction) {
@@ -104,11 +105,24 @@ public class player : MonoBehaviour {
 				BerechneMovmentDelay ();
 		}
 	
+		ItemData Quiver;
+	
+	
 		public void OnGUI () {
 				// Anzeigen für Health, Mana und XP später durch grafische Elemente zu ersetzen.
 				GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Health: " + hp + " HP");
 				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + mana + "MP");
 				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + xp + "XP");
+				GUI.Label (new Rect (5, Screen.height - 155, 170, 20), "Gold: " + gold + "G");
+				Quiver = null;
+				foreach (ItemData c_obj in Equip) {
+						if (c_obj.Type == ItemType.utility) {
+								Quiver = c_obj;
+						}
+				}
+				if (Quiver != null) {
+						GUI.Label (new Rect (5, Screen.height - 130, 170, 20), "Cap: " + Quiver.Capacity + " / " + Quiver.MaxCapacity);
+				}
 				
 				//Debug um Regeneration und Lvl up zu testen
 				GUI.Label (new Rect (5, Screen.height - 200, 170, 20), "Pos: " + pos.x + "/" + pos.y);

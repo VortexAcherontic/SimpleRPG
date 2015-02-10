@@ -123,21 +123,28 @@ public class kampf : MonoBehaviour {
 		void Range () {
 				foreach (Transform tmp_monster in GameObject.Find("MonsterSpawner").transform) {
 						if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= p001.rangeweapondistance) {
-								if ((p001.pos.x < tmp_monster.position.x) && (angriffsrichtung == "r")) {
+								if ((p001.pos.x < tmp_monster.position.x) && (angriffsrichtung == "r") && (p001.pos.y == tmp_monster.position.y)) {
 										attack = true;
 								}
-								if ((p001.pos.x > tmp_monster.position.x) && (angriffsrichtung == "l")) {
+								if ((p001.pos.x > tmp_monster.position.x) && (angriffsrichtung == "l") && (p001.pos.y == tmp_monster.position.y)) {
 										attack = true;
 								}
-								if ((p001.pos.y < tmp_monster.position.y) && (angriffsrichtung == "o")) {
+								if ((p001.pos.y < tmp_monster.position.y) && (angriffsrichtung == "o") && (p001.pos.x == tmp_monster.position.x)) {
 										attack = true;
 								}
-								if ((p001.pos.y > tmp_monster.position.y) && (angriffsrichtung == "u")) {
+								if ((p001.pos.y > tmp_monster.position.y) && (angriffsrichtung == "u") && (p001.pos.x == tmp_monster.position.x)) {
 										attack = true;
 								}
 						}
 						if ((attack) && (CheckForArrow ())) {
 								CheckForRangeWeapon (out phy_damage, out mag_damage);
+								//Pfeil wegschmeißen XD
+								foreach (ItemData tmp_item in p001.Equip) {
+										if (tmp_item.Type == ItemType.utility) {
+												tmp_item.Ammo.RemoveAt (0);
+												tmp_item.Capacity--;
+										}
+								}
 				
 								int phydmg = ((p001.pwr * phy_damage * p001.agility) - tmp_monster.GetComponent<enemy> ().thismob.phy_armor);
 								int magdmg = ((mag_damage) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
@@ -178,8 +185,10 @@ public class kampf : MonoBehaviour {
 						if ((attack) && (p001.mana > 200)) {
 				
 								int phydmg = 0;
-								int magdmg = ((p001.maxmana / p001.pwr * Mathf.Abs ((1 - (p001.mana / p001.maxmana)))) - tmp_monster.GetComponent<enemy> ().thismob.mag_armor);
-				
+								float magdmg_tmp = (p001.maxmana / p001.pwr);
+								magdmg_tmp *= (1 - (((p001.mana + 0.001f) - 500) / (p001.maxmana + 0.001f)));
+								magdmg_tmp -= tmp_monster.GetComponent<enemy> ().thismob.mag_armor;
+								int magdmg = (int)magdmg_tmp;			
 								//magischer Schaden
 								tmp_monster.GetComponent<enemy> ().thismob.hp -= magdmg;
 				
@@ -221,20 +230,25 @@ public class kampf : MonoBehaviour {
 		}
 	
 		void CheckForRangeWeapon (out int phy_damage, out int mag_damage) {
+				phy_damage = 0;
+				mag_damage = 0;
 				foreach (ItemData tmp_item in p001.Equip) {
 						if (tmp_item.Type == ItemType.weapon_range) {
-								phy_damage = tmp_item.PhyAttack;
-								mag_damage = tmp_item.MagAttack;
+								phy_damage += tmp_item.PhyAttack;
+								mag_damage += tmp_item.MagAttack;
+						}
+						if (tmp_item.Type == ItemType.utility) {
+								phy_damage += tmp_item.Ammo [0].PhyAttack;
+								mag_damage += tmp_item.Ammo [0].MagAttack;
 						}
 				}
+		
 				phy_damage = 5;
 				mag_damage = 5;
 		}
 	
 		/*magieschaden berechnen*/
-		/*fernkampfschaden berechnen (ammo abziehen nicht vergessen)*/
-		/*nahkampfschaden berechnen*/
-
+		
 		/*variable die gegnertyp festlegt?*/
 
 		/*schaden gegenüber player berechnen durch NPC*/

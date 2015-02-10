@@ -64,6 +64,6 @@ public class ItemData { // erstmal aus dem alten übernommen und leicht abgeänd
 		public int Capacity;
 		public int MaxCapacity;
 		[HideInInspector]
-		public ItemData
+		public List<ItemData>
 				Ammo;
 }

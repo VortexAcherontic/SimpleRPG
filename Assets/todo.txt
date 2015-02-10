@@ -8,12 +8,13 @@
 - Stärkere Mobs oder Mob Level an Spieler Level anpassen?
 
 // Bug Fixes
-- Range Attack nur gerade aus!
+- pfeile im quiver beim speichern berücksichtigen
 - Mage Attack Reichweite/Richtung?
-- Equip/DeEquipt macht manchmal noch Probleme
+- Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
 
 // Mechanik
-- Pfeile in Quiver schieben usw
+- gold onscreen anzeigen
+- showContent vom quiver wenn in stance_range
 - shop websync einbauen (+ Max Stock?)
 - magiebuch einbauen (Magie Skills?)
 - Elemente?
@@ -36,6 +37,8 @@
 // GitHub
 GitHub nutzen für diese Datei? https://github.com/Defender833/SimpleRPG/issues
 
+//Sonstiges
+-Credits hinzufügen
 
 Ich bin immer mehr am überlegen ob das mit dem Login so ne Coole Sache ist... 
 Das Online speichern ist zwar cool, aber relativ nervig wenn man bestimmte Sachen steuern will... (z.b. Quests)
