@@ -63,5 +63,7 @@ public class ItemData { // erstmal aus dem alten übernommen und leicht abgeänd
 		// Quiever
 		public int Capacity;
 		public int MaxCapacity;
-		public ItemData Ammo;
+		[HideInInspector]
+		public ItemData
+				Ammo;
 }

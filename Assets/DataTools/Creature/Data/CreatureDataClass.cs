@@ -39,11 +39,26 @@ public class CreatureOriginData { // Clean Own Stats
 		public int AggroRange;
 		public bool IsBoss;
 		public bool DoRespawn; // NPC/Bosses?
-		public regions[] SpawnRegions;
+		public float RespawnTimer;
+	
+		/*
+		 * Doof mit den String Array aber mir fällt nichts besseres ein
+		 * 
+		 */
+		[HideInInspector]
+		public int[]
+				SpawnRegions;
+		public string[] SpawnRegions_Strings;
 	
 		// Item Drops & Inventory
-		public ItemData[] Inventory; // == ItemDrop
-		public ItemData[] Equipment;
+		[HideInInspector]
+		public List<ItemData>
+				Inventory; // == ItemDrop
+		public string[] Inventory_Strings;
+		[HideInInspector]
+		public List<ItemData>
+				Equipment;
+		public string[] Equipment_Strings;
 	
 }
 
@@ -61,6 +76,32 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 		public int MagArmor;
 		public int PhyAttack;
 		public int MagAttack;
+	
+		/*
+		 * ACHTUNG!
+		 * Start und Update wird hier nicht automatisch ausgeführt!
+		 * 
+		 */
+	
+		public void Start () { // Bekannte Namen, damit man weiß was des machen soll XD
+				ItemDataList DataListObj;
+				DataListObj = (ItemDataList)Resources.Load ("Items");
+				// Equipment richtig eintragen
+				foreach (string tmpitem in Equipment_Strings) {
+						InitalStats.Equipment.Add (DataListObj.item_mit_name (tmpitem));
+				}
+				// Iventory richtig eintragen
+				foreach (string tmpitem in Inventory_Strings) {
+						InitalStats.Inventory.Add (DataListObj.item_mit_name (tmpitem));
+				}
+				// Spawn regions richtig eintragen?
+				Update ();
+				// nun ist es so geladen das es los gehen kann!
+		}
+	
+		public void Update () { // Bekannte Namen, damit man weiß was des machen soll XD
+				CalculateStats ();
+		}
 	
 		public void CalculateStats () {
 				// Getting normal Stats (Auch Equip und so, eigentlich alle Werte aus InitalStats den hier entsprechenden zuweisen...)
@@ -151,8 +192,9 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 				// Calculate Battle Relevant Stuff
 				MaxHP = EffectHP + (Vit * 20);
 				MaxMP = EffectMP + (Int * 20);
-				PhyArmor += Vit * 3;
-				MagArmor += Int * 3;
+				// Armor sollte nicht durch stats mehr werden
+				//PhyArmor += Vit * 3;
+				//MagArmor += Int * 3;
 				PhyAttack += Str * 3;
 				MagAttack += Int * 3;
 		}
