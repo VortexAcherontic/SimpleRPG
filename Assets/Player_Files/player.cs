@@ -51,59 +51,6 @@ public class player : MonoBehaviour {
 				// Game ist fertig geladen!
 				GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded = true;
 		}
-		bool equipcheck = false;
-		
-		public void equip (ItemData obj) {
-				foreach (ItemData c_obj in Equip) {
-						if (c_obj.Type == obj.Type) {
-								equipcheck = true;
-						}
-				}
-				if (equipcheck == false) {
-						Equip.Add (obj);
-						inv.sub (obj);
-				}
-		}
-
-		public void unequip (ItemData obj) {
-				inv.add (obj);
-				Equip.Remove (obj);
-				Debug.Log ("content in equip" + Equip);
-		}
-
-		public void Move (string direction) {
-				lastpos = pos;
-				//playerpointer
-				//Ereignis ();
-				switch (direction) {
-						case "w":
-								pos.y++;
-								break;
-						case "s":
-								pos.y--;
-								break;
-						case "a":
-								pos.x--;
-								break;
-						case "d":
-								pos.x++;
-								break;
-				}
-				int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)pos.x, (int)pos.y];
-				bool movebool = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].isWalkable;
-		
-				GameObject[] tmpmob = GameObject.FindGameObjectsWithTag ("Mob");
-				foreach (GameObject tmpobj in tmpmob) {
-						if (tmpobj.transform.position.x == pos.x && tmpobj.transform.position.y == pos.y) {
-								movebool = false;
-						}
-				}
-				if (!movebool) {
-						pos = lastpos;
-				}
-				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
-				BerechneMovmentDelay ();
-		}
 	
 		ItemData Quiver;
 	
@@ -138,38 +85,8 @@ public class player : MonoBehaviour {
 				}
 		*/
 		}
-	
-		public int skillpoints;
-		void LVLUP () {
-				if (xp >= 100 * (lvl + 1)) {
-						lvl++;
-						xp -= 100 * (lvl);
-						if (lvl < 10) {
-								skillpoints = 10;
-						} else {
-								skillpoints = 5;
-						}
-
-				}
-		}
-		//regen im menü
-		/*
-		void Regen () {
-				hp += maxhp / 100;
-				mana += maxmana / 100;
-				if (hp > maxhp) {
-						hp = maxhp;
-				}
-				if (mana > maxmana) {
-						mana = maxmana;
-				}
-		}
-		*/
-		//ereignis
-
 
 		void Update () {
-				LVLUP ();
 				if (hp < 0) {
 						gameover = true;
 				}

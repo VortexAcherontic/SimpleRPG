@@ -40,63 +40,6 @@ public class mainmenu : MonoBehaviour {
 						if (Input.GetKeyDown (KeyCode.Escape)) {
 								showoptions = !showoptions;
 						}
-						/*
-						if (Input.GetKeyDown ("+")) {
-								debugmode = !debugmode;
-						}
-						*/
-						if (Input.GetKey ("w") && (ismoving == false)) { // 
-								p001.Move ("w");
-								ismoving = true;
-								//Bewegungseffekte
-								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
-								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
-								movetimer = moveeffect * movecooldown + p001.movement_delay;
-						}
-						if (Input.GetKey ("s") && (ismoving == false)) {
-								p001.Move ("s");
-								ismoving = true;
-								//Bewegungseffekte
-								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
-								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
-								movetimer = moveeffect * movecooldown + p001.movement_delay;
-						}
-						if (Input.GetKey ("a") && (ismoving == false)) {
-								p001.Move ("a");
-								ismoving = true;
-								//Bewegungseffekte
-								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
-								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
-								movetimer = moveeffect * movecooldown + p001.movement_delay;
-						}
-						if (Input.GetKey ("d") && (ismoving == false)) {
-								p001.Move ("d");
-								ismoving = true;
-								//Bewegungseffekte
-								int tileID = GameObject.Find ("Map").GetComponent<TileMap> ().tiles [(int)p001.pos.x, (int)p001.pos.y];
-								float moveeffect = GameObject.Find ("Map").GetComponent<TileMap> ().tileTypes [tileID].walkEffect;
-								movetimer = moveeffect * movecooldown + p001.movement_delay;
-						}
-						if ((ismoving == false) && (isregging)) {
-								p001.hp += p001.maxhp / 1000;
-								p001.mana += p001.maxmana / 1000;
-								if (p001.hp >= p001.maxhp) {
-										p001.hp = p001.maxhp;
-								}
-								if (p001.mana >= p001.maxmana) {
-										p001.mana = p001.maxmana;
-								}
-								isregging = false;
-								regtimer = regcooldown;
-						}
-						movetimer -= Time.deltaTime;
-						regtimer -= Time.deltaTime;
-						if (movetimer <= 0) {
-								ismoving = false;
-						}
-						if (regtimer <= 0) {
-								isregging = true;
-						}
 				}
 				EndScreen ();
 		}
@@ -123,43 +66,6 @@ public class mainmenu : MonoBehaviour {
 				}
 		}
 
-		bool lvlupanzeige = false;
-		void Lvlupscreen () {
-				if (p001 != null) {
-						if (p001.skillpoints > 0) {
-								if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "LevelUp - Skillpoints available!")) {
-										lvlupanzeige = true;
-								}
-						} else {
-								lvlupanzeige = false;
-						}
-				}
-				if (lvlupanzeige) {
-						GUI.Label (new Rect (600, 460, 100, 50), "Skillpoints : " + p001.skillpoints);
-						GUI.Label (new Rect (600, 260, 100, 50), "Lvl = " + p001.lvl);
-						GUI.Label (new Rect (600, 310, 100, 50), "MaxHp = " + p001.maxhp);
-						GUI.Label (new Rect (600, 360, 100, 50), "MaxMp = " + p001.maxmana);
-						GUI.Label (new Rect (600, 410, 100, 50), "Power = " + p001.pwr);
-						if (GUI.Button (new Rect (700, 310, 100, 50), "+ HP")) {
-								p001.maxhp += 200;
-								p001.skillpoints--;
-						}
-						if (GUI.Button (new Rect (700, 360, 100, 50), "+ MP")) {
-								p001.maxmana += 400;
-								p001.skillpoints--;
-						}
-						if (GUI.Button (new Rect (700, 410, 100, 50), "+ Power")) {
-								p001.pwr += 5;
-								p001.skillpoints--;
-						}
-			
-				}
-		}
-		
-		void shopanzeige () {
-				// Direkt in Shop
-		}
-	
 		string loginname = "";
 		string passwort = "";
 		void ShowLogin () {
@@ -218,8 +124,6 @@ public class mainmenu : MonoBehaviour {
 	
 		void OnGUI () {
 				Startscreen ();
-				Lvlupscreen ();
-				shopanzeige ();
 				ShowLogin ();
 				options ();
 		}

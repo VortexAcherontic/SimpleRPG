@@ -18,6 +18,8 @@ public class CreatureController : MonoBehaviour {
 				if (IsLoaded == true) {
 						CalculateStats ();
 						UpdatePosition ();
+						UpdateTimer ();
+						UpdateReg ();
 						DrawHP ();
 				}
 		}
@@ -46,9 +48,78 @@ public class CreatureController : MonoBehaviour {
 				IsLoaded = true;
 		}
 	
+		public void UpdateTimer () {
+				Creat.MoveTimer -= Time.deltaTime;
+				Creat.RegTimer -= Time.deltaTime;
+		}
+	
+		public void Equip (ItemData obj) {
+				bool equipcheck = false;
+				foreach (ItemData c_obj in Creat.Equipment) {
+						if (c_obj.Type == obj.Type) {
+								equipcheck = true;
+						}
+				}
+				if (equipcheck == false) {
+						Creat.Equipment.Add (obj);
+						Creat.Inventory.Remove (obj);
+				}
+		}
+	
+		public void Unequip (ItemData obj) {
+				Creat.Inventory.Add (obj);
+				Creat.Equipment.Remove (obj);
+		}
+	
+		public void MoveTo (Vector2 Pos) {
+				if (Creat.MoveTimer <= 0) {
+						bool MovementCheck = true;
+						TileMap MapDaten = GameObject.Find ("Map").GetComponent<TileMap> ();
+						int MoveToTileType = MapDaten.tiles [(int)Pos.x, (int)Pos.y];
+						regions TileToMove = MapDaten.tileTypes [MoveToTileType];
+						if (TileToMove.isWalkable) {
+								MovementCheck = false;
+						}
+						GameObject[] tmpmob;
+						tmpmob = GameObject.FindGameObjectsWithTag ("Mob");
+						foreach (GameObject tmpobj in tmpmob) {
+								if (tmpobj.transform.position.x == Pos.x && tmpobj.transform.position.y == Pos.y) {
+										MovementCheck = false;
+								}
+						}
+						tmpmob = GameObject.FindGameObjectsWithTag ("Player");
+						foreach (GameObject tmpobj in tmpmob) {
+								if (tmpobj.transform.position.x == Pos.x && tmpobj.transform.position.y == Pos.y) {
+										MovementCheck = false;
+								}
+						}
+			
+						if (MovementCheck) {
+								Vector3 newPos = new Vector3 (Pos.x, Pos.y, transform.position.z);
+								Creat.Position = Pos;
+								Creat.MoveTimer = TileToMove.walkEffect;
+						}
+				}
+		}
+	
+		void UpdateReg () {
+				if ((Creat.IsRegAble) && (Creat.RegTimer <= 0)) {
+						Creat.HP += Creat.MaxHP / 1000;
+						if (Creat.HP >= Creat.MaxHP) {
+								Creat.HP = Creat.MaxHP;
+						}
+						Creat.MP += Creat.MaxMP / 1000;
+						if (Creat.MP >= Creat.MaxMP) {
+								Creat.MP = Creat.MaxMP;
+						}
+						Creat.RegTimer = Creat.RegCooldown;
+				}
+		}
+	
 		void UpdatePosition () {
 				Creat.Position = transform.position;
 		}
+	
 		void DrawHP () {
 				if (healthbar == null) {
 						healthbar = transform.FindChild ("Health").transform;
@@ -68,6 +139,7 @@ public class CreatureController : MonoBehaviour {
 						healthbar.GetComponent<GUITexture> ().pixelInset = hpstatus;
 				}
 		}
+	
 		void CalculateStats () {
 				// Getting normal Stats (Auch Equip und so, eigentlich alle Werte aus InitalStats den hier entsprechenden zuweisen...)
 				// also total nervig -.- Oder das geht irgendwie einfacher und ich weiß nicht wie

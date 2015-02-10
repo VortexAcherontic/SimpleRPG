@@ -23,6 +23,11 @@ public struct CreatureOriginData { // Clean Own Stats
 		public int XP;	// For kills: XpDrop
 		public GameObject Prefab;
 	
+		public float MoveTimer;
+		public bool IsRegAble;
+		public float RegTimer;
+		public float RegCooldown;
+	
 		// Changeable by Level UP (Player) or Stick to Input (Monster/NPC)
 		public int Str; // Phy Dmg
 		public int Dex; // Hit Chance or Phy Dmg Range?
@@ -74,6 +79,11 @@ public struct CreatureData {
 		public int Gold; // For kills: GoldDrop
 		public int XP;	// For kills: XpDrop
 		public GameObject Prefab;
+	
+		public float MoveTimer;
+		public bool IsRegAble;
+		public float RegTimer;
+		public float RegCooldown;
 	
 		// Changeable by Level UP (Player) or Stick to Input (Monster/NPC)
 		public int Str; // Phy Dmg
