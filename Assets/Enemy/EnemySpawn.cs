@@ -8,7 +8,7 @@ public class EnemySpawn : MonoBehaviour {
 		CreatureData random_mob;
 		int maxmobs = 15;
 		public int mobs = 0;
-		float spawncooldown = 2.0f;
+		float spawncooldown = 0.5f;
 		float spawntimer;
 		bool isspawning = true;
 		player p001;
@@ -23,8 +23,8 @@ public class EnemySpawn : MonoBehaviour {
 				DataListObj.CreatureList.CopyTo (testmob);
 				foreach (CreatureOriginData tmp in testmob) {
 						CreatureData tmp2 = new CreatureData ();
-						tmp2.Start (tmp);
-						enemyTypes.Add (tmp2);
+						tmp2.Start (tmp.Clone ());
+						enemyTypes.Add (tmp2.Clone ());
 				}
 				//enemyTypes.();
 		}

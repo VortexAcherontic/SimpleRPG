@@ -185,7 +185,7 @@ public class player : MonoBehaviour {
 								GGewicht += tmpitem.Weigth;
 						}
 				}
-				movement_delay = GGewicht / 10; // Movement Langsamer durch gewicht XD Selbst ausgetrickst beim testen
+				movement_delay = GGewicht / 100; // Movement Langsamer durch gewicht XD Selbst ausgetrickst beim testen
 		}
 		
 		public IEnumerator save (string Datenbank_URL, int player_id) {

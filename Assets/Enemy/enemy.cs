@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 
 public class enemy : MonoBehaviour {
-		public CreatureData thismob;
+		public CreatureData thismob = new CreatureData ();
 		Transform healthbar;
 		Transform healthbarFilled;
 
 		public void SettingStats (CreatureData mt) {
+				thismob = new CreatureData ();
 				thismob = mt;
 				thismob.Start (thismob.InitalStats);
 		}

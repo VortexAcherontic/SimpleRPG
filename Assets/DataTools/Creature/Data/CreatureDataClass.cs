@@ -79,6 +79,10 @@ public class CreatureOriginData { // Clean Own Stats
 				}
 		}
 	
+		public CreatureOriginData Clone () {
+				return (CreatureOriginData)this.MemberwiseClone ();
+		}
+	
 }
 
 
@@ -104,7 +108,12 @@ public class CreatureData : CreatureOriginData { // Based on Creature Stats + Eq
 		 * 
 		 */
 	
+		public CreatureData Clone () {
+				return (CreatureData)this.MemberwiseClone ();
+		}
+	
 		public void Start (CreatureOriginData CData) { // Bekannte Namen, damit man weiß was des machen soll XD
+				InitalStats = new CreatureOriginData ();
 				InitalStats = CData;
 				InitalStats.Create ();
 				Name = InitalStats.Name;
