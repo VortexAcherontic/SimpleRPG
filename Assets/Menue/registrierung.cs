@@ -94,6 +94,7 @@ public class registrierung : MonoBehaviour {
 				newPlayer.Int = 1;
 				newPlayer.Luc = 1;
 				newPlayer.Position = new Vector2 (80, 80);
+				newPlayer.IsRegAble = true;
 		}
 		void difficulty (Rect ErsteZeile) {
 				GUI.Label (ErsteZeile, "Choose your Difficulty:");

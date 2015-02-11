@@ -51,6 +51,15 @@ public class PlayerBehaviour : MonoBehaviour {
 				if (Input.GetKeyDown ("i")) {
 						GUI_Inventory = !GUI_Inventory;
 				}
+				if (Input.GetKey ("1")) {
+						me.Creat.Stance = BattleStance.meele;
+				}
+				if (Input.GetKey ("2")) {
+						me.Creat.Stance = BattleStance.range;
+				}
+				if (Input.GetKey ("3")) {
+						me.Creat.Stance = BattleStance.magic;
+				}
 		}
 		void CheckLevelUp () {
 				if (me.Creat.XP >= 100 * (me.Creat.Level + 1)) {
@@ -530,6 +539,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + me.Creat.MP + "MP");
 				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + me.Creat.XP + "XP");
 				GUI.Label (new Rect (5, Screen.height - 155, 170, 20), "Gold: " + me.Creat.Gold + "G");
+				GUI.Label (new Rect (5, Screen.height - 105, 170, 20), "Battlemode: " + me.Creat.Stance.ToString ());
 				ItemData Quiver = null;
 				foreach (ItemData c_obj in me.Creat.Equipment) {
 						if (c_obj.Type == ItemType.utility) {

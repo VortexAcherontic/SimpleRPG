@@ -28,7 +28,6 @@ public class kampf : MonoBehaviour {
 		// Update is called once per frame
 		void Update () {
 				if (attack_timer <= 0) {
-						SelectAttackStyle ();
 						Angriffsrichtung ();
 				}
 				attack_timer -= Time.deltaTime;
@@ -53,7 +52,7 @@ public class kampf : MonoBehaviour {
 						attack_ausgefuert = true;
 				}
 				if (attack_ausgefuert) {
-						switch (angriffstil) {
+						switch (p001.me.Creat.Stance) {
 								case BattleStance.meele:
 										Melee ();
 										attack_timer = attack_cooldown;
@@ -70,17 +69,7 @@ public class kampf : MonoBehaviour {
 				}
 		}
 	
-		void SelectAttackStyle () {
-				if (Input.GetKeyDown ("1")) {
-						angriffstil = BattleStance.meele;
-				}
-				if (Input.GetKeyDown ("2")) {
-						angriffstil = BattleStance.range;
-				}
-				if (Input.GetKeyDown ("3")) {
-						angriffstil = BattleStance.magic;
-				}
-		}
+		
 		
 		void Melee () {
 				foreach (Transform tmp_monster in GameObject.Find("MonsterSpawner").transform) {
@@ -193,11 +182,7 @@ public class kampf : MonoBehaviour {
 				}
 		}
 	
-		public void OnGUI () {
-				if (!GameObject.Find ("Main Camera").GetComponent<mainmenu> ().showgamemenue) {
-						GUI.Label (new Rect (5, Screen.height - 105, 170, 20), "Battlemode: " + angriffstil);
-				}
-		}
+		
 	
 		bool CheckForArrow () {
 				foreach (ItemData tmp_item in p001.me.Creat.Equipment) {

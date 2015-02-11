@@ -123,11 +123,11 @@ public class CreatureController : MonoBehaviour {
 	
 		void UpdateReg () {
 				if ((Creat.IsRegAble) && (Creat.RegTimer <= 0)) {
-						Creat.HP += Creat.MaxHP / 1000;
+						Creat.HP += Creat.MaxHP / 100;
 						if (Creat.HP >= Creat.MaxHP) {
 								Creat.HP = Creat.MaxHP;
 						}
-						Creat.MP += Creat.MaxMP / 1000;
+						Creat.MP += Creat.MaxMP / 100;
 						if (Creat.MP >= Creat.MaxMP) {
 								Creat.MP = Creat.MaxMP;
 						}
