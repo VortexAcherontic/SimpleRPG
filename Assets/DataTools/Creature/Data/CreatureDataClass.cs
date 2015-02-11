@@ -27,6 +27,8 @@ public struct CreatureOriginData { // Clean Own Stats
 		public bool IsRegAble;
 		public float RegTimer;
 		public float RegCooldown;
+		public float AttackTimer;
+		public float AttackCooldown;
 	
 		// Changeable by Level UP (Player) or Stick to Input (Monster/NPC)
 		public int Str; // Phy Dmg
@@ -46,6 +48,8 @@ public struct CreatureOriginData { // Clean Own Stats
 		public bool IsBoss;
 		public bool DoRespawn; // NPC/Bosses?
 		public float RespawnTimer;
+		
+		
 	
 		/*
 		 * Doof mit den String Array aber mir fällt nichts besseres ein
@@ -84,6 +88,8 @@ public struct CreatureData {
 		public bool IsRegAble;
 		public float RegTimer;
 		public float RegCooldown;
+		public float AttackTimer;
+		public float AttackCooldown;
 	
 		// Changeable by Level UP (Player) or Stick to Input (Monster/NPC)
 		public int Str; // Phy Dmg

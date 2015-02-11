@@ -47,7 +47,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 
 		void AttackPlayer () {
-				if (attacktimer < 0) {
+				if (me.Creat.AttackTimer < 0) {
 						if (CheckDistance () <= me.Creat.AttackRange) {
 								//Attackiert den Spieler
 								//Debug.Log ("PlayerHp: " + p001.hp + me.Creat.pname + "hp:" + me.Creat.hp);
@@ -57,7 +57,7 @@ public class EnemyBehaviour : MonoBehaviour {
 										p001.me.Creat.HP -= me.Creat.MagAttack - p001.me.Creat.MagArmor;
 								}
 						}
-						attacktimer = attackcooldown;
+						me.Creat.AttackTimer = me.Creat.AttackCooldown;
 				}
 		} 
 		

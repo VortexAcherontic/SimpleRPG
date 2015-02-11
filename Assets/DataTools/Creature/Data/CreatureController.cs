@@ -60,6 +60,7 @@ public class CreatureController : MonoBehaviour {
 		public void UpdateTimer () {
 				Creat.MoveTimer -= Time.deltaTime;
 				Creat.RegTimer -= Time.deltaTime;
+				Creat.AttackTimer -= Time.deltaTime;
 		}
 	
 		public void Equip (ItemData obj) {
@@ -278,5 +279,12 @@ public class CreatureController : MonoBehaviour {
 				//MagArmor += Int * 3;
 				Creat.PhyAttack += Creat.Str * 3;
 				Creat.MagAttack += Creat.Int * 3;
+		
+				if (Creat.AttackCooldown == 0) {
+						Creat.AttackCooldown = 0.5f;
+				}
+				if (Creat.RegCooldown == 0) {
+						Creat.RegCooldown = 1.0f;
+				}
 		}
 }

@@ -83,10 +83,8 @@ public class kampf : MonoBehaviour {
 		}
 		
 		void Melee () {
-				Debug.Log ("Attack " + angriffstil.ToString ());
 				foreach (Transform tmp_monster in GameObject.Find("MonsterSpawner").transform) {
 						if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= 1) {
-								Debug.Log (p001.me.Creat.Position + " - " + tmp_monster.position);
 								if ((p001.me.Creat.Position.x < tmp_monster.position.x) && (angriffsrichtung == "r")) {
 										attack = true;
 								}
@@ -101,7 +99,6 @@ public class kampf : MonoBehaviour {
 								}
 						}
 						if (attack) {
-								Debug.Log ("AA");
 								CheckForMeleeWeapon (out phy_damage, out mag_damage);
 								
 								int phydmg = p001.me.Creat.PhyAttack - tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor;
