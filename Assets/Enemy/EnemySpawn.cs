@@ -6,16 +6,18 @@ public class EnemySpawn : MonoBehaviour {
 		public CreatureDataList DataListObj;
 		public List<CreatureOriginData> enemyTypes = new List<CreatureOriginData> ();
 		CreatureOriginData random_mob;
+		PlayerBehaviour p001;
+	
 		int maxmobs = 15;
 		public int mobs = 0;
 		float spawncooldown = 0.5f;
 		float spawntimer;
 		bool isspawning = true;
-		player p001;
+		
 		TileMap	map;
 		
 		void Start () {
-				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				map = GameObject.Find ("Map").GetComponent<TileMap> ();
 				DataListObj = (CreatureDataList)Resources.Load ("Creatures");
 				//enemyTypes = DataListObj.CreatureList;
@@ -30,7 +32,7 @@ public class EnemySpawn : MonoBehaviour {
 		// Update is called once per frame
 		CreatureOriginData[] testmob;
 		void Update () {
-				if (mobs < maxmobs && GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
+				if (mobs < maxmobs && p001.me.IsLoaded) {
 						if (isspawning) {
 								
 								spawnmob (); // Counter und so jetzt in der Funktion
@@ -60,7 +62,7 @@ public class EnemySpawn : MonoBehaviour {
 						mob_gefunden = true;
 						int mob_id = Random.Range (0, enemyTypes.Count);
 						random_mob = enemyTypes [mob_id];
-						Vector3 pos = new Vector3 (Random.Range (p001.pos.x - 30, p001.pos.x + 30), Random.Range (p001.pos.y - 30, p001.pos.y + 30), 0);
+						Vector3 pos = new Vector3 (Random.Range (p001.me.Creat.Position.x - 30, p001.me.Creat.Position.x + 30), Random.Range (p001.me.Creat.Position.y - 30, p001.me.Creat.Position.y + 30), 0);
 						if (random_mob.Prefab == null) {
 								mob_gefunden = false;
 						} 

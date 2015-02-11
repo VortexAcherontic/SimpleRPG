@@ -3,106 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class player : MonoBehaviour {
-		public int Player_ID;
 		public int hp ; 
-		public int maxhp ; 
-		public int mana ; 
-		public int maxmana ; 
-		public int xp ; 
-		public int lvl ; 
-		public int gold ; 
-		public int pwr ; 
-		public int armor ; 
-		public int agility ; 
-		public string pname;
-		public Vector2 pos;
-		Vector2 lastpos;
-		public inventory inv;
-		public int rangeweapondistance = 5;
-		public float movement_delay = 0f;
 		public bool gameover = false;
-		public List<ItemData> Equip = new List<ItemData> ();
-		/*, list equip*/
 
-		// Use this for initialization
-		public void Beginn (int hp, int maxhp, int mana, int maxmana, int xp, int lvl, int gold, int pwr, int armor, int agility, string pname, int posx, int posy, int p_ID/*, list equip*/) {
-				//Player = [] in python zum laden&speichern genutzte liste
-				this.hp = hp;
-				this.maxhp = maxhp;
-				this.mana = mana;
-				this.maxmana = maxmana;
-				this.xp = xp;
-				this.lvl = lvl;
-				this.gold = gold;
-				this.pwr = pwr;
-				this.armor = armor;
-				this.agility = agility;
-				this.Player_ID = p_ID;
-				//this.name = pname;
-				this.pos = new Vector2 (posx, posy);
-				inv = GameObject.Find ("Main Camera").GetComponent<inventory> ();
-				
-				//Equip = equip ausrüstungsslots
-				//GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<SkinnedMeshRenderer> ().enabled = true;
-				GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
-//				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
-				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
-		
-				// Game ist fertig geladen!
-				GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded = true;
-		}
-	
-		ItemData Quiver;
-	
-	
-		public void OnGUI () {
-				// Anzeigen für Health, Mana und XP später durch grafische Elemente zu ersetzen.
-				GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Health: " + hp + " HP");
-				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + mana + "MP");
-				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + xp + "XP");
-				GUI.Label (new Rect (5, Screen.height - 155, 170, 20), "Gold: " + gold + "G");
-				Quiver = null;
-				foreach (ItemData c_obj in Equip) {
-						if (c_obj.Type == ItemType.utility) {
-								Quiver = c_obj;
-						}
-				}
-				if (Quiver != null) {
-						GUI.Label (new Rect (5, Screen.height - 130, 170, 20), "Cap: " + Quiver.Capacity + " / " + Quiver.MaxCapacity);
-				}
-				
-				//Debug um Regeneration und Lvl up zu testen
-				GUI.Label (new Rect (5, Screen.height - 200, 170, 20), "Pos: " + pos.x + "/" + pos.y);
-				/*		
-		if (GUI.Button (new Rect (5, Screen.height - 105, 170, 20), "Hp down")) {
-						hp = maxhp / 2;
-				}
-				if (GUI.Button (new Rect (5, Screen.height - 130, 170, 20), "Mana down")) {
-						mana = maxmana / 2;
-				}
-				if (GUI.Button (new Rect (5, Screen.height - 155, 170, 20), "Xp UP")) {
-						xp += 20;
-				}
-		*/
-		}
 
 		void Update () {
 				if (hp < 0) {
 						gameover = true;
 				}
-				
-		}
-		public void BerechneMovmentDelay () {
-				float GGewicht = 0.0f;
-				if (GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
-						foreach (ItemData tmpitem in inv.Inventar) {
-								GGewicht += tmpitem.Weigth;
-						}
-						foreach (ItemData tmpitem in Equip) {
-								GGewicht += tmpitem.Weigth;
-						}
-				}
-				movement_delay = GGewicht / 100; // Movement Langsamer durch gewicht XD Selbst ausgetrickst beim testen
 		}
 		
 		/*

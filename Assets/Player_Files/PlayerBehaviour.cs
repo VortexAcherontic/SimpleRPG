@@ -31,6 +31,7 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUILevelUP ();
 						GUIInventory ();
 						GUIEquipment ();
+						GUIStatsOverview ();
 				}
 		}
 	
@@ -522,5 +523,35 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUILayout.EndArea ();
 		
 				}
+		}
+		void GUIStatsOverview () {
+				// Anzeigen für Health, Mana und XP später durch grafische Elemente zu ersetzen.
+				GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Health: " + me.Creat.HP + " HP");
+				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + me.Creat.MP + "MP");
+				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + me.Creat.XP + "XP");
+				GUI.Label (new Rect (5, Screen.height - 155, 170, 20), "Gold: " + me.Creat.Gold + "G");
+				ItemData Quiver = null;
+				foreach (ItemData c_obj in me.Creat.Equipment) {
+						if (c_obj.Type == ItemType.utility) {
+								Quiver = c_obj;
+						}
+				}
+				if (Quiver != null) {
+						GUI.Label (new Rect (5, Screen.height - 130, 170, 20), "Cap: " + Quiver.Capacity + " / " + Quiver.MaxCapacity);
+				}
+		
+				//Debug um Regeneration und Lvl up zu testen
+				GUI.Label (new Rect (5, Screen.height - 200, 170, 20), "Pos: " + me.Creat.Position.x + "/" + me.Creat.Position.y);
+				/*		
+		if (GUI.Button (new Rect (5, Screen.height - 105, 170, 20), "Hp down")) {
+						hp = maxhp / 2;
+				}
+				if (GUI.Button (new Rect (5, Screen.height - 130, 170, 20), "Mana down")) {
+						mana = maxmana / 2;
+				}
+				if (GUI.Button (new Rect (5, Screen.height - 155, 170, 20), "Xp UP")) {
+						xp += 20;
+				}
+		*/
 		}
 }

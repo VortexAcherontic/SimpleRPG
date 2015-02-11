@@ -11,12 +11,12 @@ public struct ObjTele {
 }
 public class teleporter : MonoBehaviour {
 		public List<ObjTele> Porter = new List<ObjTele> ();
-		player p001;
+		PlayerBehaviour p001;
 		map m001;
 		
 	
 		void Start () {
-				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				m001 = GameObject.Find ("Map").GetComponent<map> ();
 				
 		}
@@ -32,9 +32,9 @@ public class teleporter : MonoBehaviour {
 		// Update is called once per frame
 		void Update () {
 				foreach (ObjTele tmpporter in Porter) {
-						if (tmpporter.vonpos == p001.pos) {
-								p001.pos = tmpporter.nachpos;
-								p001.pos = tmpporter.nachpos;	
+						if (tmpporter.vonpos == p001.me.Creat.Position) {
+								p001.me.Creat.Position = tmpporter.nachpos;
+								p001.me.Creat.Position = tmpporter.nachpos;	
 								m001.minimap = tmpporter.minimap_to_update;
 								//GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
 						}

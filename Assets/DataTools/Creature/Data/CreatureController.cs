@@ -110,11 +110,12 @@ public class CreatureController : MonoBehaviour {
 						}
 			
 						if (MovementCheck) {
+								BerechneMovmentDelay ();
 								Vector3 newPos = new Vector3 (Pos.x, Pos.y, transform.position.z);
 								Creat.Position = Pos;
 								Creat.InitalStats.Position = Pos;
 								transform.position = newPos;
-								Creat.MoveTimer = TileToMove.walkEffect;
+								Creat.MoveTimer = TileToMove.walkEffect + Creat.Movement_Delay;
 						}
 				}
 		}
@@ -158,6 +159,19 @@ public class CreatureController : MonoBehaviour {
 								healthbar.GetComponent<GUITexture> ().pixelInset = hpstatus;
 						}
 				}
+		}
+	
+		void BerechneMovmentDelay () {
+				float GGewicht = 0.0f;
+				if (GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
+						foreach (ItemData tmpitem in Creat.Inventory) {
+								GGewicht += tmpitem.Weigth;
+						}
+						foreach (ItemData tmpitem in Creat.Equipment) {
+								GGewicht += tmpitem.Weigth;
+						}
+				}
+				Creat.Movement_Delay = GGewicht / 100; // Movement Langsamer durch gewicht XD Selbst ausgetrickst beim testen
 		}
 	
 		void CalculateStats () {

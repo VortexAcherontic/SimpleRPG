@@ -136,6 +136,7 @@ public struct CreatureData {
 		public int MagAttack;
 
 		public int AttackRange;
+		public float Movement_Delay;
 }
 
 

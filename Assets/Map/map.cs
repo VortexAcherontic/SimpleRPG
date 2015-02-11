@@ -33,9 +33,6 @@ public class map : MonoBehaviour {
 		}
 
 		public void LoadMap () {
-				foreach (Transform MonsterTrans in MonsterSpawner) {
-						MonsterTrans.position = new Vector3 (p001.pos.x - 100, MonsterTrans.position.y, MonsterTrans.position.z);	
-				}
 				foreach (Transform OldTile in  GameObject.Find ("Map").transform) {
 						Destroy (OldTile.gameObject);
 				}

@@ -7,7 +7,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		
 		float attackcooldown = 1.0f;
 		float attacktimer;	
-		player p001;
+		PlayerBehaviour p001;
 		
 		float temp_x;
 		float temp_y;
@@ -20,7 +20,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		
 		// Use this for initialization
 		void Start () {
-				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				me = gameObject.GetComponent<CreatureController> ();
 				mobspawn = GameObject.Find ("MonsterSpawner").GetComponent<EnemySpawn> ();
 				WaypointGeneration ();
@@ -37,8 +37,8 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 		//PlayerEntfernung checken
 		public int CheckDistance () {
-				temp_x = Mathf.Abs (p001.pos.x - transform.position.x);
-				temp_y = Mathf.Abs (p001.pos.y - transform.position.y);
+				temp_x = Mathf.Abs (p001.me.Creat.Position.x - transform.position.x);
+				temp_y = Mathf.Abs (p001.me.Creat.Position.y - transform.position.y);
 				//distance_euklid = (int)Mathf.Sqrt (temp_x * temp_x + temp_y * temp_y);
 				distance_manhatten = (int)(temp_x + temp_y);
 				//Debug.Log ("Distance: " + distance_manhatten);
@@ -52,9 +52,9 @@ public class EnemyBehaviour : MonoBehaviour {
 								//Attackiert den Spieler
 								//Debug.Log ("PlayerHp: " + p001.hp + me.Creat.pname + "hp:" + me.Creat.hp);
 								temp_dodge = Random.Range (0, 100);
-								if (temp_dodge + p001.agility <= 90) {
-										p001.hp -= me.Creat.PhyAttack - p001.armor;
-										p001.hp -= me.Creat.MagAttack - p001.armor;
+								if (temp_dodge + p001.me.Creat.Agi <= 90) {
+										p001.me.Creat.HP -= me.Creat.PhyAttack - p001.me.Creat.PhyArmor;
+										p001.me.Creat.HP -= me.Creat.MagAttack - p001.me.Creat.MagArmor;
 								}
 						}
 						attacktimer = attackcooldown;
@@ -71,8 +71,8 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
 		void CheckDieHealth () {
 				if (me.Creat.HP <= 0) {
-						p001.xp += me.Creat.XP;
-						p001.gold += me.Creat.Gold;
+						p001.me.Creat.XP += me.Creat.XP;
+						p001.me.Creat.Gold += me.Creat.Gold;
 						mobspawn.mobs--;			
 						Destroy (gameObject);
 			
@@ -185,8 +185,8 @@ public class EnemyBehaviour : MonoBehaviour {
 		float a_2;
 	
 		string zuerstfragezeichen () {
-				a_1 = Mathf.Abs (p001.pos.x - transform.position.x);
-				a_2 = Mathf.Abs (p001.pos.y - transform.position.y);
+				a_1 = Mathf.Abs (p001.me.Creat.Position.x - transform.position.x);
+				a_2 = Mathf.Abs (p001.me.Creat.Position.y - transform.position.y);
 				if (a_1 < a_2) {
 						zuerst = "y";
 				}
@@ -206,19 +206,19 @@ public class EnemyBehaviour : MonoBehaviour {
 				if ((movetimer <= 0) && (ismoving)) {
 						temp_wp = new Vector2 (0, 0);
 						zuerstfragezeichen ();
-						if ((p001.pos.x != me.Creat.Position.x) && (zuerst == "x")) {
-								if (p001.pos.x > me.Creat.Position.x) {
+						if ((p001.me.Creat.Position.x != me.Creat.Position.x) && (zuerst == "x")) {
+								if (p001.me.Creat.Position.x > me.Creat.Position.x) {
 										temp_wpx = 1;
 								}
-								if (p001.pos.x < me.Creat.Position.x) {
+								if (p001.me.Creat.Position.x < me.Creat.Position.x) {
 										temp_wpx = -1;
 								}
 						}
-						if ((p001.pos.y != me.Creat.Position.y) && (zuerst == "y")) {
-								if (p001.pos.y > me.Creat.Position.y) {
+						if ((p001.me.Creat.Position.y != me.Creat.Position.y) && (zuerst == "y")) {
+								if (p001.me.Creat.Position.y > me.Creat.Position.y) {
 										temp_wpy = 1;
 								}
-								if (p001.pos.y < me.Creat.Position.y) {
+								if (p001.me.Creat.Position.y < me.Creat.Position.y) {
 										temp_wpy = -1;
 								}
 						}
