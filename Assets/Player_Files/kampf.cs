@@ -167,9 +167,7 @@ public class kampf : MonoBehaviour {
 						if ((attack) && (p001.me.Creat.MP > 200)) {
 				
 								int phydmg = 0;
-								float magdmg_tmp = (p001.me.Creat.MaxMP / p001.me.Creat.Str);
-								magdmg_tmp *= (1 - (((p001.me.Creat.MP + 0.001f) - 500) / (p001.me.Creat.MaxMP + 0.001f)));
-								// TODO Muss noch in CalcStats angepasst werden
+								float magdmg_tmp = 0;
 								magdmg_tmp = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
 								int magdmg = (int)magdmg_tmp;			
 								//magischer Schaden

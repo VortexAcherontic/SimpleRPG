@@ -6,14 +6,12 @@ public class map : MonoBehaviour {
 
 		public Texture2D minimap;
 		public mainmenu gui;
-		public player p001;
 		public Transform MonsterSpawner;
 		public List<Texture2D> Maps;
 
 		// Use this for initialization
 		void Start () {
 				gui = GameObject.Find ("Main Camera").GetComponent<mainmenu> ();
-				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
 				MonsterSpawner = GameObject.Find ("MonsterSpawner").transform;
 				//LoadMap (); // Nun nach Player Load
 		

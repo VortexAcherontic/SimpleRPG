@@ -277,8 +277,23 @@ public class CreatureController : MonoBehaviour {
 				// Armor sollte nicht durch stats mehr werden
 				//PhyArmor += Vit * 3;
 				//MagArmor += Int * 3;
-				Creat.PhyAttack += Creat.Str * 3;
-				Creat.MagAttack += Creat.Int * 3;
+				switch (Creat.Stance) {
+						case BattleStance.meele:
+								Creat.PhyAttack += Creat.Str * 3;
+								break;
+						case BattleStance.range:
+								Creat.PhyAttack += Creat.Dex * 3;
+								break;
+						case BattleStance.magic:
+								float magdmg_tmp = (Creat.MaxMP / Creat.Str);
+								magdmg_tmp *= (1 - (((Creat.MP + 0.001f) - 500) / (Creat.MaxMP + 0.001f)));
+								Creat.MagAttack += (int)magdmg_tmp;
+								Creat.MagAttack += Creat.Int * 5;
+								break;
+				}
+				
+				//Creat.PhyAttack += Creat.Str * 3;
+				//Creat.MagAttack += Creat.Int * 3;
 		
 				if (Creat.AttackCooldown == 0) {
 						Creat.AttackCooldown = 0.5f;

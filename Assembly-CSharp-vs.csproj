@@ -70,9 +70,7 @@
      <Compile Include="Assets\Player_Files\PlayerToPos.cs" />
      <Compile Include="Assets\Player_Files\Player_Save.cs" />
      <Compile Include="Assets\Player_Files\Savegame.cs" />
-     <Compile Include="Assets\Player_Files\inventory.cs" />
      <Compile Include="Assets\Player_Files\kampf.cs" />
-     <Compile Include="Assets\Player_Files\player.cs" />
      <None Include="Assets\Import\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Import\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
