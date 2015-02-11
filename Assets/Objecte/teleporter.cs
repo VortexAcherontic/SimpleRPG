@@ -36,7 +36,7 @@ public class teleporter : MonoBehaviour {
 								p001.pos = tmpporter.nachpos;
 								p001.pos = tmpporter.nachpos;	
 								m001.minimap = tmpporter.minimap_to_update;
-								GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
+								//GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
 						}
 				}
 		}

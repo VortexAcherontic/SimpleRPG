@@ -9,7 +9,7 @@ public struct ObjShop {
 
 public class shop : MonoBehaviour {
 		List<ObjShop> shops = new List<ObjShop> ();
-		player p001;
+		PlayerBehaviour p001;
 		List<ItemData> item_liste = new List<ItemData> ();
 		bool imshop = false;
 		int anzeige_kat = 0;
@@ -28,7 +28,7 @@ public class shop : MonoBehaviour {
 		}
 		// Use this for initialization
 		void Start () {
-				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				ObjShop newShop = CreateEmptyShop (new Vector2 (80, 80));
 				shops.Add (newShop);
 				refill_timer = refill_cooldown;
@@ -46,7 +46,7 @@ public class shop : MonoBehaviour {
 	
 		bool CheckForQuiver () {
 				equipcheck = false;
-				foreach (ItemData c_obj in p001.Equip) {
+				foreach (ItemData c_obj in p001.me.Creat.Equipment) {
 						if (c_obj.Type == ItemType.utility) {
 								equipcheck = true;
 						}
@@ -57,7 +57,7 @@ public class shop : MonoBehaviour {
 		void OnGUI () {
 				foreach (ObjShop s001 in shops) {
 						if (p001 != null) {
-								if ((p001.pos == s001.pos) && (imshop == false)) {
+								if ((p001.me.Creat.Position == s001.pos) && (imshop == false)) {
 										if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "Click here to enter shop!")) {
 												item_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Item_List;
 												Scrollbereich = new Rect (0, 0, 0, 0);
@@ -299,25 +299,25 @@ public class shop : MonoBehaviour {
 		public bool kaufe_item (ItemData diesesitem) {
 				bool check = false;
 				if (diesesitem.Type != ItemType.weapon_ammo) {
-						if ((p001.gold >= diesesitem.Gold) && (diesesitem.Stock >= 10)) {
-								p001.inv.add (diesesitem);
-								p001.gold -= diesesitem.Gold;
+						if ((p001.me.Creat.Gold >= diesesitem.Gold) && (diesesitem.Stock >= 10)) {
+								p001.me.Creat.Inventory.Add (diesesitem);
+								p001.me.Creat.Gold -= diesesitem.Gold;
 								diesesitem.Stock -= 10;
 								check = true;
 						}
 				} else {
 						
-						foreach (ItemData c_obj in p001.Equip) {
+						foreach (ItemData c_obj in p001.me.Creat.Equipment) {
 								if (c_obj.Type == ItemType.utility) {
 										Quiver = c_obj;
 								}
 						}
 						if (Quiver != null) {
 								if (Quiver.Capacity < Quiver.MaxCapacity) {
-										if ((p001.gold >= diesesitem.Gold) && (diesesitem.Stock >= 10)) {
+										if ((p001.me.Creat.Gold >= diesesitem.Gold) && (diesesitem.Stock >= 10)) {
 												Quiver.Ammo.Add (diesesitem);
 												Quiver.Capacity = Quiver.Ammo.Count;
-												p001.gold -= diesesitem.Gold;
+												p001.me.Creat.Gold -= diesesitem.Gold;
 												diesesitem.Stock -= 10;
 												check = true;
 										}

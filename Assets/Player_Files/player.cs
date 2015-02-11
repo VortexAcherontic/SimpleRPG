@@ -45,7 +45,7 @@ public class player : MonoBehaviour {
 				//Equip = equip ausrüstungsslots
 				//GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<SkinnedMeshRenderer> ().enabled = true;
 				GameObject.Find ("Unit").transform.Find ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
-				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
+//				GameObject.Find ("Unit").GetComponent<PlayerToPos> ().MovePlayer ();
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 		
 				// Game ist fertig geladen!
@@ -105,6 +105,7 @@ public class player : MonoBehaviour {
 				movement_delay = GGewicht / 100; // Movement Langsamer durch gewicht XD Selbst ausgetrickst beim testen
 		}
 		
+		/*
 		public IEnumerator save (string Datenbank_URL, int player_id) {
 				//Debug.Log ("Versuche zu speichern " + Datenbank_URL + "save_player.php");
 				WWWForm LoginForm = new WWWForm ();
@@ -251,4 +252,5 @@ public class player : MonoBehaviour {
 						}
 				}
 		}
+		*/
 }

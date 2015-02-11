@@ -2,29 +2,18 @@
 using System.Collections;
 
 public class registrierung : MonoBehaviour {
-		int Player_ID;
 		public string loginname;
 		public string passwort;
-		string error_message = "";
-		player p001;
-		int diff_HP = 1000;
-		int diff_MaxHP = 1000;
-		int diff_MP = 1000;
-		int diff_MaxMP = 1000;
-		int diff_pwr = 5;
-		int diff_armor = 5;
-		int diff_agility = 1;
-		int start_lvl = 0;
-		int diff_gold = 0;
-		int diff_xp = 0;
-
+		public string error_message;
 		public int step = 0;
+		CreatureOriginData newPlayer = new CreatureOriginData ();
+		PlayerBehaviour p001;
 
 		string Datenbank_URL = "http://www.cards-of-destruction.com/SimpleRpg/";
 
 		// Use this for initialization
 		void Start () {
-				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 		}
 		void OnGUI () {
 				if (step > 0) {
@@ -60,7 +49,9 @@ public class registrierung : MonoBehaviour {
 								charaktererstellung (ErsteZeile); // als zweiten anzeigen
 						}
 						if (step == 4) {
-								StartCoroutine (p001.save (Datenbank_URL, Player_ID));
+								p001.me.Create (newPlayer);
+								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Save ();
+								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Load (p001.me.Creat.Name);
 								step = -1;
 						}
 						GUILayout.EndArea ();
@@ -83,7 +74,8 @@ public class registrierung : MonoBehaviour {
 						foreach (string zeile in zeilen) {
 								tmp_spalten = zeile.Split (";" [0]);
 						}
-						Player_ID = int.Parse (tmp_spalten [0]);
+						//Player_ID = int.Parse (tmp_spalten [0]);
+						CreateEmptyNewPlayer ();
 						step = 2;
 				} else {
 						// Lgoin Bad
@@ -91,67 +83,68 @@ public class registrierung : MonoBehaviour {
 						error_message = "Bad Login";
 				}
 		}
-
+		
+		void CreateEmptyNewPlayer () {
+				newPlayer.Name = loginname;
+				newPlayer.Level = 1;
+				newPlayer.Str = 1;
+				newPlayer.Agi = 1;
+				newPlayer.Dex = 1;
+				newPlayer.Vit = 1;
+				newPlayer.Int = 1;
+				newPlayer.Luc = 1;
+				newPlayer.Position = new Vector2 (80, 80);
+		}
 		void difficulty (Rect ErsteZeile) {
 				GUI.Label (ErsteZeile, "Choose your Difficulty:");
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 				if (GUI.Button (new Rect (ErsteZeile), "Easy")) {
-						diff_MaxHP = 1000;
-						diff_HP = diff_MaxHP;
-						diff_MaxMP = 1000;
-						diff_MP = diff_MaxMP;
+						newPlayer.Vit += 5;
+						newPlayer.Int += 5;
+						newPlayer.Gold += 100;
 						step = 3;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 				if (GUI.Button (new Rect (ErsteZeile), "Hard")) {
-						diff_MaxHP = 500;
-						diff_HP = diff_MaxHP;
-						diff_MaxMP = 500;
-						diff_MP = diff_MaxMP;
+						newPlayer.Vit += 1;
+						newPlayer.Int += 1;
+						newPlayer.Gold += 0;
 						step = 3;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 				if (GUI.Button (new Rect (ErsteZeile), "test")) {
-						diff_MaxHP = 1000;
-						diff_HP = diff_MaxHP;
-						diff_MaxMP = 1000;
-						diff_MP = diff_MaxMP;
-						diff_gold = 10000;
+						newPlayer.Vit += 10;
+						newPlayer.Int += 10;
+						newPlayer.Gold += 10000;
 						step = 3;
 				}
 		}
 
 		void charaktererstellung (Rect ErsteZeile) {
 				if (p001 != null) {
-						p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+						p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				}
 				GUI.Label (ErsteZeile, "Choose your Class:");
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 				if (GUI.Button (new Rect (ErsteZeile), "Melee")) {
-						diff_armor = 7;
-						diff_agility = 2;
-						diff_pwr = 7;
-						diff_MaxHP += 250;
-						diff_HP = diff_MaxHP;
-						p001.Beginn (diff_HP, diff_MaxHP, diff_MP, diff_MaxMP, diff_xp, start_lvl, diff_gold, diff_pwr, diff_armor, diff_agility, loginname, 80, 80, Player_ID);
+						newPlayer.Str += 10;
+						newPlayer.Dex += 5;
+						newPlayer.Agi += 5;
+						newPlayer.Vit += 5;
 						step = 4;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 				if (GUI.Button (new Rect (ErsteZeile), "Range")) {
-						diff_armor = 7;
-						diff_agility = 7;
-						diff_pwr = 5;
-						p001.Beginn (diff_HP, diff_MaxHP, diff_MP, diff_MaxMP, diff_xp, start_lvl, diff_gold, diff_pwr, diff_armor, diff_agility, loginname, 80, 80, Player_ID);
+						newPlayer.Str += 2;
+						newPlayer.Dex += 10;
+						newPlayer.Agi += 5;
 						step = 4;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 				if (GUI.Button (new Rect (ErsteZeile), "Mage")) {
-						diff_armor = 2;
-						diff_agility = 5;
-						diff_pwr = 5;
-						diff_MaxMP += 200;
-						diff_MP = diff_MaxMP;
-						p001.Beginn (diff_HP, diff_MaxHP, diff_MP, diff_MaxMP, diff_xp, start_lvl, diff_gold, diff_pwr, diff_armor, diff_agility, loginname, 80, 80, Player_ID);
+						newPlayer.Agi += 1;
+						newPlayer.Dex += 5;
+						newPlayer.Int += 10;
 						step = 4;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
@@ -161,7 +154,7 @@ public class registrierung : MonoBehaviour {
 		// Update is called once per frame
 		void Update () {
 				if (p001 != null) {
-						p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+						p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				}
 		}
 }

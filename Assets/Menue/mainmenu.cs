@@ -11,7 +11,7 @@ public class mainmenu : MonoBehaviour {
 		public bool showlogin = false;
 		public bool gameloaded = false;
 		public Texture bg;
-		player p001;
+		PlayerBehaviour p001;
 		
 		bool ismoving = false;
 		float movecooldown = 0.2f;
@@ -23,7 +23,7 @@ public class mainmenu : MonoBehaviour {
 		
 		// Use this for initialization
 		void Start () {
-				p001 = GameObject.Find ("Main Camera").GetComponent<player> ();
+				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				//p001.Beginn (1000, 1000, 1000, 1000, 80, 0, 100000, 0, 0, 0, "sascha", 50, 50);
 		}
 	
@@ -33,9 +33,6 @@ public class mainmenu : MonoBehaviour {
 				if (p001 != null) {
 						if (Input.GetKeyDown ("m")) {
 								showmap = !showmap;
-						}
-						if (Input.GetKeyDown ("i")) {
-								showinv = !showinv;
 						}
 						if (Input.GetKeyDown (KeyCode.Escape)) {
 								showoptions = !showoptions;
@@ -71,7 +68,7 @@ public class mainmenu : MonoBehaviour {
 		void ShowLogin () {
 				if (showlogin) {
 						if ((Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return)) {
-								StartCoroutine (p001.load ("http://www.cards-of-destruction.com/SimpleRpg/", loginname, passwort));
+								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Load (loginname);
 								showlogin = false;
 						}
 						Rect Anzeigebereich = new Rect (5, 5, Screen.width - 5, Screen.height - 5);
@@ -94,7 +91,7 @@ public class mainmenu : MonoBehaviour {
 						passwort = GUI.TextField (Spalte, passwort);
 						ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 						if (GUI.Button (ErsteZeile, "Load")) {
-								StartCoroutine (p001.load ("http://www.cards-of-destruction.com/SimpleRpg/", loginname, passwort));
+								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Load (loginname);
 								showlogin = false;
 						}
 						
@@ -117,7 +114,7 @@ public class mainmenu : MonoBehaviour {
 		}
 	
 		void EndScreen () {
-				if (p001.gameover) {
+				if (p001.Death) {
 						Application.LoadLevel ("GameOverScreen");
 				}
 		}
