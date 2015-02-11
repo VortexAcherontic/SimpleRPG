@@ -1,7 +1,3 @@
-// Mein Bildschirm ist zu klein XD
-- Player Scripts vielleicht wirklich mal auf den Player und nicht auf die Camera? Oder manchmal sogar in Player Script 
-(z.b. Bewegen)
-
 // Balancing generell
 - boss nerfen 
 - Stärkere Mobs oder Mob Level an Spieler Level anpassen?
@@ -9,6 +5,7 @@
 // Bug Fixes
 - Mage Attack Reichweite/Richtung?
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
+- Items von classen in structs umschreiben
 
 // Mechanik
 - shop websync einbauen (+ Max Stock?)
@@ -28,9 +25,6 @@
 - generell laden und speichern einbauen in einer taverne statt im inventar
 - insgesamt nen gamescreen basteln (3 progressbars für HP MP und XP) [anzeigen sind schon mal da :D]
 - Angriff/Schaden Anzeigen?!? (Gerade für Fernkampf/Magie bestimmt nicht schlecht - Schaden nur wenn touch)
-
-// GitHub
-GitHub nutzen für diese Datei? https://github.com/Defender833/SimpleRPG/issues
 
 //Sonstiges
 -Credits hinzufügen
