@@ -70,9 +70,18 @@ public class EnemyBehaviour : MonoBehaviour {
 				}
 		}
 		void CheckDieHealth () {
-				if (me.Creat.HP <= 0) {
-						p001.me.Creat.XP += me.Creat.XP;
+				if (me.Creat.HP <= 0) {	
+						Notification not = new Notification ();
+						not.time = 5;
+			
 						p001.me.Creat.Gold += me.Creat.Gold;
+						not.message = "Get " + me.Creat.Gold + " Gold";
+						p001.PickupList.Add (not);
+			
+						p001.me.Creat.XP += me.Creat.XP;
+						not.message = "Get " + me.Creat.XP + " XP";
+						p001.PickupList.Add (not);
+						
 						mobspawn.mobs--;			
 						Destroy (gameObject);
 			

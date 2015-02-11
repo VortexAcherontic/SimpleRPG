@@ -4,17 +4,13 @@
 
 // Balancing generell
 - boss nerfen 
-- skillsystem anpassen (ab lvl 3 ziemlich op)
 - Stärkere Mobs oder Mob Level an Spieler Level anpassen?
 
 // Bug Fixes
-- pfeile im quiver beim speichern berücksichtigen
 - Mage Attack Reichweite/Richtung?
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
 
 // Mechanik
-- gold onscreen anzeigen
-- showContent vom quiver wenn in stance_range
 - shop websync einbauen (+ Max Stock?)
 - magiebuch einbauen (Magie Skills?)
 - Elemente?
@@ -23,7 +19,6 @@
 - Events einbauen
 - npcs einbauen
 - Mobs mit Fernkampf?
-- Player & Mobs haben ja eigentlich die selben Stats... sollte man da nicht ein und das selbe verwenden?
 - NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
 - battlemode 1vs1 einbauen (oder so... Multiplayer)
 - Fractions? (Fraction vs Fraction ODER Creature vs Creature von Fraction?)

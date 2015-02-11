@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+
+public struct Notification {
+		public string message;
+		public float time;
+}
 
 public class PlayerBehaviour : MonoBehaviour {
 		public CreatureController me;
 	
+		public List<Notification> PickupList = new List<Notification> ();
 		public bool Death = false;
 		
 		bool GUI_Statverteilen = false;
@@ -32,6 +38,7 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUIInventory ();
 						GUIEquipment ();
 						GUIStatsOverview ();
+						GUINotification ();
 				}
 		}
 	
@@ -563,5 +570,25 @@ public class PlayerBehaviour : MonoBehaviour {
 						xp += 20;
 				}
 		*/
+		}
+		void GUINotification () {
+				float tmp_pos_x = 0f;
+				float tmp_pos_y = 100;
+				float tmp_lineheigth = 20;
+				Rect Pos;
+				for (int i =0; i<PickupList.Count; i++) {
+						Notification tmpnot;
+						tmpnot = PickupList [i];
+						tmpnot.time -= Time.deltaTime;
+						PickupList [i] = tmpnot;
+						if (tmpnot.time > 0) {
+								tmp_pos_x = tmp_pos_x + tmp_lineheigth;
+								Pos = new Rect (Screen.width - tmp_pos_y, Screen.height - tmp_pos_x, 100, tmp_lineheigth);
+								GUI.Label (Pos, tmpnot.message);
+								
+						} else {
+								PickupList.RemoveAt (i);
+						}
+				}
 		}
 }
