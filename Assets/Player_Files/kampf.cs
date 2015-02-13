@@ -53,7 +53,7 @@ public class kampf : MonoBehaviour {
 				}
 				if (attack_ausgefuert) {
 						switch (p001.me.Creat.Stance) {
-								case BattleStance.meele:
+								case BattleStance.melee:
 										Melee ();
 										attack_timer = attack_cooldown;
 										break;
@@ -69,113 +69,118 @@ public class kampf : MonoBehaviour {
 				}
 		}
 	
-		
+		EnemyBehaviour EB;
 		
 		void Melee () {
 				foreach (Transform tmp_monster in GameObject.Find("MonsterSpawner").transform) {
-						if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= 1) {
-								if ((p001.me.Creat.Position.x < tmp_monster.position.x) && (angriffsrichtung == "r")) {
-										attack = true;
+						EB = tmp_monster.GetComponent<EnemyBehaviour> ();
+						if (EB != null) {
+								if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= 1) {
+										if ((p001.me.Creat.Position.x < tmp_monster.position.x) && (angriffsrichtung == "r")) {
+												attack = true;
+										}
+										if ((p001.me.Creat.Position.x > tmp_monster.position.x) && (angriffsrichtung == "l")) {
+												attack = true;
+										}
+										if ((p001.me.Creat.Position.y < tmp_monster.position.y) && (angriffsrichtung == "o")) {
+												attack = true;
+										}
+										if ((p001.me.Creat.Position.y > tmp_monster.position.y) && (angriffsrichtung == "u")) {
+												attack = true;
+										}
 								}
-								if ((p001.me.Creat.Position.x > tmp_monster.position.x) && (angriffsrichtung == "l")) {
-										attack = true;
-								}
-								if ((p001.me.Creat.Position.y < tmp_monster.position.y) && (angriffsrichtung == "o")) {
-										attack = true;
-								}
-								if ((p001.me.Creat.Position.y > tmp_monster.position.y) && (angriffsrichtung == "u")) {
-										attack = true;
-								}
-						}
-						if (attack) {
-								CheckForMeleeWeapon (out phy_damage, out mag_damage);
-								
-								int phydmg = p001.me.Creat.PhyAttack - tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor;
-								int magdmg = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
+								if (attack) {
+										int phydmg = p001.me.Creat.PhyAttack - tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor;
+										int magdmg = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
 				
-								//physischer Schaden
-								tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
-								//magischer Schaden
-								tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
+										//physischer Schaden
+										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
+										//magischer Schaden
+										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
 				
-								Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
-								attack = false;
+										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
+										attack = false;
+								}
 						}
 				}
 		}
 	
 		void Range () {
 				foreach (Transform tmp_monster in GameObject.Find("MonsterSpawner").transform) {
-						if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= p001.me.Creat.AttackRange) {
-								if ((p001.me.Creat.Position.x < tmp_monster.position.x) && (angriffsrichtung == "r") && (p001.me.Creat.Position.y == tmp_monster.position.y)) {
-										attack = true;
-								}
-								if ((p001.me.Creat.Position.x > tmp_monster.position.x) && (angriffsrichtung == "l") && (p001.me.Creat.Position.y == tmp_monster.position.y)) {
-										attack = true;
-								}
-								if ((p001.me.Creat.Position.y < tmp_monster.position.y) && (angriffsrichtung == "o") && (p001.me.Creat.Position.x == tmp_monster.position.x)) {
-										attack = true;
-								}
-								if ((p001.me.Creat.Position.y > tmp_monster.position.y) && (angriffsrichtung == "u") && (p001.me.Creat.Position.x == tmp_monster.position.x)) {
-										attack = true;
-								}
-						}
-						if ((attack) && (CheckForArrow ())) {
-								CheckForRangeWeapon (out phy_damage, out mag_damage);
-								//Pfeil wegschmeißen XD
-								foreach (ItemData tmp_item in p001.me.Creat.Equipment) {
-										if (tmp_item.Type == ItemType.utility) {
-												tmp_item.Ammo.RemoveAt (0);
-												tmp_item.Capacity--;
+						EB = tmp_monster.GetComponent<EnemyBehaviour> ();
+						if (EB != null) {
+								if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= p001.me.Creat.AttackRange) {
+										if ((p001.me.Creat.Position.x < tmp_monster.position.x) && (angriffsrichtung == "r") && (p001.me.Creat.Position.y == tmp_monster.position.y)) {
+												attack = true;
+										}
+										if ((p001.me.Creat.Position.x > tmp_monster.position.x) && (angriffsrichtung == "l") && (p001.me.Creat.Position.y == tmp_monster.position.y)) {
+												attack = true;
+										}
+										if ((p001.me.Creat.Position.y < tmp_monster.position.y) && (angriffsrichtung == "o") && (p001.me.Creat.Position.x == tmp_monster.position.x)) {
+												attack = true;
+										}
+										if ((p001.me.Creat.Position.y > tmp_monster.position.y) && (angriffsrichtung == "u") && (p001.me.Creat.Position.x == tmp_monster.position.x)) {
+												attack = true;
 										}
 								}
+								if ((attack) && CheckForArrow () && CheckForRangeWeapon ()) {
+										foreach (ItemData tmp_item in p001.me.Creat.Equipment) {
+												if (tmp_item.Type == ItemType.utility) {
+														tmp_item.Ammo.RemoveAt (0);
+														tmp_item.Capacity--;
+												}
+										}
 				
-								int phydmg = p001.me.Creat.PhyAttack - tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor;
-								int magdmg = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
+										int phydmg = p001.me.Creat.PhyAttack - tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor;
+										int magdmg = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
 				
-								//physischer Schaden
-								if (phy_damage >= tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor) {
-										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
+										//physischer Schaden
+										if (phy_damage >= tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor) {
+												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
+										}
+										//magischer Schaden
+										if (mag_damage >= tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor) {
+												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
+										}
+				
+										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
+										attack = false;
 								}
-								//magischer Schaden
-								if (mag_damage >= tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor) {
-										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
-								}
-				
-								Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
-								attack = false;
 						}
 				}
 		}
 	
 		void Mage () {
 				foreach (Transform tmp_monster in GameObject.Find("MonsterSpawner").transform) {
-						if (tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= 2) {
-								if ((p001.me.Creat.Position.x < tmp_monster.position.x) && (angriffsrichtung == "r")) {
-										attack = true;
+						EB = tmp_monster.GetComponent<EnemyBehaviour> ();
+						if (EB != null) {
+								if ((tmp_monster.GetComponent<EnemyBehaviour> ().CheckDistance () <= 2) && ((tmp_monster.position.x == p001.me.Creat.Position.x) || (tmp_monster.position.y == p001.me.Creat.Position.y))) {
+										if ((p001.me.Creat.Position.x < tmp_monster.position.x) && (angriffsrichtung == "r")) {
+												attack = true;
+										}
+										if ((p001.me.Creat.Position.x > tmp_monster.position.x) && (angriffsrichtung == "l")) {
+												attack = true;
+										}
+										if ((p001.me.Creat.Position.y < tmp_monster.position.y) && (angriffsrichtung == "o")) {
+												attack = true;
+										}
+										if ((p001.me.Creat.Position.y > tmp_monster.position.y) && (angriffsrichtung == "u")) {
+												attack = true;
+										}
 								}
-								if ((p001.me.Creat.Position.x > tmp_monster.position.x) && (angriffsrichtung == "l")) {
-										attack = true;
-								}
-								if ((p001.me.Creat.Position.y < tmp_monster.position.y) && (angriffsrichtung == "o")) {
-										attack = true;
-								}
-								if ((p001.me.Creat.Position.y > tmp_monster.position.y) && (angriffsrichtung == "u")) {
-										attack = true;
-								}
-						}
-						if ((attack) && (p001.me.Creat.MP > 200)) {
+								if ((attack) && (p001.me.Creat.MP > 200)) {
 				
-								int phydmg = 0;
-								float magdmg_tmp = 0;
-								magdmg_tmp = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
-								int magdmg = (int)magdmg_tmp;			
-								//magischer Schaden
-								tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
+										int phydmg = 0;
+										float magdmg_tmp = 0;
+										magdmg_tmp = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
+										int magdmg = (int)magdmg_tmp;			
+										//magischer Schaden
+										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
 				
-								Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
-								p001.me.Creat.MP -= 200;
-								attack = false;
+										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
+										p001.me.Creat.MP -= 200;
+										attack = false;
+								}
 						}
 				}
 		}
@@ -193,37 +198,16 @@ public class kampf : MonoBehaviour {
 				return false;
 		}
 	
-		void CheckForMeleeWeapon (out int phy_damage, out int mag_damage) {
-				foreach (ItemData tmp_item in p001.me.Creat.Equipment) {
-						if (tmp_item.Type == ItemType.weapon_meele) {
-								phy_damage = tmp_item.PhyAttack;
-								mag_damage = tmp_item.MagAttack;
-						}
-				}
-				phy_damage = 5;
-				mag_damage = 5;
-		}
-	
-		void CheckForRangeWeapon (out int phy_damage, out int mag_damage) {
-				phy_damage = 0;
-				mag_damage = 0;
+		bool CheckForRangeWeapon () {
 				foreach (ItemData tmp_item in p001.me.Creat.Equipment) {
 						if (tmp_item.Type == ItemType.weapon_range) {
-								phy_damage += tmp_item.PhyAttack;
-								mag_damage += tmp_item.MagAttack;
-						}
-						if (tmp_item.Type == ItemType.utility) {
-								phy_damage += tmp_item.Ammo [0].PhyAttack;
-								mag_damage += tmp_item.Ammo [0].MagAttack;
+								return true;
 						}
 				}
-		
-				phy_damage = 5;
-				mag_damage = 5;
+				return false;
 		}
 	
-		/*magieschaden berechnen*/
-		
+	
 		/*variable die gegnertyp festlegt?*/
 
 		/*schaden gegenüber player berechnen durch NPC*/

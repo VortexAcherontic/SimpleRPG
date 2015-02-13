@@ -25,6 +25,7 @@ public class CreatureController : MonoBehaviour {
 		}
 	
 		public void Create (CreatureOriginData InitStat) {
+				Creat.lastPos = new Vector2 (0, 0);
 				Creat.InitalStats = InitStat;
 				Creat.Position = Creat.InitalStats.Position;
 				if ((Creat.Position.y > 0) && (Creat.Position.x > 0)) {
@@ -111,6 +112,7 @@ public class CreatureController : MonoBehaviour {
 						}
 			
 						if (MovementCheck) {
+								Creat.lastPos = Creat.Position;
 								BerechneMovmentDelay ();
 								Vector3 newPos = new Vector3 (Pos.x, Pos.y, transform.position.z);
 								Creat.Position = Pos;
@@ -246,8 +248,8 @@ public class CreatureController : MonoBehaviour {
 												Creat.MagAttack += tmp.MagAttack;
 												Creat.AttackRange += tmp.Range;
 												break;
-										case ItemType.weapon_meele:
-												if (Creat.Stance == BattleStance.meele) {
+										case ItemType.weapon_melee:
+												if (Creat.Stance == BattleStance.melee) {
 														Creat.PhyArmor += tmp.PhyArmor;
 														Creat.MagArmor += tmp.MagArmor;
 														Creat.PhyAttack += tmp.PhyAttack;
@@ -265,7 +267,7 @@ public class CreatureController : MonoBehaviour {
 														Creat.AttackRange += tmp.Range;
 												}
 												break;
-								// TODO: What gives Mage Bonus Dmg? Range Weapon? Meele Weapon? Both?
+								// TODO: What gives Mage Bonus Dmg? Range Weapon? melee Weapon? Both?
 								// statt bonus - verschiedene zauber zB heilen/angriff/buff/debuffs entfernen
 								}
 			
@@ -278,7 +280,7 @@ public class CreatureController : MonoBehaviour {
 				//PhyArmor += Vit * 3;
 				//MagArmor += Int * 3;
 				switch (Creat.Stance) {
-						case BattleStance.meele:
+						case BattleStance.melee:
 								Creat.PhyAttack += Creat.Str * 3;
 								break;
 						case BattleStance.range:

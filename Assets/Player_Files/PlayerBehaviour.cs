@@ -59,7 +59,7 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUI_Inventory = !GUI_Inventory;
 				}
 				if (Input.GetKey ("1")) {
-						me.Creat.Stance = BattleStance.meele;
+						me.Creat.Stance = BattleStance.melee;
 				}
 				if (Input.GetKey ("2")) {
 						me.Creat.Stance = BattleStance.range;
@@ -237,7 +237,7 @@ public class PlayerBehaviour : MonoBehaviour {
 										GUI.Label (Spalte, dieseitem.Name);
 										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 										switch (dieseitem.Type) {
-												case ItemType.weapon_meele:
+												case ItemType.weapon_melee:
 												case ItemType.weapon_range:
 														GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
@@ -342,7 +342,7 @@ public class PlayerBehaviour : MonoBehaviour {
 										case 1:
 												foreach (ItemData dieseitem in me.Creat.Inventory) {
 						
-														if (dieseitem.Type == ItemType.weapon_meele) {
+														if (dieseitem.Type == ItemType.weapon_melee) {
 																GUILayout.BeginHorizontal ();
 																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
 																GUI.Label (Spalte, dieseitem.Name);

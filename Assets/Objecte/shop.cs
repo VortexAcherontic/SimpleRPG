@@ -112,7 +112,7 @@ public class shop : MonoBehaviour {
 										case 1:
 												foreach (ItemData dieseitem in item_liste) {
 						
-														if (dieseitem.Type == ItemType.weapon_meele) {
+														if (dieseitem.Type == ItemType.weapon_melee) {
 																GUILayout.BeginHorizontal ();
 																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
 																GUI.Label (Spalte, dieseitem.Name);

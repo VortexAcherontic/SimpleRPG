@@ -8,7 +8,7 @@ using System.Collections.Generic;
  */
 
 public enum BattleStance {
-		meele,
+		melee,
 		range,
 		magic
 }
@@ -130,6 +130,7 @@ public struct CreatureData {
 		public string[] Equipment_Strings;	
 	#endregion
 	
+		public Vector2 lastPos;
 	
 		public int HP;
 		public int MP;

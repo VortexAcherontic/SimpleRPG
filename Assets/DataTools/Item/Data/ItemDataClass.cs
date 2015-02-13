@@ -10,7 +10,7 @@ using System.Collections.Generic;
 public enum ItemType {
 		junk,
 	
-		weapon_meele,
+		weapon_melee,
 		weapon_range,
 		weapon_ammo,
 		armor_head,

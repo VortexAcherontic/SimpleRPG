@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Programme/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>E:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Programme/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>E:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,8 +51,10 @@
      <Compile Include="Assets\DataTools\Creature\Data\CreatureDataList.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataClass.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataList.cs" />
+     <Compile Include="Assets\Enemy\Companion\CompanionBehavior.cs" />
      <Compile Include="Assets\Enemy\EnemyBehaviour.cs" />
      <Compile Include="Assets\Enemy\EnemySpawn.cs" />
+     <Compile Include="Assets\Enemy\NPC\NPCBehaviour.cs" />
      <Compile Include="Assets\Import\Boomlagoon\JSON\JSONObject.cs" />
      <Compile Include="Assets\Import\Boomlagoon\JSON\TestScene\JSONObjectTester.cs" />
      <Compile Include="Assets\Import\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
@@ -63,6 +65,7 @@
      <Compile Include="Assets\Menue\GameOverScreen\GameOverScreen.cs" />
      <Compile Include="Assets\Menue\mainmenu.cs" />
      <Compile Include="Assets\Menue\registrierung.cs" />
+     <Compile Include="Assets\Objecte\Truhen\Chest.cs" />
      <Compile Include="Assets\Objecte\item.cs" />
      <Compile Include="Assets\Objecte\shop.cs" />
      <Compile Include="Assets\Objecte\teleporter.cs" />

@@ -1,8 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
     <Files>
-      <File FileName="Assets\todo.txt" Line="8" Column="43" />
+      <File FileName="Assets\todo.txt" Line="32" Column="1" />
+      <File FileName="Assets\Objecte\Truhen\Chest.cs" Line="35" Column="19" />
+      <File FileName="Assets\Enemy\NPC\NPCBehaviour.cs" Line="38" Column="4" />
+      <File FileName="Assets\Enemy\EnemyBehaviour.cs" Line="83" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
