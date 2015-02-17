@@ -18,9 +18,9 @@
 	
 	$player_data = $datenbank->sql_select("player", "*", "player_id='" . $user_data[0]['id'] . "'");	
 	if (!isset($player_data[0]['data'])) {
-		$status="true";
-	} else {
 		$status="false";
+	} else {
+		$status="true";
 	}
     if ($user_password == $user_data[0]['user_password']) {
 	echo $user_data[0]['id'] . ";".$status.";";
