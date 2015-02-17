@@ -12,7 +12,7 @@ public class Player_Save : MonoBehaviour {
 		
 		private Server _server_ = new Server ();
 		int id;
-		public IEnumerator Save () {
+		public void Save () {
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 				Game.Creature = gameObject.GetComponent<PlayerBehaviour> ().me.Creat;
 		
@@ -70,8 +70,7 @@ public class Player_Save : MonoBehaviour {
 		
 				
 		
-				yield return StartCoroutine (_server_.SaveData (id, _server_.data));
-				;
+				StartCoroutine (_server_.SaveData (id, _server_.data));
 		}
 	
 		public IEnumerator Load () {
@@ -122,13 +121,12 @@ public class Player_Save : MonoBehaviour {
 						if (data [1] == "false") {
 								id = int.Parse (data [0]);
 								//StartCoroutine (Save ());
-								//transform.FindChild ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
-								//GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
+								transform.FindChild ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
+								GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 								//gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
-								Debug.Log ("X");
 						} else {
 								id = int.Parse (data [0]);
-								StartCoroutine (Load ());
+								//StartCoroutine (Load ());
 						}
 				}
 		}

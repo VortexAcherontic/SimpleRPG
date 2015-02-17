@@ -16,6 +16,7 @@ public struct regions {
 public class TileMap : MonoBehaviour {
 		public List<regions> tileTypes = new List<regions> ();
 		public int[,] tiles;
+		public bool IsLoaded = false;
 	
 		int map_abstand = 30; // Sollte So Groß sein wie der Spawn Radius!
 		int mapSizeX;
@@ -59,6 +60,7 @@ public class TileMap : MonoBehaviour {
 		}
 	
 		void Awake () {
+				IsLoaded = false;
 				regions tmpreg = CreateEmpty (); // Void Tile für Abstand zwischen den Karten
 				tmpreg.isWalkable = false;
 				tileTypes.Add (tmpreg);
@@ -240,6 +242,7 @@ public class TileMap : MonoBehaviour {
 								tmpobjct.transform.parent = GameObject.Find ("Map").transform;
 						}
 				}
+				IsLoaded = true;
 		}
 	
 		void CheckForPortals () {

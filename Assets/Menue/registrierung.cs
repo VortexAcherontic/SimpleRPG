@@ -49,7 +49,6 @@ public class registrierung : MonoBehaviour {
 								charaktererstellung (ErsteZeile); // als zweiten anzeigen
 						}
 						if (step == 4) {
-								GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 								p001.me.Create (newPlayer);
 								StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
 								//StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Save ());

@@ -70,7 +70,7 @@ public class EnemySpawn : MonoBehaviour {
 						if (random_mob.IsBoss) {
 								mob_gefunden = false;
 						} 
-						if (((pos.x <= 0) || (pos.y <= 0)) && (map.tiles.Length == 0)) {
+						if (((pos.x <= 0) || (pos.y <= 0)) || (!map.IsLoaded) || random_mob.Vit <= 0) {
 								mob_gefunden = false;
 						} else {
 								if (!MobInRegion (random_mob, map.tiles [(int)pos.x, (int)pos.y])) {

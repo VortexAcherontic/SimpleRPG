@@ -1,17 +1,12 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player_Files\Player_Save.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Menue\registrierung.cs">
     <Files>
-      <File FileName="Assets\DataTools\DataManager\CharacterCreator.cs" Line="1" Column="1" />
       <File FileName="Assets\DataTools\DataManager\DataManager.cs" Line="11" Column="78" />
       <File FileName="Assets\todo.txt" Line="1" Column="1" />
-      <File FileName="Assets\DataTools\Creature\Data\CreatureDataClass.cs" Line="1" Column="1" />
-      <File FileName="Assets\Player_Files\Player_Save.cs" Line="128" Column="25" />
+      <File FileName="Assets\Player_Files\Player_Save.cs" Line="126" Column="9" />
       <File FileName="Assets\Menue\mainmenu.cs" Line="94" Column="126" />
-      <File FileName="d:\Users\Defender833\Documents\SimpleRPG\Assets\Menue\registrierung.cs" Line="55" Column="61" />
-      <File FileName="Assets\Player_Files\PlayerBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets\DataTools\Creature\Data\CreatureController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Enemy\EnemySpawn.cs" Line="1" Column="1" />
+      <File FileName="Assets\Menue\registrierung.cs" Line="51" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
