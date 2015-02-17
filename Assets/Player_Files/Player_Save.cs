@@ -74,8 +74,10 @@ public class Player_Save : MonoBehaviour {
 		}
 	
 		public IEnumerator Load () {
+				Debug.Log ("Load Start");
 				yield return StartCoroutine (_server_.GetData (id));
 				//Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
+				Debug.Log (_server_.data.ToString ());
 				if (_server_.data.ContainsKey ("character")) {	
 						Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 				
@@ -126,7 +128,7 @@ public class Player_Save : MonoBehaviour {
 								//gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
 						} else {
 								id = int.Parse (data [0]);
-								//StartCoroutine (Load ());
+								StartCoroutine (Load ());
 						}
 				}
 		}

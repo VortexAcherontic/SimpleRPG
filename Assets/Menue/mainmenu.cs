@@ -68,7 +68,7 @@ public class mainmenu : MonoBehaviour {
 		void ShowLogin () {
 				if (showlogin) {
 						if ((Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return)) {
-								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort);
+								StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
 								showlogin = false;
 						}
 						Rect Anzeigebereich = new Rect (5, 5, Screen.width - 5, Screen.height - 5);

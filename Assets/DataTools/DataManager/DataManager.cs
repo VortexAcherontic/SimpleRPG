@@ -36,11 +36,11 @@ namespace DataManager {
 						string url = _host_ + _controller_;
 
 						WWWForm form = new WWWForm ();
-						form.AddField ("id", id);
+						form.AddField ("player_id", id);
 						form.AddField ("data", dat.ToString ());
 						WWW www = new WWW (url, form);
 						yield return www;
-
+						Debug.Log (www.text);
 				}
 /*
 		//warum farbe?
