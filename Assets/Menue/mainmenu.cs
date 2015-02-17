@@ -68,7 +68,7 @@ public class mainmenu : MonoBehaviour {
 		void ShowLogin () {
 				if (showlogin) {
 						if ((Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return)) {
-								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Load (loginname);
+								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort);
 								showlogin = false;
 						}
 						Rect Anzeigebereich = new Rect (5, 5, Screen.width - 5, Screen.height - 5);
@@ -91,7 +91,7 @@ public class mainmenu : MonoBehaviour {
 						passwort = GUI.TextField (Spalte, passwort);
 						ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
 						if (GUI.Button (ErsteZeile, "Load")) {
-								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Load (loginname);
+								StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
 								showlogin = false;
 						}
 						

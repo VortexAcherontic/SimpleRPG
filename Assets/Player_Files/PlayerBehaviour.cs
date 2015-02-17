@@ -548,9 +548,11 @@ public class PlayerBehaviour : MonoBehaviour {
 				GUI.Label (new Rect (5, Screen.height - 155, 170, 20), "Gold: " + me.Creat.Gold + "G");
 				GUI.Label (new Rect (5, Screen.height - 105, 170, 20), "Battlemode: " + me.Creat.Stance.ToString ());
 				ItemData Quiver = null;
-				foreach (ItemData c_obj in me.Creat.Equipment) {
-						if (c_obj.Type == ItemType.utility) {
-								Quiver = c_obj;
+				if (me.Creat.Equipment.Count > 0) {
+						foreach (ItemData c_obj in me.Creat.Equipment) {
+								if (c_obj.Type == ItemType.utility) {
+										Quiver = c_obj;
+								}
 						}
 				}
 				if (Quiver != null) {

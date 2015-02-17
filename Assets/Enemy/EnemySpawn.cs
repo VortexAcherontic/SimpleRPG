@@ -8,7 +8,7 @@ public class EnemySpawn : MonoBehaviour {
 		CreatureOriginData random_mob;
 		PlayerBehaviour p001;
 	
-		int maxmobs = 15;
+		int maxmobs = -1;
 		public int mobs = 0;
 		float spawncooldown = 0.5f;
 		float spawntimer;
@@ -26,6 +26,7 @@ public class EnemySpawn : MonoBehaviour {
 				foreach (CreatureOriginData tmp in testmob) {
 						enemyTypes.Add (tmp);
 				}
+				maxmobs = 15;
 				//enemyTypes.();
 		}
 	
@@ -69,8 +70,12 @@ public class EnemySpawn : MonoBehaviour {
 						if (random_mob.IsBoss) {
 								mob_gefunden = false;
 						} 
-						if (!MobInRegion (random_mob, map.tiles [(int)pos.x, (int)pos.y])) {
+						if (((pos.x <= 0) || (pos.y <= 0)) && (map.tiles.Length == 0)) {
 								mob_gefunden = false;
+						} else {
+								if (!MobInRegion (random_mob, map.tiles [(int)pos.x, (int)pos.y])) {
+										mob_gefunden = false;
+								}
 						}
 						if (mob_gefunden) {
 								random_mob.Position.x = (int)pos.x;

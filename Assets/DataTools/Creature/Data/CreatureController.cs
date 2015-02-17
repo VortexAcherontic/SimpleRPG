@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class CreatureController : MonoBehaviour {
 		// Nur für die Berechnung! 
@@ -41,12 +41,14 @@ public class CreatureController : MonoBehaviour {
 				ItemDataList DataListObj;
 				DataListObj = (ItemDataList)Resources.Load ("Items");
 				// Equipment richtig eintragen
+				Creat.InitalStats.Equipment = new List<ItemData> ();
 				if (Creat.InitalStats.Equipment_Strings != null) {
 						foreach (string tmpitem in Creat.InitalStats.Equipment_Strings) {
 								Creat.InitalStats.Equipment.Add (DataListObj.item_mit_name (tmpitem));
 						}
 				}
 				// Iventory richtig eintragen
+				Creat.InitalStats.Inventory = new List<ItemData> ();
 				if (Creat.InitalStats.Inventory_Strings != null) {
 						foreach (string tmpitem in Creat.InitalStats.Inventory_Strings) {
 								Creat.InitalStats.Inventory.Add (DataListObj.item_mit_name (tmpitem));

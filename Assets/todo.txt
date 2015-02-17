@@ -11,6 +11,7 @@
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen
 
 // Mechanik
+- password bestätigen bei charactererstellung
 - Player bekommt einen begleiter, der angreifen kann bzw ein tank (naja zumindest folgt er dem player schon mal)
 - shop websync einbauen (+ Max Stock?)
 - magiebuch einbauen (Magie Skills?)
