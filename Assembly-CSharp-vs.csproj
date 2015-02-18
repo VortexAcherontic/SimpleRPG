@@ -39,17 +39,16 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>E:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Programme/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>E:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Programme/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DataTools\Creature\Data\CreatureController.cs" />
      <Compile Include="Assets\DataTools\Creature\Data\CreatureDataClass.cs" />
      <Compile Include="Assets\DataTools\Creature\Data\CreatureDataList.cs" />
-     <Compile Include="Assets\DataTools\DataManager\CharacterCreator.cs" />
      <Compile Include="Assets\DataTools\DataManager\DataManager.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataClass.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataList.cs" />
@@ -82,7 +81,7 @@
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Import\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
-     <None Include="Assets\Player_Files\Credits.txt" />
+     <None Include="Assets\Credits.txt" />
      <None Include="Assets\todo.txt" />
      <None Include="Assets\Import\Standard Assets\Tessellation Shaders\BumpedSpecularSmooth.shader" />
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />

@@ -29,6 +29,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				if (me.IsLoaded) {
 						CheckKeyInput ();
 						CheckLevelUp ();
+						CheckDeath ();
 				}
 		}
 	
@@ -563,22 +564,25 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		void GUIStatsOverview () {
 				BarBerechnung ();
-				Debug.Log ("Barwerte" + hpbar + "/" + manabar + "/" + xpbar);
 				// Anzeigen für Health, Mana und XP später durch grafische Elemente zu ersetzen.
 				GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Health: " + me.Creat.HP + " HP");
 				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + me.Creat.MP + "MP");
 				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + me.Creat.XP + "XP");
 				GUI.Label (new Rect (5, Screen.height - 155, 170, 20), "Gold: " + me.Creat.Gold + "G");
 				GUI.Label (new Rect (5, Screen.height - 105, 170, 20), "Battlemode: " + me.Creat.Stance.ToString ());
+		
 				//HPBAR
-				GUI.DrawTexture (new Rect (5, 5, 250, 50), HpBar_empty);
-				GUI.DrawTexture (new Rect (5, 5, 250 * hpbar / 100, 50), HpBar_full);
+				Rect Bar_Pos = new Rect (5, 5, (HpBar_empty.width / 4), (HpBar_empty.height / 4));
+				GUI.DrawTexture (Bar_Pos, HpBar_empty, ScaleMode.ScaleAndCrop);
+				GUI.DrawTexture (new Rect (Bar_Pos.position.x + (Bar_Pos.width - Bar_Pos.width * hpbar / 100), Bar_Pos.position.y, Bar_Pos.width * hpbar / 100, Bar_Pos.height), HpBar_full, ScaleMode.ScaleAndCrop);
 				//MANABAR
-				GUI.DrawTexture (new Rect (5, 60, 250, 50), ManaBar_empty);
-				GUI.DrawTexture (new Rect (5, 60, 250 * manabar / 100, 50), ManaBar_full);
+				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
+				GUI.DrawTexture (Bar_Pos, ManaBar_empty, ScaleMode.ScaleAndCrop);
+				GUI.DrawTexture (new Rect (Bar_Pos.position.x + (Bar_Pos.width - Bar_Pos.width * hpbar / 100), Bar_Pos.position.y, Bar_Pos.width * manabar / 100, Bar_Pos.height), ManaBar_full, ScaleMode.ScaleAndCrop);
 				//XPBAR
-				GUI.DrawTexture (new Rect (5, 115, 250, 50), XpBar_empty);
-				GUI.DrawTexture (new Rect (5, 115, 250 * xpbar / 100, 50), XpBar_full);
+				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
+				GUI.DrawTexture (Bar_Pos, XpBar_empty, ScaleMode.ScaleAndCrop);
+				GUI.DrawTexture (new Rect (Bar_Pos.position.x + (Bar_Pos.width - Bar_Pos.width * hpbar / 100), Bar_Pos.position.y, Bar_Pos.width * xpbar / 100, Bar_Pos.height), XpBar_full, ScaleMode.ScaleAndCrop);
 		
 				ItemData Quiver = null;
 				if (me.Creat.Equipment.Count > 0) {

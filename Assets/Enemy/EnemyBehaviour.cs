@@ -4,9 +4,6 @@ using System.Collections.Generic;
 public class EnemyBehaviour : MonoBehaviour {
 		EnemySpawn mobspawn;
 		CreatureController me;
-		
-		float attackcooldown = 1.0f;
-		float attacktimer;	
 		PlayerBehaviour p001;
 		
 		float temp_x;

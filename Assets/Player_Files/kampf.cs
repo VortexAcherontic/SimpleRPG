@@ -10,8 +10,6 @@ public class kampf : MonoBehaviour {
 		string angriffsrichtung;
 		BattleStance angriffstil;
 		bool attack = false;
-		int phy_damage;
-		int mag_damage;
 	
 		float attack_cooldown = 0.5f; // Veilleicht abhänig von agi? Gewicht? Waffe!
 		float attack_timer = 0;
@@ -94,9 +92,13 @@ public class kampf : MonoBehaviour {
 										int magdmg = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
 				
 										//physischer Schaden
-										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
+										if (phydmg >= 0) {
+												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
+										}
 										//magischer Schaden
-										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
+										if (magdmg >= 0) {
+												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
+										}
 				
 										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
 										attack = false;
@@ -135,11 +137,11 @@ public class kampf : MonoBehaviour {
 										int magdmg = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
 				
 										//physischer Schaden
-										if (phy_damage >= tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor) {
+										if (phydmg >= 0) {
 												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
 										}
 										//magischer Schaden
-										if (mag_damage >= tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor) {
+										if (magdmg >= 0) {
 												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
 										}
 				
@@ -175,7 +177,14 @@ public class kampf : MonoBehaviour {
 										magdmg_tmp = p001.me.Creat.MagAttack - tmp_monster.GetComponent<CreatureController> ().Creat.MagArmor;
 										int magdmg = (int)magdmg_tmp;			
 										//magischer Schaden
-										tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
+										//physischer Schaden
+										if (phydmg >= 0) {
+												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= phydmg;
+										}
+										//magischer Schaden
+										if (magdmg >= 0) {
+												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
+										}
 				
 										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
 										p001.me.Creat.MP -= 200;

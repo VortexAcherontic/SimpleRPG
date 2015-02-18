@@ -12,13 +12,6 @@ public class mainmenu : MonoBehaviour {
 		public bool gameloaded = false;
 		public Texture bg;
 		PlayerBehaviour p001;
-		
-		bool ismoving = false;
-		float movecooldown = 0.2f;
-		float movetimer;
-		float regcooldown = 0.5f;
-		float regtimer;
-		bool isregging = false;
 		public bool debugmode = false;
 		
 		// Use this for initialization

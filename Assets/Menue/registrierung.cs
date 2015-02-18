@@ -68,13 +68,6 @@ public class registrierung : MonoBehaviour {
 				WWW web = new WWW (Datenbank_URL + "login.php", LoginForm);
 				yield return web;
 				if (web.text != "-1") {
-						// Login Gut!
-						Debug.Log (web.text);
-						string[] zeilen = web.text.Split ("\n" [0]);
-						string[] tmp_spalten = new string[0];
-						foreach (string zeile in zeilen) {
-								tmp_spalten = zeile.Split (";" [0]);
-						}
 						//Player_ID = int.Parse (tmp_spalten [0]);
 						CreateEmptyNewPlayer ();
 						step = 2;
