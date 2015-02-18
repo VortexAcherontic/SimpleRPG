@@ -565,11 +565,21 @@ public class PlayerBehaviour : MonoBehaviour {
 		void GUIStatsOverview () {
 				BarBerechnung ();
 				// Anzeigen für Health, Mana und XP später durch grafische Elemente zu ersetzen.
-				GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Health: " + me.Creat.HP + " HP");
-				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + me.Creat.MP + "MP");
-				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + me.Creat.XP + "XP");
-				GUI.Label (new Rect (5, Screen.height - 155, 170, 20), "Gold: " + me.Creat.Gold + "G");
-				GUI.Label (new Rect (5, Screen.height - 105, 170, 20), "Battlemode: " + me.Creat.Stance.ToString ());
+				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Gold: " + me.Creat.Gold + "G");
+				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Battlemode: " + me.Creat.Stance.ToString ());
+		
+				// Quiver Inhalt
+				ItemData Quiver = null;
+				if (me.Creat.Equipment.Count > 0) {
+						foreach (ItemData c_obj in me.Creat.Equipment) {
+								if (c_obj.Type == ItemType.utility) {
+										Quiver = c_obj;
+								}
+						}
+				}
+				if (Quiver != null) {
+						GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Cap: " + Quiver.Capacity + " / " + Quiver.MaxCapacity);
+				}
 		
 				//HPBAR
 				Rect Bar_Pos = new Rect (5, 5, (HpBar_empty.width / 4), (HpBar_empty.height / 4));
@@ -584,31 +594,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				GUI.DrawTexture (Bar_Pos, XpBar_empty, ScaleMode.ScaleAndCrop);
 				GUI.DrawTexture (new Rect (Bar_Pos.position.x + (Bar_Pos.width - Bar_Pos.width * hpbar / 100), Bar_Pos.position.y, Bar_Pos.width * xpbar / 100, Bar_Pos.height), XpBar_full, ScaleMode.ScaleAndCrop);
 		
-				ItemData Quiver = null;
-				if (me.Creat.Equipment.Count > 0) {
-						foreach (ItemData c_obj in me.Creat.Equipment) {
-								if (c_obj.Type == ItemType.utility) {
-										Quiver = c_obj;
-								}
-						}
-				}
-				if (Quiver != null) {
-						GUI.Label (new Rect (5, Screen.height - 130, 170, 20), "Cap: " + Quiver.Capacity + " / " + Quiver.MaxCapacity);
-				}
-		
-				//Debug um Regeneration und Lvl up zu testen
-				GUI.Label (new Rect (5, Screen.height - 200, 170, 20), "Pos: " + me.Creat.Position.x + "/" + me.Creat.Position.y);
-				/*		
-		if (GUI.Button (new Rect (5, Screen.height - 105, 170, 20), "Hp down")) {
-						hp = maxhp / 2;
-				}
-				if (GUI.Button (new Rect (5, Screen.height - 130, 170, 20), "Mana down")) {
-						mana = maxmana / 2;
-				}
-				if (GUI.Button (new Rect (5, Screen.height - 155, 170, 20), "Xp UP")) {
-						xp += 20;
-				}
-		*/
+				
 		}
 		void GUINotification () {
 				float tmp_pos_x = 0f;
