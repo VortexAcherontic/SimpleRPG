@@ -1,15 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player_Files\Player_Save.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player_Files\PlayerBehaviour.cs">
     <Files>
-      <File FileName="Assets\DataTools\DataManager\DataManager.cs" Line="39" Column="32" />
-      <File FileName="Assets\todo.txt" Line="1" Column="1" />
-      <File FileName="Assets\Player_Files\Player_Save.cs" Line="80" Column="5" />
-      <File FileName="Assets\Menue\mainmenu.cs" Line="71" Column="126" />
-      <File FileName="Assets\Menue\registrierung.cs" Line="51" Column="23" />
-      <File FileName="Assets\Enemy\EnemySpawn.cs" Line="73" Column="63" />
-      <File FileName="Assets\Map\TileMap.cs" Line="65" Column="31" />
-      <File FileName="Assets\Player_Files\PlayerBehaviour.cs" Line="308" Column="77" />
+      <File FileName="Assets\Player_Files\PlayerBehaviour.cs" Line="583" Column="32" />
+      <File FileName="Assets\Enemy\EnemyBehaviour.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

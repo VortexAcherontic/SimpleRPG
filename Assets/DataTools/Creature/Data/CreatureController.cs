@@ -289,7 +289,7 @@ public class CreatureController : MonoBehaviour {
 								Creat.PhyAttack += Creat.Dex * 3;
 								break;
 						case BattleStance.magic:
-								float magdmg_tmp = (Creat.MaxMP / Creat.Str);
+								float magdmg_tmp = (Creat.MaxMP / (Creat.Str + 1));
 								magdmg_tmp *= (1 - (((Creat.MP + 0.001f) - 500) / (Creat.MaxMP + 0.001f)));
 								Creat.MagAttack += (int)magdmg_tmp;
 								Creat.MagAttack += Creat.Int * 5;

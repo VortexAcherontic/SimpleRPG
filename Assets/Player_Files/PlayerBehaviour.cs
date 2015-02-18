@@ -540,13 +540,45 @@ public class PlayerBehaviour : MonoBehaviour {
 		
 				}
 		}
+	
+		public Texture2D HpBar_empty;
+		public Texture2D ManaBar_empty;
+		public Texture2D HpBar_full;
+		public Texture2D ManaBar_full;
+		public Texture2D XpBar_empty;
+		public Texture2D XpBar_full;
+	
+		int hpbar = 100;
+		int manabar = 100;
+		int xpbar = 0;
+	
+		void BarBerechnung () {
+				if (me.Creat.MaxHP > 0) {
+						hpbar = (100 / me.Creat.MaxHP) * me.Creat.HP;
+						manabar = (100 / me.Creat.MaxMP) * me.Creat.MP;
+						xpbar = (100 / (100 * (me.Creat.Level + 1))) * me.Creat.XP;
+		
+				}
+		}
+	
 		void GUIStatsOverview () {
+				BarBerechnung ();
 				// Anzeigen für Health, Mana und XP später durch grafische Elemente zu ersetzen.
 				GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Health: " + me.Creat.HP + " HP");
 				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + me.Creat.MP + "MP");
 				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Experience: " + me.Creat.XP + "XP");
 				GUI.Label (new Rect (5, Screen.height - 155, 170, 20), "Gold: " + me.Creat.Gold + "G");
 				GUI.Label (new Rect (5, Screen.height - 105, 170, 20), "Battlemode: " + me.Creat.Stance.ToString ());
+				//HPBAR
+				GUI.DrawTexture (new Rect (5, 5, 250, 50), HpBar_empty);
+				GUI.DrawTexture (new Rect (5, 5, 250 * hpbar / 100, 50), HpBar_full);
+				//MANABAR
+				GUI.DrawTexture (new Rect (5, 60, 250, 50), ManaBar_empty);
+				GUI.DrawTexture (new Rect (5, 60, 250 * manabar / 100, 50), ManaBar_full);
+				//XPBAR
+				GUI.DrawTexture (new Rect (5, 115, 250, 50), XpBar_empty);
+				GUI.DrawTexture (new Rect (5, 115, 250 * xpbar / 100, 50), XpBar_full);
+		
 				ItemData Quiver = null;
 				if (me.Creat.Equipment.Count > 0) {
 						foreach (ItemData c_obj in me.Creat.Equipment) {
