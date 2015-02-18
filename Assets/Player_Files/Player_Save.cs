@@ -160,6 +160,7 @@ public class Player_Save : MonoBehaviour {
 				transform.FindChild ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 				gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
+				gameObject.GetComponent<PlayerBehaviour> ().me.Creat.IsRegAble = true;
 		}
 	
 		public IEnumerator Login (string name, string password) {

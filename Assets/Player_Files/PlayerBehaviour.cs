@@ -82,7 +82,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		}
 		void CheckDeath () {
 				if (me.Creat.HP <= 0) {
-						Death = true;
+						Application.LoadLevel ("GameOverScreen");
 				}
 		}
 	
@@ -548,21 +548,22 @@ public class PlayerBehaviour : MonoBehaviour {
 		public Texture2D XpBar_empty;
 		public Texture2D XpBar_full;
 	
-		int hpbar = 100;
-		int manabar = 100;
-		int xpbar = 0;
+		float hpbar = 100;
+		float manabar = 100;
+		float xpbar = 0;
 	
 		void BarBerechnung () {
 				if (me.Creat.MaxHP > 0) {
-						hpbar = (100 / me.Creat.MaxHP) * me.Creat.HP;
-						manabar = (100 / me.Creat.MaxMP) * me.Creat.MP;
-						xpbar = (100 / (100 * (me.Creat.Level + 1))) * me.Creat.XP;
+						hpbar = (100 / (me.Creat.MaxHP + 0.00001f)) * (me.Creat.HP + 0.0001f);
+						manabar = (100 / (0.00001f + me.Creat.MaxMP)) * (me.Creat.MP + 0.00001f);
+						xpbar = (100 / (100 * ((0.00001f + me.Creat.Level) + 1))) * (me.Creat.XP + 0.00001f);
 		
 				}
 		}
 	
 		void GUIStatsOverview () {
 				BarBerechnung ();
+				Debug.Log ("Barwerte" + hpbar + "/" + manabar + "/" + xpbar);
 				// Anzeigen für Health, Mana und XP später durch grafische Elemente zu ersetzen.
 				GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Health: " + me.Creat.HP + " HP");
 				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Mana :" + me.Creat.MP + "MP");

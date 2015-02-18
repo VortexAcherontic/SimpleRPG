@@ -12,11 +12,30 @@ public class CompanionBehavior : MonoBehaviour {
 		}
 	
 		void Update () {
-				followPlayer ();
+				if (followtoggle) {
+						followPlayer ();
+				}
+				if (companiontoggle) {/*spawn das viech*/
+				} else {
+						Destroy (gameObject);
+				}
 		}
 
 		void followPlayer () {
 				me.MoveTo (p001.me.Creat.lastPos);
 		}
 
+		bool followtoggle = true;
+		bool companiontoggle = false;
+	
+		void toggleCompanion () {
+				if (Input.GetKeyDown ("c")) {
+						companiontoggle = ! companiontoggle;
+				}
+		}
+		void followToggle () {
+				if (Input.GetKeyDown ("f")) {
+						followtoggle = ! followtoggle;
+				}
+		}
 }

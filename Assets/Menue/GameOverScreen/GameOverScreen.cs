@@ -22,6 +22,18 @@ public class GameOverScreen : MonoBehaviour {
 				centeredStyle.alignment = TextAnchor.UpperCenter;
 				if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 30 + 100, 100, 30), "Restart", centeredStyle)) {
 						Application.LoadLevel (0);
+			
+
+			
 				}
+				centeredStyle = GUI.skin.GetStyle ("Label");
+				centeredStyle.alignment = TextAnchor.UpperCenter;
+				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 280, 400, 30), "<color=white>Thanks for playing SimpleRPG!</color>", centeredStyle);
+				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 250, 400, 30), "");
+		
+				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 220, 400, 30), "<color=white>Istani | Programmer</color>", centeredStyle);
+				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 190, 400, 30), "<color=white>Defender833 | Concept | Programmer</color>", centeredStyle);
+				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 160, 400, 30), "<color=white>Vortex | Design</color>", centeredStyle);
+				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 130, 400, 30), "<color=white>Craftgoll | Design</color>", centeredStyle);
 		}
 }

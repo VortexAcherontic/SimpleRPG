@@ -6,7 +6,6 @@
 // Bug Fixes
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
 - Items von classen in structs umschreiben
-- gameover screen wieder fixen
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen
 
 // Mechanik
@@ -27,8 +26,7 @@
 // GUI
 - mehr maps zusammenbasteln
 - generell laden und speichern einbauen in einer taverne statt im inventar
-- insgesamt nen gamescreen basteln (3 progressbars für HP MP und XP) [anzeigen sind schon mal da :D]
 - Angriff/Schaden Anzeigen?!? (Gerade für Fernkampf/Magie bestimmt nicht schlecht - Schaden nur wenn touch)
 
 //Sonstiges
--Credits hinzufügen
+- companion temporär disabled
