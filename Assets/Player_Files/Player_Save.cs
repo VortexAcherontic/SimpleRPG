@@ -11,7 +11,10 @@ public class Player_Save : MonoBehaviour {
 		// Klappt erstmal nur in UNITY!
 		
 		private Server _server_ = new Server ();
+		bool IsLoading = false;
 		int id;
+	
+	
 		public void Save () {
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 				Game.Creature = gameObject.GetComponent<PlayerBehaviour> ().me.Creat;
@@ -38,15 +41,15 @@ public class Player_Save : MonoBehaviour {
 		 */
 		
 				//stats
-				characterObj.Add ("Str", Game.Creature.Str);
-				characterObj.Add ("Dex", Game.Creature.Dex);
-				characterObj.Add ("Agi", Game.Creature.Agi);
-				characterObj.Add ("Int", Game.Creature.Int);
+				characterObj.Add ("Str", Game.Creature.InitalStats.Str);
+				characterObj.Add ("Dex", Game.Creature.InitalStats.Dex);
+				characterObj.Add ("Agi", Game.Creature.InitalStats.Agi);
+				characterObj.Add ("Int", Game.Creature.InitalStats.Int);
 		
-				characterObj.Add ("Vit", Game.Creature.Vit);
-				characterObj.Add ("Luc", Game.Creature.Luc);
+				characterObj.Add ("Vit", Game.Creature.InitalStats.Vit);
+				characterObj.Add ("Luc", Game.Creature.InitalStats.Luc);
 		
-				characterObj.Add ("LVL", Game.Creature.Level);
+				characterObj.Add ("LVL", Game.Creature.InitalStats.Level);
 				characterObj.Add ("Stats", Game.Creature.StatPoints);
 				characterObj.Add ("stance", (int)Game.Creature.Stance);
 		
@@ -72,34 +75,49 @@ public class Player_Save : MonoBehaviour {
 		
 				StartCoroutine (_server_.SaveData (id, _server_.data));
 		}
-	
-		public IEnumerator Load () {
-				Debug.Log ("Load Start");
-				yield return StartCoroutine (_server_.GetData (id));
-				//Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
-				Debug.Log (_server_.data.ToString ());
-				if (_server_.data.ContainsKey ("character")) {	
-						Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
-				
-				
-						Game.Creature.Position = _server_.GetVector2 ("character", "position");
-						Game.Creature.Gold = (int)_server_.data.GetObject ("character").GetNumber ("gold");
-						Game.Creature.XP = (int)_server_.data.GetObject ("character").GetNumber ("xp");
+		public void LoadVorarbeit () {
+				Debug.Log ("Daten werden geladen");
+				StartCoroutine (_server_.GetData (id));
+				IsLoading = true;
 		
-						Game.Creature.Str = (int)_server_.data.GetObject ("character").GetNumber ("Str");
-						Game.Creature.Dex = (int)_server_.data.GetObject ("character").GetNumber ("Dex");
-						Game.Creature.Agi = (int)_server_.data.GetObject ("character").GetNumber ("Agi");
-						Game.Creature.Int = (int)_server_.data.GetObject ("character").GetNumber ("Int");
-		
-						Game.Creature.Vit = (int)_server_.data.GetObject ("character").GetNumber ("Vit");
-						Game.Creature.Luc = (int)_server_.data.GetObject ("character").GetNumber ("Luc");
-		
-						Game.Creature.Level = (int)_server_.data.GetObject ("character").GetNumber ("LVL");
-						Game.Creature.StatPoints = (int)_server_.data.GetObject ("character").GetNumber ("Stats");
-						Game.Creature.Stance = (BattleStance)_server_.data.GetObject ("character").GetNumber ("stance");
-		
-						gameObject.GetComponent<PlayerBehaviour> ().me.Creat = Game.Creature;
+		}
+		void Update () {
+				if (IsLoading) {
+						if (_server_.data.ContainsKey ("character")) {
+								Load ();
+								IsLoading = false;
+						} else {
+								Debug.Log (_server_.data.ToString ());
+						}
 				}
+		}
+	
+		public void Load () {
+				Debug.Log ("Load Start");
+				
+				//Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
+				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
+				
+				
+				Game.Creature.InitalStats.Position = _server_.GetVector2 ("character", "position");
+				Game.Creature.InitalStats.Gold = (int)_server_.data.GetObject ("character").GetNumber ("gold");
+				Game.Creature.InitalStats.XP = (int)_server_.data.GetObject ("character").GetNumber ("xp");
+		
+				Game.Creature.InitalStats.Str = (int)_server_.data.GetObject ("character").GetNumber ("Str");
+				Game.Creature.InitalStats.Dex = (int)_server_.data.GetObject ("character").GetNumber ("Dex");
+				Game.Creature.InitalStats.Agi = (int)_server_.data.GetObject ("character").GetNumber ("Agi");
+				Game.Creature.InitalStats.Int = (int)_server_.data.GetObject ("character").GetNumber ("Int");
+		
+				Game.Creature.InitalStats.Vit = (int)_server_.data.GetObject ("character").GetNumber ("Vit");
+				Game.Creature.InitalStats.Luc = (int)_server_.data.GetObject ("character").GetNumber ("Luc");
+		
+				Game.Creature.InitalStats.Level = (int)_server_.data.GetObject ("character").GetNumber ("LVL");
+				Game.Creature.InitalStats.StatPoints = (int)_server_.data.GetObject ("character").GetNumber ("Stats");
+				Game.Creature.InitalStats.Stance = (BattleStance)_server_.data.GetObject ("character").GetNumber ("stance");
+		
+				gameObject.GetComponent<PlayerBehaviour> ().me.Creat = Game.Creature;
+				gameObject.GetComponent<PlayerBehaviour> ().me.Create (Game.Creature.InitalStats);
+				
 				transform.FindChild ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 				gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
@@ -122,13 +140,13 @@ public class Player_Save : MonoBehaviour {
 						string[] data = web.text.Split (';');
 						if (data [1] == "false") {
 								id = int.Parse (data [0]);
-								//StartCoroutine (Save ());
+								Save ();
 								transform.FindChild ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
 								GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 								//gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
 						} else {
 								id = int.Parse (data [0]);
-								StartCoroutine (Load ());
+								LoadVorarbeit ();
 						}
 				}
 		}

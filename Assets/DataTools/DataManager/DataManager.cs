@@ -18,13 +18,14 @@ namespace DataManager {
 
 						WWWForm form = new WWWForm ();
 						form.AddField ("id", id);
-			
+						
 						WWW www = new WWW (url, form);
 						yield return www;
 
 						if (www.size <= 2) {
 								yield return null;
 						} else {
+								Debug.LogWarning ("Load Text: " + www.text);
 								data = JSONObject.Parse (www.text);
 						}
 				}

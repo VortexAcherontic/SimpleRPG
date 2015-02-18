@@ -27,6 +27,8 @@ public class CreatureController : MonoBehaviour {
 		public void Create (CreatureOriginData InitStat) {
 				Creat.lastPos = new Vector2 (0, 0);
 				Creat.InitalStats = InitStat;
+				Creat.StatPoints = Creat.InitalStats.StatPoints;
+				Creat.Stance = Creat.InitalStats.Stance;
 				Creat.Position = Creat.InitalStats.Position;
 				if ((Creat.Position.y > 0) && (Creat.Position.x > 0)) {
 						transform.position = Creat.Position;
