@@ -22,7 +22,6 @@ public class Player_Save : MonoBehaviour {
 				//AssetDatabase.CreateAsset (Game, "Assets/Resources/" + Game.Creature.Name + ".asset");
 		
 				JSONObject characterObj = new JSONObject ();
-				JSONObject position = new JSONObject ();
 		
 				characterObj.Add ("position", _server_.MakeVector2 (Game.Creature.Position));
 				characterObj.Add ("gold", Game.Creature.Gold);
@@ -66,8 +65,35 @@ public class Player_Save : MonoBehaviour {
 		 
 		 */
 		
-				characterObj.Add ("equip", Game.Creature.Equipment_Strings.ToString ());
-				characterObj.Add ("inventory", Game.Creature.Inventory_Strings.ToString ());
+				JSONObject Equipment = new JSONObject ();
+				int i = 0;
+				Game.Creature.Equipment_Strings = new string[Game.Creature.Equipment.Count];
+				foreach (ItemData tmpobj in Game.Creature.Equipment) {
+						Game.Creature.Equipment_Strings [i] = tmpobj.Name;
+						i++;
+				}
+				Equipment.Add ("count", Game.Creature.Equipment.Count);
+				i = 0;
+				foreach (string tmpstr in Game.Creature.Equipment_Strings) {
+						Equipment.Add (i.ToString (), tmpstr);
+						i++;
+				}
+				characterObj.Add ("equip", Equipment);
+		
+				JSONObject Inventory = new JSONObject ();
+				i = 0;
+				Game.Creature.Inventory_Strings = new string[Game.Creature.Inventory.Count];
+				foreach (ItemData tmpobj in Game.Creature.Inventory) {
+						Game.Creature.Inventory_Strings [i] = tmpobj.Name;
+						i++;
+				}
+				Inventory.Add ("count", Game.Creature.Inventory.Count);
+				i = 0;
+				foreach (string tmpstr in Game.Creature.Inventory_Strings) {
+						Inventory.Add (i.ToString (), tmpstr);
+						i++;
+				}
+				characterObj.Add ("inventory", Inventory);
 		
 				_server_.data.Add ("character", characterObj);
 		
@@ -76,7 +102,6 @@ public class Player_Save : MonoBehaviour {
 				StartCoroutine (_server_.SaveData (id, _server_.data));
 		}
 		public void LoadVorarbeit () {
-				Debug.Log ("Daten werden geladen");
 				StartCoroutine (_server_.GetData (id));
 				IsLoading = true;
 		
@@ -87,13 +112,12 @@ public class Player_Save : MonoBehaviour {
 								Load ();
 								IsLoading = false;
 						} else {
-								Debug.Log (_server_.data.ToString ());
+								//Debug.Log (_server_.data.ToString ());
 						}
 				}
 		}
 	
 		public void Load () {
-				Debug.Log ("Load Start");
 				
 				//Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
@@ -115,6 +139,21 @@ public class Player_Save : MonoBehaviour {
 				Game.Creature.InitalStats.StatPoints = (int)_server_.data.GetObject ("character").GetNumber ("Stats");
 				Game.Creature.InitalStats.Stance = (BattleStance)_server_.data.GetObject ("character").GetNumber ("stance");
 		
+				int i = 0;
+				int max_i = 0;
+				// Equipment
+				max_i = (int)_server_.data.GetObject ("character").GetObject ("equip").GetNumber ("count");
+				Game.Creature.InitalStats.Equipment_Strings = new string[max_i];
+				for (i=0; i<max_i; i++) {
+						Game.Creature.InitalStats.Equipment_Strings [i] = _server_.data.GetObject ("character").GetObject ("equip").GetString (i.ToString ());
+				}
+				// Inventory
+				max_i = (int)_server_.data.GetObject ("character").GetObject ("inventory").GetNumber ("count");
+				Game.Creature.InitalStats.Inventory_Strings = new string[max_i];
+				for (i=0; i<max_i; i++) {
+						Game.Creature.InitalStats.Inventory_Strings [i] = _server_.data.GetObject ("character").GetObject ("inventory").GetString (i.ToString ());
+				}
+		
 				gameObject.GetComponent<PlayerBehaviour> ().me.Creat = Game.Creature;
 				gameObject.GetComponent<PlayerBehaviour> ().me.Create (Game.Creature.InitalStats);
 				
@@ -124,15 +163,12 @@ public class Player_Save : MonoBehaviour {
 		}
 	
 		public IEnumerator Login (string name, string password) {
-				Debug.Log ("Try Login");
 				string _host_ = "http://www.cards-of-destruction.com/SimpleRpg/login.php";	
 				WWWForm form = new WWWForm ();
 				form.AddField ("user_name", name);
 				form.AddField ("user_password", password);
 				WWW web = new WWW (_host_, form);
-				Debug.Log ("Abfrage los");
 				yield return web;
-				Debug.Log ("Ende " + web.text);
 			
 				if (web.size <= 2) {
 						// Mach nichts

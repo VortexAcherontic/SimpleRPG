@@ -41,7 +41,7 @@ namespace DataManager {
 						form.AddField ("data", dat.ToString ());
 						WWW www = new WWW (url, form);
 						yield return www;
-						Debug.Log (www.text);
+						Debug.LogWarning ("Save Text: " + dat.ToString ());
 				}
 /*
 		//warum farbe?
