@@ -7,7 +7,6 @@
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
 - Items von classen in structs umschreiben
 - gameover screen wieder fixen
-- companion nicht passierbar
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen
 
 // Mechanik
@@ -33,7 +32,3 @@
 
 //Sonstiges
 -Credits hinzufügen
-
-Ich bin immer mehr am überlegen ob das mit dem Login so ne Coole Sache ist... 
-Das Online speichern ist zwar cool, aber relativ nervig wenn man bestimmte Sachen steuern will... (z.b. Quests)
-Aber uns fällt wie immer schon was ein XD

@@ -18,13 +18,14 @@ namespace DataManager {
 
 						WWWForm form = new WWWForm ();
 						form.AddField ("id", id);
-			
+						
 						WWW www = new WWW (url, form);
 						yield return www;
 
 						if (www.size <= 2) {
 								yield return null;
 						} else {
+								Debug.LogWarning ("Load Text: " + www.text);
 								data = JSONObject.Parse (www.text);
 						}
 				}
@@ -40,7 +41,7 @@ namespace DataManager {
 						form.AddField ("data", dat.ToString ());
 						WWW www = new WWW (url, form);
 						yield return www;
-						Debug.Log (www.text);
+						Debug.LogWarning ("Save Text: " + dat.ToString ());
 				}
 /*
 		//warum farbe?

@@ -11,7 +11,10 @@ public class Player_Save : MonoBehaviour {
 		// Klappt erstmal nur in UNITY!
 		
 		private Server _server_ = new Server ();
+		bool IsLoading = false;
 		int id;
+	
+	
 		public void Save () {
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 				Game.Creature = gameObject.GetComponent<PlayerBehaviour> ().me.Creat;
@@ -19,7 +22,6 @@ public class Player_Save : MonoBehaviour {
 				//AssetDatabase.CreateAsset (Game, "Assets/Resources/" + Game.Creature.Name + ".asset");
 		
 				JSONObject characterObj = new JSONObject ();
-				JSONObject position = new JSONObject ();
 		
 				characterObj.Add ("position", _server_.MakeVector2 (Game.Creature.Position));
 				characterObj.Add ("gold", Game.Creature.Gold);
@@ -38,15 +40,15 @@ public class Player_Save : MonoBehaviour {
 		 */
 		
 				//stats
-				characterObj.Add ("Str", Game.Creature.Str);
-				characterObj.Add ("Dex", Game.Creature.Dex);
-				characterObj.Add ("Agi", Game.Creature.Agi);
-				characterObj.Add ("Int", Game.Creature.Int);
+				characterObj.Add ("Str", Game.Creature.InitalStats.Str);
+				characterObj.Add ("Dex", Game.Creature.InitalStats.Dex);
+				characterObj.Add ("Agi", Game.Creature.InitalStats.Agi);
+				characterObj.Add ("Int", Game.Creature.InitalStats.Int);
 		
-				characterObj.Add ("Vit", Game.Creature.Vit);
-				characterObj.Add ("Luc", Game.Creature.Luc);
+				characterObj.Add ("Vit", Game.Creature.InitalStats.Vit);
+				characterObj.Add ("Luc", Game.Creature.InitalStats.Luc);
 		
-				characterObj.Add ("LVL", Game.Creature.Level);
+				characterObj.Add ("LVL", Game.Creature.InitalStats.Level);
 				characterObj.Add ("Stats", Game.Creature.StatPoints);
 				characterObj.Add ("stance", (int)Game.Creature.Stance);
 		
@@ -63,8 +65,35 @@ public class Player_Save : MonoBehaviour {
 		 
 		 */
 		
-				characterObj.Add ("equip", Game.Creature.Equipment_Strings.ToString ());
-				characterObj.Add ("inventory", Game.Creature.Inventory_Strings.ToString ());
+				JSONObject Equipment = new JSONObject ();
+				int i = 0;
+				Game.Creature.Equipment_Strings = new string[Game.Creature.Equipment.Count];
+				foreach (ItemData tmpobj in Game.Creature.Equipment) {
+						Game.Creature.Equipment_Strings [i] = tmpobj.Name;
+						i++;
+				}
+				Equipment.Add ("count", Game.Creature.Equipment.Count);
+				i = 0;
+				foreach (string tmpstr in Game.Creature.Equipment_Strings) {
+						Equipment.Add (i.ToString (), tmpstr);
+						i++;
+				}
+				characterObj.Add ("equip", Equipment);
+		
+				JSONObject Inventory = new JSONObject ();
+				i = 0;
+				Game.Creature.Inventory_Strings = new string[Game.Creature.Inventory.Count];
+				foreach (ItemData tmpobj in Game.Creature.Inventory) {
+						Game.Creature.Inventory_Strings [i] = tmpobj.Name;
+						i++;
+				}
+				Inventory.Add ("count", Game.Creature.Inventory.Count);
+				i = 0;
+				foreach (string tmpstr in Game.Creature.Inventory_Strings) {
+						Inventory.Add (i.ToString (), tmpstr);
+						i++;
+				}
+				characterObj.Add ("inventory", Inventory);
 		
 				_server_.data.Add ("character", characterObj);
 		
@@ -72,49 +101,74 @@ public class Player_Save : MonoBehaviour {
 		
 				StartCoroutine (_server_.SaveData (id, _server_.data));
 		}
-	
-		public IEnumerator Load () {
-				Debug.Log ("Load Start");
-				yield return StartCoroutine (_server_.GetData (id));
-				//Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
-				Debug.Log (_server_.data.ToString ());
-				if (_server_.data.ContainsKey ("character")) {	
-						Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
-				
-				
-						Game.Creature.Position = _server_.GetVector2 ("character", "position");
-						Game.Creature.Gold = (int)_server_.data.GetObject ("character").GetNumber ("gold");
-						Game.Creature.XP = (int)_server_.data.GetObject ("character").GetNumber ("xp");
+		public void LoadVorarbeit () {
+				StartCoroutine (_server_.GetData (id));
+				IsLoading = true;
 		
-						Game.Creature.Str = (int)_server_.data.GetObject ("character").GetNumber ("Str");
-						Game.Creature.Dex = (int)_server_.data.GetObject ("character").GetNumber ("Dex");
-						Game.Creature.Agi = (int)_server_.data.GetObject ("character").GetNumber ("Agi");
-						Game.Creature.Int = (int)_server_.data.GetObject ("character").GetNumber ("Int");
-		
-						Game.Creature.Vit = (int)_server_.data.GetObject ("character").GetNumber ("Vit");
-						Game.Creature.Luc = (int)_server_.data.GetObject ("character").GetNumber ("Luc");
-		
-						Game.Creature.Level = (int)_server_.data.GetObject ("character").GetNumber ("LVL");
-						Game.Creature.StatPoints = (int)_server_.data.GetObject ("character").GetNumber ("Stats");
-						Game.Creature.Stance = (BattleStance)_server_.data.GetObject ("character").GetNumber ("stance");
-		
-						gameObject.GetComponent<PlayerBehaviour> ().me.Creat = Game.Creature;
+		}
+		void Update () {
+				if (IsLoading) {
+						if (_server_.data.ContainsKey ("character")) {
+								Load ();
+								IsLoading = false;
+						} else {
+								//Debug.Log (_server_.data.ToString ());
+						}
 				}
+		}
+	
+		public void Load () {
+				
+				//Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
+				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
+				
+				
+				Game.Creature.InitalStats.Position = _server_.GetVector2 ("character", "position");
+				Game.Creature.InitalStats.Gold = (int)_server_.data.GetObject ("character").GetNumber ("gold");
+				Game.Creature.InitalStats.XP = (int)_server_.data.GetObject ("character").GetNumber ("xp");
+		
+				Game.Creature.InitalStats.Str = (int)_server_.data.GetObject ("character").GetNumber ("Str");
+				Game.Creature.InitalStats.Dex = (int)_server_.data.GetObject ("character").GetNumber ("Dex");
+				Game.Creature.InitalStats.Agi = (int)_server_.data.GetObject ("character").GetNumber ("Agi");
+				Game.Creature.InitalStats.Int = (int)_server_.data.GetObject ("character").GetNumber ("Int");
+		
+				Game.Creature.InitalStats.Vit = (int)_server_.data.GetObject ("character").GetNumber ("Vit");
+				Game.Creature.InitalStats.Luc = (int)_server_.data.GetObject ("character").GetNumber ("Luc");
+		
+				Game.Creature.InitalStats.Level = (int)_server_.data.GetObject ("character").GetNumber ("LVL");
+				Game.Creature.InitalStats.StatPoints = (int)_server_.data.GetObject ("character").GetNumber ("Stats");
+				Game.Creature.InitalStats.Stance = (BattleStance)_server_.data.GetObject ("character").GetNumber ("stance");
+		
+				int i = 0;
+				int max_i = 0;
+				// Equipment
+				max_i = (int)_server_.data.GetObject ("character").GetObject ("equip").GetNumber ("count");
+				Game.Creature.InitalStats.Equipment_Strings = new string[max_i];
+				for (i=0; i<max_i; i++) {
+						Game.Creature.InitalStats.Equipment_Strings [i] = _server_.data.GetObject ("character").GetObject ("equip").GetString (i.ToString ());
+				}
+				// Inventory
+				max_i = (int)_server_.data.GetObject ("character").GetObject ("inventory").GetNumber ("count");
+				Game.Creature.InitalStats.Inventory_Strings = new string[max_i];
+				for (i=0; i<max_i; i++) {
+						Game.Creature.InitalStats.Inventory_Strings [i] = _server_.data.GetObject ("character").GetObject ("inventory").GetString (i.ToString ());
+				}
+		
+				gameObject.GetComponent<PlayerBehaviour> ().me.Creat = Game.Creature;
+				gameObject.GetComponent<PlayerBehaviour> ().me.Create (Game.Creature.InitalStats);
+				
 				transform.FindChild ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 				gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
 		}
 	
 		public IEnumerator Login (string name, string password) {
-				Debug.Log ("Try Login");
 				string _host_ = "http://www.cards-of-destruction.com/SimpleRpg/login.php";	
 				WWWForm form = new WWWForm ();
 				form.AddField ("user_name", name);
 				form.AddField ("user_password", password);
 				WWW web = new WWW (_host_, form);
-				Debug.Log ("Abfrage los");
 				yield return web;
-				Debug.Log ("Ende " + web.text);
 			
 				if (web.size <= 2) {
 						// Mach nichts
@@ -122,13 +176,13 @@ public class Player_Save : MonoBehaviour {
 						string[] data = web.text.Split (';');
 						if (data [1] == "false") {
 								id = int.Parse (data [0]);
-								//StartCoroutine (Save ());
+								Save ();
 								transform.FindChild ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
 								GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 								//gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
 						} else {
 								id = int.Parse (data [0]);
-								StartCoroutine (Load ());
+								LoadVorarbeit ();
 						}
 				}
 		}
