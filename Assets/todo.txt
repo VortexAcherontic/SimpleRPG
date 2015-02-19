@@ -6,27 +6,32 @@
 // Bug Fixes
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
 - Items von classen in structs umschreiben
-- wenn monsterpos=companionpos dann kann man die monster nicht angreifen
+- wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 
 // Mechanik
+- questsfortschritt speichern / laden
+- tagebuch hinzufügen um quests im auge zu behalten
+- NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
+- Fractions? (Fraction vs Fraction ODER Creature vs Creature von Fraction?)
+
 - password bestätigen bei charactererstellung
-- Player bekommt einen begleiter, der angreifen kann bzw ein tank (naja zumindest folgt er dem player schon mal)
-- shop websync einbauen (+ Max Stock?)
 - magiebuch einbauen (Magie Skills?)
 - Elemente(resistenzen)?
 - Passive Skills?
+- Player bekommt einen begleiter, der angreifen kann bzw ein tank (naja zumindest folgt er dem player schon mal)
+
+- shop websync einbauen (+ Max Stock?)
 - Buffs/debuff/dot?
 - Events einbauen
-- quests
+
 - Mobs mit Fernkampf?
-- NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
 - battlemode 1vs1 einbauen (oder so... Multiplayer)
-- Fractions? (Fraction vs Fraction ODER Creature vs Creature von Fraction?)
+
 
 // GUI
-- mehr maps zusammenbasteln
+- mehr maps zusammenbasteln & aufbau/system ändern 
 - generell laden und speichern einbauen in einer taverne statt im inventar
 - Angriff/Schaden Anzeigen?!? (Gerade für Fernkampf/Magie bestimmt nicht schlecht - Schaden nur wenn touch)
 
 //Sonstiges
-- companion temporär disabled
+- companion temporär disabled weil er MIR AUF DEN SACK GEGANGEN IST!!!!!

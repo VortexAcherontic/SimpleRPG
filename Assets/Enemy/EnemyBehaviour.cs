@@ -6,6 +6,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		CreatureController me;
 		Sprite_CharController SC;
 		PlayerBehaviour p001;
+		QuestController QuestObj;
 		
 		float temp_x;
 		float temp_y;
@@ -19,6 +20,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		// Use this for initialization
 		void Start () {
 				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
+				QuestObj = GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestController> ();
 				me = gameObject.GetComponent<CreatureController> ();
 				SC = gameObject.GetComponentInChildren<Sprite_CharController> ();
 				mobspawn = GameObject.Find ("MonsterSpawner").GetComponent<EnemySpawn> ();
@@ -81,6 +83,7 @@ public class EnemyBehaviour : MonoBehaviour {
 						not.message = "Get " + me.Creat.XP + " XP";
 						p001.PickupList.Add (not);
 						
+						QuestObj.EnemyKilled (me.Creat.Name);
 						mobspawn.mobs--;			
 						Destroy (gameObject);
 			

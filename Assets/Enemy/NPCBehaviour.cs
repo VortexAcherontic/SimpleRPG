@@ -3,11 +3,13 @@ using System.Collections;
 
 public class NPCBehaviour : MonoBehaviour {
 	
+		QuestController QuestObj;
 		CreatureController me;
 		PlayerBehaviour p001;
 	
 		void Start () {
 				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
+				QuestObj = GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestController> ();
 				me = gameObject.GetComponent<CreatureController> ();
 		}
 	
@@ -40,6 +42,7 @@ public class NPCBehaviour : MonoBehaviour {
 		void Quest () {
 				if (Interacted ()) {
 						//Start quest;
+						QuestObj.NPCTalk (me.Creat.Name);
 						Debug.Log ("Quest angenommen!");
 				}	
 		}

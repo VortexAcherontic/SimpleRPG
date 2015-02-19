@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Programme/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>E:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Programme/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>E:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +52,8 @@
      <Compile Include="Assets\DataTools\DataManager\DataManager.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataClass.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataList.cs" />
+     <Compile Include="Assets\DataTools\Quest\Data\QuestData.cs" />
+     <Compile Include="Assets\DataTools\Quest\Data\QuestDataList.cs" />
      <Compile Include="Assets\Enemy\CompanionBehavior.cs" />
      <Compile Include="Assets\Enemy\EnemyBehaviour.cs" />
      <Compile Include="Assets\Enemy\EnemySpawn.cs" />
@@ -76,6 +78,8 @@
      <Compile Include="Assets\Player_Files\Player_Save.cs" />
      <Compile Include="Assets\Player_Files\Savegame.cs" />
      <Compile Include="Assets\Player_Files\kampf.cs" />
+     <Compile Include="Assets\Quests\QuestController.cs" />
+     <Compile Include="Assets\Quests\Story\Story.cs" />
      <None Include="Assets\Import\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Import\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Import\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
