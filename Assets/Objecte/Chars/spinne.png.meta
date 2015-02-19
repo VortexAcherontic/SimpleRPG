@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 43d6aa7acd42a2a4c8c823f73e432500
+guid: 9397885e8ff11cd48a352a81b17f8af7
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Hero_0
-    21300002: Hero_1
-    21300004: Hero_2
-    21300006: Hero_3
-    21300008: Hero_4
-    21300010: Hero_5
-    21300012: Hero_6
-    21300014: Hero_7
-    21300016: Hero_8
-    21300018: Hero_9
-    21300020: Hero_10
-    21300022: Hero_11
+    21300000: spinne_0
+    21300002: spinne_1
+    21300004: spinne_2
+    21300006: spinne_5
+    21300008: spinne_6
+    21300010: spinne_7
+    21300012: spinne_10
+    21300014: spinne_11
+    21300016: spinne_12
+    21300018: spinne_15
+    21300020: spinne_16
+    21300022: spinne_17
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,7 +55,37 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Hero_0
+    - name: spinne_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spinne_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 128
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spinne_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spinne_5
       rect:
         serializedVersion: 2
         x: 0
@@ -63,9 +93,9 @@ TextureImporter:
         width: 24
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_1
+    - name: spinne_6
       rect:
         serializedVersion: 2
         x: 24
@@ -73,9 +103,9 @@ TextureImporter:
         width: 24
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_2
+    - name: spinne_7
       rect:
         serializedVersion: 2
         x: 48
@@ -85,7 +115,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_3
+    - name: spinne_10
       rect:
         serializedVersion: 2
         x: 0
@@ -95,7 +125,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_4
+    - name: spinne_11
       rect:
         serializedVersion: 2
         x: 24
@@ -105,7 +135,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_5
+    - name: spinne_12
       rect:
         serializedVersion: 2
         x: 48
@@ -115,7 +145,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_6
+    - name: spinne_15
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_7
+    - name: spinne_16
       rect:
         serializedVersion: 2
         x: 24
@@ -135,41 +165,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_8
+    - name: spinne_17
       rect:
         serializedVersion: 2
         x: 48
         y: 32
-        width: 24
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_9
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 24
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_10
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 24
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_11
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
         width: 24
         height: 32
       alignment: 0

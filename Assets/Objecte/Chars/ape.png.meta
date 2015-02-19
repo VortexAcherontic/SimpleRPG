@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 43d6aa7acd42a2a4c8c823f73e432500
+guid: b52ce04123184164e88d0adcd63840b1
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Hero_0
-    21300002: Hero_1
-    21300004: Hero_2
-    21300006: Hero_3
-    21300008: Hero_4
-    21300010: Hero_5
-    21300012: Hero_6
-    21300014: Hero_7
-    21300016: Hero_8
-    21300018: Hero_9
-    21300020: Hero_10
-    21300022: Hero_11
+    21300000: ape_0
+    21300002: ape_1
+    21300004: ape_2
+    21300006: ape_3
+    21300008: ape_4
+    21300010: ape_5
+    21300012: ape_6
+    21300014: ape_7
+    21300016: ape_8
+    21300018: ape_9
+    21300020: ape_10
+    21300022: ape_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,7 +55,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Hero_0
+    - name: ape_0
       rect:
         serializedVersion: 2
         x: 0
@@ -63,9 +63,9 @@ TextureImporter:
         width: 24
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_1
+    - name: ape_1
       rect:
         serializedVersion: 2
         x: 24
@@ -73,9 +73,9 @@ TextureImporter:
         width: 24
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_2
+    - name: ape_2
       rect:
         serializedVersion: 2
         x: 48
@@ -85,7 +85,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_3
+    - name: ape_3
       rect:
         serializedVersion: 2
         x: 0
@@ -95,7 +95,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_4
+    - name: ape_4
       rect:
         serializedVersion: 2
         x: 24
@@ -105,7 +105,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_5
+    - name: ape_5
       rect:
         serializedVersion: 2
         x: 48
@@ -115,7 +115,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_6
+    - name: ape_6
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +125,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_7
+    - name: ape_7
       rect:
         serializedVersion: 2
         x: 24
@@ -135,7 +135,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_8
+    - name: ape_8
       rect:
         serializedVersion: 2
         x: 48
@@ -145,7 +145,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_9
+    - name: ape_9
       rect:
         serializedVersion: 2
         x: 0
@@ -155,7 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_10
+    - name: ape_10
       rect:
         serializedVersion: 2
         x: 24
@@ -165,7 +165,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Hero_11
+    - name: ape_11
       rect:
         serializedVersion: 2
         x: 48
