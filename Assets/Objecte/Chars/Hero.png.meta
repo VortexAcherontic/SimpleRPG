@@ -29,7 +29,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
@@ -51,7 +51,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -61,9 +61,9 @@ TextureImporter:
         x: 0
         y: 96
         width: 24
-        height: 32
+        height: 31
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_1
       rect:
@@ -71,9 +71,9 @@ TextureImporter:
         x: 24
         y: 96
         width: 24
-        height: 32
+        height: 31
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_2
       rect:
@@ -81,7 +81,7 @@ TextureImporter:
         x: 48
         y: 96
         width: 24
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -91,7 +91,7 @@ TextureImporter:
         x: 0
         y: 64
         width: 24
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -101,7 +101,7 @@ TextureImporter:
         x: 24
         y: 64
         width: 24
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,7 +111,7 @@ TextureImporter:
         x: 48
         y: 64
         width: 24
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,7 +121,7 @@ TextureImporter:
         x: 0
         y: 32
         width: 24
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,7 +131,7 @@ TextureImporter:
         x: 24
         y: 32
         width: 24
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,7 +141,7 @@ TextureImporter:
         x: 48
         y: 32
         width: 24
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,9 +151,9 @@ TextureImporter:
         x: 0
         y: 0
         width: 24
-        height: 32
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_10
       rect:
@@ -161,7 +161,7 @@ TextureImporter:
         x: 24
         y: 0
         width: 24
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,7 +171,7 @@ TextureImporter:
         x: 48
         y: 0
         width: 24
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
