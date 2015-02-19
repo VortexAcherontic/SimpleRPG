@@ -584,15 +584,15 @@ public class PlayerBehaviour : MonoBehaviour {
 				//HPBAR
 				Rect Bar_Pos = new Rect (5, 5, (HpBar_empty.width / 4), (HpBar_empty.height / 4));
 				GUI.DrawTexture (Bar_Pos, HpBar_empty, ScaleMode.ScaleAndCrop);
-				GUI.DrawTexture (new Rect (Bar_Pos.position.x + (Bar_Pos.width - Bar_Pos.width * hpbar / 100), Bar_Pos.position.y, Bar_Pos.width * hpbar / 100, Bar_Pos.height), HpBar_full, ScaleMode.ScaleAndCrop);
+				GUI.DrawTexture (new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * hpbar / 100, Bar_Pos.height), HpBar_full, ScaleMode.ScaleAndCrop);
 				//MANABAR
 				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
 				GUI.DrawTexture (Bar_Pos, ManaBar_empty, ScaleMode.ScaleAndCrop);
-				GUI.DrawTexture (new Rect (Bar_Pos.position.x + (Bar_Pos.width - Bar_Pos.width * hpbar / 100), Bar_Pos.position.y, Bar_Pos.width * manabar / 100, Bar_Pos.height), ManaBar_full, ScaleMode.ScaleAndCrop);
+				GUI.DrawTexture (new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * manabar / 100, Bar_Pos.height), ManaBar_full, ScaleMode.ScaleAndCrop);
 				//XPBAR
 				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
 				GUI.DrawTexture (Bar_Pos, XpBar_empty, ScaleMode.ScaleAndCrop);
-				GUI.DrawTexture (new Rect (Bar_Pos.position.x + (Bar_Pos.width - Bar_Pos.width * hpbar / 100), Bar_Pos.position.y, Bar_Pos.width * xpbar / 100, Bar_Pos.height), XpBar_full, ScaleMode.ScaleAndCrop);
+				GUI.DrawTexture (new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * xpbar / 100, Bar_Pos.height), XpBar_full, ScaleMode.ScaleAndCrop);
 		
 				
 		}

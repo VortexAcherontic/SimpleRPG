@@ -157,7 +157,11 @@ public class Player_Save : MonoBehaviour {
 				gameObject.GetComponent<PlayerBehaviour> ().me.Creat = Game.Creature;
 				gameObject.GetComponent<PlayerBehaviour> ().me.Create (Game.Creature.InitalStats);
 				
-				transform.FindChild ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
+				StartGame ();
+		}
+	
+		public void StartGame () {
+				transform.FindChild ("UnitModel").GetComponent<SpriteRenderer> ().enabled = true;
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
 				gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
 				gameObject.GetComponent<PlayerBehaviour> ().me.Creat.IsRegAble = true;

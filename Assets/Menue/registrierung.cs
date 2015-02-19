@@ -51,8 +51,7 @@ public class registrierung : MonoBehaviour {
 						if (step == 4) {
 								p001.me.Create (newPlayer);
 								StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
-								//StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Save ());
-								//StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Load ());
+								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().StartGame ();
 								step = -1;
 						}
 						GUILayout.EndArea ();
