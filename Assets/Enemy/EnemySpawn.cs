@@ -10,7 +10,7 @@ public class EnemySpawn : MonoBehaviour {
 	
 		int maxmobs = -1;
 		public int mobs = 0;
-		float spawncooldown = 0.5f;
+		float spawncooldown = 0.1f;
 		float spawntimer;
 		bool isspawning = true;
 		

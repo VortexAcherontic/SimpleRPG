@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class EnemyBehaviour : MonoBehaviour {
 		EnemySpawn mobspawn;
 		CreatureController me;
+		Sprite_Controller SC;
 		PlayerBehaviour p001;
 		
 		float temp_x;
@@ -19,6 +20,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		void Start () {
 				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				me = gameObject.GetComponent<CreatureController> ();
+				SC = gameObject.GetComponentInChildren<Sprite_Controller> ();
 				mobspawn = GameObject.Find ("MonsterSpawner").GetComponent<EnemySpawn> ();
 				WaypointGeneration ();
 		}
@@ -157,6 +159,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		void IdleMovement () {
 				if ((CheckDistance () <= 20) && (ismoving == false)) {
+						ChangeAnimation (temp_wp);
 						me.Creat.Position += temp_wp;
 						ismoving = true;
 						transform.position = new Vector3 (me.Creat.Position.x, me.Creat.Position.y, transform.position.z);
@@ -205,6 +208,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 		void PlayerAggro () {
 				if ((ismoving == false) && (CheckDistance () >= 2)) { // Da bei CheckAggro die Distanz eine Rolle Spielt, ist diese hier egal ;)
+						ChangeAnimation (temp_wp);			
 						me.Creat.Position += temp_wp;
 						ismoving = true;
 						transform.position = new Vector3 (me.Creat.Position.x, me.Creat.Position.y, transform.position.z);
@@ -254,5 +258,18 @@ public class EnemyBehaviour : MonoBehaviour {
 				movetimer -= Time.deltaTime;
 				// If Moveable Mob? Manche Bosse sollen vielleicht weg versperren!
 				
+		}
+		void ChangeAnimation (Vector2 MoveTo) {
+				if (MoveTo.x == 1) {
+						SC.Action = AnimationTyp.MoveRight;
+				} else if (MoveTo.x == -1) {
+						SC.Action = AnimationTyp.MoveLeft;
+				} else if (MoveTo.y == 1) {
+						SC.Action = AnimationTyp.MoveUp;
+				} else if (MoveTo.y == -1) {
+						SC.Action = AnimationTyp.MoveDown;
+				} else {
+						SC.Action = AnimationTyp.StandStillDown;
+				}
 		}
 }

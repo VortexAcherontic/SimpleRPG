@@ -8,6 +8,7 @@ public struct Notification {
 
 public class PlayerBehaviour : MonoBehaviour {
 		public CreatureController me;
+		public Sprite_Controller SC;
 	
 		public List<Notification> PickupList = new List<Notification> ();
 		public bool Death = false;
@@ -22,6 +23,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		// Use this for initialization
 		void Start () {
 				me = gameObject.GetComponent<CreatureController> ();
+				SC = gameObject.GetComponentInChildren<Sprite_Controller> ();
 		}
 	
 		// Update is called once per frame
@@ -45,15 +47,19 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		void CheckKeyInput () {
 				if (Input.GetKey ("w")) {
+						SC.Action = AnimationTyp.MoveUp;
 						me.MoveTo (new Vector2 (me.Creat.Position.x, me.Creat.Position.y + 1));
 				}
 				if (Input.GetKey ("a")) {
+						SC.Action = AnimationTyp.MoveLeft;
 						me.MoveTo (new Vector2 (me.Creat.Position.x - 1, me.Creat.Position.y));
 				}
 				if (Input.GetKey ("s")) {
+						SC.Action = AnimationTyp.MoveDown;
 						me.MoveTo (new Vector2 (me.Creat.Position.x, me.Creat.Position.y - 1));
 				}
 				if (Input.GetKey ("d")) {
+						SC.Action = AnimationTyp.MoveRight;
 						me.MoveTo (new Vector2 (me.Creat.Position.x + 1, me.Creat.Position.y));
 				}
 				if (Input.GetKeyDown ("i")) {
