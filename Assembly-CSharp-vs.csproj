@@ -66,6 +66,7 @@
      <Compile Include="Assets\Menue\GameOverScreen\GameOverScreen.cs" />
      <Compile Include="Assets\Menue\mainmenu.cs" />
      <Compile Include="Assets\Menue\registrierung.cs" />
+     <Compile Include="Assets\Objecte\Sprite_Controller.cs" />
      <Compile Include="Assets\Objecte\Truhen\Chest.cs" />
      <Compile Include="Assets\Objecte\item.cs" />
      <Compile Include="Assets\Objecte\shop.cs" />
