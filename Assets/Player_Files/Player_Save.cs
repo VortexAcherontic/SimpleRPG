@@ -16,54 +16,28 @@ public class Player_Save : MonoBehaviour {
 	
 	
 		public void Save () {
+				_server_.data.Clear ();
+		
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
+		
+				#region Char
 				Game.Creature = gameObject.GetComponent<PlayerBehaviour> ().me.Creat;
-		
-				//AssetDatabase.CreateAsset (Game, "Assets/Resources/" + Game.Creature.Name + ".asset");
-		
 				JSONObject characterObj = new JSONObject ();
 		
 				characterObj.Add ("position", _server_.MakeVector2 (Game.Creature.Position));
 				characterObj.Add ("gold", Game.Creature.Gold);
 				characterObj.Add ("xp", Game.Creature.XP);
-				//characterObj.Add("name",Game.Creature.Name); prefab?
-		
-				/* timer
-		public float MoveTimer;
-		public bool IsRegAble;
-		public float RegTimer;
-		public float RegCooldown;
-		public float AttackTimer;
-		public float AttackCooldown;
-		
-		nicht speichern
-		 */
-		
-				//stats
+				
 				characterObj.Add ("Str", Game.Creature.InitalStats.Str);
 				characterObj.Add ("Dex", Game.Creature.InitalStats.Dex);
 				characterObj.Add ("Agi", Game.Creature.InitalStats.Agi);
 				characterObj.Add ("Int", Game.Creature.InitalStats.Int);
-		
 				characterObj.Add ("Vit", Game.Creature.InitalStats.Vit);
 				characterObj.Add ("Luc", Game.Creature.InitalStats.Luc);
 		
 				characterObj.Add ("LVL", Game.Creature.InitalStats.Level);
 				characterObj.Add ("Stats", Game.Creature.StatPoints);
 				characterObj.Add ("stance", (int)Game.Creature.Stance);
-		
-				/* nonplayer
-		public int AggroRange;
-		public bool IsMoveable;
-		public bool IsBoss;
-		public bool DoRespawn; // NPC/Bosses?
-		public float RespawnTimer;
-		
-		spawnregion
-		
-		nicht speichern
-		 
-		 */
 		
 				JSONObject Equipment = new JSONObject ();
 				int i = 0;
@@ -94,8 +68,66 @@ public class Player_Save : MonoBehaviour {
 						i++;
 				}
 				characterObj.Add ("inventory", Inventory);
+				#endregion Char
+		
+				#region Quest
+				JSONObject questObj = new JSONObject ();
+				int count_quests = 0;
+				Game.Quests = gameObject.GetComponent<QuestController> ().AlleQuests;
+				foreach (QuestStruct q in Game.Quests) {
+						if (q.accepted) {
+								JSONObject thisquest = new JSONObject ();
+								thisquest.Add ("Name", q.Name);
+								if (q.finished) {
+										thisquest.Add ("End", "true");
+								} else {
+										thisquest.Add ("End", "false");
+					
+										JSONObject ETK = new JSONObject ();
+										int ETK_count = 0;
+										ETK.Add ("count", q.EnemyTokill.Count);
+										foreach (EnemyTokillStruct e in q.EnemyTokill) {
+												JSONObject ETKe = new JSONObject ();
+												ETKe.Add ("Name", e.Name);
+												ETKe.Add ("Amount", e.Amount);
+												ETK.Add (ETK_count.ToString (), ETKe);
+												ETK_count++;
+										}
+										thisquest.Add ("ETK", ETK);
+					
+										JSONObject ITC = new JSONObject ();
+										int ITC_count = 0;
+										ITC.Add ("count", q.ItemsToCollect.Count);
+										foreach (ItemsToCollectStruct e in q.ItemsToCollect) {
+												JSONObject ITCe = new JSONObject ();
+												ITCe.Add ("Name", e.Name);
+												ITCe.Add ("Amount", e.Amount);
+												ITC.Add (ITC_count.ToString (), ITCe);
+												ITC_count++;
+										}
+										thisquest.Add ("ITC", ITC);
+					
+										JSONObject NTT = new JSONObject ();
+										int NTT_count = 0;
+										NTT.Add ("count", q.NPCToTalk.Count);
+										foreach (string e in q.NPCToTalk) {
+												NTT.Add (NTT_count.ToString (), e);
+												NTT_count++;
+										}
+										thisquest.Add ("NTT", NTT);
+								}
+				
+								questObj.Add (count_quests.ToString (), thisquest);
+								count_quests++;
+						}
+				}
+		
+				questObj.Add ("count", count_quests);
+				#endregion Quest
+		
 		
 				_server_.data.Add ("character", characterObj);
+				_server_.data.Add ("quest", questObj);
 		
 				
 		
@@ -121,8 +153,8 @@ public class Player_Save : MonoBehaviour {
 				
 				//Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
-				
-				
+				Game.Quests = new List<QuestStruct> ();
+				#region Char
 				Game.Creature.InitalStats.Position = _server_.GetVector2 ("character", "position");
 				Game.Creature.InitalStats.Gold = (int)_server_.data.GetObject ("character").GetNumber ("gold");
 				Game.Creature.InitalStats.XP = (int)_server_.data.GetObject ("character").GetNumber ("xp");
@@ -153,10 +185,55 @@ public class Player_Save : MonoBehaviour {
 				for (i=0; i<max_i; i++) {
 						Game.Creature.InitalStats.Inventory_Strings [i] = _server_.data.GetObject ("character").GetObject ("inventory").GetString (i.ToString ());
 				}
+				#endregion Char
 		
+				#region Quest
+				if (_server_.data.ContainsKey ("quest")) {
+						int count = 0;
+						int maxcount = 0;
+						max_i = (int)_server_.data.GetObject ("quest").GetNumber ("count");
+						for (i=0; i<max_i; i++) {
+								QuestStruct q = new QuestStruct ();
+								q.Name = _server_.data.GetObject ("quest").GetObject (i.ToString ()).GetString ("Name");
+								q.accepted = true;
+								JSONObject tmpq = _server_.data.GetObject ("quest").GetObject (i.ToString ());
+								string endstring = tmpq.GetString ("End");
+								if (endstring == "true") {
+										q.finished = true;
+								} else {
+										q.finished = false;
+										maxcount = (int)tmpq.GetObject ("ETK").GetNumber ("count");
+										for (count=0; count<maxcount; count++) {
+												EnemyTokillStruct tmpe = new EnemyTokillStruct ();
+												tmpe.Name = tmpq.GetObject ("ETK").GetObject (count.ToString ()).GetString ("Name");
+												tmpe.Amount = (int)tmpq.GetObject ("ETK").GetObject (count.ToString ()).GetNumber ("Amount");
+												q.EnemyTokill.Add (tmpe);
+										}
+				
+										maxcount = (int)tmpq.GetObject ("ITC").GetNumber ("count");
+										for (count=0; count<maxcount; count++) {
+												ItemsToCollectStruct tmpe = new ItemsToCollectStruct ();
+												tmpe.Name = tmpq.GetObject ("ITC").GetObject (count.ToString ()).GetString ("Name");
+												tmpe.Amount = (int)tmpq.GetObject ("ITC").GetObject (count.ToString ()).GetNumber ("Amount");
+												q.ItemsToCollect.Add (tmpe);
+										}
+				
+										maxcount = (int)tmpq.GetObject ("NTT").GetNumber ("count");
+										for (count=0; count<maxcount; count++) {
+												string tmpe = "";
+												tmpe = tmpq.GetObject ("NTT").GetObject (count.ToString ()).GetString ("Name");
+												q.NPCToTalk.Add (tmpe);
+										}
+								}
+								Game.Quests.Add (q);
+						}
+						gameObject.GetComponent<QuestController> ().UpdateOnLoad (Game.Quests);
+				}
+				#endregion Quest
 				gameObject.GetComponent<PlayerBehaviour> ().me.Creat = Game.Creature;
 				gameObject.GetComponent<PlayerBehaviour> ().me.Create (Game.Creature.InitalStats);
 				
+			
 				StartGame ();
 		}
 	

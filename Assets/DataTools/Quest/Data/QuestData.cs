@@ -14,6 +14,7 @@ public struct ItemsToCollectStruct {
 }
 [System.Serializable]
 public struct QuestStruct {
+		public string Name; // Bezeichnung
 		public string NPC_Geber;
 		public bool finished;
 		public bool accepted;
@@ -23,5 +24,7 @@ public struct QuestStruct {
 		public List<string> NPCToTalk;
 	
 		public List<string> Loot;
+		public int LootGold;
+		public int LootXP;
 	
 }

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 public class QuestController : MonoBehaviour {
 		public List<QuestStruct> AlleQuests = new List<QuestStruct> ();
 		PlayerBehaviour p001;
+		Notification not = new Notification ();
+
 	
 		void Start () {
+				not.time = 5;
 				QuestDataList DataListObj;
 				DataListObj = (QuestDataList)Resources.Load ("Quest");
 				AlleQuests = DataListObj.QuestList;
@@ -24,7 +27,6 @@ public class QuestController : MonoBehaviour {
 												AlleQuests [count_quest].EnemyTokill [count_enemy] = test;
 												if (test.Amount <= 0) {
 														AlleQuests [count_quest].EnemyTokill.RemoveAt (count_enemy);
-														return;
 												}
 										}
 										count_enemy++;
@@ -36,15 +38,15 @@ public class QuestController : MonoBehaviour {
 	
 		public void ItemsCollected () {
 				int count_quest = 0;
-				int tmpcounter = 0;
 				foreach (QuestStruct Quest in AlleQuests) {
 						if (Quest.accepted) {
 								int count_item = 0;
 								foreach (ItemsToCollectStruct tmpitem in Quest.ItemsToCollect) {
 										foreach (ItemData invcontent in p001.me.Creat.Inventory) {
 												if (invcontent.Name == tmpitem.Name) {
-														tmpcounter++;
 														p001.me.Creat.Inventory.Remove (invcontent);
+														not.message = "Lose " + invcontent.Name;
+														p001.PickupList.Add (not);
 														ItemsToCollectStruct test = AlleQuests [count_quest].ItemsToCollect [count_item];
 														test.Amount--;
 														AlleQuests [count_quest].ItemsToCollect [count_item] = test;
@@ -88,14 +90,28 @@ public class QuestController : MonoBehaviour {
 												fertigmit = false;
 										}
 										if (fertigmit) {
+												
+						
 												QuestStruct tmpquest = AlleQuests [count_quest];
 												tmpquest.finished = true;
 												AlleQuests [count_quest] = tmpquest;
+												
 												ItemDataList DataListObj;
 												DataListObj = (ItemDataList)Resources.Load ("Items");
 												foreach (string tmploot in Quest.Loot) {
+														not.message = "Get " + tmploot;
+														p001.PickupList.Add (not);
 														p001.me.Creat.Inventory.Add (DataListObj.item_mit_name (tmploot));
 												}
+												
+												not.message = "Get " + Quest.LootGold + " Gold";
+												p001.PickupList.Add (not);
+												p001.me.Creat.Gold += Quest.LootGold;
+						
+												not.message = "Get " + Quest.LootXP + " XP";
+												p001.PickupList.Add (not);
+												p001.me.Creat.Gold += Quest.LootXP;
+						
 										}
 					
 								}
@@ -109,4 +125,32 @@ public class QuestController : MonoBehaviour {
 						count_quest++;
 				}
 		}	
+
+		public void UpdateOnLoad (List<QuestStruct> loadedQuests) {
+				int ql_count = 0;
+				int qo_count = 0;
+				foreach (QuestStruct ql in loadedQuests) {
+						qo_count = 0;
+						foreach (QuestStruct qo in AlleQuests) {
+								if (ql.Name == qo.Name) {
+										// Sind die gleichen Quests!
+										QuestStruct q_override = new QuestStruct ();
+										q_override = qo;
+										q_override.EnemyTokill.Clear ();
+										q_override.ItemsToCollect.Clear ();
+										q_override.NPCToTalk.Clear ();
+										q_override.accepted = ql.accepted;
+										if (ql.finished) {
+												q_override.NPCToTalk = ql.NPCToTalk;
+												q_override.EnemyTokill = ql.EnemyTokill;
+												q_override.ItemsToCollect = ql.ItemsToCollect;					
+												q_override.finished = ql.finished;
+										}
+										AlleQuests [qo_count] = q_override;
+								}
+								qo_count++;
+						}
+						ql_count++;
+				}
+		}
 }
