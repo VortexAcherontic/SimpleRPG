@@ -26,7 +26,7 @@ public enum AnimationTyp {
 		MoveLeft
 }
 
-public class Sprite_Controller : MonoBehaviour {
+public class Sprite_CharController : MonoBehaviour {
 
 		public AllSiedsSprite Sprites;
 		public AnimationTyp Action;

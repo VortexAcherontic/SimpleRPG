@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class EnemyBehaviour : MonoBehaviour {
 		EnemySpawn mobspawn;
 		CreatureController me;
-		Sprite_Controller SC;
+		Sprite_CharController SC;
 		PlayerBehaviour p001;
 		
 		float temp_x;
@@ -20,7 +20,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		void Start () {
 				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				me = gameObject.GetComponent<CreatureController> ();
-				SC = gameObject.GetComponentInChildren<Sprite_Controller> ();
+				SC = gameObject.GetComponentInChildren<Sprite_CharController> ();
 				mobspawn = GameObject.Find ("MonsterSpawner").GetComponent<EnemySpawn> ();
 				WaypointGeneration ();
 		}

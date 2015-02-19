@@ -8,7 +8,7 @@ public struct Notification {
 
 public class PlayerBehaviour : MonoBehaviour {
 		public CreatureController me;
-		public Sprite_Controller SC;
+		public Sprite_CharController SC;
 	
 		public List<Notification> PickupList = new List<Notification> ();
 		public bool Death = false;
@@ -23,7 +23,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		// Use this for initialization
 		void Start () {
 				me = gameObject.GetComponent<CreatureController> ();
-				SC = gameObject.GetComponentInChildren<Sprite_Controller> ();
+				SC = gameObject.GetComponentInChildren<Sprite_CharController> ();
 		}
 	
 		// Update is called once per frame
