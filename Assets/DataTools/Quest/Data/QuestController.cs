@@ -140,7 +140,7 @@ public class QuestController : MonoBehaviour {
 										q_override.ItemsToCollect.Clear ();
 										q_override.NPCToTalk.Clear ();
 										q_override.accepted = ql.accepted;
-										if (ql.finished) {
+										if (!ql.finished) {
 												q_override.NPCToTalk = ql.NPCToTalk;
 												q_override.EnemyTokill = ql.EnemyTokill;
 												q_override.ItemsToCollect = ql.ItemsToCollect;					

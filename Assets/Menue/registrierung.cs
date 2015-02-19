@@ -4,6 +4,7 @@ using System.Collections;
 public class registrierung : MonoBehaviour {
 		public string loginname;
 		public string passwort;
+		public string passwort2;
 		public string error_message;
 		public int step = 0;
 		CreatureOriginData newPlayer = new CreatureOriginData ();
@@ -37,7 +38,13 @@ public class registrierung : MonoBehaviour {
 								Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
 								passwort = GUI.TextField (Spalte, passwort);
 								ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-								if (GUI.Button (ErsteZeile, "Next")) {
+								Spalte = ErsteZeile;
+								Spalte.width = ErsteZeile.width / 2;
+								GUI.Label (Spalte, "Confirm Password: ");
+								Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+								passwort2 = GUI.TextField (Spalte, passwort2);
+								ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
+								if ((GUI.Button (ErsteZeile, "Next")) && (passwort == passwort2)) {
 										step = -1;
 										StartCoroutine (account_generieren (loginname, passwort));
 								}

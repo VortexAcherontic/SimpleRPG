@@ -194,6 +194,10 @@ public class Player_Save : MonoBehaviour {
 						max_i = (int)_server_.data.GetObject ("quest").GetNumber ("count");
 						for (i=0; i<max_i; i++) {
 								QuestStruct q = new QuestStruct ();
+								q.EnemyTokill = new List<EnemyTokillStruct> ();
+								q.ItemsToCollect = new List<ItemsToCollectStruct> ();
+								q.NPCToTalk = new List<string> ();
+				
 								q.Name = _server_.data.GetObject ("quest").GetObject (i.ToString ()).GetString ("Name");
 								q.accepted = true;
 								JSONObject tmpq = _server_.data.GetObject ("quest").GetObject (i.ToString ());

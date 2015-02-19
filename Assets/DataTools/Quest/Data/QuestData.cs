@@ -18,6 +18,8 @@ public struct QuestStruct {
 		public string NPC_Geber;
 		public bool finished;
 		public bool accepted;
+		public bool storyrelevant;
+		public bool failed;
 	
 		public List<EnemyTokillStruct> EnemyTokill;
 		public List<ItemsToCollectStruct> ItemsToCollect;

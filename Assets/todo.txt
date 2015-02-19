@@ -9,11 +9,10 @@
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 
 // Mechanik
-- tagebuch hinzufügen um quests im auge zu behalten
+- unter finished im tagebuch die urspüngliche quest anzeigen
 - NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
 - Fractions? (Fraction vs Fraction ODER Creature vs Creature von Fraction?)
 
-- password bestätigen bei charactererstellung
 - magiebuch einbauen (Magie Skills?)
 - Elemente(resistenzen)?
 - Passive Skills?
@@ -25,7 +24,6 @@
 
 - Mobs mit Fernkampf?
 - battlemode 1vs1 einbauen (oder so... Multiplayer)
-
 
 // GUI
 - mehr maps zusammenbasteln & aufbau/system ändern 

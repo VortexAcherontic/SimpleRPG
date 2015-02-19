@@ -9,6 +9,7 @@ public struct Notification {
 public class PlayerBehaviour : MonoBehaviour {
 		public CreatureController me;
 		public Sprite_CharController SC;
+		public QuestController qc;
 	
 		public List<Notification> PickupList = new List<Notification> ();
 		public bool Death = false;
@@ -16,14 +17,20 @@ public class PlayerBehaviour : MonoBehaviour {
 		bool GUI_Statverteilen = false;
 		bool GUI_Inventory = false;
 		bool GUI_Equipment = false;
+		bool GUI_journal = false;
 	
 		int GUI_Anzeige_Kat = 0;
+		int GUI_journal_kat = 0;
 		Vector2 GUI_Scroller = new Vector2 ();
 		Rect GUI_Scrollbereich;
+	
+		List<QuestStruct> tmp_quests = new List<QuestStruct> ();
+	
 		// Use this for initialization
 		void Start () {
 				me = gameObject.GetComponent<CreatureController> ();
 				SC = gameObject.GetComponentInChildren<Sprite_CharController> ();
+				qc = gameObject.GetComponent<QuestController> ();
 		}
 	
 		// Update is called once per frame
@@ -42,6 +49,7 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUIEquipment ();
 						GUIStatsOverview ();
 						GUINotification ();
+						GUIJournal ();
 				}
 		}
 	
@@ -64,6 +72,9 @@ public class PlayerBehaviour : MonoBehaviour {
 				}
 				if (Input.GetKeyDown ("i")) {
 						GUI_Inventory = !GUI_Inventory;
+				}
+				if (Input.GetKeyDown ("j")) {
+						GUI_journal = !GUI_journal;
 				}
 				if (Input.GetKey ("1")) {
 						me.Creat.Stance = BattleStance.melee;
@@ -546,6 +557,85 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUILayout.EndArea ();
 		
 				}
+		}
+	
+		void GUIJournal () {
+				if (GUI_journal) {
+						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
+						GUI.Box (tmp_anzeige, "Journal");
+						tmp_quests.Clear ();
+					
+						switch (GUI_journal_kat) {
+								case 0:
+										foreach (QuestStruct quest in qc.AlleQuests) {
+												if ((quest.storyrelevant) && (!quest.finished) && (quest.accepted) && (!quest.failed)) {
+														tmp_quests.Add (quest);
+												}
+										}
+										foreach (QuestStruct quest in qc.AlleQuests) {
+												if ((!quest.storyrelevant) && (!quest.finished) && (quest.accepted) && (!quest.failed)) {
+														tmp_quests.Add (quest);
+												}
+										}
+										break;
+								case 1:
+										foreach (QuestStruct quest in qc.AlleQuests) {
+												if ((quest.storyrelevant) && (quest.finished) && (quest.accepted) && (!quest.failed)) {
+														tmp_quests.Add (quest);
+												}
+										}
+										foreach (QuestStruct quest in qc.AlleQuests) {
+												if ((!quest.storyrelevant) && (quest.finished) && (quest.accepted) && (!quest.failed)) {
+														tmp_quests.Add (quest);
+												}
+										}
+										break;
+								case 2:
+										foreach (QuestStruct quest in qc.AlleQuests) {
+												if ((!quest.storyrelevant) && (!quest.finished) && (quest.accepted) && (quest.failed)) {
+														tmp_quests.Add (quest);
+												}
+										}
+										break;
+						}
+			
+						if (GUI.Button (new Rect (Screen.width / 2 - 500 + 075, Screen.height / 2 - 175, 250, 20), "Open")) {
+								GUI_journal_kat = 0;
+						}
+						if (GUI.Button (new Rect (Screen.width / 2 - 500 + 375, Screen.height / 2 - 175, 250, 20), "Finished")) {
+								GUI_journal_kat = 1;
+						}
+						if (GUI.Button (new Rect (Screen.width / 2 - 500 + 675, Screen.height / 2 - 175, 250, 20), "Failed")) {
+								GUI_journal_kat = 2;
+						}
+						Rect Zeile = new Rect (Screen.width / 2 - 500 + 075, Screen.height / 2 - 175 + 25, 250, 20);
+						foreach (QuestStruct tmp_q in tmp_quests) {
+								GUI.Label (Zeile, "<b>" + tmp_q.Name + "</b>");
+								if (tmp_q.EnemyTokill.Count > 0) {
+										foreach (EnemyTokillStruct etk in tmp_q.EnemyTokill) {
+												Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
+												GUI.Label (Zeile, "Kill " + etk.Amount + " x " + etk.Name);
+										}
+								}
+								if (tmp_q.ItemsToCollect.Count > 0) {
+										foreach (ItemsToCollectStruct itc in tmp_q.ItemsToCollect) {
+												Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
+												GUI.Label (Zeile, "Collect " + itc.Amount + " x " + itc.Name);
+										}
+								}
+								if (tmp_q.NPCToTalk.Count > 0) {
+										foreach (string ntt in tmp_q.NPCToTalk) {
+												Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
+												GUI.Label (Zeile, "Talk to " + ntt);
+										}
+								}
+								if (!tmp_q.finished) {
+										Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
+										GUI.Label (Zeile, "Return to " + tmp_q.NPC_Geber);
+								}
+								Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
+						}
+				}		
 		}
 	
 		public Texture2D HpBar_empty;
