@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 1575829ba3c47454099362f27527681f
+guid: 991074c7fc860fb4abf874e1fcb7059c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: chest_0
-    21300002: chest_1
-    21300004: chest_2
-    21300006: chest_3
-    21300008: chest_4
-    21300010: chest_5
-    21300012: chest_6
-    21300014: chest_7
-    21300016: chest_8
-    21300018: chest_9
-    21300020: chest_10
-    21300022: chest_11
+    21300000: NPC_Kai-Uwe_0
+    21300002: NPC_Kai-Uwe_1
+    21300004: NPC_Kai-Uwe_2
+    21300006: NPC_Kai-Uwe_3
+    21300008: NPC_Kai-Uwe_4
+    21300010: NPC_Kai-Uwe_5
+    21300012: NPC_Kai-Uwe_6
+    21300014: NPC_Kai-Uwe_7
+    21300016: NPC_Kai-Uwe_8
+    21300018: NPC_Kai-Uwe_9
+    21300020: NPC_Kai-Uwe_10
+    21300022: NPC_Kai-Uwe_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,7 +55,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: chest_0
+    - name: NPC_Kai-Uwe_0
       rect:
         serializedVersion: 2
         x: 0
@@ -65,7 +65,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_1
+    - name: NPC_Kai-Uwe_1
       rect:
         serializedVersion: 2
         x: 24
@@ -75,7 +75,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_2
+    - name: NPC_Kai-Uwe_2
       rect:
         serializedVersion: 2
         x: 48
@@ -85,7 +85,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_3
+    - name: NPC_Kai-Uwe_3
       rect:
         serializedVersion: 2
         x: 0
@@ -95,7 +95,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_4
+    - name: NPC_Kai-Uwe_4
       rect:
         serializedVersion: 2
         x: 24
@@ -105,7 +105,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_5
+    - name: NPC_Kai-Uwe_5
       rect:
         serializedVersion: 2
         x: 48
@@ -115,7 +115,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_6
+    - name: NPC_Kai-Uwe_6
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +125,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_7
+    - name: NPC_Kai-Uwe_7
       rect:
         serializedVersion: 2
         x: 24
@@ -135,7 +135,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_8
+    - name: NPC_Kai-Uwe_8
       rect:
         serializedVersion: 2
         x: 48
@@ -145,7 +145,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_9
+    - name: NPC_Kai-Uwe_9
       rect:
         serializedVersion: 2
         x: 0
@@ -155,7 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_10
+    - name: NPC_Kai-Uwe_10
       rect:
         serializedVersion: 2
         x: 24
@@ -165,7 +165,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_11
+    - name: NPC_Kai-Uwe_11
       rect:
         serializedVersion: 2
         x: 48

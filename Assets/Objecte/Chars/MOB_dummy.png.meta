@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 1575829ba3c47454099362f27527681f
+guid: 319e7ca0a50d6a5488dd6a9ea9406c13
 TextureImporter:
   fileIDToRecycleName:
-    21300000: chest_0
-    21300002: chest_1
-    21300004: chest_2
-    21300006: chest_3
-    21300008: chest_4
-    21300010: chest_5
-    21300012: chest_6
-    21300014: chest_7
-    21300016: chest_8
-    21300018: chest_9
-    21300020: chest_10
-    21300022: chest_11
+    21300000: dummy_0
+    21300002: dummy_1
+    21300004: dummy_2
+    21300006: dummy_3
+    21300008: dummy_4
+    21300010: dummy_5
+    21300012: dummy_6
+    21300014: dummy_7
+    21300016: dummy_8
+    21300018: dummy_9
+    21300020: dummy_10
+    21300022: dummy_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,7 +55,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: chest_0
+    - name: dummy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -65,7 +65,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_1
+    - name: dummy_1
       rect:
         serializedVersion: 2
         x: 24
@@ -75,7 +75,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_2
+    - name: dummy_2
       rect:
         serializedVersion: 2
         x: 48
@@ -85,7 +85,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_3
+    - name: dummy_3
       rect:
         serializedVersion: 2
         x: 0
@@ -95,7 +95,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_4
+    - name: dummy_4
       rect:
         serializedVersion: 2
         x: 24
@@ -105,7 +105,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_5
+    - name: dummy_5
       rect:
         serializedVersion: 2
         x: 48
@@ -115,7 +115,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_6
+    - name: dummy_6
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +125,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_7
+    - name: dummy_7
       rect:
         serializedVersion: 2
         x: 24
@@ -135,7 +135,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_8
+    - name: dummy_8
       rect:
         serializedVersion: 2
         x: 48
@@ -145,7 +145,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_9
+    - name: dummy_9
       rect:
         serializedVersion: 2
         x: 0
@@ -155,7 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_10
+    - name: dummy_10
       rect:
         serializedVersion: 2
         x: 24
@@ -165,7 +165,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: chest_11
+    - name: dummy_11
       rect:
         serializedVersion: 2
         x: 48

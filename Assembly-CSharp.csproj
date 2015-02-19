@@ -52,10 +52,10 @@
      <Compile Include="Assets\DataTools\DataManager\DataManager.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataClass.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataList.cs" />
-     <Compile Include="Assets\Enemy\Companion\CompanionBehavior.cs" />
+     <Compile Include="Assets\Enemy\CompanionBehavior.cs" />
      <Compile Include="Assets\Enemy\EnemyBehaviour.cs" />
      <Compile Include="Assets\Enemy\EnemySpawn.cs" />
-     <Compile Include="Assets\Enemy\NPC\NPCBehaviour.cs" />
+     <Compile Include="Assets\Enemy\NPCBehaviour.cs" />
      <Compile Include="Assets\Import\Boomlagoon\JSON\JSONObject.cs" />
      <Compile Include="Assets\Import\Boomlagoon\JSON\TestScene\JSONObjectTester.cs" />
      <Compile Include="Assets\Import\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
