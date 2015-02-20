@@ -215,6 +215,7 @@ public class CreatureController : MonoBehaviour {
 				int EffectHP = 0;
 				int EffectMP = 0;
 				if (Creat.InitalStats.Equipment != null) {
+						int tmp_count = 0;
 						foreach (ItemData tmp in Creat.InitalStats.Equipment) {
 								float equip_dura_faktor = 1;
 								if (tmp.Durability == 0) {
@@ -263,6 +264,9 @@ public class CreatureController : MonoBehaviour {
 										case ItemType.armor_torso:
 										case ItemType.potion:
 										case ItemType.utility:
+												ItemData x = Creat.InitalStats.Equipment [tmp_count];
+												x.Capacity = x.Ammo.Count;
+												Creat.InitalStats.Equipment [tmp_count] = x;
 												Creat.PhyArmor += (int)(tmp.PhyArmor * equip_dura_faktor);
 												Creat.MagArmor += (int)(tmp.MagArmor * equip_dura_faktor);
 												Creat.PhyAttack += (int)(tmp.PhyAttack * equip_dura_faktor);
@@ -290,7 +294,7 @@ public class CreatureController : MonoBehaviour {
 								// TODO: What gives Mage Bonus Dmg? Range Weapon? melee Weapon? Both?
 								// statt bonus - verschiedene zauber zB heilen/angriff/buff/debuffs entfernen
 								}
-			
+								tmp_count++;
 						}
 				}
 				// Calculate Battle Relevant Stuff

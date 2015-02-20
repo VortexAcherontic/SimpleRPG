@@ -11,6 +11,7 @@ public class shop : MonoBehaviour {
 		List<ObjShop> shops = new List<ObjShop> ();
 		PlayerBehaviour p001;
 		List<ItemData> item_liste = new List<ItemData> ();
+		List<AmmoData> ammo_liste = new List<AmmoData> ();
 		bool imshop = false;
 		int anzeige_kat = 0;
 		Vector2 scroller = new Vector2 ();
@@ -60,6 +61,7 @@ public class shop : MonoBehaviour {
 								if ((p001.me.Creat.Position == s001.pos) && (imshop == false)) {
 										if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "Click here to enter shop!")) {
 												item_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Item_List;
+												ammo_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Ammo_List;
 												Scrollbereich = new Rect (0, 0, 0, 0);
 												imshop = true;
 										}
@@ -221,7 +223,7 @@ public class shop : MonoBehaviour {
 												break;
 										case 5:
 												if (CheckForQuiver ()) {
-														foreach (ItemData dieseitem in item_liste) {
+														foreach (AmmoData dieseitem in ammo_liste) {
 						
 																if (dieseitem.Type == ItemType.weapon_ammo) { // Sollte hier nicht utility rein?
 																		GUILayout.BeginHorizontal ();
@@ -241,7 +243,7 @@ public class shop : MonoBehaviour {
 																		GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 																		Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																		if (GUI.Button (Spalte, "Buy")) {
-																				kaufe_item (dieseitem);
+																				kaufe_item_ammo (dieseitem);
 																		}
 																		Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 							
@@ -291,8 +293,12 @@ public class shop : MonoBehaviour {
 		
 		public void shops_refill () {
 				item_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Item_List;
-				foreach (ItemData tmpitem in item_liste) {
+				int count_tmpitem = 0;
+				foreach (ItemData otmpitem in item_liste) {
+						ItemData tmpitem = otmpitem;
 						tmpitem.Stock += tmpitem.RefillMod;
+			
+						count_tmpitem++;
 				}
 		}
 		
@@ -305,22 +311,24 @@ public class shop : MonoBehaviour {
 								diesesitem.Stock -= 10;
 								check = true;
 						}
-				} else {
-						
-						foreach (ItemData c_obj in p001.me.Creat.Equipment) {
-								if (c_obj.Type == ItemType.utility) {
-										Quiver = c_obj;
-								}
+				}
+				return check;
+		}
+		public bool kaufe_item_ammo (AmmoData diesesitem) {
+				bool check = false;
+				foreach (ItemData c_obj in p001.me.Creat.Equipment) {
+						if (c_obj.Type == ItemType.utility) {
+								Quiver = c_obj;
 						}
-						if (Quiver != null) {
-								if (Quiver.Capacity < Quiver.MaxCapacity) {
-										if ((p001.me.Creat.Gold >= diesesitem.Gold) && (diesesitem.Stock >= 10)) {
-												Quiver.Ammo.Add (diesesitem);
-												Quiver.Capacity = Quiver.Ammo.Count;
-												p001.me.Creat.Gold -= diesesitem.Gold;
-												diesesitem.Stock -= 10;
-												check = true;
-										}
+				}
+				if (Quiver.Name != "") {
+						if (Quiver.Capacity < Quiver.MaxCapacity) {
+								if ((p001.me.Creat.Gold >= diesesitem.Gold) && (diesesitem.Stock >= 10)) {
+										Quiver.Ammo.Add (diesesitem);
+										Quiver.Capacity = Quiver.Ammo.Count;
+										p001.me.Creat.Gold -= diesesitem.Gold;
+										diesesitem.Stock -= 10;
+										check = true;
 								}
 						}
 				}

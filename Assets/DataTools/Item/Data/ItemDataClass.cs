@@ -40,7 +40,36 @@ public enum EffectType {
 }
 
 [System.Serializable]
-public class ItemData { // erstmal aus dem alten übernommen und leicht abgeändert
+public struct AmmoData { // erstmal aus dem alten übernommen und leicht abgeändert
+		public string Name;
+		public ItemType Type;
+		public int Gold;
+		public int Stock;
+		public int RefillMod;
+		public float Weigth;
+		public int Durability;
+		public int MaxDurability;
+	
+		// Base Stats
+		public int MagAttack;
+		public int PhyAttack;
+		public int PhyArmor;
+		public int MagArmor;
+		public int Range;
+	
+		// Potions, + AddStats(passive)?
+		public EffectType EffectType;
+		public int Effect;
+		public bool IsStaticEffect;
+	
+		// Quiever
+		public int Capacity;
+		public int MaxCapacity;
+}
+
+
+[System.Serializable]
+public struct ItemData { // erstmal aus dem alten übernommen und leicht abgeändert
 		public string Name;
 		public ItemType Type;
 		public int Gold;
@@ -66,6 +95,6 @@ public class ItemData { // erstmal aus dem alten übernommen und leicht abgeänd
 		public int Capacity;
 		public int MaxCapacity;
 		[HideInInspector]
-		public List<ItemData>
+		public List<AmmoData>
 				Ammo;
 }

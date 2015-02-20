@@ -538,7 +538,7 @@ public class PlayerBehaviour : MonoBehaviour {
 														if (dieseitem2.Type == ItemType.utility) {
 																GUILayout.BeginHorizontal ();
 																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-																foreach (ItemData dieseitem in dieseitem2.Ammo) {
+																foreach (AmmoData dieseitem in dieseitem2.Ammo) {
 																		GUI.Label (Spalte, dieseitem.Name);
 																		Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																		GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
@@ -548,7 +548,7 @@ public class PlayerBehaviour : MonoBehaviour {
 																		GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 																		Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																		if (GUI.Button (Spalte, "Drop")) {
-																				me.Creat.Inventory.Remove (dieseitem);
+																				dieseitem2.Ammo.Remove (dieseitem);
 																		}
 																		Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 								
@@ -676,7 +676,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Battlemode: " + me.Creat.Stance.ToString ());
 		
 				// Quiver Inhalt
-				ItemData Quiver = null;
+				ItemData Quiver = new ItemData ();
 				if (me.Creat.Equipment.Count > 0) {
 						foreach (ItemData c_obj in me.Creat.Equipment) {
 								if (c_obj.Type == ItemType.utility) {
@@ -684,7 +684,7 @@ public class PlayerBehaviour : MonoBehaviour {
 								}
 						}
 				}
-				if (Quiver != null) {
+				if (Quiver.Name != "") {
 						GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Cap: " + Quiver.Capacity + " / " + Quiver.MaxCapacity);
 				}
 		

@@ -48,7 +48,9 @@ public class NPCBehaviour : MonoBehaviour {
 						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
 						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
 						GUI.Box (tmp_anzeige, "Repair you stuff!");
-						foreach (ItemData i in p001.me.Creat.Equipment) {
+						int count_i = 0;
+						foreach (ItemData oi in p001.me.Creat.Equipment) {
+								ItemData i = oi;
 								if (i.Durability < i.MaxDurability) {
 										zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
 										GUI.Label (zeile, i.Name + " (" + i.Durability + "/" + i.MaxDurability + ")");
@@ -64,6 +66,8 @@ public class NPCBehaviour : MonoBehaviour {
 												p001.me.Creat.Gold -= 75;
 										}
 								}
+								p001.me.Creat.Equipment [count_i] = i;
+								count_i++;
 						}
 				}
 		}

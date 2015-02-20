@@ -5,6 +5,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class ItemDataList : ScriptableObject {
 		public List<ItemData> ItemList;
+		public List<AmmoData> AmmoList;
 	
 		ItemData leeres_item () {
 				ItemData tmp_item = new ItemData ();

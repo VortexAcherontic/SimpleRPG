@@ -5,7 +5,6 @@
 
 // Bug Fixes
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
-- Items von classen in structs umschreiben
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 
 // Mechanik

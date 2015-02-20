@@ -99,7 +99,9 @@ public class kampf : MonoBehaviour {
 										if (magdmg >= 0) {
 												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
 										}
-										foreach (ItemData wep in p001.me.Creat.Equipment) {
+										int count_wep = 0;
+										foreach (ItemData owep in p001.me.Creat.Equipment) {
+												ItemData wep = owep;
 												if (wep.Type == ItemType.weapon_melee) {
 														if (wep.Durability - 30 <= 0) {
 																wep.Durability = 0;
@@ -107,6 +109,8 @@ public class kampf : MonoBehaviour {
 																wep.Durability -= 30;
 														}
 												}
+												p001.me.Creat.Equipment [count_wep] = wep;
+												count_wep++;
 										}
 										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
 										attack = false;
@@ -134,13 +138,19 @@ public class kampf : MonoBehaviour {
 										}
 								}
 								if ((attack) && CheckForArrow () && CheckForRangeWeapon ()) {
-										foreach (ItemData tmp_item in p001.me.Creat.Equipment) {
+										int count_tmp = 0;
+										foreach (ItemData otmp_item in p001.me.Creat.Equipment) {
+												ItemData tmp_item = otmp_item;
 												if (tmp_item.Type == ItemType.utility) {
 														tmp_item.Ammo.RemoveAt (0);
 														tmp_item.Capacity--;
 												}
+												p001.me.Creat.Equipment [count_tmp] = tmp_item;
+												count_tmp++;
 										}
-										foreach (ItemData wep in p001.me.Creat.Equipment) {
+										int count_wep = 0;
+										foreach (ItemData owep in p001.me.Creat.Equipment) {
+												ItemData wep = owep;
 												if (wep.Type == ItemType.weapon_range) {
 														if (wep.Durability - 30 <= 0) {
 																wep.Durability = 0;
@@ -148,6 +158,8 @@ public class kampf : MonoBehaviour {
 																wep.Durability -= 30;
 														}
 												}
+												p001.me.Creat.Equipment [count_wep] = wep;
+												count_wep++;
 										}
 				
 										int phydmg = p001.me.Creat.PhyAttack - tmp_monster.GetComponent<CreatureController> ().Creat.PhyArmor;

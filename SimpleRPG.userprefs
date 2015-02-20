@@ -1,13 +1,13 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataTools\Creature\Data\CreatureController.cs">
     <Files>
-      <File FileName="Assets\todo.txt" Line="6" Column="13" />
-      <File FileName="Assets\Enemy\NPCBehaviour.cs" Line="62" Column="57" />
-      <File FileName="Assets\DataTools\Quest\Data\QuestData.cs" Line="28" Column="32" />
-      <File FileName="Assets\DataTools\Quest\Data\QuestController.cs" Line="124" Column="45" />
-      <File FileName="Assets\Player_Files\PlayerBehaviour.cs" Line="228" Column="23" />
-      <File FileName="Assets\DataTools\Creature\Data\CreatureController.cs" Line="77" Column="6" />
+      <File FileName="Assets\Enemy\NPCBehaviour.cs" Line="69" Column="47" />
+      <File FileName="Assets\Objecte\shop.cs" Line="64" Column="84" />
+      <File FileName="Assets\Objecte\item.cs" Line="22" Column="3" />
+      <File FileName="Assets\Player_Files\PlayerBehaviour.cs" Line="687" Column="26" />
+      <File FileName="Assets\Player_Files\kampf.cs" Line="152" Column="31" />
+      <File FileName="Assets\DataTools\Creature\Data\CreatureController.cs" Line="269" Column="57" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
