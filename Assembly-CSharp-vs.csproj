@@ -52,6 +52,7 @@
      <Compile Include="Assets\DataTools\DataManager\DataManager.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataClass.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataList.cs" />
+     <Compile Include="Assets\DataTools\Item\Resources\setarmor.cs" />
      <Compile Include="Assets\DataTools\Quest\Data\QuestController.cs" />
      <Compile Include="Assets\DataTools\Quest\Data\QuestData.cs" />
      <Compile Include="Assets\DataTools\Quest\Data\QuestDataList.cs" />

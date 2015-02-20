@@ -21,9 +21,11 @@ public struct QuestStruct {
 		public bool storyrelevant;
 		public bool failed;
 	
+	
 		public List<EnemyTokillStruct> EnemyTokill;
 		public List<ItemsToCollectStruct> ItemsToCollect;
 		public List<string> NPCToTalk;
+		public List<string> PrevQuest;
 	
 		public List<string> Loot;
 		public int LootGold;

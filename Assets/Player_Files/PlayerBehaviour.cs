@@ -261,6 +261,8 @@ public class PlayerBehaviour : MonoBehaviour {
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														break;
 												case ItemType.armor_feet:
 												case ItemType.armor_hand:
@@ -270,6 +272,8 @@ public class PlayerBehaviour : MonoBehaviour {
 														GUI.Label (Spalte, "Physical Defense: " + dieseitem.PhyArmor);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														GUI.Label (Spalte, "Magical Defense: " + dieseitem.MagArmor);
+														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+														GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														break;
 												case ItemType.accessorie:
@@ -362,7 +366,7 @@ public class PlayerBehaviour : MonoBehaviour {
 						
 														if (dieseitem.Type == ItemType.weapon_melee) {
 																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 8, Zeile1.height);
 																GUI.Label (Spalte, dieseitem.Name);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
@@ -371,6 +375,9 @@ public class PlayerBehaviour : MonoBehaviour {
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																
 																if (GUI.Button (Spalte, "Drop")) {
 																		me.Creat.Inventory.Remove (dieseitem);
 																}
@@ -389,7 +396,7 @@ public class PlayerBehaviour : MonoBehaviour {
 												foreach (ItemData dieseitem in me.Creat.Inventory) {
 														if (dieseitem.Type == ItemType.weapon_range) {
 																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 8, Zeile1.height);
 																GUI.Label (Spalte, dieseitem.Name);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
@@ -397,6 +404,8 @@ public class PlayerBehaviour : MonoBehaviour {
 																GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																if (GUI.Button (Spalte, "Drop")) {
 																		me.Creat.Inventory.Remove (dieseitem);
@@ -420,7 +429,7 @@ public class PlayerBehaviour : MonoBehaviour {
 																(dieseitem.Type == ItemType.armor_leg) ||
 																(dieseitem.Type == ItemType.armor_torso)) {
 																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 8, Zeile1.height);
 																GUI.Label (Spalte, dieseitem.Name);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																GUI.Label (Spalte, "Physical Defense: " + dieseitem.PhyArmor);
@@ -428,6 +437,8 @@ public class PlayerBehaviour : MonoBehaviour {
 																GUI.Label (Spalte, "Magical Defense: " + dieseitem.MagArmor);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 																if (GUI.Button (Spalte, "Drop")) {
 																		me.Creat.Inventory.Remove (dieseitem);

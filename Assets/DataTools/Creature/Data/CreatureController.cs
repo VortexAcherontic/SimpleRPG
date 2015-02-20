@@ -66,6 +66,15 @@ public class CreatureController : MonoBehaviour {
 				Creat.MoveTimer -= Time.deltaTime;
 				Creat.RegTimer -= Time.deltaTime;
 				Creat.AttackTimer -= Time.deltaTime;
+				if (Creat.MoveTimer < -20) {
+						Creat.MoveTimer = 0;
+				}
+				if (Creat.RegTimer < -20) {
+						Creat.RegTimer = 0;
+				}
+				if (Creat.AttackTimer < -20) {
+						Creat.AttackTimer = 0;
+				}
 		}
 	
 		public void Equip (ItemData obj) {
@@ -122,7 +131,7 @@ public class CreatureController : MonoBehaviour {
 								Creat.Position = Pos;
 								Creat.InitalStats.Position = Pos;
 								transform.position = newPos;
-								Creat.MoveTimer = TileToMove.walkEffect + Creat.Movement_Delay;
+								Creat.MoveTimer = (TileToMove.walkEffect + Creat.Movement_Delay) * 0.05f; // *0 zum deven
 						}
 				}
 		}
@@ -207,31 +216,39 @@ public class CreatureController : MonoBehaviour {
 				int EffectMP = 0;
 				if (Creat.InitalStats.Equipment != null) {
 						foreach (ItemData tmp in Creat.InitalStats.Equipment) {
+								float equip_dura_faktor = 1;
+								if (tmp.Durability == 0) {
+										equip_dura_faktor = 0;
+								} else if (tmp.Durability == -1) {
+										equip_dura_faktor = 1;
+								} else if (tmp.Durability <= tmp.MaxDurability * 0.5f) {
+										equip_dura_faktor = 0.5f;
+								}
 								if (tmp.IsStaticEffect) {
 										switch (tmp.EffectType) {
 												case EffectType.Health:
-														EffectHP += tmp.Effect;
+														EffectHP += (int)(tmp.Effect * equip_dura_faktor);
 														break;
 												case EffectType.Mana:
-														EffectMP += tmp.Effect;
+														EffectMP += (int)(tmp.Effect * equip_dura_faktor);
 														break;
 												case EffectType.Str:
-														Creat.Str += tmp.Effect;
+														Creat.Str += (int)(tmp.Effect * equip_dura_faktor);
 														break;
 												case EffectType.Agi:
-														Creat.Agi += tmp.Effect;
+														Creat.Agi += (int)(tmp.Effect * equip_dura_faktor);
 														break;
 												case EffectType.Dex:
-														Creat.Dex += tmp.Effect;
+														Creat.Dex += (int)(tmp.Effect * equip_dura_faktor);
 														break;
 												case EffectType.Int:
-														Creat.Int += tmp.Effect;
+														Creat.Int += (int)(tmp.Effect * equip_dura_faktor);
 														break;
 												case EffectType.Vit:
-														Creat.Vit += tmp.Effect;
+														Creat.Vit += (int)(tmp.Effect * equip_dura_faktor);
 														break;
 												case EffectType.Luc:
-														Creat.Luc += tmp.Effect;
+														Creat.Luc += (int)(tmp.Effect * equip_dura_faktor);
 														break;
 										}
 								}
@@ -246,28 +263,27 @@ public class CreatureController : MonoBehaviour {
 										case ItemType.armor_torso:
 										case ItemType.potion:
 										case ItemType.utility:
-												Creat.PhyArmor += tmp.PhyArmor;
-												Creat.MagArmor += tmp.MagArmor;
-												Creat.PhyAttack += tmp.PhyAttack;
-												Creat.MagAttack += tmp.MagAttack;
-												Creat.AttackRange += tmp.Range;
+												Creat.PhyArmor += (int)(tmp.PhyArmor * equip_dura_faktor);
+												Creat.MagArmor += (int)(tmp.MagArmor * equip_dura_faktor);
+												Creat.PhyAttack += (int)(tmp.PhyAttack * equip_dura_faktor);
+												Creat.MagAttack += (int)(tmp.MagAttack * equip_dura_faktor);
 												break;
 										case ItemType.weapon_melee:
 												if (Creat.Stance == BattleStance.melee) {
-														Creat.PhyArmor += tmp.PhyArmor;
-														Creat.MagArmor += tmp.MagArmor;
-														Creat.PhyAttack += tmp.PhyAttack;
-														Creat.MagAttack += tmp.MagAttack;
-														Creat.AttackRange += tmp.Range;
+														Creat.PhyArmor += (int)(tmp.PhyArmor * equip_dura_faktor);
+														Creat.MagArmor += (int)(tmp.MagArmor * equip_dura_faktor);
+														Creat.PhyAttack += (int)(tmp.PhyAttack * equip_dura_faktor);
+														Creat.MagAttack += (int)(tmp.MagAttack * equip_dura_faktor);
+														Creat.AttackRange += (int)(tmp.Range * equip_dura_faktor);
 												}
 												break;
 										case ItemType.weapon_ammo:
 										case ItemType.weapon_range:
 												if (Creat.Stance == BattleStance.range) {
-														Creat.PhyArmor += tmp.PhyArmor;
-														Creat.MagArmor += tmp.MagArmor;
-														Creat.PhyAttack += tmp.PhyAttack;
-														Creat.MagAttack += tmp.MagAttack;
+														Creat.PhyArmor += (int)(tmp.PhyArmor * equip_dura_faktor);
+														Creat.MagArmor += (int)(tmp.MagArmor * equip_dura_faktor);
+														Creat.PhyAttack += (int)(tmp.PhyAttack * equip_dura_faktor);
+														Creat.MagAttack += (int)(tmp.MagAttack * equip_dura_faktor);
 														Creat.AttackRange += tmp.Range;
 												}
 												break;

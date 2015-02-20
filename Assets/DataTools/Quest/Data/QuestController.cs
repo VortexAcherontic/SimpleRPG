@@ -116,7 +116,19 @@ public class QuestController : MonoBehaviour {
 					
 								}
 						} else {
-								if (Quest.NPC_Geber == NPCName) {
+								bool canhavequest = true;
+								if (Quest.PrevQuest.Count >= 0) {
+										foreach (string prevq in Quest.PrevQuest) {
+												foreach (QuestStruct checkq in AlleQuests) {
+														if (prevq == checkq.Name) {
+																if (checkq.finished == false) {
+																		canhavequest = false;
+																}
+														}
+												}
+										}
+								}
+								if ((Quest.NPC_Geber == NPCName) && canhavequest) {
 										QuestStruct tmpquest = AlleQuests [count_quest];
 										tmpquest.accepted = true;
 										AlleQuests [count_quest] = tmpquest;

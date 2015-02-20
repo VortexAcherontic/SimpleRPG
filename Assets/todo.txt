@@ -1,7 +1,7 @@
 // Balancing generell
 - boss nerfen 
 - Stärkere Mobs oder Mob Level an Spieler Level anpassen?
-- geschwindigkeiten-gewicht-verhältnis anpassen
+- geschwindigkeiten-gewicht-verhältnis anpassen ZZ auf 0 wegen hat genervt
 
 // Bug Fixes
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
@@ -15,12 +15,24 @@
 
 - magiebuch einbauen (Magie Skills?)
 - Elemente(resistenzen)?
-- Passive Skills?
+- passive skills:
+	-regeneration increase
+- aktive skills:
+	- schadensboost
+	- skillshot in eine bestimmte richtung (range only)
+	- destroy/piercing armor (range & melee)
+	- stun (melee & mage)
+	- bleeding DOT (melee only)
+	- faster mana regen (mage only)
+	- meditation (faster regen)
+	- self cast armor buff (melee only)
+	
 - Player bekommt einen begleiter, der angreifen kann bzw ein tank (naja zumindest folgt er dem player schon mal)
 
 - shop websync einbauen (+ Max Stock?)
 - Buffs/debuff/dot?
-- Events einbauen
+- Events einbauen:
+	- lockpick minigame (popup mit pfeiltasten rechts und links)
 
 - Mobs mit Fernkampf?
 - battlemode 1vs1 einbauen (oder so... Multiplayer)

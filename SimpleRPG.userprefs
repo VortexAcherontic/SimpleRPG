@@ -2,7 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
     <Files>
-      <File FileName="Assets\todo.txt" Line="27" Column="1" />
+      <File FileName="Assets\todo.txt" Line="6" Column="13" />
+      <File FileName="Assets\Enemy\NPCBehaviour.cs" Line="62" Column="57" />
+      <File FileName="Assets\DataTools\Quest\Data\QuestData.cs" Line="28" Column="32" />
+      <File FileName="Assets\DataTools\Quest\Data\QuestController.cs" Line="124" Column="45" />
+      <File FileName="Assets\Player_Files\PlayerBehaviour.cs" Line="228" Column="23" />
+      <File FileName="Assets\DataTools\Creature\Data\CreatureController.cs" Line="77" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

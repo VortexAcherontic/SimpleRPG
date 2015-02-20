@@ -99,7 +99,15 @@ public class kampf : MonoBehaviour {
 										if (magdmg >= 0) {
 												tmp_monster.GetComponent<CreatureController> ().Creat.HP -= magdmg;
 										}
-				
+										foreach (ItemData wep in p001.me.Creat.Equipment) {
+												if (wep.Type == ItemType.weapon_melee) {
+														if (wep.Durability - 30 <= 0) {
+																wep.Durability = 0;
+														} else {
+																wep.Durability -= 30;
+														}
+												}
+										}
 										Debug.Log ("Phy: " + phydmg + " / Mag: " + magdmg);
 										attack = false;
 								}
@@ -130,6 +138,15 @@ public class kampf : MonoBehaviour {
 												if (tmp_item.Type == ItemType.utility) {
 														tmp_item.Ammo.RemoveAt (0);
 														tmp_item.Capacity--;
+												}
+										}
+										foreach (ItemData wep in p001.me.Creat.Equipment) {
+												if (wep.Type == ItemType.weapon_range) {
+														if (wep.Durability - 30 <= 0) {
+																wep.Durability = 0;
+														} else {
+																wep.Durability -= 30;
+														}
 												}
 										}
 				

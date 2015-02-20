@@ -47,6 +47,8 @@ public class ItemData { // erstmal aus dem alten übernommen und leicht abgeänd
 		public int Stock;
 		public int RefillMod;
 		public float Weigth;
+		public int Durability;
+		public int MaxDurability;
 	
 		// Base Stats
 		public int MagAttack;

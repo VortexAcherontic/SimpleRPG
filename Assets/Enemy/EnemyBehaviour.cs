@@ -59,6 +59,20 @@ public class EnemyBehaviour : MonoBehaviour {
 								}
 						}
 						me.Creat.AttackTimer = me.Creat.AttackCooldown;
+						foreach (ItemData wep in p001.me.Creat.Equipment) {
+								if ((wep.Type == ItemType.armor_feet) ||
+										(wep.Type == ItemType.armor_hand) ||
+										(wep.Type == ItemType.armor_head) ||
+										(wep.Type == ItemType.armor_leg) ||
+										(wep.Type == ItemType.armor_torso) 
+				    ) {
+										if (wep.Durability - 30 <= 0) {
+												wep.Durability = 0;
+										} else {
+												wep.Durability -= 30;
+										}
+								}
+						}
 				}
 		} 
 		
