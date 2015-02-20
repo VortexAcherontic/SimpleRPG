@@ -246,8 +246,8 @@ public class TileMap : MonoBehaviour {
 		}
 	
 		void CheckForPortals () {
-				GameObject.Find ("Main Camera").GetComponent<teleporter> ().LoadPorter ();
-				List<ObjTele> tmplist = GameObject.Find ("Main Camera").GetComponent<teleporter> ().Porter;
+				GameObject.Find ("Uebergabe").GetComponent<teleporter> ().LoadPorter ();
+				List<ObjTele> tmplist = GameObject.Find ("Uebergabe").GetComponent<teleporter> ().Porter;
 				foreach (ObjTele tmpobj in tmplist) {
 						tiles [(int)tmpobj.vonpos.x, (int)tmpobj.vonpos.y] = GetRegionWithName ("Portal");
 				}

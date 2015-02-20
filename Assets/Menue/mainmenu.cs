@@ -40,7 +40,7 @@ public class mainmenu : MonoBehaviour {
 						//GUI.Label (new Rect (0, 0, 100, 100), "Dies ist ein Text");
 						if (GUI.Button (new Rect (145, 425, 170, 45), "")) {
 								showgamemenue = false;
-								GameObject.Find ("Main Camera").GetComponent<registrierung> ().step = 1;
+								GameObject.Find ("Uebergabe").GetComponent<registrierung> ().step = 1;
 						}
 						if (GUI.Button (new Rect (145, 475, 170, 45), "")) {
 								showgamemenue = false;

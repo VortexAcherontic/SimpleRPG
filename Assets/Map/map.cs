@@ -11,7 +11,7 @@ public class map : MonoBehaviour {
 
 		// Use this for initialization
 		void Start () {
-				gui = GameObject.Find ("Main Camera").GetComponent<mainmenu> ();
+				gui = GameObject.Find ("Uebergabe").GetComponent<mainmenu> ();
 				MonsterSpawner = GameObject.Find ("MonsterSpawner").transform;
 				//LoadMap (); // Nun nach Player Load
 		

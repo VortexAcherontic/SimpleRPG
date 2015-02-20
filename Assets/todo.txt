@@ -4,10 +4,12 @@
 - geschwindigkeiten-gewicht-verhältnis anpassen ZZ auf 0 wegen hat genervt
 
 // Bug Fixes
+- door visual fix
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 
 // Mechanik
+- mehr maps zusammenbasteln & aufbau/system ändern (überführung bereitet probleme)
 - unter finished im tagebuch die urspüngliche quest anzeigen
 - NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
 - Fractions? (Fraction vs Fraction ODER Creature vs Creature von Fraction?)
@@ -37,7 +39,6 @@
 - battlemode 1vs1 einbauen (oder so... Multiplayer)
 
 // GUI
-- mehr maps zusammenbasteln & aufbau/system ändern 
 - generell laden und speichern einbauen in einer taverne statt im inventar
 - Angriff/Schaden Anzeigen?!? (Gerade für Fernkampf/Magie bestimmt nicht schlecht - Schaden nur wenn touch)
 

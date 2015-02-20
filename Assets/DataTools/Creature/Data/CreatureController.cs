@@ -131,7 +131,7 @@ public class CreatureController : MonoBehaviour {
 								Creat.Position = Pos;
 								Creat.InitalStats.Position = Pos;
 								transform.position = newPos;
-								Creat.MoveTimer = (TileToMove.walkEffect + Creat.Movement_Delay) * 0.05f; // *0 zum deven
+								Creat.MoveTimer = (TileToMove.walkEffect + Creat.Movement_Delay) * 0.25f; // *0 zum deven
 						}
 				}
 		}
@@ -179,7 +179,7 @@ public class CreatureController : MonoBehaviour {
 	
 		void BerechneMovmentDelay () {
 				float GGewicht = 0.0f;
-				if (GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
+				if (GameObject.Find ("Uebergabe").GetComponent<mainmenu> ().gameloaded) {
 						foreach (ItemData tmpitem in Creat.Inventory) {
 								GGewicht += tmpitem.Weigth;
 						}

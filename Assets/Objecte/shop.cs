@@ -36,7 +36,7 @@ public class shop : MonoBehaviour {
 		}
 	
 		void Update () {
-				if (GameObject.Find ("Main Camera").GetComponent<mainmenu> ().gameloaded) {
+				if (GameObject.Find ("Uebergabe").GetComponent<mainmenu> ().gameloaded) {
 						refill_timer -= Time.deltaTime;
 						if (refill_timer <= 0) {
 								shops_refill ();
@@ -60,8 +60,8 @@ public class shop : MonoBehaviour {
 						if (p001 != null) {
 								if ((p001.me.Creat.Position == s001.pos) && (imshop == false)) {
 										if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "Click here to enter shop!")) {
-												item_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Item_List;
-												ammo_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Ammo_List;
+												item_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Item_List;
+												ammo_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Ammo_List;
 												Scrollbereich = new Rect (0, 0, 0, 0);
 												imshop = true;
 										}
@@ -292,7 +292,7 @@ public class shop : MonoBehaviour {
 		}
 		
 		public void shops_refill () {
-				item_liste = GameObject.Find ("Main Camera").GetComponent<item> ().Item_List;
+				item_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Item_List;
 				int count_tmpitem = 0;
 				foreach (ItemData otmpitem in item_liste) {
 						ItemData tmpitem = otmpitem;
