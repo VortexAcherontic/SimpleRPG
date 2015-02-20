@@ -11,7 +11,9 @@ public class QuestController : MonoBehaviour {
 				not.time = 5;
 				QuestDataList DataListObj;
 				DataListObj = (QuestDataList)Resources.Load ("Quest");
-				AlleQuests = DataListObj.QuestList;
+				foreach (QuestStruct lq in DataListObj.QuestList) {
+						AlleQuests.Add (lq);
+				}
 				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 		}
 	
