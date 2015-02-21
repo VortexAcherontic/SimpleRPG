@@ -54,29 +54,33 @@ public class EnemyBehaviour : MonoBehaviour {
 								//Debug.Log ("PlayerHp: " + p001.hp + me.Creat.pname + "hp:" + me.Creat.hp);
 								temp_dodge = Random.Range (0, 100);
 								if (temp_dodge + p001.me.Creat.Agi <= 90) {
-										p001.me.Creat.HP -= me.Creat.PhyAttack - p001.me.Creat.PhyArmor;
-										p001.me.Creat.HP -= me.Creat.MagAttack - p001.me.Creat.MagArmor;
+										if (me.Creat.PhyAttack > p001.me.Creat.PhyArmor) {
+												p001.me.Creat.HP -= me.Creat.PhyAttack - p001.me.Creat.PhyArmor;
+										}
+										if (me.Creat.MagAttack > p001.me.Creat.MagArmor) {
+												p001.me.Creat.HP -= me.Creat.MagAttack - p001.me.Creat.MagArmor;
+										}
+										int count_wep = 0;
+										foreach (ItemData owep in p001.me.Creat.Equipment) {
+												ItemData wep = owep;
+												if ((wep.Type == ItemType.armor_feet) ||
+														(wep.Type == ItemType.armor_hand) ||
+														(wep.Type == ItemType.armor_head) ||
+														(wep.Type == ItemType.armor_leg) ||
+														(wep.Type == ItemType.armor_torso) 
+						  						  ) {
+														if (wep.Durability - 1 <= 0) {
+																wep.Durability = 0;
+														} else {
+																wep.Durability -= 1;
+														}
+												}
+												p001.me.Creat.Equipment [count_wep] = wep;
+												count_wep++;
+										}
 								}
 						}
 						me.Creat.AttackTimer = me.Creat.AttackCooldown;
-						int count_wep = 0;
-						foreach (ItemData owep in p001.me.Creat.Equipment) {
-								ItemData wep = owep;
-								if ((wep.Type == ItemType.armor_feet) ||
-										(wep.Type == ItemType.armor_hand) ||
-										(wep.Type == ItemType.armor_head) ||
-										(wep.Type == ItemType.armor_leg) ||
-										(wep.Type == ItemType.armor_torso) 
-				    ) {
-										if (wep.Durability - 30 <= 0) {
-												wep.Durability = 0;
-										} else {
-												wep.Durability -= 30;
-										}
-								}
-								p001.me.Creat.Equipment [count_wep] = wep;
-								count_wep++;
-						}
 				}
 		} 
 		

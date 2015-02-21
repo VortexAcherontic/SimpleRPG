@@ -4,7 +4,7 @@
 - geschwindigkeiten-gewicht-verhältnis anpassen ZZ auf 0 wegen hat genervt
 
 // Bug Fixes
-- door visual fix
+- door visual fix (ändert sich eh mit map)
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 

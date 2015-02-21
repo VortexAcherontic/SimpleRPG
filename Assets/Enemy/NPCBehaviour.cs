@@ -6,8 +6,14 @@ public class NPCBehaviour : MonoBehaviour {
 		QuestController QuestObj;
 		CreatureController me;
 		PlayerBehaviour p001;
+		float temp_x;
+		float temp_y;
+		int distance_manhatten;
+	
 	
 		public List<string> ReperaturNPC = new List<string> ();
+		public List<string> ShopNPC = new List<string> ();
+	
 	
 		void Start () {
 				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
@@ -15,6 +21,7 @@ public class NPCBehaviour : MonoBehaviour {
 				me = gameObject.GetComponent<CreatureController> ();
 		
 				ReperaturNPC.Add ("Hans Peter");
+				ShopNPC.Add ("Jeremy Pascal");
 		}
 	
 		void Update () {
@@ -34,13 +41,20 @@ public class NPCBehaviour : MonoBehaviour {
 		}
 	
 		bool interactable () {
-				if ((((me.Creat.Position.x == p001.me.Creat.Position.x + 1) || (me.Creat.Position.x == p001.me.Creat.Position.x - 1)) &&
-						(me.Creat.Position.y == p001.me.Creat.Position.y)) || (((me.Creat.Position.y == p001.me.Creat.Position.y + 1) ||
-						(me.Creat.Position.y == p001.me.Creat.Position.y - 1)) && (me.Creat.Position.x == p001.me.Creat.Position.x))) {
+				if (CheckDistance () <= 2) {
 						return true;
 				} else {
 						return false;
 				}
+		}
+	
+		public int CheckDistance () {
+				temp_x = Mathf.Abs (p001.me.Creat.Position.x - transform.position.x);
+				temp_y = Mathf.Abs (p001.me.Creat.Position.y - transform.position.y);
+				//distance_euklid = (int)Mathf.Sqrt (temp_x * temp_x + temp_y * temp_y);
+				distance_manhatten = (int)(temp_x + temp_y);
+				//Debug.Log ("Distance: " + distance_manhatten);
+				return distance_manhatten;
 		}
 	
 		void repair () {
@@ -87,9 +101,19 @@ public class NPCBehaviour : MonoBehaviour {
 										GUI_Repair = !GUI_Repair;		
 								}
 						}
+						foreach (string npcname in ShopNPC) {
+								if (npcname == me.Creat.Name) {
+										Shop ();
+								}
+						}
+			
 						QuestObj.NPCTalk (me.Creat.Name);
 						//Debug.Log ("Quest angenommen!");
 				}	
+		}
+	
+		void Shop () {
+				GameObject.Find ("Uebergabe").GetComponent<shop> ().imshop = !GameObject.Find ("Uebergabe").GetComponent<shop> ().imshop;
 		}
 	
 }

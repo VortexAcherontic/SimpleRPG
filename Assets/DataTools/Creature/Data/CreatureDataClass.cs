@@ -29,6 +29,8 @@ public struct CreatureOriginData { // Clean Own Stats
 		public float RegCooldown;
 		public float AttackTimer;
 		public float AttackCooldown;
+		public float HPPotionTimer;
+		public float HPPotionCooldown;
 	
 		// Changeable by Level UP (Player) or Stick to Input (Monster/NPC)
 		public int Str; // Phy Dmg
@@ -90,6 +92,8 @@ public struct CreatureData {
 		public float RegCooldown;
 		public float AttackTimer;
 		public float AttackCooldown;
+		public float HPPotionTimer;
+		public float HPPotionCooldown;
 	
 		// Changeable by Level UP (Player) or Stick to Input (Monster/NPC)
 		public int Str; // Phy Dmg

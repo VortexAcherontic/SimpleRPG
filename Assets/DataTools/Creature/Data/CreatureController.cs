@@ -7,6 +7,7 @@ public class CreatureController : MonoBehaviour {
 	
 		public CreatureData Creat;
 		public bool IsLoaded = false;
+		Vector2 newPos = new Vector2 (0, 0);
 	
 		Transform healthbar;
 		Transform healthbarFilled;
@@ -66,6 +67,7 @@ public class CreatureController : MonoBehaviour {
 				Creat.MoveTimer -= Time.deltaTime;
 				Creat.RegTimer -= Time.deltaTime;
 				Creat.AttackTimer -= Time.deltaTime;
+				Creat.HPPotionTimer -= Time.deltaTime;
 				if (Creat.MoveTimer < -20) {
 						Creat.MoveTimer = 0;
 				}
@@ -74,6 +76,9 @@ public class CreatureController : MonoBehaviour {
 				}
 				if (Creat.AttackTimer < -20) {
 						Creat.AttackTimer = 0;
+				}
+				if (Creat.HPPotionTimer < -20) {
+						Creat.HPPotionTimer = 0;
 				}
 		}
 	
@@ -99,11 +104,11 @@ public class CreatureController : MonoBehaviour {
 				Creat.InitalStats.Inventory = Creat.Inventory;
 		}
 	
-		public void MoveTo (Vector2 Pos) {
+		public Vector2 MoveTo (Vector2 Pos) {
 				
 				if (Creat.MoveTimer <= 0) {
-						
 						bool MovementCheck = true;
+						/*			
 						TileMap MapDaten = GameObject.Find ("Map").GetComponent<TileMap> ();
 						int MoveToTileType = MapDaten.tiles [(int)Pos.x, (int)Pos.y];
 						regions TileToMove = MapDaten.tileTypes [MoveToTileType];
@@ -122,18 +127,20 @@ public class CreatureController : MonoBehaviour {
 								if (tmpobj.transform.position.x == Pos.x && tmpobj.transform.position.y == Pos.y) {
 										MovementCheck = false;
 								}
-						}
+						}*/
 			
 						if (MovementCheck) {
 								Creat.lastPos = Creat.Position;
 								BerechneMovmentDelay ();
-								Vector3 newPos = new Vector3 (Pos.x, Pos.y, transform.position.z);
-								Creat.Position = Pos;
-								Creat.InitalStats.Position = Pos;
-								transform.position = newPos;
-								Creat.MoveTimer = (TileToMove.walkEffect + Creat.Movement_Delay) * 0.25f; // *0 zum deven
+								newPos = Pos/* - Creat.Position*/;
+								//Creat.Position = Pos;
+								//Creat.InitalStats.Position = Pos;
+								transform.Translate (newPos * 10 * Time.deltaTime);
+								newPos = transform.position;
+								Creat.MoveTimer = (/*TileToMove.walkEffect + */Creat.Movement_Delay) * 0.25f; // *0 zum deven
 						}
 				}
+				return newPos;
 		}
 	
 		void UpdateReg () {
@@ -326,6 +333,9 @@ public class CreatureController : MonoBehaviour {
 				}
 				if (Creat.RegCooldown == 0) {
 						Creat.RegCooldown = 1.0f;
+				}
+				if (Creat.HPPotionCooldown == 0) {
+						Creat.HPPotionCooldown = 5.0f;
 				}
 		}
 }

@@ -103,10 +103,10 @@ public class kampf : MonoBehaviour {
 										foreach (ItemData owep in p001.me.Creat.Equipment) {
 												ItemData wep = owep;
 												if (wep.Type == ItemType.weapon_melee) {
-														if (wep.Durability - 30 <= 0) {
+														if (wep.Durability - 1 <= 0) {
 																wep.Durability = 0;
 														} else {
-																wep.Durability -= 30;
+																wep.Durability -= 1;
 														}
 												}
 												p001.me.Creat.Equipment [count_wep] = wep;
@@ -152,10 +152,10 @@ public class kampf : MonoBehaviour {
 										foreach (ItemData owep in p001.me.Creat.Equipment) {
 												ItemData wep = owep;
 												if (wep.Type == ItemType.weapon_range) {
-														if (wep.Durability - 30 <= 0) {
+														if (wep.Durability - 1 <= 0) {
 																wep.Durability = 0;
 														} else {
-																wep.Durability -= 30;
+																wep.Durability -= 1;
 														}
 												}
 												p001.me.Creat.Equipment [count_wep] = wep;

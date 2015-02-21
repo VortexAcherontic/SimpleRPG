@@ -12,7 +12,7 @@ public class shop : MonoBehaviour {
 		PlayerBehaviour p001;
 		List<ItemData> item_liste = new List<ItemData> ();
 		List<AmmoData> ammo_liste = new List<AmmoData> ();
-		bool imshop = false;
+		public bool imshop = false;
 		int anzeige_kat = 0;
 		Vector2 scroller = new Vector2 ();
 		Rect Scrollbereich; // Weil ka wie sonst XD
@@ -33,6 +33,10 @@ public class shop : MonoBehaviour {
 				ObjShop newShop = CreateEmptyShop (new Vector2 (80, 80));
 				shops.Add (newShop);
 				refill_timer = refill_cooldown;
+		
+				item_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Item_List;
+				ammo_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Ammo_List;
+				Scrollbereich = new Rect (0, 0, 0, 0);
 		}
 	
 		void Update () {
@@ -56,18 +60,7 @@ public class shop : MonoBehaviour {
 		}
 	
 		void OnGUI () {
-				foreach (ObjShop s001 in shops) {
-						if (p001 != null) {
-								if ((p001.me.Creat.Position == s001.pos) && (imshop == false)) {
-										if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "Click here to enter shop!")) {
-												item_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Item_List;
-												ammo_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Ammo_List;
-												Scrollbereich = new Rect (0, 0, 0, 0);
-												imshop = true;
-										}
-								}
-						}
-				}
+		
 				if (imshop) {
 						Rect tmp_anzeige = new Rect (100, 160, 1080, 200);
 						GUILayout.BeginArea (tmp_anzeige);

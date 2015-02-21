@@ -56,19 +56,19 @@ public class PlayerBehaviour : MonoBehaviour {
 		void CheckKeyInput () {
 				if (Input.GetKey ("w")) {
 						SC.Action = AnimationTyp.MoveUp;
-						me.MoveTo (new Vector2 (me.Creat.Position.x, me.Creat.Position.y + 1));
+						me.Creat.Position = me.MoveTo (new Vector2 (0, 1));
 				}
 				if (Input.GetKey ("a")) {
 						SC.Action = AnimationTyp.MoveLeft;
-						me.MoveTo (new Vector2 (me.Creat.Position.x - 1, me.Creat.Position.y));
+						me.Creat.Position = me.MoveTo (new Vector2 (- 1, 0));
 				}
 				if (Input.GetKey ("s")) {
 						SC.Action = AnimationTyp.MoveDown;
-						me.MoveTo (new Vector2 (me.Creat.Position.x, me.Creat.Position.y - 1));
+						me.Creat.Position = me.MoveTo (new Vector2 (0, - 1));
 				}
 				if (Input.GetKey ("d")) {
 						SC.Action = AnimationTyp.MoveRight;
-						me.MoveTo (new Vector2 (me.Creat.Position.x + 1, me.Creat.Position.y));
+						me.Creat.Position = me.MoveTo (new Vector2 (1, 0));
 				}
 				if (Input.GetKeyDown ("i")) {
 						GUI_Inventory = !GUI_Inventory;
@@ -85,7 +85,22 @@ public class PlayerBehaviour : MonoBehaviour {
 				if (Input.GetKey ("3")) {
 						me.Creat.Stance = BattleStance.magic;
 				}
+				if (Input.GetKey ("q")) {
+						ItemData tmppot = new ItemData ();
+						bool potionistda = false;
+						foreach (ItemData tmp_item in me.Creat.Inventory) {
+								if (tmp_item.Type == ItemType.potion && tmp_item.EffectType == EffectType.Health) {
+										tmppot = tmp_item;
+										potionistda = true;
+								}
+						}
+						if ((potionistda) && (me.Creat.HPPotionTimer <= 0)) {
+								ItemUse (tmppot);
+								me.Creat.HPPotionTimer = me.Creat.HPPotionCooldown;
+						}
+				}
 		}
+	
 		void CheckLevelUp () {
 				if (me.Creat.XP >= 100 * (me.Creat.Level + 1)) {
 						me.Creat.Level++;
