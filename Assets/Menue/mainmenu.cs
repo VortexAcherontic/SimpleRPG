@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class mainmenu : MonoBehaviour {
 		bool showoptions;
+		public bool showsettings = false;
 		public bool showinv = false;
 		public bool showmap = false;
 		public bool showequip = false;
@@ -18,15 +19,44 @@ public class mainmenu : MonoBehaviour {
 		void Start () {
 				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				//p001.Beginn (1000, 1000, 1000, 1000, 80, 0, 100000, 0, 0, 0, "sascha", 50, 50);
+				SkillAndKeys tmp = new SkillAndKeys ();
+				tmp.action = "MoveForward";
+				tmp.key = forwardkey;
+				KeySettings.Add (tmp);
+				tmp.action = "MoveBackward";
+				tmp.key = backwardskey;
+				KeySettings.Add (tmp);
+				tmp.action = "MoveLeft";
+				tmp.key = leftkey;
+				KeySettings.Add (tmp);
+				tmp.action = "MoveRight";
+				tmp.key = rightkey;
+				KeySettings.Add (tmp);
+		
+				tmp.action = "Interact";
+				tmp.key = interact;
+				KeySettings.Add (tmp);
+				tmp.action = "ShowMap";
+				tmp.key = mapkey;
+				KeySettings.Add (tmp);
+				tmp.action = "ShowInventory";
+				tmp.key = invkey;
+				KeySettings.Add (tmp);
+				tmp.action = "ShowJournal";
+				tmp.key = journalkey;
+				KeySettings.Add (tmp);
+				tmp.action = "ShowCharacter";
+				tmp.key = characterkey;
+				KeySettings.Add (tmp);
+				tmp.action = "UseHealPotion";
+				tmp.key = hppotionkey;
+				KeySettings.Add (tmp);
 		}
 	
 		// Update is called once per frame
 		
 		void Update () {
 				if (p001 != null) {
-						if (Input.GetKeyDown ("m")) {
-								showmap = !showmap;
-						}
 						if (Input.GetKeyDown (KeyCode.Escape)) {
 								showoptions = !showoptions;
 						}
@@ -101,6 +131,10 @@ public class mainmenu : MonoBehaviour {
 						if (GUI.Button (ButtonZeile, "Quit Game")) {
 								Application.Quit ();
 						}
+						ButtonZeile.position = new Vector2 (ButtonZeile.position.x, ButtonZeile.position.y + Zeilenhoehe);
+						if (GUI.Button (ButtonZeile, "Settings")) {
+								showsettings = !showsettings;
+						}
 				} else {
 						Time.timeScale = 1;
 				}
@@ -112,9 +146,73 @@ public class mainmenu : MonoBehaviour {
 				}
 		}
 	
+		//Movement
+		public string forwardkey = "w";
+		public string backwardskey = "s";
+		public string rightkey = "d";
+		public string leftkey = "a";
+		//Misc
+		public string interact = "f";
+		public string invkey = "i";
+		public string mapkey = "m";
+		public string hppotionkey = "q";
+		public string journalkey = "j";
+		public string characterkey = "c";
+	
+		public List<SkillAndKeys> KeySettings = new List<SkillAndKeys> ();
+	
+	
+	
+	
+	
+		void settings () {
+		
+				if (showsettings) {
+						var centeredStyle = GUI.skin.GetStyle ("Label");
+						centeredStyle.alignment = TextAnchor.UpperCenter;
+						Rect Setting = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 250, 1000, 500);
+						Rect Zeile = new Rect (Setting.position.x + 2, Setting.position.y + 20, Setting.width / 2, 20);
+						showoptions = false;
+						Time.timeScale = 0;
+						GUI.Box (Setting, "Settings");
+						GUI.Label (Zeile, "Movement", centeredStyle);
+			
+						for (int i=0; i<KeySettings.Count; i++) {
+								if (i == 4) {
+										Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
+										GUI.Label (Zeile, "Miscellaneous", centeredStyle);
+								}
+				
+								SkillAndKeys d = KeySettings [i];
+								Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
+								GUI.Label (Zeile, KeySettings [i].action + ": " + KeySettings [i].key);
+								Zeile.position = new Vector2 (Zeile.position.x + Setting.width / 2, Zeile.position.y);
+								Zeile.width = 50;
+								d.key = GUI.TextField (Zeile, d.key);
+								/*Zeile.width = 100;
+								if (GUI.Button (Zeile, "assign new key")) {
+										
+								}
+								Zeile.width = Setting.width - 5;*/
+								KeySettings [i] = d;
+								Zeile.position = new Vector2 (Zeile.position.x - Setting.width / 2, Zeile.position.y);
+								Zeile.width = Setting.width / 2;
+						}
+			
+						Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
+						
+						if (GUI.Button (Zeile, "back")) {
+								showoptions = true;
+								showsettings = false;
+						}
+				}
+		
+		}
+	
 		void OnGUI () {
 				Startscreen ();
 				ShowLogin ();
 				options ();
+				settings ();
 		}
 }

@@ -60,6 +60,7 @@ public class teleporter : MonoBehaviour {
 		}
 		
 		public void LoadPorter () {
+				/*
 				AddTeleporter ("Haus_Des_Spielers", new Vector2 (78, 78), new Vector2 (0, 0), m001.Maps [1]);
 		
 				// Links in Stadt
@@ -97,5 +98,6 @@ public class teleporter : MonoBehaviour {
 				AddTeleporter ("SimpleRpg", new Vector2 (183, 30), new Vector2 (79, 74), m001.Maps [0]);
 				AddTeleporter ("SimpleRpg", new Vector2 (184, 30), new Vector2 (80, 74), m001.Maps [0]);
 				AddTeleporter ("SimpleRpg", new Vector2 (185, 30), new Vector2 (81, 74), m001.Maps [0]);
+				*/
 		}
 }

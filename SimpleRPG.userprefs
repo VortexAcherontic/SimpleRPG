@@ -1,10 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Objecte\teleporter.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
     <Files>
-      <File FileName="Assets\todo.txt" Line="31" Column="2" />
-      <File FileName="Assets\Objecte\teleporter.cs" Line="49" Column="41" />
-      <File FileName="Assets\Objecte\Truhen\Chest.cs" Line="7" Column="3" />
+      <File FileName="Assets\todo.txt" Line="29" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

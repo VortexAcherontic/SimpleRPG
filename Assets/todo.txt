@@ -9,7 +9,7 @@
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 
 // Mechanik
-- tastenbelegung für alle funktionen frei wählbar machen
+- tastenfunktionen für battlestance und interact ändern lassen können
 
 - mehr maps zusammenbasteln & aufbau/system ändern (überführung bereitet probleme)
 - unter finished im tagebuch die urspüngliche quest anzeigen

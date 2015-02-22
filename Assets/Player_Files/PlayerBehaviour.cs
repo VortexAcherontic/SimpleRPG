@@ -17,6 +17,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		public CreatureController me;
 		public Sprite_CharController SC;
 		public QuestController qc;
+		public mainmenu mn;
 	
 		public List<Notification> PickupList = new List<Notification> ();
 		public bool Death = false;
@@ -50,6 +51,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				me = gameObject.GetComponent<CreatureController> ();
 				SC = gameObject.GetComponentInChildren<Sprite_CharController> ();
 				qc = gameObject.GetComponent<QuestController> ();
+				mn = GameObject.Find ("Uebergabe").GetComponent<mainmenu> ();
 		}
 	
 		// Update is called once per frame
@@ -75,28 +77,6 @@ public class PlayerBehaviour : MonoBehaviour {
 		}
 	
 		void CheckKeyInput () {
-				if (Input.GetKey ("w")) {
-						SC.Action = AnimationTyp.MoveUp;
-						me.Creat.Position = me.MoveTo (new Vector2 (0, 1));
-				}
-				if (Input.GetKey ("a")) {
-						SC.Action = AnimationTyp.MoveLeft;
-						me.Creat.Position = me.MoveTo (new Vector2 (- 1, 0));
-				}
-				if (Input.GetKey ("s")) {
-						SC.Action = AnimationTyp.MoveDown;
-						me.Creat.Position = me.MoveTo (new Vector2 (0, - 1));
-				}
-				if (Input.GetKey ("d")) {
-						SC.Action = AnimationTyp.MoveRight;
-						me.Creat.Position = me.MoveTo (new Vector2 (1, 0));
-				}
-				if (Input.GetKeyDown ("i")) {
-						GUI_Inventory = !GUI_Inventory;
-				}
-				if (Input.GetKeyDown ("j")) {
-						GUI_journal = !GUI_journal;
-				}
 				if (Input.GetKey ("1")) {
 						me.Creat.Stance = BattleStance.melee;
 				}
@@ -105,23 +85,58 @@ public class PlayerBehaviour : MonoBehaviour {
 				}
 				if (Input.GetKey ("3")) {
 						me.Creat.Stance = BattleStance.magic;
-				}
-				if (Input.GetKeyDown ("q")) {
-						ItemData tmppot = new ItemData ();
-						bool potionistda = false;
-						foreach (ItemData tmp_item in me.Creat.Inventory) {
-								if (tmp_item.Type == ItemType.potion && tmp_item.EffectType == EffectType.Health) {
-										tmppot = tmp_item;
-										potionistda = true;
+				}		
+				foreach (SkillAndKeys inputkey in mn.KeySettings) {
+						if (Input.GetKey (inputkey.key)) {
+								switch (inputkey.action) {
+										case "MoveForward":
+												SC.Action = AnimationTyp.MoveUp;
+												me.Creat.Position = me.MoveTo (new Vector2 (0, 1));
+												break;
+										case "MoveLeft":
+												SC.Action = AnimationTyp.MoveLeft;
+												me.Creat.Position = me.MoveTo (new Vector2 (- 1, 0));
+												break;
+										case "MoveBackward":
+												SC.Action = AnimationTyp.MoveDown;
+												me.Creat.Position = me.MoveTo (new Vector2 (0, - 1));
+												break;
+										case "MoveRight":
+												SC.Action = AnimationTyp.MoveRight;
+												me.Creat.Position = me.MoveTo (new Vector2 (1, 0));
+												break;
 								}
 						}
-						if ((potionistda) && (me.Creat.HPPotionTimer <= 0)) {
-								ItemUse (tmppot);
-								me.Creat.HPPotionTimer = me.Creat.HPPotionCooldown;
+						if (Input.GetKeyDown (inputkey.key)) {
+								switch (inputkey.action) {
+										case "ShowInventory":
+												GUI_Inventory = !GUI_Inventory;
+												break;
+										case "ShowJournal":
+												GUI_journal = !GUI_journal;
+												break;
+										case "UseHealPotion":
+												ItemData tmppot = new ItemData ();
+												bool potionistda = false;
+												foreach (ItemData tmp_item in me.Creat.Inventory) {
+														if (tmp_item.Type == ItemType.potion && tmp_item.EffectType == EffectType.Health) {
+																tmppot = tmp_item;
+																potionistda = true;
+														}
+												}
+												if ((potionistda) && (me.Creat.HPPotionTimer <= 0)) {
+														ItemUse (tmppot);
+														me.Creat.HPPotionTimer = me.Creat.HPPotionCooldown;
+												}
+												break;
+										case "ShowCharacter":
+												GUI_Character = !GUI_Character;
+												break;
+										case "ShowMap":
+												GameObject.Find ("uebergabe").GetComponent<mainmenu> ().showmap = !GameObject.Find ("uebergabe").GetComponent<mainmenu> ().showmap;
+												break;
+								}
 						}
-				}
-				if (Input.GetKeyDown ("c")) {
-						GUI_Character = !GUI_Character;
 				}
 				for (int i = 0; i<skillkeys.Count; i++) {
 						if (Input.GetKeyDown (skillkeys [i].key)) {
