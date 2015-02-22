@@ -11,9 +11,10 @@ public class Player_Save : MonoBehaviour {
 		// Klappt erstmal nur in UNITY!
 		
 		private Server _server_ = new Server ();
+		public string logintext;
+		bool isLogin = false;
 		bool IsLoading = false;
 		int id;
-	
 	
 		public void Save () {
 				_server_.data.Clear ();
@@ -21,7 +22,6 @@ public class Player_Save : MonoBehaviour {
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 		
 				#region Char
-				Debug.Log ("Save Char");
 				Game.Creature = gameObject.GetComponent<PlayerBehaviour> ().me.Creat;
 				JSONObject characterObj = new JSONObject ();
 		
@@ -40,9 +40,9 @@ public class Player_Save : MonoBehaviour {
 				characterObj.Add ("Stats", Game.Creature.StatPoints);
 				characterObj.Add ("SkP", Game.Creature.SkillPoints);
 				characterObj.Add ("stance", (int)Game.Creature.Stance);
-		
+				#endregion Char
 				
-				Debug.Log ("Save Equipment");
+				#region Equipment
 				JSONObject Equipment = new JSONObject ();
 				int i = 0;
 				Game.Creature.Equipment_Strings = new string[Game.Creature.Equipment.Count];
@@ -67,7 +67,9 @@ public class Player_Save : MonoBehaviour {
 				}
 				Equipment.Add ("count", Game.Creature.Equipment.Count);
 				characterObj.Add ("equip", Equipment);
-				
+				#endregion Equipment
+		
+				#region inventory
 				Debug.Log ("Save Inventory");
 				JSONObject Inventory = new JSONObject ();
 				i = 0;
@@ -93,7 +95,7 @@ public class Player_Save : MonoBehaviour {
 				}
 				Inventory.Add ("count", Game.Creature.Inventory.Count);
 				characterObj.Add ("inventory", Inventory);
-				#endregion Char
+				#endregion inventory
 		
 				#region keys
 				Debug.Log ("Save Keys");
@@ -197,14 +199,7 @@ public class Player_Save : MonoBehaviour {
 		
 				StartCoroutine (_server_.SaveData (id, _server_.data));
 		}
-		public void LoadVorarbeit () {
-				StartCoroutine (_server_.GetData (id));
-				IsLoading = true;
 		
-		}
-	
-		
-	
 		public void Load () {
 		
 				//Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
@@ -227,7 +222,9 @@ public class Player_Save : MonoBehaviour {
 				Game.Creature.InitalStats.StatPoints = (int)_server_.data.GetObject ("character").GetNumber ("Stats");
 				Game.Creature.InitalStats.SkillPoints = (int)_server_.data.GetObject ("character").GetNumber ("SkP");
 				Game.Creature.InitalStats.Stance = (BattleStance)_server_.data.GetObject ("character").GetNumber ("stance");
+				#endregion Char
 		
+				#region Equipment
 				int i = 0;
 				int max_i = 0;
 				// Equipment
@@ -257,6 +254,9 @@ public class Player_Save : MonoBehaviour {
 						}
 						Game.Creature.Equipment.Add (diesesitem);
 				}
+				#endregion equipment
+		
+				#region inventory
 				// Inventory
 				max_i = (int)_server_.data.GetObject ("character").GetObject ("inventory").GetNumber ("count");
 				Game.Creature.InitalStats.Inventory_Strings = new string[max_i];
@@ -284,7 +284,7 @@ public class Player_Save : MonoBehaviour {
 						}
 						Game.Creature.Inventory.Add (diesesitem);
 				}
-				#endregion Char
+				#endregion inventroy		
 		
 			
 		
@@ -397,6 +397,12 @@ public class Player_Save : MonoBehaviour {
 				StartGame ();
 		}
 	
+		public void LoadVorarbeit () {
+				StartCoroutine (_server_.GetData (id));
+				IsLoading = true;
+		
+		}
+	
 		public void StartGame () {
 				transform.FindChild ("UnitModel_Kopie").GetComponent<SpriteRenderer> ().enabled = true;
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
@@ -424,8 +430,6 @@ public class Player_Save : MonoBehaviour {
 				}
 		}
 	
-		public string logintext;
-		bool isLogin = false;
 		void Update () {
 				if (IsLoading) {
 						if (_server_.data.ContainsKey ("character")) {
