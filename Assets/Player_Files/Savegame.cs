@@ -5,4 +5,5 @@ using System.Collections.Generic;
 public class Savegame :ScriptableObject {
 		public CreatureData Creature;
 		public List<QuestStruct> Quests;
+		public List<SkillAndKeys> Keys;
 }

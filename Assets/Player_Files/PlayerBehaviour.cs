@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
 public struct Notification {
 		public string message;
 		public float time;
 }
 
+[System.Serializable]
 public struct SkillAndKeys {
 		public string key;
 		public string action;
@@ -121,11 +123,9 @@ public class PlayerBehaviour : MonoBehaviour {
 				if (Input.GetKeyDown ("c")) {
 						GUI_Character = !GUI_Character;
 				}
-		
 				for (int i = 0; i<skillkeys.Count; i++) {
 						if (Input.GetKeyDown (skillkeys [i].key)) {
 								SkillUse (skillkeys [i].action);
-								Debug.Log ("skill: " + skillkeys [i].action);
 						}
 				}
 		}
@@ -171,11 +171,9 @@ public class PlayerBehaviour : MonoBehaviour {
 				foreach (skill sk in me.Creat.Skills) {
 						
 						if (sk.name == Skillname) {
-								Debug.Log (sk.name + " == " + Skillname);
 								foreach (Status st in me.alleStatus) {
 										Status tmpst = st;
 										if (st.name == sk.Effect [0]) {
-												Debug.Log (st.name + " == " + sk.Effect [0]);
 												if (me.Creat.MP >= sk.cost) {
 														me.Creat.MP -= sk.cost;
 														for (int i = 0; i<me.Creat.StatusEffects.Count; i++) {
@@ -185,7 +183,6 @@ public class PlayerBehaviour : MonoBehaviour {
 														}
 														tmpst.lvl = sk.lvl;
 														me.Creat.StatusEffects.Add (tmpst);
-														Debug.Log ("Added: " + tmpst.name);
 												}
 										}
 								}
@@ -194,6 +191,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		}
 	
 		public void SkillLearn (skill s) {
+				Debug.Log (s.name);
 				bool hatschon = false;
 				int count_skills = 0;
 				foreach (skill name in me.Creat.Skills) {
@@ -764,7 +762,8 @@ public class PlayerBehaviour : MonoBehaviour {
 								}
 						}
 				}
-				if (Quiver.Name != "") {
+				
+				if (Quiver.Name != "" && Quiver.Name != null) {
 						GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Cap: " + Quiver.Capacity + " / " + Quiver.MaxCapacity);
 				}
 		

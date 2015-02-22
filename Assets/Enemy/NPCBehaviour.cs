@@ -124,7 +124,7 @@ public class NPCBehaviour : MonoBehaviour {
 		}
 	
 		bool GUI_Ausbilder = false;
-		public SkillDataList DataListObj;
+		public SkillsDataList DataListObj;
 		List<skill> SkillsToLearn = new List<skill> ();
 	
 		void Ausbilder () {
@@ -132,7 +132,7 @@ public class NPCBehaviour : MonoBehaviour {
 						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
 						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
 						GUI.Box (tmp_anzeige, "Take Lessons!");
-						DataListObj = (SkillDataList)Resources.Load ("Skill");
+						DataListObj = (SkillsDataList)Resources.Load ("Skill");
 						SkillsToLearn.Clear ();
 						foreach (skill id in DataListObj.SkillList) {
 								SkillsToLearn.Add (id);

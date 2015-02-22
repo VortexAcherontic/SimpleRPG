@@ -33,7 +33,8 @@ public class GameOverScreen : MonoBehaviour {
 		
 				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 220, 400, 30), "<color=white>Istani | Programmer</color>", centeredStyle);
 				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 190, 400, 30), "<color=white>Defender833 | Concept | Programmer</color>", centeredStyle);
-				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 160, 400, 30), "<color=white>Vortex | Design</color>", centeredStyle);
+				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 160, 400, 30), "<color=white>Vortex | Design | www.z-ray.de</color>", centeredStyle);
 				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 130, 400, 30), "<color=white>Craftgoll | Design</color>", centeredStyle);
+				GUI.Label (new Rect (Screen.width / 2 - 200, Screen.height / 2 - 100, 400, 30), "<color=white>Paliv | 3D Modeling | www.blancmiles.crevado.com/</color>", centeredStyle);
 		}
 }

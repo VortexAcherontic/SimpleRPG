@@ -9,6 +9,8 @@
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 
 // Mechanik
+- tastenbelegung für alle funktionen frei wählbar machen
+
 - mehr maps zusammenbasteln & aufbau/system ändern (überführung bereitet probleme)
 - unter finished im tagebuch die urspüngliche quest anzeigen
 - NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
@@ -18,7 +20,6 @@
 - Elemente(resistenzen)?
 
 - skillnamen und effectnamen anpassen
-- man darf skills auch ausführen
 - passive skills:
 	-regeneration increase
 - aktive skills:

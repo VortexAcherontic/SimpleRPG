@@ -21,6 +21,7 @@ public class Player_Save : MonoBehaviour {
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 		
 				#region Char
+				Debug.Log ("Save Char");
 				Game.Creature = gameObject.GetComponent<PlayerBehaviour> ().me.Creat;
 				JSONObject characterObj = new JSONObject ();
 		
@@ -37,40 +38,102 @@ public class Player_Save : MonoBehaviour {
 		
 				characterObj.Add ("LVL", Game.Creature.InitalStats.Level);
 				characterObj.Add ("Stats", Game.Creature.StatPoints);
+				characterObj.Add ("SkP", Game.Creature.SkillPoints);
 				characterObj.Add ("stance", (int)Game.Creature.Stance);
 		
+				
+				Debug.Log ("Save Equipment");
 				JSONObject Equipment = new JSONObject ();
 				int i = 0;
 				Game.Creature.Equipment_Strings = new string[Game.Creature.Equipment.Count];
 				foreach (ItemData tmpobj in Game.Creature.Equipment) {
 						Game.Creature.Equipment_Strings [i] = tmpobj.Name;
+						JSONObject diese = new JSONObject ();
+						diese.Add ("name", tmpobj.Name);
+						diese.Add ("durab", tmpobj.Durability);
+						diese.Add ("type", (int)tmpobj.Type);
+						if (tmpobj.Type == ItemType.utility) {
+								diese.Add ("cap", tmpobj.Ammo.Count);	
+								int j = 0;
+								JSONObject Ammo = new JSONObject ();
+								foreach (AmmoData am in tmpobj.Ammo) {
+										Ammo.Add (j.ToString (), am.Name);
+										j++;
+								}
+								diese.Add ("Ammo", Ammo);
+						}
+						Equipment.Add (i.ToString (), diese);
 						i++;
 				}
 				Equipment.Add ("count", Game.Creature.Equipment.Count);
-				i = 0;
-				foreach (string tmpstr in Game.Creature.Equipment_Strings) {
-						Equipment.Add (i.ToString (), tmpstr);
-						i++;
-				}
 				characterObj.Add ("equip", Equipment);
-		
+				
+				Debug.Log ("Save Inventory");
 				JSONObject Inventory = new JSONObject ();
 				i = 0;
 				Game.Creature.Inventory_Strings = new string[Game.Creature.Inventory.Count];
 				foreach (ItemData tmpobj in Game.Creature.Inventory) {
 						Game.Creature.Inventory_Strings [i] = tmpobj.Name;
+						JSONObject diese = new JSONObject ();
+						diese.Add ("name", tmpobj.Name);
+						diese.Add ("durab", tmpobj.Durability);
+						diese.Add ("type", (int)tmpobj.Type);
+						if (tmpobj.Type == ItemType.utility) {
+								diese.Add ("cap", tmpobj.Ammo.Count);	
+								int j = 0;
+								JSONObject Ammo = new JSONObject ();
+								foreach (AmmoData am in tmpobj.Ammo) {
+										Ammo.Add (j.ToString (), am.Name);
+										j++;
+								}
+								diese.Add ("Ammo", Ammo);
+						}
+						Inventory.Add (i.ToString (), diese);
 						i++;
 				}
 				Inventory.Add ("count", Game.Creature.Inventory.Count);
-				i = 0;
-				foreach (string tmpstr in Game.Creature.Inventory_Strings) {
-						Inventory.Add (i.ToString (), tmpstr);
-						i++;
-				}
 				characterObj.Add ("inventory", Inventory);
 				#endregion Char
 		
+				#region keys
+				Debug.Log ("Save Keys");
+				Game.Keys = gameObject.GetComponent<PlayerBehaviour> ().skillkeys;
+				JSONObject SaveKey = new JSONObject ();
+				i = 0;
+				foreach (SkillAndKeys sak in Game.Keys) {
+						JSONObject diese = new JSONObject ();
+						diese.Add ("key", sak.key);
+						diese.Add ("action", sak.action);
+						SaveKey.Add (i.ToString (), diese);
+						i++;
+				}
+				SaveKey.Add ("count", i);
+				#endregion keys
+		
+				#region skills
+				Debug.Log ("Save Skills");
+				JSONObject Skills = new JSONObject ();
+				i = 0;
+				string[] tmpskills = new string[Game.Creature.Skills.Count];
+				int[] tmplevel = new int[Game.Creature.Skills.Count];
+				foreach (skill tmpobj in Game.Creature.Skills) {
+						tmpskills [i] = tmpobj.name;
+						tmplevel [i] = tmpobj.lvl;
+						i++;
+				}
+				Skills.Add ("count", Game.Creature.Skills.Count);
+				i = 0;
+				for (i=0; i<tmpskills.Length; i++) {
+						JSONObject dieserSkills = new JSONObject ();
+						dieserSkills.Add ("name", tmpskills [i]);
+						dieserSkills.Add ("lvl", tmplevel [i]);
+						Skills.Add (i.ToString (), dieserSkills);
+				}
+				characterObj.Add ("skills", Skills);
+				#endregion skills
+		
 				#region Quest
+				Debug.Log ("Save Quests");
 				JSONObject questObj = new JSONObject ();
 				int count_quests = 0;
 				Game.Quests = gameObject.GetComponent<QuestController> ().AlleQuests;
@@ -78,6 +141,7 @@ public class Player_Save : MonoBehaviour {
 						if (q.accepted) {
 								JSONObject thisquest = new JSONObject ();
 								thisquest.Add ("Name", q.Name);
+								thisquest.Add ("Failes", q.failed.ToString ());
 								if (q.finished) {
 										thisquest.Add ("End", "true");
 								} else {
@@ -125,9 +189,9 @@ public class Player_Save : MonoBehaviour {
 				questObj.Add ("count", count_quests);
 				#endregion Quest
 		
-		
 				_server_.data.Add ("character", characterObj);
 				_server_.data.Add ("quest", questObj);
+				_server_.data.Add ("keys", SaveKey);
 		
 				
 		
@@ -138,24 +202,16 @@ public class Player_Save : MonoBehaviour {
 				IsLoading = true;
 		
 		}
-		void Update () {
-				if (IsLoading) {
-						if (_server_.data.ContainsKey ("character")) {
-								Load ();
-								IsLoading = false;
-						} else {
-								//Debug.Log (_server_.data.ToString ());
-						}
-				}
-		}
+	
+		
 	
 		public void Load () {
-				
+		
 				//Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 				Game.Quests = new List<QuestStruct> ();
 				#region Char
-				Game.Creature.InitalStats.Position = _server_.GetVector2 ("character", "position");
+				Game.Creature.Position = _server_.GetVector2 ("character", "position");
 				Game.Creature.InitalStats.Gold = (int)_server_.data.GetObject ("character").GetNumber ("gold");
 				Game.Creature.InitalStats.XP = (int)_server_.data.GetObject ("character").GetNumber ("xp");
 		
@@ -169,6 +225,7 @@ public class Player_Save : MonoBehaviour {
 		
 				Game.Creature.InitalStats.Level = (int)_server_.data.GetObject ("character").GetNumber ("LVL");
 				Game.Creature.InitalStats.StatPoints = (int)_server_.data.GetObject ("character").GetNumber ("Stats");
+				Game.Creature.InitalStats.SkillPoints = (int)_server_.data.GetObject ("character").GetNumber ("SkP");
 				Game.Creature.InitalStats.Stance = (BattleStance)_server_.data.GetObject ("character").GetNumber ("stance");
 		
 				int i = 0;
@@ -176,16 +233,100 @@ public class Player_Save : MonoBehaviour {
 				// Equipment
 				max_i = (int)_server_.data.GetObject ("character").GetObject ("equip").GetNumber ("count");
 				Game.Creature.InitalStats.Equipment_Strings = new string[max_i];
+				Game.Creature.Equipment = new List<ItemData> ();
 				for (i=0; i<max_i; i++) {
-						Game.Creature.InitalStats.Equipment_Strings [i] = _server_.data.GetObject ("character").GetObject ("equip").GetString (i.ToString ());
+						JSONObject dies = _server_.data.GetObject ("character").GetObject ("equip").GetObject (i.ToString ());
+						ItemDataList idlist = (ItemDataList)Resources.Load ("Items");
+						ItemData diesesitem = new ItemData ();
+						foreach (ItemData tmpit in idlist.ItemList) {
+								if (tmpit.Name == dies.GetString ("name")) {
+										diesesitem = tmpit;
+								}
+						}
+						diesesitem.Durability = (int)dies.GetNumber ("durab");
+						if (diesesitem.Type == ItemType.utility) {
+								for (int ammocount=0; ammocount<dies.GetNumber("cap"); ammocount++) {
+										AmmoData dieseammo = new AmmoData ();
+										foreach (AmmoData tmpit in idlist.AmmoList) {
+												if (tmpit.Name == dies.GetObject ("Ammo").GetString (ammocount.ToString ())) {
+														dieseammo = tmpit;
+												}
+										}
+										diesesitem.Ammo.Add (dieseammo);
+								}
+						}
+						Game.Creature.Equipment.Add (diesesitem);
 				}
 				// Inventory
 				max_i = (int)_server_.data.GetObject ("character").GetObject ("inventory").GetNumber ("count");
 				Game.Creature.InitalStats.Inventory_Strings = new string[max_i];
+				Game.Creature.Inventory = new List<ItemData> ();
 				for (i=0; i<max_i; i++) {
-						Game.Creature.InitalStats.Inventory_Strings [i] = _server_.data.GetObject ("character").GetObject ("inventory").GetString (i.ToString ());
+						JSONObject dies = _server_.data.GetObject ("character").GetObject ("inventory").GetObject (i.ToString ());
+						ItemDataList idlist = (ItemDataList)Resources.Load ("Items");
+						ItemData diesesitem = new ItemData ();
+						foreach (ItemData tmpit in idlist.ItemList) {
+								if (tmpit.Name == dies.GetString ("name")) {
+										diesesitem = tmpit;
+								}
+						}
+						diesesitem.Durability = (int)dies.GetNumber ("durab");
+						if (diesesitem.Type == ItemType.utility) {
+								for (int ammocount=0; ammocount<dies.GetNumber("cap"); ammocount++) {
+										AmmoData dieseammo = new AmmoData ();
+										foreach (AmmoData tmpit in idlist.AmmoList) {
+												if (tmpit.Name == dies.GetObject ("Ammo").GetString (ammocount.ToString ())) {
+														dieseammo = tmpit;
+												}
+										}
+										diesesitem.Ammo.Add (dieseammo);
+								}
+						}
+						Game.Creature.Inventory.Add (diesesitem);
 				}
 				#endregion Char
+		
+			
+		
+				#region skills
+				Game.Creature.Skills = new List<skill> ();
+				if (_server_.data.GetObject ("character").ContainsKey ("skills")) {
+						JSONObject skills = _server_.data.GetObject ("character").GetObject ("skills");
+						int max_skills = (int)skills.GetNumber ("count");
+						for (int count_skills=0; count_skills<max_skills; count_skills++) {
+								JSONObject dies = skills.GetObject (count_skills.ToString ());
+								SkillsDataList skilldata = (SkillsDataList)Resources.Load ("Skill");
+								List<skill> tmpskilllist = skilldata.SkillList;
+								skill skilltolearn = new skill ();
+								for (int skillid=0; skillid<tmpskilllist.Count; skillid++) {
+										
+										if (tmpskilllist [skillid].name == dies.GetString ("name")) {
+												skilltolearn = tmpskilllist [skillid];
+												skilltolearn.lvl = (int)dies.GetNumber ("lvl");
+										}
+								}
+								if (skilltolearn.name != "") {
+										Game.Creature.Skills.Add (skilltolearn);
+								}
+						}
+				}
+				#endregion skills
+		
+				#region keys
+				Game.Keys = new List<SkillAndKeys> ();
+				gameObject.GetComponent<PlayerBehaviour> ().skillkeys = new List<SkillAndKeys> ();
+				if (_server_.data.ContainsKey ("keys")) {
+						//Game.Keys
+						int keycount = (int)_server_.data.GetObject ("keys").GetNumber ("count");
+						for (int ck=0; ck<keycount; ck++) {
+								SkillAndKeys tmp;
+								tmp.action = _server_.data.GetObject ("keys").GetObject (ck.ToString ()).GetString ("action");
+								tmp.key = _server_.data.GetObject ("keys").GetObject (ck.ToString ()).GetString ("key");
+								Game.Keys.Add (tmp);
+						}
+						gameObject.GetComponent<PlayerBehaviour> ().skillkeys = Game.Keys;
+				}
+				#endregion keys
 		
 				#region Quest
 				if (_server_.data.ContainsKey ("quest")) {
@@ -234,18 +375,37 @@ public class Player_Save : MonoBehaviour {
 						gameObject.GetComponent<QuestController> ().UpdateOnLoad (Game.Quests);
 				}
 				#endregion Quest
+		
+		
+				#region Statuseffecte
+				gameObject.GetComponent<PlayerBehaviour> ().me.alleStatus = new List<Status> ();
+				Game.Creature.StatusEffects = new List<Status> ();
+				StatusDataList DataListObj_status;
+				DataListObj_status = (StatusDataList)Resources.Load ("Status");
+				Game.Creature.StatusEffects.Clear ();
+				foreach (Status id in DataListObj_status.StatusList) {
+						//Game.Creature.StatusEffects.Add (id);
+						gameObject.GetComponent<PlayerBehaviour> ().me.alleStatus.Add (id);
+				}
+				//gameObject.GetComponent<PlayerBehaviour> ().me.alleStatus = Game.Creature.StatusEffects;
+				#endregion St
+		
 				gameObject.GetComponent<PlayerBehaviour> ().me.Creat = Game.Creature;
-				gameObject.GetComponent<PlayerBehaviour> ().me.Create (Game.Creature.InitalStats);
+				gameObject.GetComponent<PlayerBehaviour> ().me.Creat.InitalStats = Game.Creature.InitalStats;
 				
 			
 				StartGame ();
 		}
 	
 		public void StartGame () {
-				transform.FindChild ("UnitModel").GetComponent<SpriteRenderer> ().enabled = true;
+				transform.FindChild ("UnitModel_Kopie").GetComponent<SpriteRenderer> ().enabled = true;
 				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
-				gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
+				transform.position = gameObject.GetComponent<PlayerBehaviour> ().me.Creat.Position;
+				//gameObject.GetComponent<PlayerBehaviour> ().me.CalculateStats ();
+				gameObject.GetComponent<PlayerBehaviour> ().me.Creat.HP = 999999999;
+				gameObject.GetComponent<PlayerBehaviour> ().me.Creat.MP = 999999999;
 				gameObject.GetComponent<PlayerBehaviour> ().me.Creat.IsRegAble = true;
+				gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
 		}
 	
 		public IEnumerator Login (string name, string password) {
@@ -255,22 +415,41 @@ public class Player_Save : MonoBehaviour {
 				form.AddField ("user_password", password);
 				WWW web = new WWW (_host_, form);
 				yield return web;
-			
+		
 				if (web.size <= 2) {
 						// Mach nichts
 				} else {
-						string[] data = web.text.Split (';');
+						logintext = web.text;
+						isLogin = true;
+				}
+		}
+	
+		public string logintext;
+		bool isLogin = false;
+		void Update () {
+				if (IsLoading) {
+						if (_server_.data.ContainsKey ("character")) {
+								Load ();
+								IsLoading = false;
+						} else {
+								//Debug.Log (_server_.data.ToString ());
+						}
+				}
+		
+				if (isLogin) {
+						isLogin = false;
+						string[] data = logintext.Split (';');
 						if (data [1] == "false") {
 								id = int.Parse (data [0]);
 								Save ();
+								transform.FindChild ("UnitModel_Kopie").GetComponent<SpriteRenderer> ().enabled = true;
 								transform.FindChild ("UnitModel").GetComponent<MeshRenderer> ().enabled = true;
-								GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
-								//gameObject.GetComponent<PlayerBehaviour> ().me.IsLoaded = true;
 						} else {
 								id = int.Parse (data [0]);
 								LoadVorarbeit ();
 						}
+						
 				}
 		}
 }
-	
+

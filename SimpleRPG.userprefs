@@ -1,16 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Enemy\NPCBehaviour.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
     <Files>
       <File FileName="Assets\todo.txt" Line="1" Column="1" />
-      <File FileName="Assets\DataTools\Creature\Data\CreatureController.cs" Line="1" Column="1" />
-      <File FileName="Assets\DataTools\Creature\Data\CreatureDataClass.cs" Line="35" Column="21" />
-      <File FileName="Assets\DataTools\Item\Data\ItemDataClass.cs" Line="1" Column="1" />
-      <File FileName="Assets\DataTools\Creature\Data\CreatureDataList.cs" Line="1" Column="1" />
-      <File FileName="Assets\DataTools\Creature\Editor\CreatureDataInspector.cs" Line="51" Column="81" />
-      <File FileName="Assets\DataTools\Creature\Data\SkillsDataList.cs" Line="6" Column="20" />
-      <File FileName="Assets\Player_Files\PlayerBehaviour.cs" Line="151" Column="10" />
-      <File FileName="Assets\Enemy\NPCBehaviour.cs" Line="147" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

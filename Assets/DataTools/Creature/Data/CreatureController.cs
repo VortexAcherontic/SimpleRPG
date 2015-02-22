@@ -209,7 +209,7 @@ public class CreatureController : MonoBehaviour {
 				Creat.Movement_Delay = GGewicht / 100; // Movement Langsamer durch gewicht XD Selbst ausgetrickst beim testen
 		}
 	
-		void CalculateStats () {
+		public void CalculateStats () {
 				// Getting normal Stats (Auch Equip und so, eigentlich alle Werte aus InitalStats den hier entsprechenden zuweisen...)
 				// also total nervig -.- Oder das geht irgendwie einfacher und ich weiß nicht wie
 				// Obwohl manche sachen brauch man villeicht doch nicht so
@@ -233,9 +233,9 @@ public class CreatureController : MonoBehaviour {
 				Creat.MagAttack = 0;
 				int EffectHP = 0;
 				int EffectMP = 0;
-				if (Creat.InitalStats.Equipment != null) {
+				if (Creat.Equipment != null) {
 						int tmp_count = 0;
-						foreach (ItemData tmp in Creat.InitalStats.Equipment) {
+						foreach (ItemData tmp in Creat.Equipment) {
 								float equip_dura_faktor = 1;
 								if (tmp.Durability == 0) {
 										equip_dura_faktor = 0;
@@ -283,9 +283,9 @@ public class CreatureController : MonoBehaviour {
 										case ItemType.armor_torso:
 										case ItemType.potion:
 										case ItemType.utility:
-												ItemData x = Creat.InitalStats.Equipment [tmp_count];
+												ItemData x = Creat.Equipment [tmp_count];
 												x.Capacity = x.Ammo.Count;
-												Creat.InitalStats.Equipment [tmp_count] = x;
+												Creat.Equipment [tmp_count] = x;
 												Creat.PhyArmor += (int)(tmp.PhyArmor * equip_dura_faktor);
 												Creat.MagArmor += (int)(tmp.MagArmor * equip_dura_faktor);
 												Creat.PhyAttack += (int)(tmp.PhyAttack * equip_dura_faktor);

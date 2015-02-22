@@ -47,7 +47,7 @@ public class MakeStatusData {
 public class MakeSkillsData {
 		[MenuItem("DataTools/Create/SkillList")]
 		public static void CreateSkillData () {
-				SkillDataList asset = ScriptableObject.CreateInstance<SkillDataList> ();
+				SkillsDataList asset = ScriptableObject.CreateInstance<SkillsDataList> ();
 				AssetDatabase.CreateAsset (asset, "Assets/DataTools/Creature/Resources/Skill.asset");
 				AssetDatabase.SaveAssets ();
 		
