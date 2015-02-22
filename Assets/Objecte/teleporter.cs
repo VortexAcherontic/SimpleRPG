@@ -31,10 +31,22 @@ public class teleporter : MonoBehaviour {
 				Porter.Add (tmpporter);
 				
 		}
+	
+		float temp_x;
+		float temp_y;
+		int distance_manhatten;
+		public int CheckDistance (ObjTele vonTeleporter) {
+				temp_x = Mathf.Abs (p001.me.Creat.Position.x - vonTeleporter.vonpos.x);
+				temp_y = Mathf.Abs (p001.me.Creat.Position.y - vonTeleporter.vonpos.y);
+				//distance_euklid = (int)Mathf.Sqrt (temp_x * temp_x + temp_y * temp_y);
+				distance_manhatten = (int)(temp_x + temp_y);
+				//Debug.Log ("Distance: " + distance_manhatten);
+				return distance_manhatten;
+		}
 		// Update is called once per frame
 		void Update () {
 				foreach (ObjTele tmpporter in Porter) {
-						if (tmpporter.vonpos == p001.me.Creat.Position) {
+						if (CheckDistance (tmpporter) <= 0) {
 						
 								p001.me.Creat.Position = tmpporter.nachpos;
 								p001.me.Creat.Position = tmpporter.nachpos;	
