@@ -6,6 +6,11 @@ public struct Notification {
 		public float time;
 }
 
+public struct SkillAndKeys {
+		public string key;
+		public string action;
+}
+
 public class PlayerBehaviour : MonoBehaviour {
 		public CreatureController me;
 		public Sprite_CharController SC;
@@ -18,11 +23,23 @@ public class PlayerBehaviour : MonoBehaviour {
 		bool GUI_Inventory = false;
 		bool GUI_Equipment = false;
 		bool GUI_journal = false;
+		bool GUI_Character = false;
 	
 		int GUI_Anzeige_Kat = 0;
 		int GUI_journal_kat = 0;
 		Vector2 GUI_Scroller = new Vector2 ();
 		Rect GUI_Scrollbereich;
+	
+		public Texture2D HpBar_empty;
+		public Texture2D ManaBar_empty;
+		public Texture2D HpBar_full;
+		public Texture2D ManaBar_full;
+		public Texture2D XpBar_empty;
+		public Texture2D XpBar_full;
+	
+		float hpbar = 100;
+		float manabar = 100;
+		float xpbar = 0;
 	
 		List<QuestStruct> tmp_quests = new List<QuestStruct> ();
 	
@@ -50,6 +67,8 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUIStatsOverview ();
 						GUINotification ();
 						GUIJournal ();
+						GUICharacter ();
+						GUIBuff ();
 				}
 		}
 	
@@ -85,7 +104,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				if (Input.GetKey ("3")) {
 						me.Creat.Stance = BattleStance.magic;
 				}
-				if (Input.GetKey ("q")) {
+				if (Input.GetKeyDown ("q")) {
 						ItemData tmppot = new ItemData ();
 						bool potionistda = false;
 						foreach (ItemData tmp_item in me.Creat.Inventory) {
@@ -99,6 +118,16 @@ public class PlayerBehaviour : MonoBehaviour {
 								me.Creat.HPPotionTimer = me.Creat.HPPotionCooldown;
 						}
 				}
+				if (Input.GetKeyDown ("c")) {
+						GUI_Character = !GUI_Character;
+				}
+		
+				for (int i = 0; i<skillkeys.Count; i++) {
+						if (Input.GetKeyDown (skillkeys [i].key)) {
+								SkillUse (skillkeys [i].action);
+								Debug.Log ("skill: " + skillkeys [i].action);
+						}
+				}
 		}
 	
 		void CheckLevelUp () {
@@ -106,13 +135,15 @@ public class PlayerBehaviour : MonoBehaviour {
 						me.Creat.Level++;
 						me.Creat.XP -= 100 * (me.Creat.Level);
 						if (me.Creat.Level < 10) {
-								me.Creat.StatPoints = 10;
+								me.Creat.StatPoints += 10;
+								me.Creat.SkillPoints += 3;
 						} else {
-								me.Creat.StatPoints = 5;
+								me.Creat.StatPoints += 5;
+								me.Creat.SkillPoints += 1;
 						}
-				
 				}
 		}
+		
 		void CheckDeath () {
 				if (me.Creat.HP <= 0) {
 						Application.LoadLevel ("GameOverScreen");
@@ -134,6 +165,49 @@ public class PlayerBehaviour : MonoBehaviour {
 				}
 				me.Creat.Inventory.Remove (UsedItem);
 				me.Creat.InitalStats.Inventory = me.Creat.Inventory;
+		}
+	
+		void SkillUse (string Skillname) {
+				foreach (skill sk in me.Creat.Skills) {
+						
+						if (sk.name == Skillname) {
+								Debug.Log (sk.name + " == " + Skillname);
+								foreach (Status st in me.alleStatus) {
+										Status tmpst = st;
+										if (st.name == sk.Effect [0]) {
+												Debug.Log (st.name + " == " + sk.Effect [0]);
+												if (me.Creat.MP >= sk.cost) {
+														me.Creat.MP -= sk.cost;
+														for (int i = 0; i<me.Creat.StatusEffects.Count; i++) {
+																if (me.Creat.StatusEffects [i].name == st.name) {
+																		me.Creat.StatusEffects.RemoveAt (i);
+																}
+														}
+														tmpst.lvl = sk.lvl;
+														me.Creat.StatusEffects.Add (tmpst);
+														Debug.Log ("Added: " + tmpst.name);
+												}
+										}
+								}
+						}
+				}
+		}
+	
+		public void SkillLearn (skill s) {
+				bool hatschon = false;
+				int count_skills = 0;
+				foreach (skill name in me.Creat.Skills) {
+						skill tmps = name;
+						if (tmps.name == s.name) {
+								hatschon = true;
+								tmps.lvl += 1;
+								me.Creat.Skills [count_skills] = tmps;
+						}
+						count_skills++;
+				}
+				if (!hatschon) {
+						me.Creat.Skills.Add (s);
+				}
 		}
 	
 		void GUILevelUP () {
@@ -664,16 +738,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				}		
 		}
 	
-		public Texture2D HpBar_empty;
-		public Texture2D ManaBar_empty;
-		public Texture2D HpBar_full;
-		public Texture2D ManaBar_full;
-		public Texture2D XpBar_empty;
-		public Texture2D XpBar_full;
-	
-		float hpbar = 100;
-		float manabar = 100;
-		float xpbar = 0;
+
 	
 		void BarBerechnung () {
 				if (me.Creat.MaxHP > 0) {
@@ -737,5 +802,66 @@ public class PlayerBehaviour : MonoBehaviour {
 								PickupList.RemoveAt (i);
 						}
 				}
+		}
+	
+	
+		void GUIBuff () {
+				float tmp_pos_x = 0f;
+				float tmp_pos_y = 200;
+				float tmp_lineheigth = 20;
+				Rect Pos;
+				for (int i =0; i<me.Creat.StatusEffects.Count; i++) {
+						tmp_pos_x = tmp_pos_x + tmp_lineheigth;
+						Pos = new Rect (Screen.width - tmp_pos_y, 0 + tmp_pos_x, tmp_pos_y, tmp_lineheigth);
+						GUI.Label (Pos, me.Creat.StatusEffects [i].name + ": " + Mathf.Round (me.Creat.StatusEffects [i].duration * 100) / 100);
+				}
+		}
+	
+		string[] newKey = new string[0];
+		public List<SkillAndKeys> skillkeys = new List<SkillAndKeys> ();
+	
+		void GUICharacter () {
+		
+				if (GUI_Character) {
+			
+						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
+						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
+						GUI.Box (tmp_anzeige, "Character");
+						for (int i =0; i<me.Creat.Skills.Count; i++) {
+								skill name = me.Creat.Skills [i];
+				
+								zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
+								GUI.Label (zeile, name.name + " | increases: " + name.Effect [0] + " | cost: " + name.cost);
+								zeile.position = new Vector2 (zeile.position.x + 300, zeile.position.y);
+								zeile.width = 50;
+								newKey [i] = GUI.TextField (zeile, newKey [i]);
+								zeile.position = new Vector2 (zeile.position.x + 60, zeile.position.y);
+								zeile.width = 200;
+								if (GUI.Button (zeile, "Assign skill to key!")) {
+										SkillAndKeys tmp_obj = new SkillAndKeys ();
+										tmp_obj.key = newKey [i];
+										tmp_obj.action = name.name;
+										for (int j = 0; j<skillkeys.Count; j++) {
+												if (skillkeys [j].key == newKey [i]) {
+														skillkeys.RemoveAt (i);
+												}
+										}
+										skillkeys.Add (tmp_obj);
+								}
+								zeile.width = tmp_anzeige.width - 500;
+						}	
+			
+				} else {
+						newKey = new string[me.Creat.Skills.Count];
+						for (int i =0; i<me.Creat.Skills.Count; i++) {
+								newKey [i] = "";
+								for (int j=0; j<skillkeys.Count; j++) {
+										if (skillkeys [j].action == me.Creat.Skills [i].name) {
+												newKey [i] = skillkeys [j].key;
+										}
+								}
+						}
+				}
+	
 		}
 }

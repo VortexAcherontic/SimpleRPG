@@ -57,12 +57,12 @@ public struct AmmoData { // erstmal aus dem alten übernommen und leicht abgeän
 		public int MagArmor;
 		public int Range;
 	
-		// Potions, + AddStats(passive)?
+		// Potions
 		public EffectType EffectType;
 		public int Effect;
 		public bool IsStaticEffect;
 	
-		// Quiever
+		// Quiver
 		public int Capacity;
 		public int MaxCapacity;
 }
@@ -91,7 +91,7 @@ public struct ItemData { // erstmal aus dem alten übernommen und leicht abgeän
 		public int Effect;
 		public bool IsStaticEffect;
 	
-		// Quiever
+		// Quiver
 		public int Capacity;
 		public int MaxCapacity;
 		[HideInInspector]

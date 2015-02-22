@@ -28,10 +28,10 @@ public class Door : MonoBehaviour {
 				if (TD) {
 						if (open) {
 								helpme = TD_DoorOpen;
-								Debug.Log ("open");
+								//Debug.Log ("open");
 						} else {
 								helpme = TD_DoorClose;
-								Debug.Log ("close");
+								//Debug.Log ("close");
 						}
 				}
 				if (LR) {

@@ -5,6 +5,7 @@ public class CreatureController : MonoBehaviour {
 		// Nur für die Berechnung! 
 		// Damit nicht immer Clone exestieren?
 	
+		public List<Status> alleStatus = new List<Status> ();
 		public CreatureData Creat;
 		public bool IsLoaded = false;
 		Vector2 newPos = new Vector2 (0, 0);
@@ -26,6 +27,10 @@ public class CreatureController : MonoBehaviour {
 		}
 	
 		public void Create (CreatureOriginData InitStat) {
+		
+				Creat.Skills = new List<skill> ();
+				Creat.StatusEffects = new List<Status> ();
+		
 				Creat.lastPos = new Vector2 (0, 0);
 				Creat.InitalStats = InitStat;
 				Creat.StatPoints = Creat.InitalStats.StatPoints;
@@ -57,9 +62,16 @@ public class CreatureController : MonoBehaviour {
 								Creat.InitalStats.Inventory.Add (DataListObj.item_mit_name (tmpitem));
 						}
 				}
+				StatusDataList DataListObj_status;
+				DataListObj_status = (StatusDataList)Resources.Load ("Status");
+				alleStatus.Clear ();
+				foreach (Status id in DataListObj_status.StatusList) {
+						alleStatus.Add (id);
+				}
+		
+		
 				Creat.Equipment = Creat.InitalStats.Equipment;
 				Creat.Inventory = Creat.InitalStats.Inventory;
-		
 				IsLoaded = true;
 		}
 	
@@ -304,6 +316,45 @@ public class CreatureController : MonoBehaviour {
 								tmp_count++;
 						}
 				}
+		
+				for (int i = 0; i<Creat.StatusEffects.Count; i++) {
+						Status tmpst = Creat.StatusEffects [i];
+						tmpst.duration -= Time.deltaTime;
+						Creat.StatusEffects [i] = tmpst;
+						if (Creat.StatusEffects [i].duration <= 0) {
+								Creat.StatusEffects.RemoveAt (i);
+						} else {
+								switch (Creat.StatusEffects [i].EffectType) {
+										case EffectType.Health:
+												EffectHP += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												break;
+										case EffectType.Mana:
+												EffectMP += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												break;
+										case EffectType.Str:
+												Creat.Str += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												break;
+										case EffectType.Agi:
+												Creat.Agi += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												break;
+										case EffectType.Dex:
+												Creat.Dex += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												break;
+										case EffectType.Int:
+												Creat.Int += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												break;
+										case EffectType.Vit:
+												Creat.Vit += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												break;
+										case EffectType.Luc:
+												Creat.Luc += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												break;
+								}
+						}
+				}
+		
+		
+		
 				// Calculate Battle Relevant Stuff
 				Creat.MaxHP = EffectHP + (Creat.Vit * 20);
 				Creat.MaxMP = EffectMP + (Creat.Int * 20);
@@ -324,10 +375,11 @@ public class CreatureController : MonoBehaviour {
 								Creat.MagAttack += Creat.Int * 5;
 								break;
 				}
-				
+		
 				//Creat.PhyAttack += Creat.Str * 3;
 				//Creat.MagAttack += Creat.Int * 3;
 		
+			
 				if (Creat.AttackCooldown == 0) {
 						Creat.AttackCooldown = 0.5f;
 				}
@@ -338,4 +390,13 @@ public class CreatureController : MonoBehaviour {
 						Creat.HPPotionCooldown = 5.0f;
 				}
 		}
+	
+		//Statusveränderunsbereich
+	
+		void BoostPhyDmg () {
+		
+		}
+		void BoostMagDmg () {
+		}
+	
 }

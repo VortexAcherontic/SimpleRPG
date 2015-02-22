@@ -14,6 +14,29 @@ public enum BattleStance {
 }
 
 [System.Serializable]
+public struct Status {
+	
+		public string name;
+		public int lvl;
+		public float duration;
+	
+		public EffectType EffectType;
+		public int Effect;
+		public bool IsStaticEffect;
+}
+
+[System.Serializable]
+public struct skill {
+		public string name;
+		public int cost;
+		public int lvl;
+		public List<string> Effect;
+		public string target;
+		public int spcost;
+	
+}
+
+[System.Serializable]
 public struct CreatureOriginData { // Clean Own Stats
 		// Allround Stats
 		public string Name;
@@ -43,6 +66,7 @@ public struct CreatureOriginData { // Clean Own Stats
 		// Only Player
 		public int Level;
 		public int StatPoints;
+		public int SkillPoints;
 	
 		// Non for Player
 		public int AggroRange;
@@ -51,7 +75,8 @@ public struct CreatureOriginData { // Clean Own Stats
 		public bool DoRespawn; // NPC/Bosses?
 		public float RespawnTimer;
 		
-		
+		public List<Status> StatusEffects;
+		public List<skill> Skills;
 	
 		/*
 		 * Doof mit den String Array aber mir fällt nichts besseres ein
@@ -106,6 +131,7 @@ public struct CreatureData {
 		// Only Player
 		public int Level;
 		public int StatPoints;
+		public int SkillPoints;
 	
 		// Non for Player
 		public int AggroRange;
@@ -113,6 +139,9 @@ public struct CreatureData {
 		public bool IsBoss;
 		public bool DoRespawn; // NPC/Bosses?
 		public float RespawnTimer;
+	
+		public List<Status> StatusEffects;
+		public List<skill> Skills;
 	
 		/*
 		 * Doof mit den String Array aber mir fällt nichts besseres ein

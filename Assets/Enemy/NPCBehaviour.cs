@@ -13,6 +13,7 @@ public class NPCBehaviour : MonoBehaviour {
 	
 		public List<string> ReperaturNPC = new List<string> ();
 		public List<string> ShopNPC = new List<string> ();
+		public List<string> AusbilderNPC = new List<string> (); //zu ersetzen durch verschiedene listen falls verschiedene npc's verschiedene sachen beibringen
 	
 	
 		void Start () {
@@ -22,6 +23,7 @@ public class NPCBehaviour : MonoBehaviour {
 		
 				ReperaturNPC.Add ("Hans Peter");
 				ShopNPC.Add ("Jeremy Pascal");
+				AusbilderNPC.Add ("Juergen");
 		}
 	
 		void Update () {
@@ -90,12 +92,12 @@ public class NPCBehaviour : MonoBehaviour {
 	
 		void OnGUI () {
 				repair ();
+				Ausbilder ();
 		}
 	
 		void Quest () {
 				if (Interacted ()) {
 						/*Debug.Log (me.Creat.Name);*/
-						Debug.Log (ReperaturNPC);
 						foreach (string npcname in ReperaturNPC) {
 								if (npcname == me.Creat.Name) {
 										GUI_Repair = !GUI_Repair;		
@@ -106,6 +108,11 @@ public class NPCBehaviour : MonoBehaviour {
 										Shop ();
 								}
 						}
+						foreach (string npcname in AusbilderNPC) {
+								if (npcname == me.Creat.Name) {
+										GUI_Ausbilder = ! GUI_Ausbilder;
+								}
+						}
 			
 						QuestObj.NPCTalk (me.Creat.Name);
 						//Debug.Log ("Quest angenommen!");
@@ -114,6 +121,45 @@ public class NPCBehaviour : MonoBehaviour {
 	
 		void Shop () {
 				GameObject.Find ("Uebergabe").GetComponent<shop> ().imshop = !GameObject.Find ("Uebergabe").GetComponent<shop> ().imshop;
+		}
+	
+		bool GUI_Ausbilder = false;
+		public SkillDataList DataListObj;
+		List<skill> SkillsToLearn = new List<skill> ();
+	
+		void Ausbilder () {
+				if (GUI_Ausbilder) {
+						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
+						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
+						GUI.Box (tmp_anzeige, "Take Lessons!");
+						DataListObj = (SkillDataList)Resources.Load ("Skill");
+						SkillsToLearn.Clear ();
+						foreach (skill id in DataListObj.SkillList) {
+								SkillsToLearn.Add (id);
+						}
+						foreach (skill name in SkillsToLearn) {
+								zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
+								GUI.Label (zeile, name.name + " | increases: " + name.Effect [0] + " | cost: " + name.cost);
+								zeile.position = new Vector2 (zeile.position.x + 500, zeile.position.y);
+								zeile.width = 200;
+								if (GUI.Button (zeile, "learn skill for " + name.spcost + " skillpoints.")) {
+										if (p001.me.Creat.SkillPoints >= name.spcost) {
+												p001.SkillLearn (name);
+												p001.me.Creat.SkillPoints -= name.spcost;
+										}
+								}
+								zeile.width = tmp_anzeige.width - 500;
+						}	
+						zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
+						zeile.width = 200;
+						if (GUI.Button (zeile, "Train your skills for 20G for 1 skillpoint.")) {
+								if (p001.me.Creat.Gold >= 20) {
+										p001.me.Creat.SkillPoints += 1;
+										p001.me.Creat.Gold -= 20;
+								}
+						}
+						zeile.width = tmp_anzeige.width - 500;
+				}
 		}
 	
 }

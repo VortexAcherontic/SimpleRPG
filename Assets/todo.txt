@@ -16,16 +16,16 @@
 
 - magiebuch einbauen (Magie Skills?)
 - Elemente(resistenzen)?
+
+- skillnamen und effectnamen anpassen
+- man darf skills auch ausführen
 - passive skills:
 	-regeneration increase
 - aktive skills:
-	- schadensboost
 	- skillshot in eine bestimmte richtung (range only)
 	- destroy/piercing armor (range & melee)
 	- stun (melee & mage)
 	- bleeding DOT (melee only)
-	- faster mana regen (mage only)
-	- meditation (faster regen)
 	- self cast armor buff (melee only)
 	
 - Player bekommt einen begleiter, der angreifen kann bzw ein tank (naja zumindest folgt er dem player schon mal)

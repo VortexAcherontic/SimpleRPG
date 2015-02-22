@@ -31,3 +31,27 @@ public class MakeCreatureData {
 				Selection.activeObject = asset;
 		}
 }
+
+public class MakeStatusData {
+		[MenuItem("DataTools/Create/StatusList")]
+		public static void CreateStatusData () {
+				StatusDataList asset = ScriptableObject.CreateInstance<StatusDataList> ();
+				AssetDatabase.CreateAsset (asset, "Assets/DataTools/Creature/Resources/Status.asset");
+				AssetDatabase.SaveAssets ();
+		
+				EditorUtility.FocusProjectWindow ();
+				Selection.activeObject = asset;
+		}
+}
+
+public class MakeSkillsData {
+		[MenuItem("DataTools/Create/SkillList")]
+		public static void CreateSkillData () {
+				SkillDataList asset = ScriptableObject.CreateInstance<SkillDataList> ();
+				AssetDatabase.CreateAsset (asset, "Assets/DataTools/Creature/Resources/Skill.asset");
+				AssetDatabase.SaveAssets ();
+		
+				EditorUtility.FocusProjectWindow ();
+				Selection.activeObject = asset;
+		}
+}
