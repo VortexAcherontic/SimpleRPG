@@ -1,7 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Objecte\WallTextureSacle.cs">
     <Files>
+      <File FileName="Assets\Objecte\WallTextureSacle.cs" Line="11" Column="2" />
       <File FileName="Assets\todo.txt" Line="29" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
