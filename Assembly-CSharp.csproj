@@ -73,6 +73,7 @@
      <Compile Include="Assets\Objecte\Sprite_CharController.cs" />
      <Compile Include="Assets\Objecte\TextureSacleToTransformScale.cs" />
      <Compile Include="Assets\Objecte\Truhen\Chest.cs" />
+     <Compile Include="Assets\Objecte\UebergabeScript.cs" />
      <Compile Include="Assets\Objecte\item.cs" />
      <Compile Include="Assets\Objecte\shop.cs" />
      <Compile Include="Assets\Objecte\teleporter.cs" />
@@ -81,7 +82,6 @@
      <Compile Include="Assets\Player_Files\Player_Save.cs" />
      <Compile Include="Assets\Player_Files\Savegame.cs" />
      <Compile Include="Assets\Player_Files\kampf.cs" />
-     <Compile Include="Assets\Scenen\UebergabeScript.cs" />
      <None Include="Assets\Credits.txt" />
      <None Include="Assets\todo.txt" />
      <None Include="Assets\Import\Boomlagoon\JSON\Readme.txt" />
