@@ -11,7 +11,8 @@
 // Mechanik
 - tastenfunktionen für battlestance und interact ändern lassen können
 
-- mehr maps zusammenbasteln & aufbau/system ändern (überführung bereitet probleme)
+- mehr maps zusammenbasteln & aufbau/system ändern (überführung bereitet probleme) Definitiv jmd für leveldesign besorgen ....
+
 - unter finished im tagebuch die urspüngliche quest anzeigen
 - NPCs töten möglich? Wenn dann auch das selbe Struct wie Monster/Player
 - Fractions? (Fraction vs Fraction ODER Creature vs Creature von Fraction?)
