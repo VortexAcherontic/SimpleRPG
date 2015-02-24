@@ -130,7 +130,8 @@ function UpdateSmoothedMovementDirection ()
 	var grounded = IsGrounded();
 	
 	// Forward vector relative to the camera along the x-z plane	
-	var forward = cameraTransform.TransformDirection(Vector3.forward);
+	//var forward = cameraTransform.TransformDirection(Vector3.forward);
+	var forward = transform.forward;
 	forward.y = 0;
 	forward = forward.normalized;
 
