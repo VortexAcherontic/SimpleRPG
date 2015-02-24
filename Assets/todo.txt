@@ -11,6 +11,7 @@
 - Mit Maus angreifen
 
 - tastenfunktionen für battlestance und interact ändern lassen können
+- maussensitivity in den settings hinzufügen
 
 - mehr maps zusammenbasteln & aufbau/system ändern (überführung bereitet probleme) Definitiv jmd für leveldesign besorgen ....
 
