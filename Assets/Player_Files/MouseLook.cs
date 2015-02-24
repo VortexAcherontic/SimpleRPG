@@ -82,7 +82,7 @@ public class MouseLook : MonoBehaviour {
 						angle.x = -1 * (90 * ((tmp_y - max_down) / (min_down - max_down)));
 				}
 				
-				head.eulerAngles = angle;
+				head.localEulerAngles = angle;
 				Debug.Log (angle);
 		}
 	
