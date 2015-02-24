@@ -11,6 +11,7 @@ public class mainmenu : MonoBehaviour {
 		public bool showgamemenue = true;
 		public bool showlogin = false;
 		public bool gameloaded = false;
+		public bool cammove = true;
 		public Texture bg;
 		PlayerBehaviour p001;
 		public bool debugmode = false;
@@ -123,6 +124,7 @@ public class mainmenu : MonoBehaviour {
 
 		void options () {
 				if (showoptions) {
+						cammove = !cammove;
 						Time.timeScale = 0;
 						Rect Pausemenue = new Rect (Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50);
 						int Zeilenhoehe = 20;

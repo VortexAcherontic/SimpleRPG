@@ -4,11 +4,12 @@
 - geschwindigkeiten-gewicht-verhältnis anpassen ZZ auf 0 wegen hat genervt
 
 // Bug Fixes
-- door visual fix (ändert sich eh mit map)
 - Equip/DeEquipt macht manchmal noch Probleme //nur im dev-modus
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 
 // Mechanik
+- Mit Maus angreifen
+
 - tastenfunktionen für battlestance und interact ändern lassen können
 
 - mehr maps zusammenbasteln & aufbau/system ändern (überführung bereitet probleme) Definitiv jmd für leveldesign besorgen ....
@@ -41,6 +42,7 @@
 - battlemode 1vs1 einbauen (oder so... Multiplayer)
 
 // GUI
+- mehr 3D Objecte einbauen und entwerfen lassen
 - generell laden und speichern einbauen in einer taverne statt im inventar
 - Angriff/Schaden Anzeigen?!? (Gerade für Fernkampf/Magie bestimmt nicht schlecht - Schaden nur wenn touch)
 

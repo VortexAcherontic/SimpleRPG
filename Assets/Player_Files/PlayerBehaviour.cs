@@ -27,6 +27,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		bool GUI_Equipment = false;
 		bool GUI_journal = false;
 		bool GUI_Character = false;
+		
 	
 		int GUI_Anzeige_Kat = 0;
 		int GUI_journal_kat = 0;
@@ -87,33 +88,35 @@ public class PlayerBehaviour : MonoBehaviour {
 						me.Creat.Stance = BattleStance.magic;
 				}		
 				foreach (SkillAndKeys inputkey in mn.KeySettings) {
-						if (Input.GetKey (inputkey.key)) {
+						/*if (Input.GetKey (inputkey.key)) {
 								switch (inputkey.action) {
 										case "MoveForward":
-												SC.Action = AnimationTyp.MoveUp;
+												//SC.Action = AnimationTyp.MoveUp;
 												me.Creat.Position = me.MoveTo (new Vector2 (0, 1));
 												break;
 										case "MoveLeft":
-												SC.Action = AnimationTyp.MoveLeft;
+												//SC.Action = AnimationTyp.MoveLeft;
 												me.Creat.Position = me.MoveTo (new Vector2 (- 1, 0));
 												break;
 										case "MoveBackward":
-												SC.Action = AnimationTyp.MoveDown;
+												//SC.Action = AnimationTyp.MoveDown;
 												me.Creat.Position = me.MoveTo (new Vector2 (0, - 1));
 												break;
 										case "MoveRight":
-												SC.Action = AnimationTyp.MoveRight;
+												//SC.Action = AnimationTyp.MoveRight;
 												me.Creat.Position = me.MoveTo (new Vector2 (1, 0));
 												break;
 								}
-						}
+						}*/
 						if (Input.GetKeyDown (inputkey.key)) {
 								switch (inputkey.action) {
 										case "ShowInventory":
 												GUI_Inventory = !GUI_Inventory;
+												mn.cammove = !mn.cammove;
 												break;
 										case "ShowJournal":
 												GUI_journal = !GUI_journal;
+												mn.cammove = !mn.cammove;
 												break;
 										case "UseHealPotion":
 												ItemData tmppot = new ItemData ();
@@ -131,6 +134,7 @@ public class PlayerBehaviour : MonoBehaviour {
 												break;
 										case "ShowCharacter":
 												GUI_Character = !GUI_Character;
+												mn.cammove = !mn.cammove;
 												break;
 										case "ShowMap":
 												GameObject.Find ("uebergabe").GetComponent<mainmenu> ().showmap = !GameObject.Find ("uebergabe").GetComponent<mainmenu> ().showmap;

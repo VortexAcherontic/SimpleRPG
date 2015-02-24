@@ -404,9 +404,9 @@ public class Player_Save : MonoBehaviour {
 		}
 	
 		public void StartGame () {
-				transform.FindChild ("UnitModel_Kopie").GetComponent<SpriteRenderer> ().enabled = true;
-				GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
-				transform.position = gameObject.GetComponent<PlayerBehaviour> ().me.Creat.Position;
+				//transform.FindChild ("Unit_Model").GetComponent<SpriteRenderer> ().enabled = true;
+				//GameObject.Find ("Map").GetComponent<map> ().LoadMap ();
+				//transform.position = gameObject.GetComponent<PlayerBehaviour> ().me.Creat.Position;
 				//gameObject.GetComponent<PlayerBehaviour> ().me.CalculateStats ();
 				gameObject.GetComponent<PlayerBehaviour> ().me.Creat.HP = 999999999;
 				gameObject.GetComponent<PlayerBehaviour> ().me.Creat.MP = 999999999;
