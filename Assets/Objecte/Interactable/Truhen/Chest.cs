@@ -1,59 +1,58 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Chest : MonoBehaviour {
-		CreatureController me;
-		PlayerBehaviour p001;
-		float temp_x;
-		float temp_y;
+[System.Serializable]
+public struct ChestOptions {
+		public bool IsLocked;
+		public float GoldLoot;
+		public string[] ItemLoot;
 	
-		int distance_manhatten;
+}
+public class Chest : MonoBehaviour {
+		AudioSource sound;
+		Player_Trigger triggerscript;
+		Vector3 startangles;
+		public ChestOptions optionen;
 	
 		void Start () {
-				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
-				me = gameObject.GetComponent<CreatureController> ();
+				sound = GetComponent<AudioSource> ();
+				triggerscript = GetComponentInChildren<Player_Trigger> ();
 		}
 	
 		void Update () {
-				Loot ();
-				if (looted) {
-						Destroy (gameObject);
-				}
+				Interact ();
 		}
 	
-		bool Interacted () {
-				if (CheckDistance () <= 2) {
-						if (Input.GetKeyDown ("f")) {
-								return true;
-						} else {
-								return false;
+		void Interact () {
+				if (triggerscript.Player_in_Triger) {
+						if (Input.GetButtonDown ("Interact")) {
+								sound.Play ();
+								Loot ();
 						}
-				} else {
-						return false;
 				}
 		}
-	
-		public int CheckDistance () {
-				temp_x = Mathf.Abs (p001.me.Creat.Position.x - transform.position.x);
-				temp_y = Mathf.Abs (p001.me.Creat.Position.y - transform.position.y);
-				//distance_euklid = (int)Mathf.Sqrt (temp_x * temp_x + temp_y * temp_y);
-				distance_manhatten = (int)(temp_x + temp_y);
-				//Debug.Log ("Distance: " + distance_manhatten);
-				return distance_manhatten;
-		}
-	
-		bool looted = false;
 	
 		void Loot () {
-				if (Interacted ()) {
-						foreach (ItemData tmp_item in me.Creat.Inventory) {
-								p001.me.Creat.Inventory.Add (tmp_item);
+				item items = GameObject.Find ("Uebergabe").GetComponent<item> ();
+				GameObject PlayerObj = triggerscript.Player_Obj;
+				PlayerBehaviour Player = PlayerObj.GetComponent<PlayerBehaviour> ();
+				if (Player != null) {
+						for (int i =0; i<optionen.ItemLoot.Length; i++) {
+								string tmp_item = optionen.ItemLoot [i];
+								Player.me.Creat.Inventory.Add (items.item_mit_name (tmp_item));
+								optionen.ItemLoot [i].Remove (i);
 								Notification not = new Notification ();
 								not.time = 5;
-								not.message = "Get " + tmp_item.Name;
-								p001.PickupList.Add (not);
+								not.message = "Get " + tmp_item;
+								Player.PickupList.Add (not);
 						}
-						looted = true;
+						if (optionen.GoldLoot > 0) {
+								Notification not = new Notification ();
+								not.time = 5;
+								not.message = "Get " + optionen.GoldLoot + " Gold";
+								Player.me.Creat.Gold += optionen.GoldLoot;			
+								optionen.GoldLoot = 0;
+						}
 				}
 		}
 }
