@@ -53,6 +53,7 @@
      <None Include="Assets\todo.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Import\Boomlagoon\JSON\Readme.txt" />
+     <None Include="Assets\Shader\$DSNA.shader" />
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Programme/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>

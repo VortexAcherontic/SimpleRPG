@@ -53,6 +53,7 @@
      <None Include="Assets\todo.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Import\Boomlagoon\JSON\Readme.txt" />
+     <None Include="Assets\Shader\$DSNA.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Dropbox/ZoD/ZoDDevelopment/SimpleRPG/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
