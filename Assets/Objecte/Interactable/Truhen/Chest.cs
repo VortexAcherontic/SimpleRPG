@@ -4,7 +4,7 @@ using System.Collections;
 [System.Serializable]
 public struct ChestOptions {
 		public bool IsLocked;
-		public float GoldLoot;
+		public int GoldLoot;
 		public string[] ItemLoot;
 	
 }
