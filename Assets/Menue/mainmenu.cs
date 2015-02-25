@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class mainmenu : MonoBehaviour {
+		public static GameObject TheMenue;
+	
 		bool showoptions;
 		public bool showsettings = false;
 		public bool showinv = false;
@@ -15,7 +17,16 @@ public class mainmenu : MonoBehaviour {
 		public Texture bg;
 		PlayerBehaviour p001;
 		public bool debugmode = false;
-		
+	
+		void Awake () {
+				if (TheMenue != null) {
+						if (TheMenue != gameObject) {
+								Destroy (gameObject);
+						}
+				}
+				TheMenue = gameObject;
+				DontDestroyOnLoad (gameObject);
+		}
 		// Use this for initialization
 		void Start () {
 				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();

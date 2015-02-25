@@ -14,6 +14,7 @@ public struct SkillAndKeys {
 }
 
 public class PlayerBehaviour : MonoBehaviour {
+		public static GameObject ThePlayer;
 		public CreatureController me;
 		public Sprite_CharController SC;
 		public QuestController qc;
@@ -53,6 +54,15 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		List<QuestStruct> tmp_quests = new List<QuestStruct> ();
 	
+		void Awake () {
+				if (ThePlayer != null) {
+						if (ThePlayer != gameObject) {
+								Destroy (gameObject);
+						}
+				}
+				ThePlayer = gameObject;
+				DontDestroyOnLoad (gameObject);
+		}
 		// Use this for initialization
 		void Start () {
 				me = gameObject.GetComponent<CreatureController> ();
