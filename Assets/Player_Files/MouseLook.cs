@@ -76,10 +76,10 @@ public class MouseLook : MonoBehaviour {
 				}
 		
 				if (tmp_y > min_up) {
-						angle.x = (90 * ((tmp_y - min_up) / (max_up - min_up)));
+						angle.x = -1 * (90 * ((tmp_y - min_up) / (max_up - min_up)));
 				}
 				if (tmp_y < max_down) {
-						angle.x = -1 * (90 * ((tmp_y - max_down) / (min_down - max_down)));
+						angle.x = (90 * ((tmp_y - max_down) / (min_down - max_down)));
 				}
 				
 				head.localEulerAngles = angle;

@@ -1,10 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Objecte\Interactable\Door\Door.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js">
     <Files>
-      <File FileName="Assets\Objecte\Player_Trigger.cs" Line="15" Column="6" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" Line="116" Column="13" />
+      <File FileName="Assets\Objecte\Player_Trigger.cs" Line="1" Column="1" />
       <File FileName="Assets\todo.txt" Line="1" Column="1" />
-      <File FileName="Assets\Objecte\Interactable\Door\Door.cs" Line="22" Column="43" />
+      <File FileName="Assets\Player_Files\MouseLook.cs" Line="110" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

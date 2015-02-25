@@ -51,7 +51,7 @@ private var jumpTimeout = 0.15;
 private var groundedTimeout = 0.25;
 
 // The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
-private var lockCameraTimer = 0.0;
+private var lockCameraTimer = 1.0;
 
 // The current move direction in x-z
 private var moveDirection = Vector3.zero;
@@ -68,7 +68,7 @@ private var jumping = false;
 private var jumpingReachedApex = false;
 
 // Are we moving backwards (This locks the camera to not do a 180 degree spin)
-private var movingBack = false;
+private var movingBack = true;
 // Is the user pressing any keys?
 private var isMoving = false;
 // When did the user start walking (Used for going into trot after a while)
