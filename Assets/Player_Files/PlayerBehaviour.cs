@@ -27,6 +27,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		bool GUI_Equipment = false;
 		bool GUI_journal = false;
 		bool GUI_Character = false;
+		bool GUI_Hotbar = true;
 		
 	
 		int GUI_Anzeige_Kat = 0;
@@ -40,6 +41,11 @@ public class PlayerBehaviour : MonoBehaviour {
 		public Texture2D ManaBar_full;
 		public Texture2D XpBar_empty;
 		public Texture2D XpBar_full;
+	
+		public Texture2D[] SlotTexture = new Texture2D[10];
+		public Texture2D skillactiv;
+		public Texture2D skillinactiv;
+		int skill_active = 1;
 	
 		float hpbar = 100;
 		float manabar = 100;
@@ -74,19 +80,36 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUIJournal ();
 						GUICharacter ();
 						GUIBuff ();
+						GUIHotbar ();
 				}
 		}
 	
 		void CheckKeyInput () {
 				if (Input.GetKey ("1")) {
+						skill_active = 1;
 						me.Creat.Stance = BattleStance.melee;
 				}
 				if (Input.GetKey ("2")) {
+						skill_active = 2;
 						me.Creat.Stance = BattleStance.range;
 				}
 				if (Input.GetKey ("3")) {
+						skill_active = 3;
 						me.Creat.Stance = BattleStance.magic;
-				}		
+				}	
+				int tmp_input;
+				for (int i=0; i<10; i++) {
+						tmp_input = i;
+						if (i == 0) {
+								tmp_input = 10;
+						}
+						if (Input.GetKey (i.ToString ())) {
+								skill_active = tmp_input;
+						}
+				}
+				if (Input.GetKeyDown (KeyCode.F1)) {
+						GUI_Hotbar = !GUI_Hotbar;
+				}
 				foreach (SkillAndKeys inputkey in mn.KeySettings) {
 						/*if (Input.GetKey (inputkey.key)) {
 								switch (inputkey.action) {
@@ -755,7 +778,24 @@ public class PlayerBehaviour : MonoBehaviour {
 				}		
 		}
 	
-
+		void GUIHotbar () {
+				int höhe = 70;
+				int breite = Screen.width - 100;
+				if (GUI_Hotbar) {
+						Rect Zeile = new Rect (50, Screen.height - höhe, breite, höhe);
+						Rect Spalte = new Rect (50, Screen.height - höhe, breite / 10, höhe);
+						GUI.Box (Zeile, "");
+						for (int i=0; i<10; i++) {
+								if (skill_active == i + 1) {
+										GUI.DrawTexture (Spalte, skillactiv);
+								} else {
+										GUI.DrawTexture (Spalte, skillinactiv);
+								}
+								GUI.DrawTexture (Spalte, SlotTexture [i]);
+								Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+						}
+				}
+		}
 	
 		void BarBerechnung () {
 				if (me.Creat.MaxHP > 0) {

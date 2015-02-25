@@ -5,6 +5,7 @@ using System.Collections;
 public struct ChestOptions {
 		public bool IsLocked;
 		public int GoldLoot;
+		public int Difficulty;
 		public string[] ItemLoot;
 	
 }
@@ -17,17 +18,27 @@ public class Chest : MonoBehaviour {
 		void Start () {
 				sound = GetComponent<AudioSource> ();
 				triggerscript = GetComponentInChildren<Player_Trigger> ();
+				if (optionen.IsLocked) {
+						GetComponent<Lock> ().generateLock (optionen.Difficulty);
+				}
 		}
 	
 		void Update () {
 				Interact ();
+				if (optionen.IsLocked) {
+						optionen.IsLocked = GetComponent<Lock> ().isLocked;
+				}
 		}
 	
 		void Interact () {
 				if (triggerscript.Player_in_Triger) {
 						if (Input.GetButtonDown ("Interact")) {
-								sound.Play ();
-								Loot ();
+								if (optionen.IsLocked == false) {
+										sound.Play ();
+										Loot ();
+								} else {
+										GetComponent<Lock> ().solveLock ();
+								}
 						}
 				}
 		}
@@ -54,5 +65,5 @@ public class Chest : MonoBehaviour {
 								optionen.GoldLoot = 0;
 						}
 				}
-		}
+		}	
 }

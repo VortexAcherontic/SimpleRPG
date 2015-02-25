@@ -29,16 +29,19 @@ public class Door : MonoBehaviour {
 		void Interact () {
 				if (triggerscript.Player_in_Triger) {
 						if (Input.GetButtonDown ("Interact")) {
-								sound.Play ();
-								optionen.IsOpen = !optionen.IsOpen;
-								if (optionen.IsOpen) {
-										transform.localEulerAngles = new Vector3 (startangles.x, startangles.y + 90, startangles.z);
-								} else {
-										transform.localEulerAngles = new Vector3 (startangles.x, startangles.y, startangles.z);
-								}
-								if (optionen.IsTeleporter) {
-										GameObject.FindWithTag ("Player").transform.position = optionen.TeleportToPosition;
-										Application.LoadLevel (optionen.TeleportToScene);
+								if (optionen.IsLocked == false) {
+										sound.Play ();
+										optionen.IsOpen = !optionen.IsOpen;
+										if (optionen.IsOpen) {
+												transform.localEulerAngles = new Vector3 (startangles.x, startangles.y + 90, startangles.z);
+										} else {
+												transform.localEulerAngles = new Vector3 (startangles.x, startangles.y, startangles.z);
+										}
+										if (optionen.IsTeleporter) {
+												GameObject.FindWithTag ("Player").transform.position = optionen.TeleportToPosition;
+												Application.LoadLevel (optionen.TeleportToScene);
+										}
+								} else {/*open lockpick minigame*/
 								}
 						}
 				}

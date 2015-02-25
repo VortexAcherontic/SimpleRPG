@@ -8,6 +8,7 @@
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 
 // Mechanik
+- pfeiltasten angriff und movement disablen
 - Mit Maus angreifen
 
 - tastenfunktionen für battlestance und interact ändern lassen können
