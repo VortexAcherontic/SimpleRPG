@@ -8,6 +8,7 @@ public struct DoorOptions {
 		public bool IsTeleporter;
 		public string TeleportToScene;
 		public Vector3 TeleportToPosition;
+		public bool TurnInvert;
 }
 
 public class Door : MonoBehaviour {
@@ -33,7 +34,11 @@ public class Door : MonoBehaviour {
 										sound.Play ();
 										optionen.IsOpen = !optionen.IsOpen;
 										if (optionen.IsOpen) {
-												transform.localEulerAngles = new Vector3 (startangles.x, startangles.y + 90, startangles.z);
+												if (optionen.TurnInvert) {
+														transform.localEulerAngles = new Vector3 (startangles.x, startangles.y - 90, startangles.z);
+												} else {
+														transform.localEulerAngles = new Vector3 (startangles.x, startangles.y + 90, startangles.z);
+												}
 										} else {
 												transform.localEulerAngles = new Vector3 (startangles.x, startangles.y, startangles.z);
 										}
