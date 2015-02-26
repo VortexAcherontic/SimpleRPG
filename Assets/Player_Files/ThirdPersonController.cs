@@ -3,10 +3,11 @@ using System.Collections;
 
 public class ThirdPersonController : MonoBehaviour {
 			
-		public AnimationClip idleAnimation;
-		public AnimationClip walkAnimation;
-		public AnimationClip runAnimation;
-		public AnimationClip jumpPoseAnimation;
+		public AnimationClip idleAnimation_OneHanded;
+		public AnimationClip walkAnimation_OneHanded;
+		public AnimationClip runAnimation_OneHanded;
+		public AnimationClip jumpPoseAnimation_OneHanded;
+		public AnimationClip attackAnimation_OneHanded;
 	
 		public float walkMaxAnimationSpeed = 0.75f;
 		public float trotMaxAnimationSpeed = 1.0f;
@@ -87,24 +88,27 @@ public class ThirdPersonController : MonoBehaviour {
 				}
 		
 				/*
-public AnimationClip idleAnimation;
-public AnimationClip walkAnimation;
-public AnimationClip runAnimation;
-public AnimationClip jumpPoseAnimation;	
+public AnimationClip idleAnimation_OneHanded;
+public AnimationClip walkAnimation_OneHanded;
+public AnimationClip runAnimation_OneHanded;
+public AnimationClip jumpPoseAnimation_OneHanded;	
 	*/
-				if (!idleAnimation) {
+				if (!idleAnimation_OneHanded) {
 						_animation = null;
 						Debug.Log ("No idle animation found. Turning off animations.");
 				}
-				if (!walkAnimation) {
+				if (!walkAnimation_OneHanded) {
 						_animation = null;
 						Debug.Log ("No walk animation found. Turning off animations.");
 				}
-				if (!runAnimation) {
+				if (!runAnimation_OneHanded) {
 						_animation = null;
 						Debug.Log ("No run animation found. Turning off animations.");
 				}
-				if (!jumpPoseAnimation && canJump) {
+				if (!attackAnimation_OneHanded) {
+						Debug.Log ("No Attack animation found");
+				}
+				if (!jumpPoseAnimation_OneHanded && canJump) {
 						_animation = null;
 						Debug.Log ("No jump animation found and the character has canJump enabled. Turning off animations.");
 				}
@@ -276,7 +280,7 @@ public AnimationClip jumpPoseAnimation;
 				if (Input.GetButtonDown ("Jump")) {
 						lastJumpButtonTime = Time.time;
 				}
-		
+
 				UpdateSmoothedMovementDirection ();
 		
 				// Apply gravity
@@ -295,31 +299,35 @@ public AnimationClip jumpPoseAnimation;
 				CharacterController controller = GetComponent<CharacterController> ();
 				collisionFlags = controller.Move (movement);
 		
+				if (Input.GetButton ("Fire1")) {
+						animation.Play (attackAnimation_OneHanded.name);
+				}
+		
 				// ANIMATION sector
 				if (_animation) {
 						if (_characterState == CharacterState.Jumping) {
 								if (!jumpingReachedApex) {
-										_animation [jumpPoseAnimation.name].speed = jumpAnimationSpeed;
-										_animation [jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever;
-										_animation.CrossFade (jumpPoseAnimation.name);
+										_animation [jumpPoseAnimation_OneHanded.name].speed = jumpAnimationSpeed;
+										_animation [jumpPoseAnimation_OneHanded.name].wrapMode = WrapMode.ClampForever;
+										_animation.CrossFade (jumpPoseAnimation_OneHanded.name);
 								} else {
-										_animation [jumpPoseAnimation.name].speed = -landAnimationSpeed;
-										_animation [jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever;
-										_animation.CrossFade (jumpPoseAnimation.name);				
+										_animation [jumpPoseAnimation_OneHanded.name].speed = -landAnimationSpeed;
+										_animation [jumpPoseAnimation_OneHanded.name].wrapMode = WrapMode.ClampForever;
+										_animation.CrossFade (jumpPoseAnimation_OneHanded.name);				
 								}
 						} else {
 								if (controller.velocity.sqrMagnitude < 0.1f) {
-										_animation.CrossFade (idleAnimation.name);
+										_animation.CrossFade (idleAnimation_OneHanded.name);
 								} else {
 										if (_characterState == CharacterState.Running) {
-												_animation [runAnimation.name].speed = Mathf.Clamp (controller.velocity.magnitude, 0.0f, runMaxAnimationSpeed);
-												_animation.CrossFade (runAnimation.name);	
+												_animation [runAnimation_OneHanded.name].speed = Mathf.Clamp (controller.velocity.magnitude, 0.0f, runMaxAnimationSpeed);
+												_animation.CrossFade (runAnimation_OneHanded.name);	
 										} else if (_characterState == CharacterState.Trotting) {
-												_animation [walkAnimation.name].speed = Mathf.Clamp (controller.velocity.magnitude, 0.0f, trotMaxAnimationSpeed);
-												_animation.CrossFade (walkAnimation.name);	
+												_animation [walkAnimation_OneHanded.name].speed = Mathf.Clamp (controller.velocity.magnitude, 0.0f, trotMaxAnimationSpeed);
+												_animation.CrossFade (walkAnimation_OneHanded.name);	
 										} else if (_characterState == CharacterState.Walking) {
-												_animation [walkAnimation.name].speed = Mathf.Clamp (controller.velocity.magnitude, 0.0f, walkMaxAnimationSpeed);
-												_animation.CrossFade (walkAnimation.name);	
+												_animation [walkAnimation_OneHanded.name].speed = Mathf.Clamp (controller.velocity.magnitude, 0.0f, walkMaxAnimationSpeed);
+												_animation.CrossFade (walkAnimation_OneHanded.name);	
 										}
 					
 								}
