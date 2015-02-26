@@ -179,7 +179,7 @@ public class EnemyBehaviour : MonoBehaviour {
 				}		
 		}
 	
-		Vector2 temp_wp = new Vector2 (0, 0);
+		Vector3 temp_wp = new Vector3 (0, 0);
 		int i = 0;
 	
 		void IdleMovement () {

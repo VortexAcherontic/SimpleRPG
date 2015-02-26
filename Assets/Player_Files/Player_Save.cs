@@ -25,7 +25,7 @@ public class Player_Save : MonoBehaviour {
 				Game.Creature = gameObject.GetComponent<PlayerBehaviour> ().me.Creat;
 				JSONObject characterObj = new JSONObject ();
 		
-				characterObj.Add ("position", _server_.MakeVector2 (Game.Creature.Position));
+				characterObj.Add ("position", _server_.MakeVector3 (Game.Creature.Position));
 				characterObj.Add ("gold", Game.Creature.Gold);
 				characterObj.Add ("xp", Game.Creature.XP);
 				
@@ -35,6 +35,8 @@ public class Player_Save : MonoBehaviour {
 				characterObj.Add ("Int", Game.Creature.InitalStats.Int);
 				characterObj.Add ("Vit", Game.Creature.InitalStats.Vit);
 				characterObj.Add ("Luc", Game.Creature.InitalStats.Luc);
+				characterObj.Add ("Stamina", Game.Creature.InitalStats.Stamina);
+				characterObj.Add ("MaxStamina", Game.Creature.InitalStats.MaxStamina);
 		
 				characterObj.Add ("LVL", Game.Creature.InitalStats.Level);
 				characterObj.Add ("Stats", Game.Creature.StatPoints);
@@ -206,7 +208,7 @@ public class Player_Save : MonoBehaviour {
 				Savegame Game = ScriptableObject.CreateInstance<Savegame> ();
 				Game.Quests = new List<QuestStruct> ();
 				#region Char
-				Game.Creature.Position = _server_.GetVector2 ("character", "position");
+				Game.Creature.Position = _server_.GetVector3 ("character", "position");
 				Game.Creature.InitalStats.Gold = (int)_server_.data.GetObject ("character").GetNumber ("gold");
 				Game.Creature.InitalStats.XP = (int)_server_.data.GetObject ("character").GetNumber ("xp");
 		
@@ -217,6 +219,8 @@ public class Player_Save : MonoBehaviour {
 		
 				Game.Creature.InitalStats.Vit = (int)_server_.data.GetObject ("character").GetNumber ("Vit");
 				Game.Creature.InitalStats.Luc = (int)_server_.data.GetObject ("character").GetNumber ("Luc");
+				Game.Creature.InitalStats.Stamina = (int)_server_.data.GetObject ("character").GetNumber ("Stamina");
+				Game.Creature.InitalStats.MaxStamina = (int)_server_.data.GetObject ("character").GetNumber ("MaxStamina");		
 		
 				Game.Creature.InitalStats.Level = (int)_server_.data.GetObject ("character").GetNumber ("LVL");
 				Game.Creature.InitalStats.StatPoints = (int)_server_.data.GetObject ("character").GetNumber ("Stats");

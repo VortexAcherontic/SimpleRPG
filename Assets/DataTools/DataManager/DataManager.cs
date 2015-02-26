@@ -70,16 +70,16 @@ namespace DataManager {
 				}
 */
 				//position?
-				public JSONObject MakeVector2 (Vector2 vector) {
+				public JSONObject MakeVector3 (Vector3 vector) {
 						var v = new JSONObject{
 				{"x",(float)(Convert.ToDouble(vector.x))},
-				{"y",(float)(Convert.ToDouble(vector.y))}
-				//{"z",(float)(Convert.ToDouble(vector.z))}
+				{"y",(float)(Convert.ToDouble(vector.y))},
+				{"z",(float)(Convert.ToDouble(vector.z))}
 			};
 						return v;
 				}
 				
-				public Vector2 GetVector2 (string obj, string key) {
+				public Vector3 GetVector3 (string obj, string key) {
 
 						JSONObject jsonObject = data.GetObject (obj);
 						JSONObject vector = jsonObject.GetObject (key);

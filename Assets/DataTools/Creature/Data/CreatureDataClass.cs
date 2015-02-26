@@ -40,7 +40,7 @@ public struct skill {
 public struct CreatureOriginData { // Clean Own Stats
 		// Allround Stats
 		public string Name;
-		public Vector2 Position;
+		public Vector3 Position;
 		public BattleStance Stance;
 		public int Gold; // For kills: GoldDrop
 		public int XP;	// For kills: XpDrop
@@ -62,6 +62,8 @@ public struct CreatureOriginData { // Clean Own Stats
 		public int Int; // Mag Dmg & Mana & Ressistance to Mag Dmg?
 		public int Vit;	// Health
 		public int Luc; // Crit Hit Chance?
+		public float MaxStamina;
+		public float Stamina; //rennen, kämpfen, blocken
 	
 		// Only Player
 		public int Level;
@@ -105,7 +107,7 @@ public struct CreatureData {
 	#region doppelt von Origin
 		// Allround Stats
 		public string Name;
-		public Vector2 Position;
+		public Vector3 Position;
 		public BattleStance Stance;
 		public int Gold; // For kills: GoldDrop
 		public int XP;	// For kills: XpDrop
@@ -127,6 +129,8 @@ public struct CreatureData {
 		public int Int; // Mag Dmg & Mana & Ressistance to Mag Dmg?
 		public int Vit;	// Health
 		public int Luc; // Crit Hit Chance?
+		public float MaxStamina;
+		public float Stamina; //rennen, kämpfen, blocken
 	
 		// Only Player
 		public int Level;
@@ -163,7 +167,7 @@ public struct CreatureData {
 		public string[] Equipment_Strings;	
 	#endregion
 	
-		public Vector2 lastPos;
+		public Vector3 lastPos;
 	
 		public int HP;
 		public int MP;

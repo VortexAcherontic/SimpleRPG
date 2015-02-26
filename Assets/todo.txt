@@ -8,7 +8,6 @@
 - wenn monsterpos=companionpos dann kann man die monster nicht angreifen // interessiert nicht solange companion disabled
 
 // Mechanik
-- pfeiltasten angriff und movement disablen
 - Mit Maus angreifen
 
 - tastenfunktionen für battlestance und interact ändern lassen können
@@ -37,15 +36,15 @@
 
 - shop websync einbauen (+ Max Stock?)
 - Buffs/debuff/dot?
-- Events einbauen:
-	- lockpick minigame (popup mit pfeiltasten rechts und links)
+- Events einbauen
 
 - Mobs mit Fernkampf?
 - battlemode 1vs1 einbauen (oder so... Multiplayer)
 
 // GUI
+- lockpick interface
 - mehr 3D Objecte einbauen und entwerfen lassen
-- generell laden und speichern einbauen in einer taverne statt im inventar
+//- generell laden und speichern einbauen in einer taverne statt im inventar oder im bett vllt einfacher > haus des spielers & in tavernen auch??
 - Angriff/Schaden Anzeigen?!? (Gerade für Fernkampf/Magie bestimmt nicht schlecht - Schaden nur wenn touch)
 
 //Sonstiges

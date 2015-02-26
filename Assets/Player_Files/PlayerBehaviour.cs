@@ -42,6 +42,8 @@ public class PlayerBehaviour : MonoBehaviour {
 		public Texture2D ManaBar_full;
 		public Texture2D XpBar_empty;
 		public Texture2D XpBar_full;
+		public Texture2D Staminabar_empty;
+		public Texture2D Staminabar_full;
 	
 		public Texture2D[] SlotTexture = new Texture2D[10];
 		public Texture2D skillactiv;
@@ -51,6 +53,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		float hpbar = 100;
 		float manabar = 100;
 		float xpbar = 0;
+		float staminabar = 100;
 	
 		List<QuestStruct> tmp_quests = new List<QuestStruct> ();
 	
@@ -812,13 +815,12 @@ public class PlayerBehaviour : MonoBehaviour {
 						hpbar = (100 / (me.Creat.MaxHP + 0.00001f)) * (me.Creat.HP + 0.0001f);
 						manabar = (100 / (0.00001f + me.Creat.MaxMP)) * (me.Creat.MP + 0.00001f);
 						xpbar = (100 / (100 * ((0.00001f + me.Creat.Level) + 1))) * (me.Creat.XP + 0.00001f);
-		
+						staminabar = (100 / (0.00001f + me.Creat.MaxStamina)) * (me.Creat.Stamina + 0.00001f);
 				}
 		}
 	
 		void GUIStatsOverview () {
 				BarBerechnung ();
-				// Anzeigen für Health, Mana und XP später durch grafische Elemente zu ersetzen.
 				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Gold: " + me.Creat.Gold + "G");
 				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Battlemode: " + me.Creat.Stance.ToString ());
 		
@@ -844,6 +846,10 @@ public class PlayerBehaviour : MonoBehaviour {
 				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
 				GUI.DrawTexture (Bar_Pos, ManaBar_empty, ScaleMode.ScaleAndCrop);
 				GUI.DrawTexture (new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * manabar / 100, Bar_Pos.height), ManaBar_full, ScaleMode.ScaleAndCrop);
+				//STAMINABAR
+				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
+				GUI.DrawTexture (Bar_Pos, Staminabar_empty, ScaleMode.ScaleAndCrop);
+				GUI.DrawTexture (new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * staminabar / 100, Bar_Pos.height), Staminabar_full, ScaleMode.ScaleAndCrop);
 				//XPBAR
 				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
 				GUI.DrawTexture (Bar_Pos, XpBar_empty, ScaleMode.ScaleAndCrop);

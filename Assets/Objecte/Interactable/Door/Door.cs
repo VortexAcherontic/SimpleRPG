@@ -46,7 +46,8 @@ public class Door : MonoBehaviour {
 												GameObject.FindWithTag ("Player").transform.position = optionen.TeleportToPosition;
 												Application.LoadLevel (optionen.TeleportToScene);
 										}
-								} else {/*open lockpick minigame*/
+								} else {
+										GetComponent<Lock> ().solveLock ();
 								}
 						}
 				}

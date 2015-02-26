@@ -116,7 +116,7 @@ public class CreatureController : MonoBehaviour {
 				Creat.InitalStats.Inventory = Creat.Inventory;
 		}
 	
-		public Vector2 MoveTo (Vector2 Pos) {
+		public Vector3 MoveTo (Vector3 Pos) {
 				
 				if (Creat.MoveTimer <= 0) {
 						bool MovementCheck = true;
@@ -164,6 +164,10 @@ public class CreatureController : MonoBehaviour {
 						Creat.MP += Creat.MaxMP / 100;
 						if (Creat.MP >= Creat.MaxMP) {
 								Creat.MP = Creat.MaxMP;
+						}
+						Creat.Stamina += Creat.MaxStamina / 100;
+						if (Creat.Stamina >= Creat.MaxStamina) {
+								Creat.Stamina = Creat.MaxStamina;
 						}
 						Creat.RegTimer = Creat.RegCooldown;
 				}
@@ -224,6 +228,8 @@ public class CreatureController : MonoBehaviour {
 				Creat.Int = Creat.InitalStats.Int;
 				Creat.Vit = Creat.InitalStats.Vit;
 				Creat.Luc = Creat.InitalStats.Luc;
+				Creat.MaxStamina = (Creat.InitalStats.Stamina + (int)Mathf.Sqrt (Creat.InitalStats.Agi * Creat.InitalStats.Agi + Creat.InitalStats.Dex * Creat.InitalStats.Dex)) * 1000;
+
 				Creat.AttackRange = 1;
 		
 				// Adding Stats on Stuff like Equiptment (or Buffs)

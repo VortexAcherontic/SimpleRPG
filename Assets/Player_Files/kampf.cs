@@ -32,7 +32,7 @@ public class kampf : MonoBehaviour {
 		}
 
 		void Angriffsrichtung () {
-				bool attack_ausgefuert = false;
+				/*bool attack_ausgefuert = false;
 				if (Input.GetKeyDown ("left")) {
 						angriffsrichtung = "l";
 						attack_ausgefuert = true;
@@ -64,7 +64,7 @@ public class kampf : MonoBehaviour {
 										attack_timer = attack_cooldown;
 										break;
 						}	
-				}
+				}*/
 		}
 	
 		EnemyBehaviour EB;

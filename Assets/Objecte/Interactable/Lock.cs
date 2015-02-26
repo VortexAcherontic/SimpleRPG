@@ -21,6 +21,7 @@ public class Lock : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
 						if (TmpLockOrder [tryToSolve] == KeyCode.LeftArrow) {
 								tryToSolve++;
+								//klick sound zum bestätigen das man das richtige getroffen hat?
 						} else {
 								tryToSolve = 0;
 						}
@@ -28,6 +29,7 @@ public class Lock : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.RightArrow)) {
 						if (TmpLockOrder [tryToSolve] == KeyCode.RightArrow) {
 								tryToSolve++;
+								//klick sound zum bestätigen das man das richtige getroffen hat?
 						} else {
 								tryToSolve = 0;
 						}
