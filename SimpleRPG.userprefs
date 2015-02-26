@@ -1,15 +1,20 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player_Files\ThirdPersonController.cs">
     <Files>
+      <File FileName="Assets\Player_Files\MouseLook.cs" Line="60" Column="35" />
       <File FileName="Assets\todo.txt" Line="43" Column="1" />
+      <File FileName="Assets\Objecte\EditorPosToObj.cs" Line="15" Column="43" />
+      <File FileName="Assets\Player_Files\ThirdPersonController.cs" Line="16" Column="42" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Objecte" expanded="True" />
-            <Node name="todo.txt" selected="True" />
+            <Node name="Player_Files" expanded="True">
+              <Node name="ThirdPersonController.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
