@@ -51,11 +51,21 @@
      <Compile Include="Assets\DataTools\Quest\Editor\QuestDataInspector.cs" />
      <None Include="Assets\Credits.txt" />
      <None Include="Assets\todo.txt" />
+     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader Night.shader" />
+     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Import\Boomlagoon\JSON\Readme.txt" />
+     <None Include="Assets\Import\Terrain Assets\Rocks\Stone\Bumped-Specular.txt" />
      <None Include="Assets\Shader\$DSNA.shader" />
+     <None Include="Assets\Import\ChronoSphere\Using The Chronosphere.txt" />
+     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader Night 1.shader" />
+     <None Include="Assets\Import\ChronoSphere\Materials\NewShader.shader" />
+     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader Dusk.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>D:/Users/Defender833/Documents/SimpleRPG/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>D:/Users/Defender833/Documents/SimpleRPG/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>E:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

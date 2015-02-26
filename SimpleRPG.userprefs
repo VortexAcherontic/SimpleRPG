@@ -1,6 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
+    <Files>
+      <File FileName="Assets\todo.txt" Line="43" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
@@ -16,9 +19,21 @@
                 <Node name="JSON" expanded="True" />
               </Node>
             </Node>
-            <Node name="Objecte" expanded="True" />
+            <Node name="Menue" expanded="True" />
+            <Node name="Objecte" expanded="True">
+              <Node name="Interactable" expanded="True">
+                <Node name="Truhen" expanded="True" />
+              </Node>
+            </Node>
             <Node name="Player_Files" expanded="True" />
             <Node name="todo.txt" selected="True" />
+          </Node>
+          <Node name="Assembly-UnityScript" expanded="True">
+            <Node name="Import" expanded="True">
+              <Node name="ChronoSphere" expanded="True">
+                <Node name="Scriptness" expanded="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>

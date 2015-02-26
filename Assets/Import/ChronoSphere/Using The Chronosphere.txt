@@ -1,0 +1,75 @@
+The Chronosphere
+Version 1.1
+
+*Changelog*
+Version 1.3 - Added Cloud domes and rain
+				- Added Weather shifts and randomizer
+				- Linked sun into weather shifts
+				- Added lightning, linked into weather shifts
+				
+Version 1.2 - Added a function to sort shifts into chronological order
+				- Added a function to preassign shifts' subjects automagically
+				- Updated instructions to remove depreciated warnings
+				
+Version 1.1 - Added loop to reduce startHour if above 23
+				- Turned on daySphere again and reorganized Skysphere shaders
+				- Added a solid layer underneath the water to act as a horizon
+				
+Version 1.0 - First primary release.
+
+Copyright (c)2010 Aaron Gros
+
+Permission is hereby granted, free of charge, to any person  obtaining a copy of this software and associated documentation  files (the "Software"), to deal in the Software without  restriction, including without limitation the rights to use,  copy, modify, merge, publish, distribute, sublicense, and/or sell  copies of the Software, and to permit persons to whom the  Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---------------------------------------------------------------------------
+
+First, allow me to explain a few concepts that the Chronosphere operates on:
+Day-
+	A single length of time that goes from hour 0 to hour 23 and restarts
+Shift-
+	A segment of a day during which certain settings are applied to an object
+
+Explaining the Chronosphere Controls:
+	Day Speed -
+		This measures the length of a day, in minutes.
+	Hour Start -
+		The hour at which the Chronosphere will begin to run. Any number above 23 will be reduced by 23 until it is.
+	Sun/Moon/Night Sphere -
+		Defines the object that will act as the Sun light/Moon light/Night Sky. These values are fed into the Shifts at run time.
+	Sun/Moon/Night Sphere Shifts - 
+		Creates an array of Shifts that are used in the transitioning of the color values.
+	*NEW*
+	Light Clouds, Heavy Clouds, Rain Effect, Lightning-
+		Defines the objects that act as part of the weather
+	Cloud Shifts
+		Changes the color of the clouds depending on the hour, like the Sun shifts
+	Forecasts
+		Set up weather conditions to switch between during the day
+		
+		
+	Shift Controls Explained:
+		Target <Value> -
+			Specifiy the value to transition to during this shift
+		Start Hour -
+			Specify the hour at which this shift will start. Shift do not need to be created chronologically
+		Is This A Light -
+			Specify if the subject is a light.
+			IMPORTANT: Lights must be properly identified if they are to transition properly
+	
+	*NEW*
+	Forecasts Controls Explained:
+		Light/ Heavy Clouds/ Rain Alpha -
+			Specifies the alpha values during this particular weather condtion
+		Sun Intensity -
+			Modifies the brightness of the sun, good to turn down during rain
+		Lightning Intensity -
+			Turn this to a high value like 3 or 4 if you want lightning during this weather conditions
+			
+	
+Weather conditions are selected at random, and given a random duration between 0-24 hours.
+When this duration expires, a new Forecast is chosen and duration set.
+		
+	

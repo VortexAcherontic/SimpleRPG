@@ -89,9 +89,16 @@
      <Compile Include="Assets\Player_Files\kampf.cs" />
      <None Include="Assets\Credits.txt" />
      <None Include="Assets\todo.txt" />
+     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader Night.shader" />
+     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Import\Boomlagoon\JSON\Readme.txt" />
+     <None Include="Assets\Import\Terrain Assets\Rocks\Stone\Bumped-Specular.txt" />
      <None Include="Assets\Shader\$DSNA.shader" />
+     <None Include="Assets\Import\ChronoSphere\Using The Chronosphere.txt" />
+     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader Night 1.shader" />
+     <None Include="Assets\Import\ChronoSphere\Materials\NewShader.shader" />
+     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader Dusk.shader" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
