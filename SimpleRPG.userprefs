@@ -1,41 +1,12 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\todo.txt">
     <Files>
       <File FileName="Assets\todo.txt" Line="43" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="DataTools" expanded="True">
-              <Node name="Creature" expanded="True">
-                <Node name="Data" expanded="True" />
-              </Node>
-              <Node name="DataManager" expanded="True" />
-            </Node>
-            <Node name="Import" expanded="True">
-              <Node name="Boomlagoon" expanded="True">
-                <Node name="JSON" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="Menue" expanded="True" />
-            <Node name="Objecte" expanded="True">
-              <Node name="Interactable" expanded="True">
-                <Node name="Truhen" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="Player_Files" expanded="True" />
-            <Node name="todo.txt" selected="True" />
-          </Node>
-          <Node name="Assembly-UnityScript" expanded="True">
-            <Node name="Import" expanded="True">
-              <Node name="ChronoSphere" expanded="True">
-                <Node name="Scriptness" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
