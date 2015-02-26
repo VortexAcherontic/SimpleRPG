@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class EditorPosToObj : MonoBehaviour {
 		public Transform MoveTo;
+		Vector3 offset;
+		void Start () {
+				offset = MoveTo.transform.position - transform.position;
+		}
 	
 		// Use this for initialization
 		void Update () {

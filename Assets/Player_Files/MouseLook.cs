@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class MouseLook : MonoBehaviour {
 		public mainmenu mn;
 		public Transform head;
+		public float MoveSpeed = 1;
 
 		void Update () {
 				if (mn.cammove && Time.timeScale > 0) {
@@ -53,7 +54,9 @@ public class MouseLook : MonoBehaviour {
 				if (tmp_y < max_down) {
 						angle.x = (90 * ((tmp_y - max_down) / (min_down - max_down)));
 				}
-				
+				Vector3 OldEulerAngles = head.localEulerAngles;
+				angle.x = Mathf.LerpAngle (OldEulerAngles.x, angle.x, Time.deltaTime * MoveSpeed);
+				angle.y = Mathf.LerpAngle (OldEulerAngles.y, angle.y, Time.deltaTime * MoveSpeed);
 				head.localEulerAngles = angle;
 		}
 }
