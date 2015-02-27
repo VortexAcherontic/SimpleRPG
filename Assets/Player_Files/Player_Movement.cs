@@ -5,10 +5,13 @@ public class Player_Movement : MonoBehaviour {
 		PlayerBehaviour PlayerStats;
 		Animator MotionController;
 	
-		public float SpeedMultiplier = 1;
+		public float SpeedMultiplier = 0.1f;
 		public float RunSpeedMultiplier = 2;
-		public float RotationSpeedMultiplier = 2;
-		
+		public float RotationSpeedMultiplier = 90;
+		public float JumpMultiplier = 2;
+	
+		public float garavity;
+	
 		public float StaminaToAttack = 30;
 		public float StaminaToRun = 20;
 		public float StaminaToJump = 10;
@@ -16,6 +19,7 @@ public class Player_Movement : MonoBehaviour {
 	
 		// Parameter die nur innerhalb des Scripts geändert werden sollten
 		float speed = 0;
+		float jump = 0;
 		float rotation = 0;
 		private CollisionFlags collisionFlags; 
 	
@@ -32,7 +36,7 @@ public class Player_Movement : MonoBehaviour {
 	
 		void Update () {
 				Vector3 Bewegung = Camera.main.transform.forward;
-				Bewegung.y = 0;
+				Bewegung.y = -0;
 				float AktuelleStamina = PlayerStats.me.Creat.Stamina; // denk daran, es ist ReadOnly
 				#region Animation - Werte
 				// Später bei mehr Animationen halt erstmal Abfragen was getragen wird!
@@ -48,10 +52,14 @@ public class Player_Movement : MonoBehaviour {
 						MotionController.SetTrigger ("Attacking");
 				}
 			
-				if (AktuelleStamina > StaminaToJump && Input.GetButton ("Jump")) {
-						PlayerStats.me.Creat.Stamina -= StaminaToJump;
-						MotionController.SetTrigger ("Jumping");
-				}
+				if ((collisionFlags & CollisionFlags.CollidedBelow) != 0) {
+						jump = 0;
+						if (AktuelleStamina > StaminaToJump && Input.GetButton ("Jump")) {
+								PlayerStats.me.Creat.Stamina -= StaminaToJump;
+								MotionController.SetTrigger ("Jumping");
+								jump = JumpMultiplier;
+						}
+				} 
 				#endregion Animation - Trigger
 			
 				#region KeyInput
@@ -61,6 +69,10 @@ public class Player_Movement : MonoBehaviour {
 				if (AktuelleStamina > StaminaToRun && Input.GetButton ("Run") && v > 0) {
 						PlayerStats.me.Creat.Stamina -= StaminaToRun;
 						v *= RunSpeedMultiplier;
+				}
+		
+				if (jump > 0) {
+						jump = Mathf.Lerp (jump, 0, Time.deltaTime);
 				}
 			
 				if (v == 0) {
@@ -81,8 +93,10 @@ public class Player_Movement : MonoBehaviour {
 				Vector3 Drehung = Vector3.zero;
 				Drehung.y = rotation;
 				transform.Rotate (Drehung);
-		
+				
 				Bewegung = Bewegung * speed;
+				Bewegung.y = -garavity + jump;
+				print (Bewegung);
 				CharacterController controller = GetComponent<CharacterController> ();
 				collisionFlags = controller.Move (Bewegung);
 				#endregion Bewegung
