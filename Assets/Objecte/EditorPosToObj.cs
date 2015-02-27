@@ -4,7 +4,8 @@ using System.Collections;
 //[ExecuteInEditMode]
 public class EditorPosToObj : MonoBehaviour {
 		public Transform MoveTo;
-		Vector3 offset;
+		public Vector3 offset = Vector3.zero;
+		public bool RotateToo = false;
 		void Start () {
 				offset = MoveTo.transform.position - transform.position;
 		}
@@ -12,7 +13,10 @@ public class EditorPosToObj : MonoBehaviour {
 		// Use this for initialization
 		void Update () {
 				if (MoveTo != null) {
-						transform.position = MoveTo.position;
+						transform.position = MoveTo.position + offset;
+						if (RotateToo) {
+								transform.rotation = MoveTo.rotation;
+						}
 				}
 		}
 	

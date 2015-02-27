@@ -84,9 +84,9 @@
      <Compile Include="Assets\Player_Files\MouseLook.cs" />
      <Compile Include="Assets\Player_Files\PlayerBehaviour.cs" />
      <Compile Include="Assets\Player_Files\PlayerToPos.cs" />
+     <Compile Include="Assets\Player_Files\Player_Movement.cs" />
      <Compile Include="Assets\Player_Files\Player_Save.cs" />
      <Compile Include="Assets\Player_Files\Savegame.cs" />
-     <Compile Include="Assets\Player_Files\ThirdPersonController.cs" />
      <Compile Include="Assets\Player_Files\kampf.cs" />
      <None Include="Assets\Credits.txt" />
      <None Include="Assets\todo.txt" />

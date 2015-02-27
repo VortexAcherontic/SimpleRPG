@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class ThirdPersonController : MonoBehaviour {
-			
+		/*
 		public AnimationClip idleAnimation_OneHanded;
 		public AnimationClip walkAnimation_OneHanded;
 		public AnimationClip runAnimation_OneHanded;
@@ -87,12 +87,12 @@ public class ThirdPersonController : MonoBehaviour {
 						Debug.Log ("The character you would like to control doesn't have animations. Moving her might look weird.");
 				}
 		
-				/*
-public AnimationClip idleAnimation_OneHanded;
-public AnimationClip walkAnimation_OneHanded;
-public AnimationClip runAnimation_OneHanded;
-public AnimationClip jumpPoseAnimation_OneHanded;	
-	*/
+				
+//public AnimationClip idleAnimation_OneHanded;
+//public AnimationClip walkAnimation_OneHanded;
+//public AnimationClip runAnimation_OneHanded;
+//public AnimationClip jumpPoseAnimation_OneHanded;	
+	
 				if (!idleAnimation_OneHanded) {
 						_animation = null;
 						Debug.Log ("No idle animation found. Turning off animations.");
@@ -406,5 +406,5 @@ public AnimationClip jumpPoseAnimation_OneHanded;
 				gameObject.tag = "Player";
 		}
 	
-	
+*/	
 }
