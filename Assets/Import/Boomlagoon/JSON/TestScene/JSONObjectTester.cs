@@ -155,9 +155,9 @@ public class JSONObjectTester : MonoBehaviour {
 		}
 	
 		void OnGUI () {
-				stringToEvaluate = GUI.TextArea (new Rect (0, 0, Screen.width - 300, Screen.height - 5), stringToEvaluate);
+				stringToEvaluate = GUI.TextArea (new Rect (0, 0, 1920 - 300, 1080 - 5), stringToEvaluate);
 
-				if (GUI.Button (new Rect (Screen.width - 150, 10, 145, 75), "Evaluate JSON")) {
+				if (GUI.Button (new Rect (1920 - 150, 10, 145, 75), "Evaluate JSON")) {
 						var jsonObject = JSONObject.Parse (stringToEvaluate);
 						if (jsonObject == null) {
 								Debug.LogError ("Failed to parse string, JSONObject == null");
@@ -167,7 +167,7 @@ public class JSONObjectTester : MonoBehaviour {
 						}
 				}
 
-				if (GUI.Button (new Rect (Screen.width - 150, 95, 145, 75), "Clear textbox")) {
+				if (GUI.Button (new Rect (1920 - 150, 95, 145, 75), "Clear textbox")) {
 						stringToEvaluate = string.Empty;
 				}
 		}

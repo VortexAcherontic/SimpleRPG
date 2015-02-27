@@ -41,7 +41,7 @@ public class TileMap : MonoBehaviour {
 				bool farbensehen = false;
 				if (farbensehen) {
 						int breite = 300;
-						GUILayout.BeginArea (new Rect (Screen.width - breite, 0, breite, Screen.height));
+						GUILayout.BeginArea (new Rect (1920 - breite, 0, breite, 1080));
 						{
 								foreach (regions tmpregion in tileTypes) {
 										GUILayout.BeginHorizontal ();

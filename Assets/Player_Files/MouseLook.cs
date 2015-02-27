@@ -24,16 +24,16 @@ public class MouseLook : MonoBehaviour {
 	
 		void RotateHeadToMousPos () {
 				float min_left = 0;
-				float max_left = Screen.width / 2 - 50;
+				float max_left = 1920 / 2 - 50;
 		
-				float min_right = Screen.width / 2 + 50;
-				float max_right = Screen.width;
+				float min_right = 1920 / 2 + 50;
+				float max_right = 1920;
 		
-				float min_up = Screen.height / 2 + 50;
-				float max_up = Screen.height;
+				float min_up = 1080 / 2 + 50;
+				float max_up = 1080;
 		
 				float min_down = 0;
-				float max_down = Screen.height / 2 - 50;
+				float max_down = 1080 / 2 - 50;
 		
 				Vector3 tmp_cam = Input.mousePosition;
 				float tmp_x = tmp_cam.x;

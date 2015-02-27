@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public class NPCBehaviour : MonoBehaviour {
-	
+		GUI_Helper GUI_ZoD = new GUI_Helper ();
 		QuestController QuestObj;
 		CreatureController me;
 		PlayerBehaviour p001;
@@ -61,23 +61,23 @@ public class NPCBehaviour : MonoBehaviour {
 	
 		void repair () {
 				if (GUI_Repair) {
-						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
+						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
 						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
-						GUI.Box (tmp_anzeige, "Repair you stuff!");
+						GUI_ZoD.Box ("Repair you stuff!", tmp_anzeige);
 						int count_i = 0;
 						foreach (ItemData oi in p001.me.Creat.Equipment) {
 								ItemData i = oi;
 								if (i.Durability < i.MaxDurability) {
 										zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
-										GUI.Label (zeile, i.Name + " (" + i.Durability + "/" + i.MaxDurability + ")");
-										if (GUI.Button (new Rect (zeile.position.x + 350, zeile.position.y, 200, zeile.height), "Rep 20")) {
+										GUI_ZoD.Label (i.Name + " (" + i.Durability + "/" + i.MaxDurability + ")", 11, zeile);
+										if (GUI_ZoD.Button_Text ("Rep 20", 11, new Rect (zeile.position.x + 350, zeile.position.y, 200, zeile.height))) {
 												i.Durability += 20;
 												if (i.Durability > i.MaxDurability) {
 														i.Durability = i.MaxDurability;
 												}
 												p001.me.Creat.Gold -= 50;
 										}
-										if (GUI.Button (new Rect (zeile.position.x + 600, zeile.position.y, 200, zeile.height), "Rep ALL")) {
+										if (GUI_ZoD.Button_Text ("Rep ALL", 11, new Rect (zeile.position.x + 600, zeile.position.y, 200, zeile.height))) {
 												i.Durability = i.MaxDurability;
 												p001.me.Creat.Gold -= 75;
 										}
@@ -129,9 +129,9 @@ public class NPCBehaviour : MonoBehaviour {
 	
 		void Ausbilder () {
 				if (GUI_Ausbilder) {
-						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
+						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
 						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
-						GUI.Box (tmp_anzeige, "Take Lessons!");
+						GUI_ZoD.Box ("Take Lessons!", tmp_anzeige);
 						DataListObj = (SkillsDataList)Resources.Load ("Skill");
 						SkillsToLearn.Clear ();
 						foreach (skill id in DataListObj.SkillList) {
@@ -139,10 +139,10 @@ public class NPCBehaviour : MonoBehaviour {
 						}
 						foreach (skill name in SkillsToLearn) {
 								zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
-								GUI.Label (zeile, name.name + " | increases: " + name.Effect [0] + " | cost: " + name.cost);
+								GUI_ZoD.Label (name.name + " | increases: " + name.Effect [0] + " | cost: " + name.cost, 11, zeile);
 								zeile.position = new Vector2 (zeile.position.x + 500, zeile.position.y);
 								zeile.width = 200;
-								if (GUI.Button (zeile, "learn skill for " + name.spcost + " skillpoints.")) {
+								if (GUI_ZoD.Button_Text ("learn skill for " + name.spcost + " skillpoints.", 11, zeile)) {
 										if (p001.me.Creat.SkillPoints >= name.spcost) {
 												p001.SkillLearn (name);
 												p001.me.Creat.SkillPoints -= name.spcost;
@@ -152,7 +152,7 @@ public class NPCBehaviour : MonoBehaviour {
 						}	
 						zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
 						zeile.width = 200;
-						if (GUI.Button (zeile, "Train your skills for 20G for 1 skillpoint.")) {
+						if (GUI_ZoD.Button_Text ("Train your skills for 20G for 1 skillpoint.", 11, zeile)) {
 								if (p001.me.Creat.Gold >= 20) {
 										p001.me.Creat.SkillPoints += 1;
 										p001.me.Creat.Gold -= 20;

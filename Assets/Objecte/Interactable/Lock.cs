@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class Lock : MonoBehaviour {
-
+		GUI_Helper GUI_ZoD = new GUI_Helper ();
+	
 		public List<KeyCode> LockOrder = new List<KeyCode> ();
 		List<KeyCode> TmpLockOrder = new List<KeyCode> ();
 	
@@ -60,7 +61,7 @@ public class Lock : MonoBehaviour {
 				if (IsSolving == false) {
 						return;
 				}
-				GUI.Label (new Rect (50, 50, Screen.width - 100, Screen.height - 100), "Tolles interface");
+				GUI_ZoD.Label ("Tolles interface", 11, new Rect (50, 50, 1920 - 100, 1080 - 100));
 		}
 	
 		public void solveLock () {

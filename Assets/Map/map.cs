@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class map : MonoBehaviour {
-
+		GUI_Helper GUI_ZoD = new GUI_Helper ();
+	
 		public Texture2D minimap;
 		public mainmenu gui;
 		public Transform MonsterSpawner;
@@ -25,7 +26,7 @@ public class map : MonoBehaviour {
 				if (gui.showmap) {
 						
 						//GUI.DrawTexture (new Rect (1180, 0, 100, 100), minimap);
-						GUI.DrawTexture (new Rect (0, 0, 100, 100), minimap); // Koords angepass weil mein Bildschrim zu klein SK
+						GUI_ZoD.DrawTexture (minimap, new Rect (0, 0, 100, 100)); // Koords angepass weil mein Bildschrim zu klein SK
 				}
 				//if(p001.pos)
 		}

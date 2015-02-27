@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class registrierung : MonoBehaviour {
+		GUI_Helper GUI_ZoD = new GUI_Helper ();
+		public Texture bg;
 		public string loginname;
 		public string passwort;
 		public string passwort2;
@@ -18,50 +20,57 @@ public class registrierung : MonoBehaviour {
 		}
 		void OnGUI () {
 				if (step > 0) {
-						Rect Anzeigebereich = new Rect (5, 5, Screen.width - 5, Screen.height - 5);
-						Rect ErsteZeile = new Rect (0, 20, Anzeigebereich.width, 20);
-						Rect Spalte = ErsteZeile;
-						GUI.Box (Anzeigebereich, "Char Erstellen");
-						GUILayout.BeginArea (Anzeigebereich);
-						if (step == 1) {
-								GUI.Label (ErsteZeile, error_message);
-								ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-								Spalte = ErsteZeile;
-								Spalte.width = ErsteZeile.width / 2;
-								GUI.Label (Spalte, "Username: ");
-								Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
-								loginname = GUI.TextField (Spalte, loginname);
-								ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-								Spalte = ErsteZeile;
-								Spalte.width = ErsteZeile.width / 2;
-								GUI.Label (Spalte, "Password: ");
-								Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
-								passwort = GUI.TextField (Spalte, passwort);
-								ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-								Spalte = ErsteZeile;
-								Spalte.width = ErsteZeile.width / 2;
-								GUI.Label (Spalte, "Confirm Password: ");
-								Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
-								passwort2 = GUI.TextField (Spalte, passwort2);
-								ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-								if ((GUI.Button (ErsteZeile, "Next")) && (passwort == passwort2)) {
-										step = -1;
-										StartCoroutine (account_generieren (loginname, passwort));
+						Rect Anzeige_All = new Rect (0, 0, 1920, 1080);
+						Rect Anzeige_Background = GUI_ZoD.BeginBackground (bg, Anzeige_All);
+						{
+								Rect Anzeigebereich = new Rect (40, 520, 700, 500);
+								Rect ErsteZeile = new Rect (0, 20, Anzeigebereich.width, (Anzeigebereich.height - 20) / 8);
+								Rect Spalte = ErsteZeile;
+								GUI_ZoD.Box ("Char Erstellen", Anzeigebereich);
+								GUI_ZoD.BeginArea ("Char ertellen", Anzeigebereich);
+								{
+										if (step == 1) {
+												GUI_ZoD.Label (error_message, 11, ErsteZeile);
+												ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
+												Spalte = ErsteZeile;
+												Spalte.width = ErsteZeile.width / 2;
+												GUI_ZoD.Label ("Username: ", 11, Spalte);
+												Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+												loginname = GUI_ZoD.TextField (loginname, 11, Spalte);
+												ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
+												Spalte = ErsteZeile;
+												Spalte.width = ErsteZeile.width / 2;
+												GUI_ZoD.Label ("Password: ", 11, Spalte);
+												Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+												passwort = GUI_ZoD.TextField (passwort, 11, Spalte);
+												ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
+												Spalte = ErsteZeile;
+												Spalte.width = ErsteZeile.width / 2;
+												GUI_ZoD.Label ("Confirm Password: ", 11, Spalte);
+												Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+												passwort2 = GUI_ZoD.TextField (passwort2, 11, Spalte);
+												ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
+												if ((GUI_ZoD.Button_Text ("Next", 11, ErsteZeile)) && (passwort == passwort2)) {
+														step = -1;
+														StartCoroutine (account_generieren (loginname, passwort));
+												}
+										}
+										if (step == 2) {
+												difficulty (ErsteZeile); //zuerst anzeigen
+										}
+										if (step == 3) {
+												charaktererstellung (ErsteZeile); // als zweiten anzeigen
+										}
+										if (step == 4) {
+												p001.me.Create (newPlayer);
+												StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
+												GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().StartGame ();
+												step = -1;
+										}
 								}
+								GUI_ZoD.EndArea ();
 						}
-						if (step == 2) {
-								difficulty (ErsteZeile); //zuerst anzeigen
-						}
-						if (step == 3) {
-								charaktererstellung (ErsteZeile); // als zweiten anzeigen
-						}
-						if (step == 4) {
-								p001.me.Create (newPlayer);
-								StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
-								GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().StartGame ();
-								step = -1;
-						}
-						GUILayout.EndArea ();
+						GUI_ZoD.EndBackground ();
 				}
 				
 		}
@@ -97,23 +106,23 @@ public class registrierung : MonoBehaviour {
 				newPlayer.IsRegAble = true;
 		}
 		void difficulty (Rect ErsteZeile) {
-				GUI.Label (ErsteZeile, "Choose your Difficulty:");
+				GUI_ZoD.Label ("Choose your Difficulty:", 11, ErsteZeile);
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-				if (GUI.Button (new Rect (ErsteZeile), "Easy")) {
+				if (GUI_ZoD.Button_Text ("Easy", 11, new Rect (ErsteZeile))) {
 						newPlayer.Vit += 5;
 						newPlayer.Int += 5;
 						newPlayer.Gold += 100;
 						step = 3;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-				if (GUI.Button (new Rect (ErsteZeile), "Hard")) {
+				if (GUI_ZoD.Button_Text ("Hard", 11, new Rect (ErsteZeile))) {
 						newPlayer.Vit += 1;
 						newPlayer.Int += 1;
 						newPlayer.Gold += 0;
 						step = 3;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-				if (GUI.Button (new Rect (ErsteZeile), "test")) {
+				if (GUI_ZoD.Button_Text ("Test/Dev", 11, new Rect (ErsteZeile))) {
 						newPlayer.Vit += 10;
 						newPlayer.Int += 10;
 						newPlayer.Gold += 10000;
@@ -125,9 +134,9 @@ public class registrierung : MonoBehaviour {
 				if (p001 != null) {
 						p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
 				}
-				GUI.Label (ErsteZeile, "Choose your Class:");
+				GUI_ZoD.Label ("Choose your Class:", 11, ErsteZeile);
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-				if (GUI.Button (new Rect (ErsteZeile), "Melee")) {
+				if (GUI_ZoD.Button_Text ("Melee", 11, new Rect (ErsteZeile))) {
 						newPlayer.Str += 10;
 						newPlayer.Dex += 5;
 						newPlayer.Agi += 5;
@@ -135,14 +144,14 @@ public class registrierung : MonoBehaviour {
 						step = 4;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-				if (GUI.Button (new Rect (ErsteZeile), "Range")) {
+				if (GUI_ZoD.Button_Text ("Range", 11, new Rect (ErsteZeile))) {
 						newPlayer.Str += 2;
 						newPlayer.Dex += 10;
 						newPlayer.Agi += 5;
 						step = 4;
 				}
 				ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-				if (GUI.Button (new Rect (ErsteZeile), "Mage")) {
+				if (GUI_ZoD.Button_Text ("Mage", 11, new Rect (ErsteZeile))) {
 						newPlayer.Agi += 1;
 						newPlayer.Dex += 5;
 						newPlayer.Int += 10;

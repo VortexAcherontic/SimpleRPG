@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class mainmenu : MonoBehaviour {
+		GUI_Helper GUI_ZoD = new GUI_Helper ();
 		public static GameObject TheMenue;
 	
 		bool showoptions;
@@ -27,6 +28,7 @@ public class mainmenu : MonoBehaviour {
 				TheMenue = gameObject;
 				DontDestroyOnLoad (gameObject);
 		}
+	
 		// Use this for initialization
 		void Start () {
 				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
@@ -66,7 +68,6 @@ public class mainmenu : MonoBehaviour {
 		}
 	
 		// Update is called once per frame
-		
 		void Update () {
 				if (p001 != null) {
 						if (Input.GetKeyDown (KeyCode.Escape)) {
@@ -76,25 +77,37 @@ public class mainmenu : MonoBehaviour {
 				EndScreen ();
 		}
 	
+		void OnGUI () {
+				Startscreen ();
+				ShowLogin ();
+				options ();
+				settings ();
+		}
+	
 		void Startscreen () {
 				if (showgamemenue) {
-						GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), bg);
-						//GUI.Label (new Rect (0, 0, 100, 100), "Dies ist ein Text");
-						if (GUI.Button (new Rect (145, 425, 170, 45), "")) {
-								showgamemenue = false;
-								GameObject.Find ("Uebergabe").GetComponent<registrierung> ().step = 1;
+						Rect Anzeige_All = new Rect (0, 0, 1920, 1080);
+						Rect Anzeige_Background = GUI_ZoD.BeginBackground (bg, Anzeige_All);
+						{
+								//GUI.Label (new Rect (0, 0, 100, 100), "Dies ist ein Text");
+								if (GUI_ZoD.Button_Text ("New Character", 11, new Rect (215, 630, 300, 70))) {
+										showgamemenue = false;
+										GameObject.Find ("Uebergabe").GetComponent<registrierung> ().step = 1;
+										GameObject.Find ("Uebergabe").GetComponent<registrierung> ().bg = bg;
+								}
+								if (GUI_ZoD.Button_Text ("Load Charater", 11, new Rect (215, 715, 300, 70))) {
+										showgamemenue = false;
+										showlogin = true;
+								}
+								if (GUI_ZoD.Button_Text ("Options", 11, new Rect (215, 790, 300, 70))) {
+										//
+								}
+								if (GUI_ZoD.Button_Text ("X", 11, new Rect (1870, 0, 50, 50))) {
+										Application.Quit ();
+										Debug.Log ("quit");
+								}
 						}
-						if (GUI.Button (new Rect (145, 475, 170, 45), "")) {
-								showgamemenue = false;
-								showlogin = true;
-						}
-						if (GUI.Button (new Rect (145, 525, 170, 45), "")) {
-								//Debug.Log ("funzt2");
-						}
-						if (GUI.Button (new Rect (1250, 0, 30, 30), "")) {
-								Application.Quit ();
-								Debug.Log ("quit");
-						}
+						GUI_ZoD.EndBackground ();
 				}
 		}
 
@@ -102,34 +115,40 @@ public class mainmenu : MonoBehaviour {
 		string passwort = "";
 		void ShowLogin () {
 				if (showlogin) {
-						if ((Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return)) {
-								StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
-								showlogin = false;
+						Rect Anzeige_All = new Rect (0, 0, 1920, 1080);
+						Rect Anzeige_Background = GUI_ZoD.BeginBackground (bg, Anzeige_All);
+						{
+								if ((Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return)) {
+										StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
+										showlogin = false;
+								}
+								Rect Anzeigebereich = new Rect (40, 520, 700, 500);
+								Rect ErsteZeile = new Rect (0, 20, Anzeigebereich.width, (Anzeigebereich.height - 20) / 8);
+								Rect Spalte = ErsteZeile;
+								GUI_ZoD.Box ("Login", Anzeigebereich);
+								GUI_ZoD.BeginArea ("LoginBereich", Anzeigebereich);
+								{
+										ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
+										Spalte = ErsteZeile;
+										Spalte.width = ErsteZeile.width / 2;
+										GUI_ZoD.Label ("Username: ", 11, Spalte);
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										loginname = GUI_ZoD.TextField (loginname, 11, Spalte);
+										ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
+										Spalte = ErsteZeile;
+										Spalte.width = ErsteZeile.width / 2;
+										GUI_ZoD.Label ("Password: ", 11, Spalte);
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										passwort = GUI_ZoD.TextField (passwort, 11, Spalte);
+										ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height * 2);
+										if (GUI_ZoD.Button_Text ("Load", 11, ErsteZeile)) {
+												StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
+												showlogin = false;
+										}
+								}
+								GUI_ZoD.EndArea ();
 						}
-						Rect Anzeigebereich = new Rect (5, 5, Screen.width - 5, Screen.height - 5);
-						Rect ErsteZeile = new Rect (0, 20, Anzeigebereich.width, 20);
-						Rect Spalte = ErsteZeile;
-						GUI.Box (Anzeigebereich, "Login");
-						//GUILayout.BeginArea (Anzeigebereich);
-						//GUI.Label (ErsteZeile, error_message);
-						ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-						Spalte = ErsteZeile;
-						Spalte.width = ErsteZeile.width / 2;
-						GUI.Label (Spalte, "Username: ");
-						Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
-						loginname = GUI.TextField (Spalte, loginname);
-						ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-						Spalte = ErsteZeile;
-						Spalte.width = ErsteZeile.width / 2;
-						GUI.Label (Spalte, "Password: ");
-						Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
-						passwort = GUI.TextField (Spalte, passwort);
-						ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
-						if (GUI.Button (ErsteZeile, "Load")) {
-								StartCoroutine (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player_Save> ().Login (loginname, passwort));
-								showlogin = false;
-						}
-						
+						GUI_ZoD.EndBackground ();
 				}
 		}
 
@@ -137,15 +156,15 @@ public class mainmenu : MonoBehaviour {
 				if (showoptions) {
 						cammove = !cammove;
 						Time.timeScale = 0;
-						Rect Pausemenue = new Rect (Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50);
+						Rect Pausemenue = new Rect (1920 / 2 - 50, 1080 / 2 - 25, 100, 50);
 						int Zeilenhoehe = 20;
 						Rect ButtonZeile = new Rect (Pausemenue.position.x + 2, Pausemenue.position.y + Zeilenhoehe, Pausemenue.width - 5, Zeilenhoehe);
-						GUI.Box (Pausemenue, "Pause");
-						if (GUI.Button (ButtonZeile, "Quit Game")) {
+						GUI_ZoD.Box ("Pause", Pausemenue);
+						if (GUI_ZoD.Button_Text ("Quit Game", 11, ButtonZeile)) {
 								Application.Quit ();
 						}
 						ButtonZeile.position = new Vector2 (ButtonZeile.position.x, ButtonZeile.position.y + Zeilenhoehe);
-						if (GUI.Button (ButtonZeile, "Settings")) {
+						if (GUI_ZoD.Button_Text ("Settings", 11, ButtonZeile)) {
 								showsettings = !showsettings;
 						}
 				} else {
@@ -181,32 +200,25 @@ public class mainmenu : MonoBehaviour {
 		void settings () {
 		
 				if (showsettings) {
-						var centeredStyle = GUI.skin.GetStyle ("Label");
-						centeredStyle.alignment = TextAnchor.UpperCenter;
-						Rect Setting = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 250, 1000, 500);
+						Rect Setting = new Rect (1080 / 2 - 500, 1920 / 2 - 250, 1000, 500);
 						Rect Zeile = new Rect (Setting.position.x + 2, Setting.position.y + 20, Setting.width / 2, 20);
 						showoptions = false;
 						Time.timeScale = 0;
-						GUI.Box (Setting, "Settings");
-						GUI.Label (Zeile, "Movement", centeredStyle);
+						GUI_ZoD.Box ("Settings", Setting);
+						GUI_ZoD.Label ("Movement", 11, Zeile);
 			
 						for (int i=0; i<KeySettings.Count; i++) {
 								if (i == 4) {
 										Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
-										GUI.Label (Zeile, "Miscellaneous", centeredStyle);
+										GUI_ZoD.Label ("Miscellaneous", 11, Zeile);
 								}
 				
 								SkillAndKeys d = KeySettings [i];
 								Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
-								GUI.Label (Zeile, KeySettings [i].action + ": " + KeySettings [i].key);
+								GUI_ZoD.Label (KeySettings [i].action + ": " + KeySettings [i].key, 11, Zeile);
 								Zeile.position = new Vector2 (Zeile.position.x + Setting.width / 2, Zeile.position.y);
 								Zeile.width = 50;
-								d.key = GUI.TextField (Zeile, d.key);
-								/*Zeile.width = 100;
-								if (GUI.Button (Zeile, "assign new key")) {
-										
-								}
-								Zeile.width = Setting.width - 5;*/
+								d.key = GUI_ZoD.TextField (d.key, 11, Zeile);
 								KeySettings [i] = d;
 								Zeile.position = new Vector2 (Zeile.position.x - Setting.width / 2, Zeile.position.y);
 								Zeile.width = Setting.width / 2;
@@ -214,18 +226,11 @@ public class mainmenu : MonoBehaviour {
 			
 						Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
 						
-						if (GUI.Button (Zeile, "back")) {
+						if (GUI_ZoD.Button_Text ("back", 11, Zeile)) {
 								showoptions = true;
 								showsettings = false;
 						}
 				}
 		
-		}
-	
-		void OnGUI () {
-				Startscreen ();
-				ShowLogin ();
-				options ();
-				settings ();
 		}
 }

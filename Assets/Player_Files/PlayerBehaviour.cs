@@ -14,6 +14,7 @@ public struct SkillAndKeys {
 }
 
 public class PlayerBehaviour : MonoBehaviour {
+		GUI_Helper GUI_ZoD = new GUI_Helper ();
 		public static GameObject ThePlayer;
 		public CreatureController me;
 		public Sprite_CharController SC;
@@ -265,42 +266,42 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		void GUILevelUP () {
 				if (me.Creat.StatPoints > 0) {
-						if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 20), "LevelUp - Skillpoints available!")) {
+						if (GUI_ZoD.Button_Text ("LevelUp - Skillpoints available!", 11, new Rect (1920 / 2 - 100, 1080 / 2 - 10, 200, 20))) {
 								GUI_Statverteilen = true;
 						}
 				} else {
 						GUI_Statverteilen = false;
 				}
 				if (GUI_Statverteilen) {
-						Rect Anzeigebereich = new Rect (Screen.width / 3, Screen.height / 3, Screen.width / 3, Screen.height / 3);
-						GUI.Box (Anzeigebereich, "Statpoint");
+						Rect Anzeigebereich = new Rect (1920 / 3, 1080 / 3, 1920 / 3, 1080 / 3);
+						GUI_ZoD.Box ("Statpoint", Anzeigebereich);
 			
 						// Verteilbare Punkte
 						Rect Zeile = new Rect (Anzeigebereich.position.x, Anzeigebereich.position.y, Anzeigebereich.width / 3, Anzeigebereich.height / 9);
 						Rect Spalte1 = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
-						GUI.Label (Spalte1, "Points : ");
+						GUI_ZoD.Label ("Points : ", 11, Spalte1);
 						Rect Spalte2 = new Rect (Spalte1.position.x + Spalte1.width, Spalte1.position.y, Spalte1.width, Spalte1.height);
-						GUI.Label (Spalte2, "" + me.Creat.StatPoints);
+						GUI_ZoD.Label ("" + me.Creat.StatPoints, 11, Spalte2);
 						Rect Spalte3 = new Rect (Spalte2.position.x + Spalte2.width, Spalte2.position.y, Spalte2.width, Spalte2.height);
-						GUI.Label (Spalte3, "");
+						GUI_ZoD.Label ("", 11, Spalte3);
 			
 						// Atkuelles Level
 						Zeile = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
 						Spalte1 = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
-						GUI.Label (Spalte1, "Level : ");
+						GUI_ZoD.Label ("Level : ", 11, Spalte1);
 						Spalte2 = new Rect (Spalte1.position.x + Spalte1.width, Spalte1.position.y, Spalte1.width, Spalte1.height);
-						GUI.Label (Spalte2, "" + me.Creat.Level);
+						GUI_ZoD.Label ("" + me.Creat.Level, 11, Spalte2);
 						Spalte3 = new Rect (Spalte2.position.x + Spalte2.width, Spalte2.position.y, Spalte2.width, Spalte2.height);
-						GUI.Label (Spalte3, "");
+						GUI_ZoD.Label ("", 11, Spalte3);
 			
 						// Atkuelle STR
 						Zeile = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
 						Spalte1 = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
-						GUI.Label (Spalte1, "Strength : ");
+						GUI_ZoD.Label ("Strength : ", 11, Spalte1);
 						Spalte2 = new Rect (Spalte1.position.x + Spalte1.width, Spalte1.position.y, Spalte1.width, Spalte1.height);
-						GUI.Label (Spalte2, "" + me.Creat.InitalStats.Str);
+						GUI_ZoD.Label ("" + me.Creat.InitalStats.Str, 11, Spalte2);
 						Spalte3 = new Rect (Spalte2.position.x + Spalte2.width, Spalte2.position.y, Spalte2.width, Spalte2.height);
-						if (GUI.Button (Spalte3, "+")) {
+						if (GUI_ZoD.Button_Text ("+", 11, Spalte3)) {
 								me.Creat.InitalStats.Str += 5;
 								me.Creat.StatPoints--;
 						}
@@ -308,11 +309,11 @@ public class PlayerBehaviour : MonoBehaviour {
 						// Atkuelle AGI
 						Zeile = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
 						Spalte1 = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
-						GUI.Label (Spalte1, "Agility : ");
+						GUI_ZoD.Label ("Agility : ", 11, Spalte1);
 						Spalte2 = new Rect (Spalte1.position.x + Spalte1.width, Spalte1.position.y, Spalte1.width, Spalte1.height);
-						GUI.Label (Spalte2, "" + me.Creat.InitalStats.Agi);
+						GUI_ZoD.Label ("" + me.Creat.InitalStats.Agi, 11, Spalte2);
 						Spalte3 = new Rect (Spalte2.position.x + Spalte2.width, Spalte2.position.y, Spalte2.width, Spalte2.height);
-						if (GUI.Button (Spalte3, "+")) {
+						if (GUI_ZoD.Button_Text ("+", 11, Spalte3)) {
 								me.Creat.InitalStats.Agi += 5;
 								me.Creat.StatPoints--;
 						}
@@ -320,11 +321,11 @@ public class PlayerBehaviour : MonoBehaviour {
 						// Atkuelle Dex
 						Zeile = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
 						Spalte1 = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
-						GUI.Label (Spalte1, "Dextery : ");
+						GUI_ZoD.Label ("Dextery : ", 11, Spalte1);
 						Spalte2 = new Rect (Spalte1.position.x + Spalte1.width, Spalte1.position.y, Spalte1.width, Spalte1.height);
-						GUI.Label (Spalte2, "" + me.Creat.InitalStats.Dex);
+						GUI_ZoD.Label ("" + me.Creat.InitalStats.Dex, 11, Spalte2);
 						Spalte3 = new Rect (Spalte2.position.x + Spalte2.width, Spalte2.position.y, Spalte2.width, Spalte2.height);
-						if (GUI.Button (Spalte3, "+")) {
+						if (GUI_ZoD.Button_Text ("+", 11, Spalte3)) {
 								me.Creat.InitalStats.Dex += 5;
 								me.Creat.StatPoints--;
 						}
@@ -332,11 +333,11 @@ public class PlayerBehaviour : MonoBehaviour {
 						// Atkuelle VIT
 						Zeile = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
 						Spalte1 = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
-						GUI.Label (Spalte1, "Vitality : ");
+						GUI_ZoD.Label ("Vitality : ", 11, Spalte1);
 						Spalte2 = new Rect (Spalte1.position.x + Spalte1.width, Spalte1.position.y, Spalte1.width, Spalte1.height);
-						GUI.Label (Spalte2, "" + me.Creat.InitalStats.Vit);
+						GUI_ZoD.Label ("" + me.Creat.InitalStats.Vit, 11, Spalte2);
 						Spalte3 = new Rect (Spalte2.position.x + Spalte2.width, Spalte2.position.y, Spalte2.width, Spalte2.height);
-						if (GUI.Button (Spalte3, "+")) {
+						if (GUI_ZoD.Button_Text ("+", 11, Spalte3)) {
 								me.Creat.InitalStats.Vit += 5;
 								me.Creat.StatPoints--;
 						}
@@ -344,11 +345,11 @@ public class PlayerBehaviour : MonoBehaviour {
 						// Atkuelle INT
 						Zeile = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
 						Spalte1 = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
-						GUI.Label (Spalte1, "Int : ");
+						GUI_ZoD.Label ("Int : ", 11, Spalte1);
 						Spalte2 = new Rect (Spalte1.position.x + Spalte1.width, Spalte1.position.y, Spalte1.width, Spalte1.height);
-						GUI.Label (Spalte2, "" + me.Creat.InitalStats.Int);
+						GUI_ZoD.Label ("" + me.Creat.InitalStats.Int, 11, Spalte2);
 						Spalte3 = new Rect (Spalte2.position.x + Spalte2.width, Spalte2.position.y, Spalte2.width, Spalte2.height);
-						if (GUI.Button (Spalte3, "+")) {
+						if (GUI_ZoD.Button_Text ("+", 11, Spalte3)) {
 								me.Creat.InitalStats.Int += 5;
 								me.Creat.StatPoints--;
 						}
@@ -356,11 +357,11 @@ public class PlayerBehaviour : MonoBehaviour {
 						// Atkuelle LUC
 						Zeile = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
 						Spalte1 = new Rect (Zeile.position.x, Zeile.position.y + Zeile.height, Zeile.width, Zeile.height);
-						GUI.Label (Spalte1, "Luck : ");
+						GUI_ZoD.Label ("Luck : ", 11, Spalte1);
 						Spalte2 = new Rect (Spalte1.position.x + Spalte1.width, Spalte1.position.y, Spalte1.width, Spalte1.height);
-						GUI.Label (Spalte2, "" + me.Creat.InitalStats.Luc);
+						GUI_ZoD.Label ("" + me.Creat.InitalStats.Luc, 11, Spalte2);
 						Spalte3 = new Rect (Spalte2.position.x + Spalte2.width, Spalte2.position.y, Spalte2.width, Spalte2.height);
-						if (GUI.Button (Spalte3, "+")) {
+						if (GUI_ZoD.Button_Text ("+", 11, Spalte3)) {
 								me.Creat.InitalStats.Luc += 5;
 								me.Creat.StatPoints--;
 						}		
@@ -368,7 +369,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		}
 	
 		void GUIEquipment () {
-				Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
+				Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
 				Rect Spalte;
 				Rect Zeile1 = new Rect (0, 0, GUI_Scrollbereich.width, 20);
 				Rect AnzeigeScrollView = new Rect (0, 0 + 50, tmp_anzeige.width, tmp_anzeige.height - 40);
@@ -376,15 +377,15 @@ public class PlayerBehaviour : MonoBehaviour {
 				GUI_Scrollbereich.width = AnzeigeScrollView.width - 50;
 		
 				if (GUI_Equipment) {
-						GUILayout.BeginArea (tmp_anzeige);
+						GUI_ZoD.BeginArea ("Area", tmp_anzeige);
 						{
 				
-								GUI.Box (new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height), "Equip");
+								GUI_ZoD.Box ("Equip", new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
 								GUILayout.Space (20);								
-								if ((GUI.Button (new Rect (tmp_anzeige.width - 40, 0, 40, 20), "Quit")) || (Input.GetKey (KeyCode.Escape))) {
+								if ((GUI_ZoD.Button_Text ("Quit", 11, new Rect (tmp_anzeige.width - 40, 0, 40, 20))) || (Input.GetKey (KeyCode.Escape))) {
 										GUI_Equipment = false;
 								}
-								if (GUI.Button (new Rect (tmp_anzeige.width - 150, 0, 110, 20), "Swap to Iventory")) {
+								if (GUI_ZoD.Button_Text ("Swap to Iventory", 11, new Rect (tmp_anzeige.width - 150, 0, 110, 20))) {
 										GUI_Inventory = true;
 										GUI_Equipment = false;
 								}
@@ -394,16 +395,16 @@ public class PlayerBehaviour : MonoBehaviour {
 					
 										GUILayout.BeginHorizontal ();
 										Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-										GUI.Label (Spalte, dieseitem.Name);
+										GUI_ZoD.Label (dieseitem.Name, 11, Spalte);
 										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 										switch (dieseitem.Type) {
 												case ItemType.weapon_melee:
 												case ItemType.weapon_range:
-														GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
+														GUI_ZoD.Label ("Physical Damage: " + dieseitem.PhyAttack, 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
+														GUI_ZoD.Label ("Magical Damage: " + dieseitem.MagAttack, 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
+														GUI_ZoD.Label ("Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability, 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														break;
 												case ItemType.armor_feet:
@@ -411,36 +412,36 @@ public class PlayerBehaviour : MonoBehaviour {
 												case ItemType.armor_head:
 												case ItemType.armor_leg:
 												case ItemType.armor_torso:
-														GUI.Label (Spalte, "Physical Defense: " + dieseitem.PhyArmor);
+														GUI_ZoD.Label ("Physical Defense: " + dieseitem.PhyArmor, 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Magical Defense: " + dieseitem.MagArmor);
+														GUI_ZoD.Label ("Magical Defense: " + dieseitem.MagArmor, 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
+														GUI_ZoD.Label ("Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability, 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														break;
 												case ItemType.accessorie:
 												case ItemType.potion:
-														GUI.Label (Spalte, "Effect: " + dieseitem.Effect);
+														GUI_ZoD.Label ("Effect: " + dieseitem.Effect, 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "" + dieseitem.EffectType.ToString ());
+														GUI_ZoD.Label ("" + dieseitem.EffectType.ToString (), 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														break;
 												case ItemType.utility:
-														GUI.Label (Spalte, "Capacity: " + dieseitem.Capacity + " / " + dieseitem.MaxCapacity);
+														GUI_ZoD.Label ("Capacity: " + dieseitem.Capacity + " / " + dieseitem.MaxCapacity, 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI.Label (Spalte, "");
+														GUI_ZoD.Label ("", 11, Spalte);
 														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
 														break;
 							
 										}
 					
-										GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
+										GUI_ZoD.Label ("Weight: " + dieseitem.Weigth + " kg", 11, Spalte);
 										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-										if (GUI.Button (Spalte, "Drop")) {
+										if (GUI_ZoD.Button_Text ("Drop", 11, Spalte)) {
 												me.Creat.Equipment.Remove (dieseitem);
 										}
 										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-										if (GUI.Button (Spalte, "Unequip")) {
+										if (GUI_ZoD.Button_Text ("Unequip", 11, Spalte)) {
 												me.Unequip (dieseitem);
 												return;
 										}
@@ -455,7 +456,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		void GUIInventory () {
 				if (GUI_Inventory) {
-						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
+						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
 						Rect Spalte;
 						Rect Zeile1 = new Rect (0, 0, GUI_Scrollbereich.width, 20);
 						Rect AnzeigeScrollView = new Rect (0, 0 + 50, tmp_anzeige.width, tmp_anzeige.height - 40);
@@ -464,15 +465,15 @@ public class PlayerBehaviour : MonoBehaviour {
 			
 						GUILayout.BeginArea (tmp_anzeige);
 						{
-								GUI.Box (new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height), "Inventar");
+								GUI_ZoD.Box ("Inventar", new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
 								GUILayout.Space (20);		
-								if ((GUI.Button (new Rect (tmp_anzeige.width - 40, 0, 40, 20), "Quit")) || (Input.GetKey (KeyCode.Escape))) {
+								if ((GUI_ZoD.Button_Text ("Quit", 11, new Rect (tmp_anzeige.width - 40, 0, 40, 20))) || (Input.GetKey (KeyCode.Escape))) {
 										GUI_Inventory = false;
 								}
-								if (GUI.Button (new Rect (tmp_anzeige.width - 190, 0, 40, 20), "Save")) {
+								if (GUI_ZoD.Button_Text ("Save", 11, new Rect (tmp_anzeige.width - 190, 0, 40, 20))) {
 										gameObject.GetComponent<Player_Save> ().Save ();
 								}
-								if (GUI.Button (new Rect (tmp_anzeige.width - 150, 0, 110, 20), "Swap to Equipped Items")) {
+								if (GUI_ZoD.Button_Text ("Swap to Equipped Items", 11, new Rect (tmp_anzeige.width - 150, 0, 110, 20))) {
 										GUI_Inventory = false;
 										GUI_Equipment = true;
 								}
@@ -499,212 +500,166 @@ public class PlayerBehaviour : MonoBehaviour {
 								GUILayout.EndHorizontal ();
 								GUILayout.FlexibleSpace ();
 			
-								GUI_Scroller = GUI.BeginScrollView (AnzeigeScrollView, GUI_Scroller, GUI_Scrollbereich);
-								switch (GUI_Anzeige_Kat) {
-										case 0:
-												break;
-										case 1:
-												foreach (ItemData dieseitem in me.Creat.Inventory) {
-						
-														if (dieseitem.Type == ItemType.weapon_melee) {
+								GUI_Scroller = GUI_ZoD.BeginScrollView (GUI_Scroller, 11, AnzeigeScrollView, GUI_Scrollbereich);
+				
+								int SpaltenMax = 8;
+								if (GUI_Anzeige_Kat == 7) {
+										foreach (ItemData dieseitem2 in me.Creat.Inventory) {
+												if (dieseitem2.Type == ItemType.utility) {
+														GUILayout.BeginHorizontal ();
+														Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+														foreach (AmmoData dieseitem in dieseitem2.Ammo) {
 																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 8, Zeile1.height);
-																GUI.Label (Spalte, dieseitem.Name);
+																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / SpaltenMax, Zeile1.height);
+																GUI_ZoD.Label (dieseitem.Name, 11, Spalte);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
+																GUI_ZoD.Label ("Physical Damage: " + dieseitem.PhyAttack, 11, Spalte);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
+																GUI_ZoD.Label ("Magical Damage: " + dieseitem.MagAttack, 11, Spalte);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
+																GUI_ZoD.Label ("Weight: " + dieseitem.Weigth + " kg", 11, Spalte);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																
-																if (GUI.Button (Spalte, "Drop")) {
-																		me.Creat.Inventory.Remove (dieseitem);
-																}
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Equip")) {
-																		me.Equip (dieseitem);
-																		return;
+																if (GUI_ZoD.Button_Text ("Drop", 11, Spalte)) {
+																		dieseitem2.Ammo.Remove (dieseitem);
 																}
 																Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
 							
-																GUILayout.EndHorizontal ();
+																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
+							
+							
 														}
+														GUILayout.EndHorizontal ();
 												}
-												break;
-										case 2:
-												foreach (ItemData dieseitem in me.Creat.Inventory) {
+										}
+								}
+								foreach (ItemData dieseitem in me.Creat.Inventory) {
+										bool tmp_should_anzeige = false;
+										switch (GUI_Anzeige_Kat) {
+												case 0:
+														break;
+												case 1:
+														if (dieseitem.Type == ItemType.weapon_melee) {
+																tmp_should_anzeige = true;	
+														}
+														break;
+												case 2:
 														if (dieseitem.Type == ItemType.weapon_range) {
 																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 8, Zeile1.height);
-																GUI.Label (Spalte, dieseitem.Name);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Drop")) {
-																		me.Creat.Inventory.Remove (dieseitem);
-																}
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Equip")) {
-																		me.Equip (dieseitem);
-																		return;
-																}
-																Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
-							
-																GUILayout.EndHorizontal ();
+																tmp_should_anzeige = true;	
 														}
-												}
-												break;
-										case 3:
-												foreach (ItemData dieseitem in me.Creat.Inventory) {
+														break;
+												case 3:
 														if ((dieseitem.Type == ItemType.armor_feet) || 
 																(dieseitem.Type == ItemType.armor_hand) ||
 																(dieseitem.Type == ItemType.armor_head) ||
 																(dieseitem.Type == ItemType.armor_leg) ||
 																(dieseitem.Type == ItemType.armor_torso)) {
-																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 8, Zeile1.height);
-																GUI.Label (Spalte, dieseitem.Name);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Physical Defense: " + dieseitem.PhyArmor);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Magical Defense: " + dieseitem.MagArmor);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Drop")) {
-																		me.Creat.Inventory.Remove (dieseitem);
-																}
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Equip")) {
-																		me.Equip (dieseitem);
-																		return;
-																}
-																Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
-							
-																GUILayout.EndHorizontal ();
+																tmp_should_anzeige = true;
 														}
-												}
-												break;
-										case 4:
-												foreach (ItemData dieseitem in me.Creat.Inventory) {
+														break;
+												case 4:
 														if (dieseitem.Type == ItemType.potion) {
-																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 6, Zeile1.height);
-																GUI.Label (Spalte, dieseitem.Name);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Effect: " + dieseitem.Effect + " " + dieseitem.EffectType.ToString ());
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Drop")) {
-																		me.Creat.Inventory.Remove (dieseitem);
-																}
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Use")) {
-																		ItemUse (dieseitem);
-								
-																}
-																Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
-							
-																GUILayout.EndHorizontal ();
+																tmp_should_anzeige = true;
 														}
-												}
-												break;
-										case 5:
-												foreach (ItemData dieseitem in me.Creat.Inventory) {
+														break;
+												case 5:
 														if (dieseitem.Type == ItemType.utility) {
-																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-																GUI.Label (Spalte, dieseitem.Name);
+																tmp_should_anzeige = true;
+														}
+														break;
+												case 6:
+														if (dieseitem.Type == ItemType.accessorie) {
+																tmp_should_anzeige = true;
+														}
+														break;
+												case 7:
+												
+														break;
+					
+										}
+					
+										if (tmp_should_anzeige) {
+												GUILayout.BeginHorizontal ();
+												Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / SpaltenMax, Zeile1.height);
+												GUI_ZoD.Label (dieseitem.Name, 11, Spalte);
+												switch (dieseitem.Type) {
+														case ItemType.weapon_melee:
+														case ItemType.weapon_range:
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Capacity: " + dieseitem.MaxCapacity); // ?
+																GUI_ZoD.Label ("Physical Damage: " + dieseitem.PhyAttack, 11, Spalte);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
+																GUI_ZoD.Label ("Magical Damage: " + dieseitem.MagAttack, 11, Spalte);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Drop")) {
-																		me.Creat.Inventory.Remove (dieseitem);
-																}
+																GUI_ZoD.Label ("Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability, 11, Spalte);
+																break;
+														case ItemType.armor_feet:
+														case ItemType.armor_hand:
+														case ItemType.armor_head:
+														case ItemType.armor_leg:
+														case ItemType.armor_torso:
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Equip")) {
+																GUI_ZoD.Label ("Physical Defense: " + dieseitem.PhyArmor, 11, Spalte);
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI_ZoD.Label ("Magical Defense: " + dieseitem.MagArmor, 11, Spalte);
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI_ZoD.Label ("Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability, 11, Spalte);
+																break;
+														case ItemType.potion:
+														case ItemType.accessorie:
+														case ItemType.utility:
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																GUI_ZoD.Label ("Effect: + " + dieseitem.Effect + " " + dieseitem.EffectType.ToString (), 11, Spalte);
+																break;
+												}
+												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+												GUI_ZoD.Label ("Weight: " + dieseitem.Weigth + " kg", 11, Spalte);
+												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+												if (GUI_ZoD.Button_Text ("Drop", 11, Spalte)) {
+														me.Creat.Inventory.Remove (dieseitem);
+												}
+						
+												switch (dieseitem.Type) {
+														case ItemType.weapon_melee:
+														case ItemType.weapon_range:
+														case ItemType.armor_feet:
+														case ItemType.armor_hand:
+														case ItemType.armor_head:
+														case ItemType.armor_leg:
+														case ItemType.armor_torso:
+														case ItemType.accessorie:
+														case ItemType.utility:
+																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
+																if (GUI_ZoD.Button_Text ("Equip", 11, Spalte)) {
 																		me.Equip (dieseitem);
-																		return;
 																}
+																break;
+												}
+						
+												switch (dieseitem.Type) {
+														case ItemType.utility:
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Show content.")) {
+																if (GUI_ZoD.Button_Text ("Show content.", 11, Spalte)) {
 																		GUI_Anzeige_Kat = 7;
 																}
-																Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
-							
-																GUILayout.EndHorizontal ();
-														}
+																break;
 												}
-												break;
-										case 6:
-												foreach (ItemData dieseitem in me.Creat.Inventory) {
-														if (dieseitem.Type == ItemType.accessorie) {
-																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 6, Zeile1.height);
-																GUI.Label (Spalte, dieseitem.Name);
+												switch (dieseitem.Type) {
+														case ItemType.potion:
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Effect: " + dieseitem.Effect + " " + dieseitem.EffectType.ToString ());
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Drop")) {
-																		me.Creat.Inventory.Remove (dieseitem);
+																if (GUI_ZoD.Button_Text ("Use", 11, Spalte)) {
+																		ItemUse (dieseitem);
+									
 																}
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI.Button (Spalte, "Equip")) {
-																		me.Equip (dieseitem);
-																		return;
-																}
-																Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
-							
-																GUILayout.EndHorizontal ();
-														}
+																break;
 												}
-												break;
-										case 7:
-												foreach (ItemData dieseitem2 in me.Creat.Inventory) {
-														if (dieseitem2.Type == ItemType.utility) {
-																GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-																foreach (AmmoData dieseitem in dieseitem2.Ammo) {
-																		GUI.Label (Spalte, dieseitem.Name);
-																		Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																		GUI.Label (Spalte, "Physical Damage: " + dieseitem.PhyAttack);
-																		Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																		GUI.Label (Spalte, "Magical Damage: " + dieseitem.MagAttack);
-																		Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																		GUI.Label (Spalte, "Weight: " + dieseitem.Weigth + " kg");
-																		Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																		if (GUI.Button (Spalte, "Drop")) {
-																				dieseitem2.Ammo.Remove (dieseitem);
-																		}
-																		Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
-								
-																		Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-								
-								
-																}
-																GUILayout.EndHorizontal ();
-														}
-												}
-												break;
-					
+						
+												Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
+						
+												GUILayout.EndHorizontal ();
+										}
 								}
-								GUI.EndScrollView ();
+					
+								GUI_ZoD.EndScrollView ();
 								GUI_Scrollbereich.height = Zeile1.position.y + Zeile1.height;
 						}
 						GUILayout.EndArea ();
@@ -714,8 +669,8 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		void GUIJournal () {
 				if (GUI_journal) {
-						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
-						GUI.Box (tmp_anzeige, "Journal");
+						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
+						GUI_ZoD.Box ("Journal", tmp_anzeige);
 						tmp_quests.Clear ();
 					
 						switch (GUI_journal_kat) {
@@ -752,39 +707,39 @@ public class PlayerBehaviour : MonoBehaviour {
 										break;
 						}
 			
-						if (GUI.Button (new Rect (Screen.width / 2 - 500 + 075, Screen.height / 2 - 175, 250, 20), "Open")) {
+						if (GUI_ZoD.Button_Text ("Open", 11, new Rect (1920 / 2 - 500 + 075, 1080 / 2 - 175, 250, 20))) {
 								GUI_journal_kat = 0;
 						}
-						if (GUI.Button (new Rect (Screen.width / 2 - 500 + 375, Screen.height / 2 - 175, 250, 20), "Finished")) {
+						if (GUI_ZoD.Button_Text ("Finished", 11, new Rect (1920 / 2 - 500 + 375, 1080 / 2 - 175, 250, 20))) {
 								GUI_journal_kat = 1;
 						}
-						if (GUI.Button (new Rect (Screen.width / 2 - 500 + 675, Screen.height / 2 - 175, 250, 20), "Failed")) {
+						if (GUI_ZoD.Button_Text ("Failed", 11, new Rect (1920 / 2 - 500 + 675, 1080 / 2 - 175, 250, 20))) {
 								GUI_journal_kat = 2;
 						}
-						Rect Zeile = new Rect (Screen.width / 2 - 500 + 075, Screen.height / 2 - 175 + 25, 250, 20);
+						Rect Zeile = new Rect (1920 / 2 - 500 + 075, 1080 / 2 - 175 + 25, 250, 20);
 						foreach (QuestStruct tmp_q in tmp_quests) {
-								GUI.Label (Zeile, "<b>" + tmp_q.Name + "</b>");
+								GUI_ZoD.Label ("<b>" + tmp_q.Name + "</b>", 11, Zeile);
 								if (tmp_q.EnemyTokill.Count > 0) {
 										foreach (EnemyTokillStruct etk in tmp_q.EnemyTokill) {
 												Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
-												GUI.Label (Zeile, "Kill " + etk.Amount + " x " + etk.Name);
+												GUI_ZoD.Label ("Kill " + etk.Amount + " x " + etk.Name, 11, Zeile);
 										}
 								}
 								if (tmp_q.ItemsToCollect.Count > 0) {
 										foreach (ItemsToCollectStruct itc in tmp_q.ItemsToCollect) {
 												Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
-												GUI.Label (Zeile, "Collect " + itc.Amount + " x " + itc.Name);
+												GUI_ZoD.Label ("Collect " + itc.Amount + " x " + itc.Name, 11, Zeile);
 										}
 								}
 								if (tmp_q.NPCToTalk.Count > 0) {
 										foreach (string ntt in tmp_q.NPCToTalk) {
 												Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
-												GUI.Label (Zeile, "Talk to " + ntt);
+												GUI_ZoD.Label ("Talk to " + ntt, 11, Zeile);
 										}
 								}
 								if (!tmp_q.finished) {
 										Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
-										GUI.Label (Zeile, "Return to " + tmp_q.NPC_Geber);
+										GUI_ZoD.Label ("Return to " + tmp_q.NPC_Geber, 11, Zeile);
 								}
 								Zeile.position = new Vector2 (Zeile.position.x, Zeile.position.y + 25);
 						}
@@ -793,18 +748,18 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		void GUIHotbar () {
 				int höhe = 70;
-				int breite = Screen.width - 100;
+				int breite = 1920 - 100;
 				if (GUI_Hotbar) {
-						Rect Zeile = new Rect (50, Screen.height - höhe, breite, höhe);
-						Rect Spalte = new Rect (50, Screen.height - höhe, breite / 10, höhe);
-						GUI.Box (Zeile, "");
+						Rect Zeile = new Rect (50, 1080 - höhe, breite, höhe);
+						Rect Spalte = new Rect (50, 1080 - höhe, breite / 10, höhe);
+						GUI_ZoD.Box ("", Zeile);
 						for (int i=0; i<10; i++) {
 								if (skill_active == i + 1) {
-										GUI.DrawTexture (Spalte, skillactiv);
+										GUI_ZoD.DrawTexture (skillactiv, Spalte);
 								} else {
-										GUI.DrawTexture (Spalte, skillinactiv);
+										GUI_ZoD.DrawTexture (skillinactiv, Spalte);
 								}
-								GUI.DrawTexture (Spalte, SlotTexture [i]);
+								GUI_ZoD.DrawTexture (SlotTexture [i], Spalte);
 								Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
 						}
 				}
@@ -821,8 +776,8 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		void GUIStatsOverview () {
 				BarBerechnung ();
-				GUI.Label (new Rect (5, Screen.height - 30, 170, 20), "Gold: " + me.Creat.Gold + "G");
-				GUI.Label (new Rect (5, Screen.height - 55, 170, 20), "Battlemode: " + me.Creat.Stance.ToString ());
+				GUI_ZoD.Label ("Gold: " + me.Creat.Gold + "G", 11, new Rect (5, 1080 - 30, 170, 20));
+				GUI_ZoD.Label ("Battlemode: " + me.Creat.Stance.ToString (), 11, new Rect (5, 1080 - 55, 170, 20));
 		
 				// Quiver Inhalt
 				ItemData Quiver = new ItemData ();
@@ -835,25 +790,25 @@ public class PlayerBehaviour : MonoBehaviour {
 				}
 				
 				if (Quiver.Name != "" && Quiver.Name != null) {
-						GUI.Label (new Rect (5, Screen.height - 80, 170, 20), "Cap: " + Quiver.Capacity + " / " + Quiver.MaxCapacity);
+						GUI_ZoD.Label ("Cap: " + Quiver.Capacity + " / " + Quiver.MaxCapacity, 11, new Rect (5, 1080 - 80, 170, 20));
 				}
 		
 				//HPBAR
 				Rect Bar_Pos = new Rect (5, 5, (HpBar_empty.width / 4), (HpBar_empty.height / 4));
-				GUI.DrawTexture (Bar_Pos, HpBar_empty, ScaleMode.ScaleAndCrop);
-				GUI.DrawTexture (new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * hpbar / 100, Bar_Pos.height), HpBar_full, ScaleMode.ScaleAndCrop);
+				GUI_ZoD.DrawTexture (HpBar_empty, Bar_Pos);
+				GUI_ZoD.DrawTexture (HpBar_full, new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * hpbar / 100, Bar_Pos.height));
 				//MANABAR
 				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
-				GUI.DrawTexture (Bar_Pos, ManaBar_empty, ScaleMode.ScaleAndCrop);
-				GUI.DrawTexture (new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * manabar / 100, Bar_Pos.height), ManaBar_full, ScaleMode.ScaleAndCrop);
+				GUI_ZoD.DrawTexture (ManaBar_empty, Bar_Pos);
+				GUI_ZoD.DrawTexture (ManaBar_full, new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * manabar / 100, Bar_Pos.height));
 				//STAMINABAR
 				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
-				GUI.DrawTexture (Bar_Pos, Staminabar_empty, ScaleMode.ScaleAndCrop);
-				GUI.DrawTexture (new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * staminabar / 100, Bar_Pos.height), Staminabar_full, ScaleMode.ScaleAndCrop);
+				GUI_ZoD.DrawTexture (Staminabar_empty, Bar_Pos);
+				GUI_ZoD.DrawTexture (Staminabar_full, new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * staminabar / 100, Bar_Pos.height));
 				//XPBAR
 				Bar_Pos = new Rect (Bar_Pos.position.x, Bar_Pos.position.y + Bar_Pos.height + 5, Bar_Pos.width, Bar_Pos.height);
-				GUI.DrawTexture (Bar_Pos, XpBar_empty, ScaleMode.ScaleAndCrop);
-				GUI.DrawTexture (new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * xpbar / 100, Bar_Pos.height), XpBar_full, ScaleMode.ScaleAndCrop);
+				GUI_ZoD.DrawTexture (XpBar_empty, Bar_Pos);
+				GUI_ZoD.DrawTexture (XpBar_full, new Rect (Bar_Pos.position.x, Bar_Pos.position.y, Bar_Pos.width * xpbar / 100, Bar_Pos.height));
 		
 				
 		}
@@ -869,8 +824,8 @@ public class PlayerBehaviour : MonoBehaviour {
 						PickupList [i] = tmpnot;
 						if (tmpnot.time > 0) {
 								tmp_pos_x = tmp_pos_x + tmp_lineheigth;
-								Pos = new Rect (Screen.width - tmp_pos_y, Screen.height - tmp_pos_x, 100, tmp_lineheigth);
-								GUI.Label (Pos, tmpnot.message);
+								Pos = new Rect (1920 - tmp_pos_y, 1080 - tmp_pos_x, 100, tmp_lineheigth);
+								GUI_ZoD.Label (tmpnot.message, 11, Pos);
 								
 						} else {
 								PickupList.RemoveAt (i);
@@ -886,8 +841,8 @@ public class PlayerBehaviour : MonoBehaviour {
 				Rect Pos;
 				for (int i =0; i<me.Creat.StatusEffects.Count; i++) {
 						tmp_pos_x = tmp_pos_x + tmp_lineheigth;
-						Pos = new Rect (Screen.width - tmp_pos_y, 0 + tmp_pos_x, tmp_pos_y, tmp_lineheigth);
-						GUI.Label (Pos, me.Creat.StatusEffects [i].name + ": " + Mathf.Round (me.Creat.StatusEffects [i].duration * 100) / 100);
+						Pos = new Rect (1920 - tmp_pos_y, 0 + tmp_pos_x, tmp_pos_y, tmp_lineheigth);
+						GUI_ZoD.Label (me.Creat.StatusEffects [i].name + ": " + Mathf.Round (me.Creat.StatusEffects [i].duration * 100) / 100, 11, Pos);
 				}
 		}
 	
@@ -898,20 +853,20 @@ public class PlayerBehaviour : MonoBehaviour {
 		
 				if (GUI_Character) {
 			
-						Rect tmp_anzeige = new Rect (Screen.width / 2 - 500, Screen.height / 2 - 200, 1000, 400);
+						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
 						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
-						GUI.Box (tmp_anzeige, "Character");
+						GUI_ZoD.Box ("Character", tmp_anzeige);
 						for (int i =0; i<me.Creat.Skills.Count; i++) {
 								skill name = me.Creat.Skills [i];
 				
 								zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
-								GUI.Label (zeile, name.name + " | increases: " + name.Effect [0] + " | cost: " + name.cost);
+								GUI_ZoD.Label (name.name + " | increases: " + name.Effect [0] + " | cost: " + name.cost, 11, zeile);
 								zeile.position = new Vector2 (zeile.position.x + 300, zeile.position.y);
 								zeile.width = 50;
-								newKey [i] = GUI.TextField (zeile, newKey [i]);
+								newKey [i] = GUI_ZoD.TextField (newKey [i], 11, zeile);
 								zeile.position = new Vector2 (zeile.position.x + 60, zeile.position.y);
 								zeile.width = 200;
-								if (GUI.Button (zeile, "Assign skill to key!")) {
+								if (GUI_ZoD.Button_Text ("Assign skill to key!", 11, zeile)) {
 										SkillAndKeys tmp_obj = new SkillAndKeys ();
 										tmp_obj.key = newKey [i];
 										tmp_obj.action = name.name;
