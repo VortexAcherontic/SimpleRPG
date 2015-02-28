@@ -41,7 +41,7 @@ public class NPCBehaviour : MonoBehaviour {
 								if (NPC.IsTrainer) {
 										GUI_Repair = !GUI_Repair;
 								}
-								if (NPC.IsShop) {
+								if (NPC.IsTrainer) {
 										GUI_Ausbilder = !GUI_Ausbilder;
 								}
 								Quest ();
