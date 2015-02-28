@@ -1,29 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
+public struct NPCOptions {
+		public string Name;
+		public string[] ItemsToSell;
+		public string[] SkillsToLearn;
+		public bool CanRepair;
+		public string Dialog;
+}
+
 public class NPCBehaviour : MonoBehaviour {
 		GUI_Helper GUI_ZoD = new GUI_Helper ();
+		
+		public NPCOptions NPC;
+		Player_Trigger triggerscript;
 		QuestController QuestObj;
+		shop ShopObj;
 		CreatureController me;
-		PlayerBehaviour p001;
-		float temp_x;
-		float temp_y;
-		int distance_manhatten;
-	
-	
-		public List<string> ReperaturNPC = new List<string> ();
-		public List<string> ShopNPC = new List<string> ();
-		public List<string> AusbilderNPC = new List<string> (); //zu ersetzen durch verschiedene listen falls verschiedene npc's verschiedene sachen beibringen
-	
-	
+		
 		void Start () {
-				p001 = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerBehaviour> ();
+				triggerscript = GetComponentInChildren<Player_Trigger> ();
 				QuestObj = GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestController> ();
 				me = gameObject.GetComponent<CreatureController> ();
-		
-				ReperaturNPC.Add ("Hans Peter");
-				ShopNPC.Add ("Jeremy Pascal");
-				AusbilderNPC.Add ("Juergen");
 		}
 	
 		void Update () {
@@ -48,15 +47,6 @@ public class NPCBehaviour : MonoBehaviour {
 				} else {
 						return false;
 				}
-		}
-	
-		public int CheckDistance () {
-				temp_x = Mathf.Abs (p001.me.Creat.Position.x - transform.position.x);
-				temp_y = Mathf.Abs (p001.me.Creat.Position.y - transform.position.y);
-				//distance_euklid = (int)Mathf.Sqrt (temp_x * temp_x + temp_y * temp_y);
-				distance_manhatten = (int)(temp_x + temp_y);
-				//Debug.Log ("Distance: " + distance_manhatten);
-				return distance_manhatten;
 		}
 	
 		void repair () {
