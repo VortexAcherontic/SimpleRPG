@@ -2,6 +2,88 @@ SimpleRPG
 ========= 
  
  
+2015-02-28 00:48:03 +0100 Animationen die nicht benötigt werden gelöscht (Sascha Kaufmann)
+
+2015-02-28 00:25:08 +0100 GUI Neu (Sascha Kaufmann)
+
+2015-02-27 20:22:13 +0100 quality top! (Defender833)
+
+2015-02-27 16:46:59 +0100 Feintuning Fehlt noch (Sascha Kaufmann)
+
+2015-02-27 16:07:55 +0100 Own PlayerController (Sascha Kaufmann)
+
+2015-02-26 21:00:20 +0100 Hätten wir eine Animation, könnten wir mit gedrückter Maustaste angreifen (Sascha Kaufmann)
+
+2015-02-26 20:42:04 +0100 AttackAnimation So einbinden? (Sascha Kaufmann)
+
+2015-02-26 20:02:54 +0100 Ich glaub das Char drehen ist jetzt schon besser? (Sascha Kaufmann)
+
+2015-02-26 19:43:36 +0100 Smooth Camera Rotation (Sascha Kaufmann)
+
+2015-02-26 16:09:40 +0100 Quality hoch (Sascha Kaufmann)
+
+2015-02-26 14:35:49 +0100 Save (Sascha Kaufmann)
+
+2015-02-26 14:26:36 +0100 Umfeld Ueberarbeitet (Sascha Kaufmann)
+
+2015-02-26 14:20:16 +0100 Umfeld (Sascha Kaufmann)
+
+2015-02-26 13:05:53 +0100 Day/Night 2Mins, ich seh keine wolken und kein Wetter (Sascha Kaufmann)
+
+2015-02-26 11:54:19 +0100 Wetter (Defender833)
+
+2015-02-26 01:23:28 +0100 nochmal (Defender833)
+
+2015-02-26 01:23:13 +0100 TPC auf c# & stamina & save/load angepasst (Defender833)
+
+2015-02-25 22:59:35 +0100 Recrate Umfeld + Teleport to Player House (Sascha Kaufmann)
+
+2015-02-25 22:17:18 +0100 Spieler Haus (Sascha Kaufmann)
+
+2015-02-25 20:47:45 +0100 test (Sascha Kaufmann)
+
+2015-02-25 20:13:02 +0100 lockpickminigame & hotbar + symbole (Defender833)
+
+2015-02-25 16:55:59 +0100 merge (Defender833)
+
+2015-02-25 16:46:03 +0100 Chest Fix (Sascha Kaufmann)
+
+2015-02-25 16:43:15 +0100 ChestScript auf 3D (Sascha Kaufmann)
+
+2015-02-25 14:12:40 +0100 Speichern (Sascha Kaufmann)
+
+2015-02-25 13:59:08 +0100 Wall Scale (Sascha Kaufmann)
+
+2015-02-25 13:05:04 +0100 DoorScript auf 3D (Sascha Kaufmann)
+
+2015-02-24 23:19:26 +0100 Camera: Fix (Sascha Kaufmann)
+
+2015-02-24 21:16:49 +0100 Camera Drehen. Idee Gut, Ausführung noch nicht (Sascha Kaufmann)
+
+2015-02-24 19:59:01 +0100 new camera try (Defender833)
+
+2015-02-24 18:33:22 +0100 Wechsel zu Defender (Sascha Kaufmann)
+
+2015-02-24 18:26:00 +0100 So eingestellt, das des bei mir gut läuft (Sascha Kaufmann)
+
+2015-02-24 16:49:39 +0100 camera and stuff (Defender833)
+
+2015-02-24 00:42:11 +0100 restliche test änderungen (Sascha Kaufmann)
+
+2015-02-23 22:05:42 +0100 Unity 3d Person Char eingebaut in Umfeld (Sascha Kaufmann)
+
+2015-02-23 20:20:15 +0100 an karte rumgespielt (Defender833)
+
+2015-02-23 18:53:03 +0100 Speichern (Sascha Kaufmann)
+
+2015-02-23 18:24:28 +0100 TextureScale jetzt auch am Boden (Sascha Kaufmann)
+
+2015-02-23 18:12:26 +0100 Wall Texture Scale (Sascha Kaufmann)
+
+2015-02-23 17:49:15 +0100 Haus des Spieler Weiter (Sascha Kaufmann)
+
+2015-02-22 23:49:00 +0100 Changelog Update (Sascha Kaufmann)
+
 2015-02-22 23:18:32 +0100 KeySettings (Defender833)
 
 2015-02-22 22:00:31 +0100 Teleporter repariert (Sascha Kaufmann)

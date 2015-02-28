@@ -1,15 +1,26 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Menue\mainmenu.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Objecte\shop.cs">
     <Files>
-      <File FileName="Assets\Menue\mainmenu.cs" Line="30" Column="33" />
+      <File FileName="Assets\DataTools\GUI_Helper\GUI_Helper.cs" Line="94" Column="63" />
+      <File FileName="Assets\Objecte\shop.cs" Line="69" Column="1" />
+      <File FileName="Assets\Enemy\NPCBehaviour.cs" Line="134" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="DataTools" expanded="True">
+              <Node name="GUI_Helper" expanded="True" />
+            </Node>
+            <Node name="Enemy" expanded="True" />
+            <Node name="Map" expanded="True" />
             <Node name="Menue" expanded="True">
-              <Node name="mainmenu.cs" selected="True" />
+              <Node name="GameOverScreen" expanded="True" />
+            </Node>
+            <Node name="Objecte" expanded="True">
+              <Node name="Interactable" expanded="True" />
+              <Node name="shop.cs" selected="True" />
             </Node>
             <Node name="Player_Files" expanded="True" />
           </Node>
