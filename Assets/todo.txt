@@ -42,6 +42,9 @@
 - battlemode 1vs1 einbauen (oder so... Multiplayer)
 
 // GUI
+inventory gui
+equipmentgui
+
 - lockpick interface
 - mehr 3D Objecte einbauen und entwerfen lassen
 //- generell laden und speichern einbauen in einer taverne statt im inventar oder im bett vllt einfacher > haus des spielers & in tavernen auch??

@@ -5,6 +5,8 @@ public class CreatureController : MonoBehaviour {
 		// Nur für die Berechnung! 
 		// Damit nicht immer Clone exestieren?
 	
+		public float GGewicht = 0.0f;
+		public float MaxGGewicht = 3000.0f;
 		public List<Status> alleStatus = new List<Status> ();
 		public CreatureData Creat;
 		public bool IsLoaded = false;
@@ -199,9 +201,10 @@ public class CreatureController : MonoBehaviour {
 						}
 				}
 		}
-	
+
+		
 		void BerechneMovmentDelay () {
-				float GGewicht = 0.0f;
+				GGewicht = 0.0f;
 				if (GameObject.Find ("Uebergabe").GetComponent<mainmenu> ().gameloaded) {
 						foreach (ItemData tmpitem in Creat.Inventory) {
 								GGewicht += tmpitem.Weigth;
