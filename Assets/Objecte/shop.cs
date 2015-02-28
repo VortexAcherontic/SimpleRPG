@@ -63,12 +63,13 @@ public class shop : MonoBehaviour {
 		void OnGUI () {
 		
 				if (imshop) {
-						Rect tmp_anzeige = new Rect (100, 160, 1080, 200);
+						float abstand = 100;
+						Rect tmp_anzeige = new Rect (((1920 / 2) - (1600 / 2)), ((1080 / 2) - (1000 / 2)), 1600, 1000);
 						GUI_ZoD.BeginArea ("ShopAnzeige", tmp_anzeige);
 						{
-								GUI_ZoD.Box ("Shop", new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
-								GUILayout.Space (20);								
-								if (GUI_ZoD.Button_Text ("Quit", 11, new Rect (tmp_anzeige.width - 40, 0, 40, 20))) {
+								GUI_ZoD.Box ("Shop", 11, new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
+								GUILayout.Space (abstand);								
+								if (GUI_ZoD.Button_Text ("Quit", 11, new Rect (tmp_anzeige.width - 100, 0, 100, 50))) {
 										imshop = false;
 										anzeige_kat = 0;
 								}
@@ -95,19 +96,19 @@ public class shop : MonoBehaviour {
 										GUILayout.EndHorizontal ();
 										GUILayout.FlexibleSpace ();
 								}
-								Rect AnzeigeScrollView = new Rect (0, 0 + 50, tmp_anzeige.width, tmp_anzeige.height - 40);
+								Rect AnzeigeScrollView = new Rect (0, 0 + abstand * 2, tmp_anzeige.width, tmp_anzeige.height - 40);
 								Scrollbereich.position = new Vector2 (0, 0);
 								Scrollbereich.width = AnzeigeScrollView.width - 50;
-								scroller = GUI_ZoD.BeginScrollView (scroller, 11, AnzeigeScrollView, Scrollbereich);
+								scroller = GUI_ZoD.BeginScrollView (scroller, 11, Scrollbereich, AnzeigeScrollView);
 			
-								Rect Zeile1 = new Rect (0, 0, Scrollbereich.width, 20);
+								Rect Zeile1 = new Rect (25, 0, Scrollbereich.width - 25, 30);
 								Rect Spalte;
 								int SpaltenMax = 8;
 								if (anzeige_kat == 5) {
 										if (CheckForQuiver ()) {
 												foreach (AmmoData dieseitem in ammo_liste) {
 														if (dieseitem.Type == ItemType.weapon_ammo) {
-																GUILayout.BeginHorizontal ();
+																//GUILayout.BeginHorizontal ();
 																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / SpaltenMax, Zeile1.height);
 																GUI_ZoD.Label (dieseitem.Name, 11, Spalte);
 																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
@@ -126,8 +127,8 @@ public class shop : MonoBehaviour {
 																if (GUI_ZoD.Button_Text ("Buy", 11, Spalte)) {
 																		kaufe_item_ammo (dieseitem);
 																}
-																Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
-																GUILayout.EndHorizontal ();
+																Zeile1.position = new Vector2 (Zeile1.position.x, Zeile1.position.y + Zeile1.height + 5);
+																//GUILayout.EndHorizontal ();
 														}
 												}
 										} else {
@@ -211,7 +212,7 @@ public class shop : MonoBehaviour {
 												if (GUI_ZoD.Button_Text ("Buy", 11, Spalte)) {
 														kaufe_item (dieseitem);
 												}
-												Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
+												Zeile1.position = new Vector2 (Zeile1.position.x, Zeile1.position.y + Zeile1.height + 5);
 												GUILayout.EndHorizontal ();
 										}
 								}

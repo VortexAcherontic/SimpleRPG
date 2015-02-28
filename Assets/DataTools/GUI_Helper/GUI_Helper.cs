@@ -85,9 +85,12 @@ public class GUI_Helper {
 		public void EndArea () {
 				GUILayout.EndArea ();
 		}
-		public void Box (string bezeichnung, Rect bereich) {
+		public void Box (string bezeichnung, int font_size, Rect bereich) {
+				int org_font_size = GUI.skin.box.fontSize;
 				Rect new_bereich = Rect_Umrechnen (bereich);
+				GUI.skin.box.fontSize = (int)Mathf.Ceil (font_size * (new_bereich.height / 100));
 				GUI.Box (new_bereich, bezeichnung);
+				GUI.skin.box.fontSize = org_font_size;
 		}
 		public void DrawTexture (Texture bild, Rect bereich) {
 				Rect new_bereich = Rect_Umrechnen (bereich);

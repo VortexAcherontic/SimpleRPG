@@ -49,6 +49,8 @@ public struct AmmoData { // erstmal aus dem alten übernommen und leicht abgeän
 		public float Weigth;
 		public int Durability;
 		public int MaxDurability;
+		public Texture2D texture;
+		public GameObject obj;
 	
 		// Base Stats
 		public int MagAttack;
@@ -78,6 +80,8 @@ public struct ItemData { // erstmal aus dem alten übernommen und leicht abgeän
 		public float Weigth;
 		public int Durability;
 		public int MaxDurability;
+		public Texture2D texture;
+		public GameObject obj;
 	
 		// Base Stats
 		public int MagAttack;

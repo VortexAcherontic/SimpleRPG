@@ -274,7 +274,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				}
 				if (GUI_Statverteilen) {
 						Rect Anzeigebereich = new Rect (1920 / 3, 1080 / 3, 1920 / 3, 1080 / 3);
-						GUI_ZoD.Box ("Statpoint", Anzeigebereich);
+						GUI_ZoD.Box ("Statpoint", 11, Anzeigebereich);
 			
 						// Verteilbare Punkte
 						Rect Zeile = new Rect (Anzeigebereich.position.x, Anzeigebereich.position.y, Anzeigebereich.width / 3, Anzeigebereich.height / 9);
@@ -380,7 +380,7 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUI_ZoD.BeginArea ("Area", tmp_anzeige);
 						{
 				
-								GUI_ZoD.Box ("Equip", new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
+								GUI_ZoD.Box ("Equip", 11, new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
 								GUILayout.Space (20);								
 								if ((GUI_ZoD.Button_Text ("Quit", 11, new Rect (tmp_anzeige.width - 40, 0, 40, 20))) || (Input.GetKey (KeyCode.Escape))) {
 										GUI_Equipment = false;
@@ -465,7 +465,7 @@ public class PlayerBehaviour : MonoBehaviour {
 			
 						GUILayout.BeginArea (tmp_anzeige);
 						{
-								GUI_ZoD.Box ("Inventar", new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
+								GUI_ZoD.Box ("Inventar", 11, new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
 								GUILayout.Space (20);		
 								if ((GUI_ZoD.Button_Text ("Quit", 11, new Rect (tmp_anzeige.width - 40, 0, 40, 20))) || (Input.GetKey (KeyCode.Escape))) {
 										GUI_Inventory = false;
@@ -670,7 +670,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		void GUIJournal () {
 				if (GUI_journal) {
 						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
-						GUI_ZoD.Box ("Journal", tmp_anzeige);
+						GUI_ZoD.Box ("Journal", 11, tmp_anzeige);
 						tmp_quests.Clear ();
 					
 						switch (GUI_journal_kat) {
@@ -752,7 +752,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				if (GUI_Hotbar) {
 						Rect Zeile = new Rect (50, 1080 - höhe, breite, höhe);
 						Rect Spalte = new Rect (50, 1080 - höhe, breite / 10, höhe);
-						GUI_ZoD.Box ("", Zeile);
+						GUI_ZoD.Box ("", 11, Zeile);
 						for (int i=0; i<10; i++) {
 								if (skill_active == i + 1) {
 										GUI_ZoD.DrawTexture (skillactiv, Spalte);
@@ -855,7 +855,7 @@ public class PlayerBehaviour : MonoBehaviour {
 			
 						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
 						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
-						GUI_ZoD.Box ("Character", tmp_anzeige);
+						GUI_ZoD.Box ("Character", 11, tmp_anzeige);
 						for (int i =0; i<me.Creat.Skills.Count; i++) {
 								skill name = me.Creat.Skills [i];
 				

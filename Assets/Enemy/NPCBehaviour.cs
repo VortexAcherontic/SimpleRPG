@@ -59,16 +59,16 @@ public class NPCBehaviour : MonoBehaviour {
 	
 		void repair () {
 				if (GUI_Repair) {
-						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
-						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
-						GUI_ZoD.Box ("Repair you stuff!", tmp_anzeige);
+						Rect tmp_anzeige = new Rect (1920 / 2 - 750, 1080 / 2 - 400, 1500, 800);
+						Rect zeile = new Rect (tmp_anzeige.position.x + 5, tmp_anzeige.position.y, tmp_anzeige.width - 500, 50);
+						GUI_ZoD.Box ("Repair you stuff!", 11, tmp_anzeige);
 						int count_i = 0;
 						foreach (ItemData oi in triggerscript.Player_Obj.GetComponent<PlayerBehaviour>().me.Creat.Equipment) {
 								ItemData i = oi;
 								if (i.Durability < i.MaxDurability) {
 										zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
 										GUI_ZoD.Label (i.Name + " (" + i.Durability + "/" + i.MaxDurability + ")", 11, zeile);
-										if (GUI_ZoD.Button_Text ("Rep 20", 11, new Rect (zeile.position.x + 350, zeile.position.y, 200, zeile.height))) {
+										if (GUI_ZoD.Button_Text ("Rep 20", 11, new Rect (zeile.position.x + 500, zeile.position.y, 200, zeile.height))) {
 												i.Durability += 20;
 												if (i.Durability > i.MaxDurability) {
 														i.Durability = i.MaxDurability;
@@ -102,19 +102,20 @@ public class NPCBehaviour : MonoBehaviour {
 	
 		void Ausbilder () {
 				if (GUI_Ausbilder) {
-						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
-						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
-						GUI_ZoD.Box ("Take Lessons!", tmp_anzeige);
+						Rect tmp_anzeige = new Rect (1920 / 2 - 750, 1080 / 2 - 400, 1500, 800);
+						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 50);
+						GUI_ZoD.Box ("Take Lessons!", 11, tmp_anzeige);
 						DataListObj = (SkillsDataList)Resources.Load ("Skill");
+						zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
 						SkillsToLearn.Clear ();
 						foreach (skill id in DataListObj.SkillList) {
 								SkillsToLearn.Add (id);
 						}
 						foreach (skill name in SkillsToLearn) {
-								zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
+								zeile.position = new Vector2 (tmp_anzeige.position.x + 5, zeile.position.y + zeile.height);
 								GUI_ZoD.Label (name.name + " | increases: " + name.Effect [0] + " | cost: " + name.cost, 11, zeile);
-								zeile.position = new Vector2 (zeile.position.x + 500, zeile.position.y);
-								zeile.width = 200;
+								zeile.position = new Vector2 (zeile.position.x + 600, zeile.position.y);
+								zeile.width = 400;
 								if (GUI_ZoD.Button_Text ("learn skill for " + name.spcost + " skillpoints.", 11, zeile)) {
 										if (triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.SkillPoints >= name.spcost) {
 												triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().SkillLearn (name);
@@ -123,8 +124,8 @@ public class NPCBehaviour : MonoBehaviour {
 								}
 								zeile.width = tmp_anzeige.width - 500;
 						}	
-						zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
-						zeile.width = 200;
+						zeile.position = new Vector2 (tmp_anzeige.position.x + 5, zeile.position.y + zeile.height);
+						zeile.width = 800;
 						if (GUI_ZoD.Button_Text ("Train your skills for 20G for 1 skillpoint.", 11, zeile)) {
 								if (triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.Gold >= 20) {
 										triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.SkillPoints += 1;

@@ -96,7 +96,7 @@ public class Player_Movement : MonoBehaviour {
 				
 				Bewegung = Bewegung * speed;
 				Bewegung.y = -garavity + jump;
-				print (Bewegung);
+				//print (Bewegung);
 				CharacterController controller = GetComponent<CharacterController> ();
 				collisionFlags = controller.Move (Bewegung);
 				#endregion Bewegung

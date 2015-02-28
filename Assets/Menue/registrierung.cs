@@ -26,7 +26,7 @@ public class registrierung : MonoBehaviour {
 								Rect Anzeigebereich = new Rect (40, 520, 700, 500);
 								Rect ErsteZeile = new Rect (0, 20, Anzeigebereich.width, (Anzeigebereich.height - 20) / 8);
 								Rect Spalte = ErsteZeile;
-								GUI_ZoD.Box ("Char Erstellen", Anzeigebereich);
+								GUI_ZoD.Box ("Char Erstellen", 11, Anzeigebereich);
 								GUI_ZoD.BeginArea ("Char ertellen", Anzeigebereich);
 								{
 										if (step == 1) {

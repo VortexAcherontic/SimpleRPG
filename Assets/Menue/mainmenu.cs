@@ -125,7 +125,7 @@ public class mainmenu : MonoBehaviour {
 								Rect Anzeigebereich = new Rect (40, 520, 700, 500);
 								Rect ErsteZeile = new Rect (0, 20, Anzeigebereich.width, (Anzeigebereich.height - 20) / 8);
 								Rect Spalte = ErsteZeile;
-								GUI_ZoD.Box ("Login", Anzeigebereich);
+								GUI_ZoD.Box ("Login", 11, Anzeigebereich);
 								GUI_ZoD.BeginArea ("LoginBereich", Anzeigebereich);
 								{
 										ErsteZeile.position = new Vector2 (ErsteZeile.position.x, ErsteZeile.position.y + ErsteZeile.height);
@@ -159,7 +159,7 @@ public class mainmenu : MonoBehaviour {
 						Rect Pausemenue = new Rect (1920 / 2 - 50, 1080 / 2 - 25, 100, 50);
 						int Zeilenhoehe = 20;
 						Rect ButtonZeile = new Rect (Pausemenue.position.x + 2, Pausemenue.position.y + Zeilenhoehe, Pausemenue.width - 5, Zeilenhoehe);
-						GUI_ZoD.Box ("Pause", Pausemenue);
+						GUI_ZoD.Box ("Pause", 11, Pausemenue);
 						if (GUI_ZoD.Button_Text ("Quit Game", 11, ButtonZeile)) {
 								Application.Quit ();
 						}
@@ -204,7 +204,7 @@ public class mainmenu : MonoBehaviour {
 						Rect Zeile = new Rect (Setting.position.x + 2, Setting.position.y + 20, Setting.width / 2, 20);
 						showoptions = false;
 						Time.timeScale = 0;
-						GUI_ZoD.Box ("Settings", Setting);
+						GUI_ZoD.Box ("Settings", 11, Setting);
 						GUI_ZoD.Label ("Movement", 11, Zeile);
 			
 						for (int i=0; i<KeySettings.Count; i++) {
