@@ -4,8 +4,10 @@ using System.Collections.Generic;
 [System.Serializable]
 public struct NPCOptions {
 		public string Name;
-		public string[] ItemsToSell;
-		public string[] SkillsToLearn;
+		//public string[] ItemsToSell;
+		public bool IsShop;
+		//public string[] SkillsToLearn;
+		public bool IsTrainer;
 		public bool CanRepair;
 		public string Dialog;
 }
@@ -22,31 +24,37 @@ public class NPCBehaviour : MonoBehaviour {
 		void Start () {
 				triggerscript = GetComponentInChildren<Player_Trigger> ();
 				QuestObj = GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestController> ();
+				ShopObj = GameObject.Find ("Uebergabe").GetComponent<shop> ();
 				me = gameObject.GetComponent<CreatureController> ();
 		}
 	
 		void Update () {
-				Quest ();				
+				Interact ();				
 		}
 	
-		bool Interacted () {
-				if (interactable ()) {
-						if (Input.GetKeyDown ("f")) {
-								return true;
-						} else {
-								return false;
+		void Interact () {
+				if (triggerscript.Player_in_Triger) {
+						if (Input.GetButtonDown ("Interact")) {
+								if (NPC.IsShop) {
+										ShopObj.imshop = true;
+								}
+								if (NPC.IsTrainer) {
+										GUI_Repair = !GUI_Repair;
+								}
+								if (NPC.IsShop) {
+										GUI_Ausbilder = !GUI_Ausbilder;
+								}
+								Quest ();
 						}
 				} else {
-						return false;
+						GUI_Repair = false;
+						GUI_Ausbilder = false;
 				}
 		}
 	
-		bool interactable () {
-				if (CheckDistance () <= 2) {
-						return true;
-				} else {
-						return false;
-				}
+		void OnGUI () {
+				repair ();
+				Ausbilder ();
 		}
 	
 		void repair () {
@@ -55,7 +63,7 @@ public class NPCBehaviour : MonoBehaviour {
 						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
 						GUI_ZoD.Box ("Repair you stuff!", tmp_anzeige);
 						int count_i = 0;
-						foreach (ItemData oi in p001.me.Creat.Equipment) {
+						foreach (ItemData oi in triggerscript.Player_Obj.GetComponent<PlayerBehaviour>().me.Creat.Equipment) {
 								ItemData i = oi;
 								if (i.Durability < i.MaxDurability) {
 										zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
@@ -65,14 +73,14 @@ public class NPCBehaviour : MonoBehaviour {
 												if (i.Durability > i.MaxDurability) {
 														i.Durability = i.MaxDurability;
 												}
-												p001.me.Creat.Gold -= 50;
+												triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.Gold -= 50;
 										}
 										if (GUI_ZoD.Button_Text ("Rep ALL", 11, new Rect (zeile.position.x + 600, zeile.position.y, 200, zeile.height))) {
 												i.Durability = i.MaxDurability;
-												p001.me.Creat.Gold -= 75;
+												triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.Gold -= 75;
 										}
 								}
-								p001.me.Creat.Equipment [count_i] = i;
+								triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.Equipment [count_i] = i;
 								count_i++;
 						}
 				}
@@ -80,33 +88,8 @@ public class NPCBehaviour : MonoBehaviour {
 	
 		bool GUI_Repair;
 	
-		void OnGUI () {
-				repair ();
-				Ausbilder ();
-		}
-	
 		void Quest () {
-				if (Interacted ()) {
-						/*Debug.Log (me.Creat.Name);*/
-						foreach (string npcname in ReperaturNPC) {
-								if (npcname == me.Creat.Name) {
-										GUI_Repair = !GUI_Repair;		
-								}
-						}
-						foreach (string npcname in ShopNPC) {
-								if (npcname == me.Creat.Name) {
-										Shop ();
-								}
-						}
-						foreach (string npcname in AusbilderNPC) {
-								if (npcname == me.Creat.Name) {
-										GUI_Ausbilder = ! GUI_Ausbilder;
-								}
-						}
-			
-						QuestObj.NPCTalk (me.Creat.Name);
-						//Debug.Log ("Quest angenommen!");
-				}	
+				QuestObj.NPCTalk (me.Creat.Name);
 		}
 	
 		void Shop () {
@@ -133,9 +116,9 @@ public class NPCBehaviour : MonoBehaviour {
 								zeile.position = new Vector2 (zeile.position.x + 500, zeile.position.y);
 								zeile.width = 200;
 								if (GUI_ZoD.Button_Text ("learn skill for " + name.spcost + " skillpoints.", 11, zeile)) {
-										if (p001.me.Creat.SkillPoints >= name.spcost) {
-												p001.SkillLearn (name);
-												p001.me.Creat.SkillPoints -= name.spcost;
+										if (triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.SkillPoints >= name.spcost) {
+												triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().SkillLearn (name);
+												triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.SkillPoints -= name.spcost;
 										}
 								}
 								zeile.width = tmp_anzeige.width - 500;
@@ -143,9 +126,9 @@ public class NPCBehaviour : MonoBehaviour {
 						zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
 						zeile.width = 200;
 						if (GUI_ZoD.Button_Text ("Train your skills for 20G for 1 skillpoint.", 11, zeile)) {
-								if (p001.me.Creat.Gold >= 20) {
-										p001.me.Creat.SkillPoints += 1;
-										p001.me.Creat.Gold -= 20;
+								if (triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.Gold >= 20) {
+										triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.SkillPoints += 1;
+										triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.Gold -= 20;
 								}
 						}
 						zeile.width = tmp_anzeige.width - 500;
