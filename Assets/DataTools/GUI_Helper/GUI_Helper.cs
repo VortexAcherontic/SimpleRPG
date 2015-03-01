@@ -15,7 +15,7 @@ public class GUI_Helper {
 		private Vector3 Screen_Scale = Vector3.one;
 		public Vector2 New_Screen;
 
-		public bool Show_Area = false; // Für Dev Tests ;)
+		public bool Show_Area = true; // Für Dev Tests ;)
 
 		private GUISkin Default_Button_Skin;
 		private Texture2D Button_Normal;
