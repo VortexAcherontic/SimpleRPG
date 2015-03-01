@@ -1,3 +1,5 @@
+Alles Unter: https://trello.com/b/fgkyjcob/simplerpg
+
 // Balancing generell
 - boss nerfen 
 - Stärkere Mobs oder Mob Level an Spieler Level anpassen?
