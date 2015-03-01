@@ -103,7 +103,7 @@ public class GUI_Helper {
 				GUI.skin.label.fixedHeight = 0;
 				GUI.skin.label.stretchHeight = true;
 				GUI.skin.label.fontSize = (int)Mathf.Ceil (font_size * (new_bereich.height / 20));
-				GUILayout.Label (text);
+				GUILayout.Label (text + "");
 				GUI.skin.label.fontSize = org_font_size;
 				EndArea ();
 		}

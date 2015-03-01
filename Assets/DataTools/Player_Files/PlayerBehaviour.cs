@@ -518,62 +518,32 @@ public class PlayerBehaviour : MonoBehaviour {
 				
 								GUI_ZoD.BeginArea ("ItemBereich", ITB);
 								{
-										float Bilder_Q = 150;
-										float Bilder_Abstand = 5;
-										Anzahl_Zeilen = (int)(ITB.width / (Bilder_Q + Bilder_Abstand));
-										Anzahl_Spalten = (int)(ITB.height / (Bilder_Q + Bilder_Abstand));
-					
-										Zeile = new Rect (0, 0, ITB.width, ITB.height / Anzahl_Zeilen);
-										Spalte = new Rect (Zeile.position.x, Zeile.position.y, Zeile.width / Anzahl_Spalten, Zeile.height);
-					
-										int shown_on_page = Anzahl_Zeilen * Anzahl_Spalten;
-										ausgewaehltesItem = 0;
-										
-										Spalte.width = Bilder_Q;
-										Spalte.height = Bilder_Q;
-					
-										int tmp_count = 0;
-										Texture2D Icon;
-				
+
+										List<ItemData> ShowItems = new List<ItemData> ();
+										List<AmmoData> ShowAmmo = new List<AmmoData> ();
 										for (int i=0; i<me.Creat.Inventory.Count; i++) {
-												tmp_count++;
 												ItemData dieseitem = me.Creat.Inventory [i];
 												bool tmp_should_anzeige = ItemScript.Check_ItemTypeInKat (dieseitem.Type, GUI_Anzeige_Kat);
-												
-												if (tmp_should_anzeige && i > seite * shown_on_page && i <= seite * shown_on_page + shown_on_page) {
-														Icon = me.Creat.Inventory [i].texture;
-														if (GUI_ZoD.Button_Bild (Icon, Spalte)) {
-																ausgewaehltesItem = i;
-														}
-														Spalte.position = new Vector2 (Spalte.position.x + Spalte.width + Bilder_Abstand, Spalte.position.y);
-														if (tmp_count == Anzahl_Spalten) {
-																Spalte.position = new Vector2 (0, Spalte.position.y + Spalte.height + Bilder_Abstand);
-																tmp_count = 0;
-														}
+												if (tmp_should_anzeige) {
+														ShowItems.Add (dieseitem);
 												}
 										}
-										if (GUI_Anzeige_Kat == 7) {
-												foreach (ItemData dieseitem2 in me.Creat.Inventory) {
-														if (dieseitem2.Type == ItemType.utility) {
-																for (int i=0; i<=dieseitem2.Ammo.Count; i++) {
-																		tmp_count++;
-																		AmmoData dieseitem = dieseitem2.Ammo [i];
-																		bool tmp_should_anzeige = true;
-					
-																		if (tmp_should_anzeige && i > seite * shown_on_page && i <= seite * shown_on_page + shown_on_page) {
-																				Icon = dieseitem.texture;
-																				if (GUI_ZoD.Button_Bild (Icon, Spalte)) {
-																						ausgewaehltesItem = i;
-																				}
-																				Spalte.position = new Vector2 (Spalte.position.x + Spalte.width + Bilder_Abstand, Spalte.position.y);
-																				if (tmp_count == Anzahl_Spalten) {
-																						Spalte.position = new Vector2 (0, Spalte.position.y + Spalte.height + Bilder_Abstand);
-																						tmp_count = 0;
-																				}
-																		}
+										foreach (ItemData dieseitem2 in me.Creat.Inventory) {
+												if (dieseitem2.Type == ItemType.utility) {
+														for (int i=0; i<=dieseitem2.Ammo.Count; i++) {
+																AmmoData dieseitem = dieseitem2.Ammo [i];
+																bool tmp_should_anzeige = ItemScript.Check_ItemTypeInKat (dieseitem.Type, GUI_Anzeige_Kat);
+																if (tmp_should_anzeige) {
+																		ShowAmmo.Add (dieseitem);
 																}
 														}
 												}
+										}
+										Debug.Log ("ShowItemsCount: " + ShowItems.Count);
+										if (ItemScript.Check_ItemTypeInKat (ItemType.weapon_ammo, GUI_Anzeige_Kat)) {
+												ItemScript.GUI_AnzeigeItemGrid (ShowItems, ITB, seite, ausgewaehltesItem);
+										} else {
+												ItemScript.GUI_AnzeigeItemGrid (ShowItems, ITB, seite, ausgewaehltesItem);
 										}
 								}
 								GUI_ZoD.EndArea ();
