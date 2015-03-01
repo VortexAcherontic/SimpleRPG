@@ -19,6 +19,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		public CreatureController me;
 		public QuestController qc;
 		public mainmenu mn;
+		item ItemScript;	
 	
 		public List<Notification> PickupList = new List<Notification> ();
 		public bool Death = false;
@@ -71,6 +72,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				me = gameObject.GetComponent<CreatureController> ();
 				qc = gameObject.GetComponent<QuestController> ();
 				mn = GameObject.Find ("Uebergabe").GetComponent<mainmenu> ();
+				ItemScript = GameObject.Find ("Uebergabe").GetComponent<item> ();
 		}
 	
 		// Update is called once per frame
@@ -510,35 +512,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				
 								GUI_ZoD.BeginArea ("KategorieBereich", KB);
 								{
-										Anzahl_Zeilen = 6;
-										Anzahl_Spalten = 1;
-					
-										Zeile = new Rect (0, 0, KB.width, KB.height / Anzahl_Zeilen);
-										Spalte = new Rect (Zeile.position.x, Zeile.position.y, Zeile.width / Anzahl_Spalten, Zeile.height);
-										
-										if (GUI_ZoD.Button_Text ("Meleeweapons", 11, Spalte)) {
-												GUI_Anzeige_Kat = 1;
-										}
-										Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-										if (GUI_ZoD.Button_Text ("Rangeweapons", 11, Spalte)) {
-												GUI_Anzeige_Kat = 2;
-										}
-										Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-										if (GUI_ZoD.Button_Text ("Armor", 11, Spalte)) {
-												GUI_Anzeige_Kat = 3;
-										}
-										Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-										if (GUI_ZoD.Button_Text ("Potions", 11, Spalte)) {
-												GUI_Anzeige_Kat = 4;
-										}
-										Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-										if (GUI_ZoD.Button_Text ("Ammo", 11, Spalte)) {
-												GUI_Anzeige_Kat = 5;
-										}
-										Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-										if (GUI_ZoD.Button_Text ("Wearables", 11, Spalte)) {
-												GUI_Anzeige_Kat = 6;
-										}
+										GUI_Anzeige_Kat = ItemScript.GUI_ItemKat (KB, GUI_Anzeige_Kat);
 								}
 								GUI_ZoD.EndArea ();
 				
@@ -564,49 +538,7 @@ public class PlayerBehaviour : MonoBehaviour {
 										for (int i=0; i<me.Creat.Inventory.Count; i++) {
 												tmp_count++;
 												ItemData dieseitem = me.Creat.Inventory [i];
-												bool tmp_should_anzeige = false;
-												switch (GUI_Anzeige_Kat) {
-														case 0:
-																break;
-														case 1:
-																if (dieseitem.Type == ItemType.weapon_melee) {
-																		tmp_should_anzeige = true;	
-																}
-																break;
-														case 2:
-																if (dieseitem.Type == ItemType.weapon_range) {
-																		tmp_should_anzeige = true;	
-																}
-																break;
-														case 3:
-																if ((dieseitem.Type == ItemType.armor_feet) || 
-																		(dieseitem.Type == ItemType.armor_hand) ||
-																		(dieseitem.Type == ItemType.armor_head) ||
-																		(dieseitem.Type == ItemType.armor_leg) ||
-																		(dieseitem.Type == ItemType.armor_torso)) {
-																		tmp_should_anzeige = true;
-																}
-																break;
-														case 4:
-																if (dieseitem.Type == ItemType.potion) {
-																		tmp_should_anzeige = true;
-																}
-																break;
-														case 5:
-																if (dieseitem.Type == ItemType.utility) {
-																		tmp_should_anzeige = true;
-																}
-																break;
-														case 6:
-																if (dieseitem.Type == ItemType.accessorie) {
-																		tmp_should_anzeige = true;
-																}
-																break;
-														case 7:
-							
-																break;
-							
-												}
+												bool tmp_should_anzeige = ItemScript.Check_ItemTypeInKat (dieseitem.Type, GUI_Anzeige_Kat);
 												
 												if (tmp_should_anzeige && i > seite * shown_on_page && i <= seite * shown_on_page + shown_on_page) {
 														Icon = me.Creat.Inventory [i].texture;

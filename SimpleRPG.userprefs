@@ -1,10 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataTools\Interactable\Gathering.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataTools\Item\Data\ItemDataClass.cs">
     <Files>
-      <File FileName="Assets\DataTools\Item\Data\item.cs" Line="29" Column="3" />
-      <File FileName="Assets\DataTools\Item\Data\ItemDataClass.cs" Line="41" Column="7" />
-      <File FileName="Assets\DataTools\Interactable\Gathering.cs" Line="62" Column="89" />
+      <File FileName="Assets\DataTools\Item\Data\ItemDataClass.cs" Line="52" Column="27" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +11,11 @@
             <Node name="DataTools" expanded="True">
               <Node name="Interactable" expanded="True">
                 <Node name="Truhen" expanded="True" />
-                <Node name="Gathering.cs" selected="True" />
+              </Node>
+              <Node name="Item" expanded="True">
+                <Node name="Data" expanded="True">
+                  <Node name="ItemDataClass.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>

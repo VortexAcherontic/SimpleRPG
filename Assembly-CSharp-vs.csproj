@@ -62,6 +62,7 @@
      <Compile Include="Assets\DataTools\Interactable\Truhen\Chest.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataClass.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataList.cs" />
+     <Compile Include="Assets\DataTools\Item\Data\KatTypes.cs" />
      <Compile Include="Assets\DataTools\Item\item.cs" />
      <Compile Include="Assets\DataTools\Menue\GameOverScreen.cs" />
      <Compile Include="Assets\DataTools\Menue\mainmenu.cs" />

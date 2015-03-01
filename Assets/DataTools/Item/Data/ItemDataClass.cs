@@ -47,6 +47,13 @@ public enum EffectType {
 }
 
 [System.Serializable]
+public struct ItemTypeShowKat {
+		public string Name;
+		public ItemType[] Types;
+}
+
+
+[System.Serializable]
 public struct AmmoData { // erstmal aus dem alten übernommen und leicht abgeändert
 		public string Name;
 		public ItemType Type;
