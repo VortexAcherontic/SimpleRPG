@@ -56,6 +56,8 @@ public class PlayerBehaviour : MonoBehaviour {
 		float xpbar = 0;
 		float staminabar = 100;
 	
+		Rect tmp_anzeige = new Rect (200, 200, 1520, 780);
+	
 		int ausgewaehltesItem = 0;
 		int seite = 0;
 		List<ItemData> ShowItems = new List<ItemData> ();
@@ -468,7 +470,6 @@ public class PlayerBehaviour : MonoBehaviour {
 		void GUIEquipment () {
 				if (GUI_Equipment) {
 						mn.cammove = false;
-						Rect tmp_anzeige = new Rect (200, 200, 1520, 780);
 						GUI_ZoD.BeginArea ("GUI_BG.name", tmp_anzeige);
 						{
 								Rect BB = new Rect (0, 0, tmp_anzeige.width, 100);
@@ -548,7 +549,6 @@ public class PlayerBehaviour : MonoBehaviour {
 		void GUIInventory () {
 				if (GUI_Inventory) {
 						mn.cammove = false;
-						Rect tmp_anzeige = new Rect (200, 200, 1520, 780);
 						GUI_ZoD.BeginArea ("Inventory", tmp_anzeige);
 						{
 								Rect BB = new Rect (0, 0, tmp_anzeige.width, 100);
@@ -680,7 +680,6 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		void GUIJournal () {
 				if (GUI_journal) {
-						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
 						GUI_ZoD.Box ("Journal", 11, tmp_anzeige);
 						tmp_quests.Clear ();
 					
@@ -864,7 +863,6 @@ public class PlayerBehaviour : MonoBehaviour {
 		
 				if (GUI_Character) {
 			
-						Rect tmp_anzeige = new Rect (1920 / 2 - 500, 1080 / 2 - 200, 1000, 400);
 						Rect zeile = new Rect (tmp_anzeige.position.x, tmp_anzeige.position.y, tmp_anzeige.width - 500, 20);
 						GUI_ZoD.Box ("Character", 11, tmp_anzeige);
 						for (int i =0; i<me.Creat.Skills.Count; i++) {
