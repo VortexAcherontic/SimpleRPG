@@ -38,7 +38,7 @@ public class item : MonoBehaviour {
 				float offset = 5;
 				Rect Button = new Rect (0, 0, Bereich.width, Bereich.height / (ItemKat.Count + 1) - offset);
 				for (int i=0; i<ItemKat.Count; i++) {
-						if (GUI_ZoD.Button_Text (ItemKat [i].Name, 11, Button)) {
+						if (GUI_ZoD.Button_Text (ItemKat [i].Name, 7, Button)) {
 								Anzeige_Kat = i;
 						}
 						Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
@@ -57,7 +57,7 @@ public class item : MonoBehaviour {
 				for (int i=0; i<ShowItems.Count; i++) {
 						ItemData TempItem = ShowItems [i];
 						Texture2D Icon = TempItem.texture;
-						if (i > Seite * Anzahl_Zeilen * Anzahl_Spalten && i <= (Seite + 1) * Anzahl_Zeilen * Anzahl_Spalten) {
+						if (i >= Seite * Anzahl_Zeilen * Anzahl_Spalten && i < (Seite + 1) * Anzahl_Zeilen * Anzahl_Spalten) {
 								Aktuelle_Spalte++;
 								if (GUI_ZoD.Button_Bild (Icon, Button)) {
 										ReturnAusgewaehlt = i;

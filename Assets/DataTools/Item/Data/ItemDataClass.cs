@@ -11,20 +11,25 @@ public enum ItemType {
 		// Neue Typen immer am Ende anfügen um nicht alle bestehenden Sachen zu bearbeiten
 		junk,
 	
+		//weapons 2
 		weapon_melee,
 		weapon_range,
 		weapon_ammo,
+		//armor 5
 		armor_head,
 		armor_torso,
 		armor_leg,
 		armor_feet,
 		armor_hand,
 	
+	
 		potion,
+		//misc 2
 		accessorie,
 		utility,
 	
 		craftmats,
+		//tools 5
 		tool_lumberjack,
 		tool_miner,
 		tool_herbalist,
