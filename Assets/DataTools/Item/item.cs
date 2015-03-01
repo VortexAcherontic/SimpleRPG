@@ -34,6 +34,117 @@ public class item : MonoBehaviour {
 				}
 		}
 	
+		public void GUI_ItemDetails (ItemData Item, Rect Bereich, PlayerBehaviour Player, int InventarID, int EquipmentID, int ShopID, bool ShopOpen) {
+				int Anzahl_Zeilen = 10;
+				float offset = 5;
+				Rect Button = new Rect (0, 0, Bereich.width, Bereich.height / Anzahl_Zeilen - offset);
+				GUI_ZoD.Label ("<b>" + Item.Name + "</b>", 5, Button);
+				Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+				switch (Item.Type) {
+						case ItemType.weapon_melee:
+						case ItemType.weapon_range:
+								GUI_ZoD.Label ("Physical Damage: " + Item.PhyAttack, 5, Button);
+								Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+								GUI_ZoD.Label ("Magical Damage: " + Item.MagAttack, 5, Button);
+								Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+								GUI_ZoD.Label ("Durability: " + Item.Durability + " / " + Item.MaxDurability, 5, Button);
+								Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+								break;
+						case ItemType.armor_feet:
+						case ItemType.armor_hand:
+						case ItemType.armor_head:
+						case ItemType.armor_leg:
+						case ItemType.armor_torso:
+								GUI_ZoD.Label ("Physical Defense: " + Item.PhyArmor, 5, Button);
+								Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+								GUI_ZoD.Label ("Magical Defense: " + Item.MagArmor, 5, Button);
+								Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+								GUI_ZoD.Label ("Durability: " + Item.Durability + " / " + Item.MaxDurability, 5, Button);
+								Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+								break;
+						case ItemType.potion:
+						case ItemType.accessorie:
+						case ItemType.utility:
+								GUI_ZoD.Label ("Effect: + " + Item.Effect + " " + Item.EffectType.ToString (), 5, Button);
+								Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+								break;
+						case ItemType.tool_gardener:
+						case ItemType.tool_herbalist:
+						case ItemType.tool_hunter:
+						case ItemType.tool_lumberjack:
+						case ItemType.tool_miner:
+								GUI_ZoD.Label ("Durability: " + Item.Durability + " / " + Item.MaxDurability, 5, Button);
+								Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+								break;
+				}
+		
+				GUI_ZoD.Label ("Weight: " + Item.Weigth + " kg", 5, Button);
+				Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+				GUI_ZoD.Label ("Value: " + Item.Gold + " G", 5, Button);
+				Button.position = new Vector2 (Button.position.x, Button.position.y + Button.height + offset);
+		
+				// 6 Zeilen Bisher
+				
+				// Buttons von unten her find ich cooler
+				Button.position = new Vector2 (Button.position.x, Bereich.height - Button.height - offset);
+				if (ShopOpen && InventarID >= 0) {
+						if (GUI_ZoD.Button_Text ("Verkaufen", 5, Button)) {
+								// Verkaufen
+						}
+						Button.position = new Vector2 (Button.position.x, Button.position.y - Button.height - offset);
+				} else if (ShopOpen) {
+						if (GUI_ZoD.Button_Text ("Kaufen", 5, Button)) {
+								// Kaufen
+						}
+						Button.position = new Vector2 (Button.position.x, Button.position.y - Button.height - offset);
+				} else {
+						if (GUI_ZoD.Button_Text ("Drop", 6, Button)) {
+								Player.me.Creat.Inventory.RemoveAt (InventarID);
+						}
+						Button.position = new Vector2 (Button.position.x, Button.position.y - Button.height - offset);
+				}
+				// Zeilen +1
+		
+				switch (Item.Type) {
+						case ItemType.potion:
+								if (GUI_ZoD.Button_Text ("Use", 7, Button)) {
+										Player.ItemUse (Player.me.Creat.Inventory [InventarID]);
+								}
+								Button.position = new Vector2 (Button.position.x, Button.position.y - Button.height - offset);
+								break;
+				}
+				switch (Item.Type) {
+						case ItemType.weapon_melee:
+						case ItemType.weapon_range:
+						case ItemType.armor_feet:
+						case ItemType.armor_hand:
+						case ItemType.armor_head:
+						case ItemType.armor_leg:
+						case ItemType.armor_torso:
+						case ItemType.utility:
+						case ItemType.accessorie:
+						case ItemType.tool_gardener:
+						case ItemType.tool_herbalist:
+						case ItemType.tool_hunter:
+						case ItemType.tool_lumberjack:
+						case ItemType.tool_miner:
+								if (!ShopOpen && InventarID >= 0) {
+										if (GUI_ZoD.Button_Text ("Equip", 6, Button)) {
+												Player.me.Equip (Item);
+										}
+										Button.position = new Vector2 (Button.position.x, Button.position.y - Button.height - offset);
+								} else if (!ShopOpen) {
+										if (GUI_ZoD.Button_Text ("Unequip", 6, Button)) {
+												Player.me.Unequip (Item);
+										}
+										Button.position = new Vector2 (Button.position.x, Button.position.y - Button.height - offset);
+								}
+								break;
+				}
+				// Zeilen +1
+				
+		
+		}
 		public int GUI_ItemKat (Rect Bereich, int Anzeige_Kat) {
 				float offset = 5;
 				Rect Button = new Rect (0, 0, Bereich.width, Bereich.height / (ItemKat.Count + 1) - offset);

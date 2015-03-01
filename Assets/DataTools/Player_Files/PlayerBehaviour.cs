@@ -56,6 +56,8 @@ public class PlayerBehaviour : MonoBehaviour {
 		float xpbar = 0;
 		float staminabar = 100;
 	
+		int ausgewaehltesItem = 0;
+		int seite = 0;
 		List<ItemData> ShowItems = new List<ItemData> ();
 		List<AmmoData> ShowAmmo = new List<AmmoData> ();
 	
@@ -209,7 +211,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				}
 		}
 	
-		void ItemUse (ItemData UsedItem) {
+		public void ItemUse (ItemData UsedItem) {
 				if (UsedItem.EffectType == EffectType.Mana) {
 						me.Creat.MP += UsedItem.Effect;
 				}
@@ -467,7 +469,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				if (GUI_Equipment) {
 						mn.cammove = false;
 						Rect tmp_anzeige = new Rect (200, 200, 1520, 780);
-						GUI_ZoD.BeginArea (GUI_BG.name, tmp_anzeige);
+						GUI_ZoD.BeginArea ("GUI_BG.name", tmp_anzeige);
 						{
 								Rect BB = new Rect (0, 0, tmp_anzeige.width, 100);
 								Rect KB = new Rect (BB.position.x, BB.position.y + BB.height, 200, tmp_anzeige.height - BB.height);
@@ -480,7 +482,7 @@ public class PlayerBehaviour : MonoBehaviour {
 								Rect Zeile = new Rect ();
 								Rect Spalte = new Rect ();
 				
-								GUI_ZoD.BeginArea (GUI_Auswahl.name, BB); // ButtonBereich
+								GUI_ZoD.BeginArea ("GUI_Auswahl.name", BB); // ButtonBereich
 								{
 										Anzahl_Zeilen = 1;
 										Anzahl_Spalten = 7;
@@ -532,64 +534,7 @@ public class PlayerBehaviour : MonoBehaviour {
 										if (ShowItems.Count >= ausgewaehltesItem + 1) {
 												ItemData Anzeige_Item;
 												Anzeige_Item = ShowItems [ausgewaehltesItem];
-						
-												GUI_ZoD.Label (Anzeige_Item.Name, 5, Spalte);
-												switch (Anzeige_Item.Type) {
-														case ItemType.weapon_melee:
-														case ItemType.weapon_range:
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Physical Damage: " + Anzeige_Item.PhyAttack, 5, Spalte);
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Magical Damage: " + Anzeige_Item.MagAttack, 5, Spalte);
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Durability: " + Anzeige_Item.Durability + " / " + Anzeige_Item.MaxDurability, 5, Spalte);
-																break;
-														case ItemType.armor_feet:
-														case ItemType.armor_hand:
-														case ItemType.armor_head:
-														case ItemType.armor_leg:
-														case ItemType.armor_torso:
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Physical Defense: " + Anzeige_Item.PhyArmor, 5, Spalte);
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Magical Defense: " + Anzeige_Item.MagArmor, 5, Spalte);
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Durability: " + Anzeige_Item.Durability + " / " + Anzeige_Item.MaxDurability, 5, Spalte);
-																break;
-														case ItemType.potion:
-														case ItemType.accessorie:
-														case ItemType.utility:
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Effect: + " + Anzeige_Item.Effect + " " + Anzeige_Item.EffectType.ToString (), 5, Spalte);
-																break;
-												}
-						
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-												GUI_ZoD.Label ("Weight: " + Anzeige_Item.Weigth + " kg", 5, Spalte);
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-												GUI_ZoD.Label ("Value: " + Anzeige_Item.Gold + " G", 5, Spalte);
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-												if (GUI_ZoD.Button_Text ("Equip", 6, Spalte)) {
-														me.Equip (Anzeige_Item);
-												}
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-												if (GUI_ZoD.Button_Text ("Drop", 6, Spalte)) {
-														me.Creat.Inventory.RemoveAt (ausgewaehltesItem);
-												}
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-						
-												switch (Anzeige_Item.Type) {
-														case ItemType.utility:
-																if (GUI_ZoD.Button_Text ("Show content.", 7, Spalte)) {
-																		GUI_Anzeige_Kat = 7;
-																}
-																break;
-														case ItemType.potion:
-																if (GUI_ZoD.Button_Text ("Use", 7, Spalte)) {
-																		ItemUse (Anzeige_Item);
-																}
-																break;
-												}
+												
 										}
 								}
 								GUI_ZoD.EndArea ();
@@ -604,7 +549,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				if (GUI_Inventory) {
 						mn.cammove = false;
 						Rect tmp_anzeige = new Rect (200, 200, 1520, 780);
-						GUI_ZoD.BeginArea (GUI_BG.name, tmp_anzeige);
+						GUI_ZoD.BeginArea ("Inventory", tmp_anzeige);
 						{
 								Rect BB = new Rect (0, 0, tmp_anzeige.width, 100);
 								Rect KB = new Rect (BB.position.x, BB.position.y + BB.height, 200, tmp_anzeige.height - BB.height);
@@ -617,7 +562,7 @@ public class PlayerBehaviour : MonoBehaviour {
 								Rect Zeile = new Rect ();
 								Rect Spalte = new Rect ();
 				
-								GUI_ZoD.BeginArea (GUI_Auswahl.name, BB); // ButtonBereich
+								GUI_ZoD.BeginArea ("ButtonBereich", BB); // ButtonBereich
 								{
 										Anzahl_Zeilen = 1;
 										Anzahl_Spalten = 7;
@@ -681,7 +626,6 @@ public class PlayerBehaviour : MonoBehaviour {
 														}
 												}
 										}
-										Debug.Log ("ShowItemsCount: " + ShowItems.Count);
 										if (ItemScript.Check_ItemTypeInKat (ItemType.weapon_ammo, GUI_Anzeige_Kat)) {
 												ausgewaehltesItem = ItemScript.GUI_AnzeigeItemGrid (ShowItems, ITB, seite, ausgewaehltesItem);
 										} else {
@@ -713,74 +657,16 @@ public class PlayerBehaviour : MonoBehaviour {
 								
 								GUI_ZoD.BeginArea ("InfoBereich", IB);
 								{
-					
-										Anzahl_Zeilen = 8;
-										Anzahl_Spalten = 1;
-					
-										Zeile = new Rect (0, 0, IB.width, IB.height / Anzahl_Zeilen);
-										Spalte = new Rect (Zeile.position.x, Zeile.position.y, Zeile.width / Anzahl_Spalten, Zeile.height);
-					
 										if (ShowItems.Count >= ausgewaehltesItem + 1) {
 												ItemData Anzeige_Item;
 												Anzeige_Item = ShowItems [ausgewaehltesItem];
-						
-												GUI_ZoD.Label (Anzeige_Item.Name, 5, Spalte);
-												switch (Anzeige_Item.Type) {
-														case ItemType.weapon_melee:
-														case ItemType.weapon_range:
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Physical Damage: " + Anzeige_Item.PhyAttack, 5, Spalte);
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Magical Damage: " + Anzeige_Item.MagAttack, 5, Spalte);
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Durability: " + Anzeige_Item.Durability + " / " + Anzeige_Item.MaxDurability, 5, Spalte);
-																break;
-														case ItemType.armor_feet:
-														case ItemType.armor_hand:
-														case ItemType.armor_head:
-														case ItemType.armor_leg:
-														case ItemType.armor_torso:
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Physical Defense: " + Anzeige_Item.PhyArmor, 5, Spalte);
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Magical Defense: " + Anzeige_Item.MagArmor, 5, Spalte);
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Durability: " + Anzeige_Item.Durability + " / " + Anzeige_Item.MaxDurability, 5, Spalte);
-																break;
-														case ItemType.potion:
-														case ItemType.accessorie:
-														case ItemType.utility:
-																Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-																GUI_ZoD.Label ("Effect: + " + Anzeige_Item.Effect + " " + Anzeige_Item.EffectType.ToString (), 5, Spalte);
-																break;
+												int FiktiveInventoryID = 0; // Weil ich nicht weiß wies besser geht
+												for (int tmp=0; tmp<me.Creat.Inventory.Count; tmp++) {
+														if (Anzeige_Item.Name == me.Creat.Inventory [tmp].Name) {
+																FiktiveInventoryID = tmp;
+														}
 												}
-			
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-												GUI_ZoD.Label ("Weight: " + Anzeige_Item.Weigth + " kg", 5, Spalte);
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-												GUI_ZoD.Label ("Value: " + Anzeige_Item.Gold + " G", 5, Spalte);
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-												if (GUI_ZoD.Button_Text ("Equip", 6, Spalte)) {
-														me.Equip (Anzeige_Item);
-												}
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-												if (GUI_ZoD.Button_Text ("Drop", 6, Spalte)) {
-														me.Creat.Inventory.RemoveAt (ausgewaehltesItem);
-												}
-												Spalte.position = new Vector2 (Spalte.position.x, Spalte.position.y + Spalte.height);
-			
-												switch (Anzeige_Item.Type) {
-														case ItemType.utility:
-																if (GUI_ZoD.Button_Text ("Show content.", 7, Spalte)) {
-																		GUI_Anzeige_Kat = 7;
-																}
-																break;
-														case ItemType.potion:
-																if (GUI_ZoD.Button_Text ("Use", 7, Spalte)) {
-																		ItemUse (Anzeige_Item);
-																}
-																break;
-												}
+												ItemScript.GUI_ItemDetails (Anzeige_Item, IB, this, FiktiveInventoryID, -1, -1, false);
 										}
 								}
 								GUI_ZoD.EndArea ();
