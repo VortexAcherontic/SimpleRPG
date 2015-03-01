@@ -20,6 +20,12 @@ public class shop : MonoBehaviour {
 		float refill_cooldown = 10f;
 		bool equipcheck = false;
 		ItemData Quiver;
+		int ausgewaehltesItem = 0;
+		int ausgewaehltesTool = 0;
+		int seite = 0;
+		List<ItemData> ShowItems = new List<ItemData> ();
+		List<AmmoData> ShowAmmo = new List<AmmoData> ();
+	
 	
 		public ObjShop CreateEmptyShop (Vector2 Pos) {
 				ObjShop newShop;
@@ -61,165 +67,113 @@ public class shop : MonoBehaviour {
 		
 				if (imshop) {
 						float abstand = 100;
-						Rect tmp_anzeige = new Rect (((1920 / 2) - (1600 / 2)), ((1080 / 2) - (1000 / 2)), 1600, 1000);
+						Rect tmp_anzeige = new Rect (200, 200, 1520, 780);
 						GUI_ZoD.BeginArea ("ShopAnzeige", tmp_anzeige);
 						{
-								GUI_ZoD.Box ("Shop", 11, new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
-								GUILayout.Space (abstand);								
-								if (GUI_ZoD.Button_Text ("Quit", 11, new Rect (tmp_anzeige.width - 100, 0, 100, 50))) {
-										imshop = false;
-										anzeige_kat = 0;
-								}
-								GUILayout.BeginHorizontal ();
-								if (GUILayout.Button ("Meleeweapons")) {
-										anzeige_kat = 1;
-								}
-								if (GUILayout.Button ("Rangeweapons")) {
-										anzeige_kat = 2;
-								}
-								if (GUILayout.Button ("Armor")) {
-										anzeige_kat = 3;
-								}
-								if (GUILayout.Button ("Potions")) {
-										anzeige_kat = 4;
-								}
+								Rect BB = new Rect (0, 0, tmp_anzeige.width, 100);
+								Rect KB = new Rect (BB.position.x, BB.position.y + BB.height, 200, tmp_anzeige.height - BB.height);
+								Rect IB = new Rect (tmp_anzeige.width - 300, KB.position.y, 300, KB.height);
+								Rect NB = new Rect (KB.position.x + KB.width, tmp_anzeige.height - 200, tmp_anzeige.width - KB.width - IB.width, 200);
+								Rect ITB = new Rect (NB.position.x, KB.position.y, NB.width, KB.height - NB.height);
+				
+								int Anzahl_Zeilen = 1;
+								int Anzahl_Spalten = 1;
+								Rect Zeile = new Rect ();
+								Rect Spalte = new Rect ();
+				
+								GUI_ZoD.BeginArea ("ButtonBereich", BB); // ButtonBereich
 								{
-										if (GUILayout.Button ("Ammo")) {
-												anzeige_kat = 5;
+										Anzahl_Zeilen = 1;
+										Anzahl_Spalten = 7;
+					
+										Zeile = new Rect (0, 0, BB.width, BB.height / Anzahl_Zeilen);
+										Spalte = new Rect (Zeile.position.x, Zeile.position.y, Zeile.width / Anzahl_Spalten, Zeile.height);
+					
+										if ((GUI_ZoD.Button_Text ("Back", 7, Spalte)) || (Input.GetKey (KeyCode.Escape))) {
+												imshop = false;
 										}
-										if (GUILayout.Button ("Wearables")) {
-												anzeige_kat = 6;
-										}
-										GUILayout.EndHorizontal ();
-										GUILayout.FlexibleSpace ();
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										// Platzhalter
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										GUI_ZoD.Label ("Gold: " + p001.me.Creat.Gold, 5, Spalte);
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										GUI_ZoD.Label ("Weight: " + p001.me.GGewicht + " / " + p001.me.MaxGGewicht, 5, Spalte);
 								}
-								Rect AnzeigeScrollView = new Rect (0, 0 + abstand * 2, tmp_anzeige.width, tmp_anzeige.height - 40);
-								Scrollbereich.position = new Vector2 (0, 0);
-								Scrollbereich.width = AnzeigeScrollView.width - 50;
-								scroller = GUI_ZoD.BeginScrollView (scroller, 11, Scrollbereich, AnzeigeScrollView);
-			
-								Rect Zeile1 = new Rect (25, 0, Scrollbereich.width - 25, 30);
-								Rect Spalte;
-								int SpaltenMax = 8;
-								if (anzeige_kat == 5) {
-										if (CheckForQuiver ()) {
-												foreach (AmmoData dieseitem in ItemScript.Ammo_List) {
-														if (dieseitem.Type == ItemType.weapon_ammo) {
-																//GUILayout.BeginHorizontal ();
-																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / SpaltenMax, Zeile1.height);
-																GUI_ZoD.Label (dieseitem.Name, 11, Spalte);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Price: " + dieseitem.Gold + " G", 11, Spalte);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Items in stock: " + dieseitem.Stock / 10, 11, Spalte);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Physical Damage: " + dieseitem.PhyAttack, 11, Spalte);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Magical Damage: " + dieseitem.MagAttack, 11, Spalte);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Amount: " + dieseitem.Capacity, 11, Spalte);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Weight: " + dieseitem.Weigth + " kg", 11, Spalte);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																if (GUI_ZoD.Button_Text ("Buy", 11, Spalte)) {
-																		kaufe_item_ammo (dieseitem);
-																}
-																Zeile1.position = new Vector2 (Zeile1.position.x, Zeile1.position.y + Zeile1.height + 5);
-																//GUILayout.EndHorizontal ();
-														}
+								GUI_ZoD.EndArea ();
+				
+								GUI_ZoD.BeginArea ("KategorieBereich", KB);
+								{
+										anzeige_kat = ItemScript.GUI_ItemKat (KB, anzeige_kat);
+								}
+								GUI_ZoD.EndArea ();
+								GUI_ZoD.BeginArea ("ItemBereich", ITB);
+								{
+										ShowItems = new List<ItemData> ();
+										ShowAmmo = new List<AmmoData> ();
+					
+										for (int i=0; i<ItemScript.Item_List.Count; i++) {
+												ItemData dieseitem = ItemScript.Item_List [i];
+												bool tmp_should_anzeige = ItemScript.Check_ItemTypeInKat (dieseitem.Type, anzeige_kat);
+												if (tmp_should_anzeige) {
+														ShowItems.Add (dieseitem);
 												}
+										}
+										for (int i=0; i<ItemScript.Ammo_List.Count; i++) {
+												AmmoData dieseitem = ItemScript.Ammo_List [i];
+												bool tmp_should_anzeige = ItemScript.Check_ItemTypeInKat (dieseitem.Type, anzeige_kat);
+												if (tmp_should_anzeige) {
+														ShowAmmo.Add (dieseitem);
+												}
+										}
+										if (ItemScript.Check_ItemTypeInKat (ItemType.weapon_ammo, anzeige_kat)) {
+												ausgewaehltesItem = ItemScript.GUI_AnzeigeItemGrid (ShowItems, ITB, seite, ausgewaehltesItem);
 										} else {
-												GUI_ZoD.Label ("Equip a quiver before you buy ammo!", 11, new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width, Zeile1.height));
+												ausgewaehltesItem = ItemScript.GUI_AnzeigeItemGrid (ShowItems, ITB, seite, ausgewaehltesItem);
 										}
 								}
-								foreach (ItemData dieseitem in ItemScript.Item_List) {
-										bool tmp_should_anzeige = false;
-										switch (anzeige_kat) {
-												case 0:
-														break;
-												case 1:
-														if (dieseitem.Type == ItemType.weapon_melee) {
-																tmp_should_anzeige = true;
-														}
-														break;
-												case 2:
-														if (dieseitem.Type == ItemType.weapon_range) {
-																tmp_should_anzeige = true;
-														}
-														break;
-												case 3:
-														if ((dieseitem.Type == ItemType.armor_feet) || 
-																(dieseitem.Type == ItemType.armor_hand) ||
-																(dieseitem.Type == ItemType.armor_head) ||
-																(dieseitem.Type == ItemType.armor_leg) ||
-																(dieseitem.Type == ItemType.armor_torso)) {
-																tmp_should_anzeige = true;
-														}
-														break;
-												case 4:
-														if (dieseitem.Type == ItemType.potion) {
-																tmp_should_anzeige = true;
-														}
-														break;
-												case 5:
-														//Ammo Oben Abgefragt
-														break;
-												case 6:
-														if ((dieseitem.Type == ItemType.accessorie) || (dieseitem.Type == ItemType.utility)) {
-																tmp_should_anzeige = true;
-														}
-														break;
+								GUI_ZoD.EndArea ();
+				
+								GUI_ZoD.BeginArea ("NavigationsBereich", NB);
+								{
+										Anzahl_Zeilen = 1;
+										Anzahl_Spalten = 2;
+					
+										Zeile = new Rect (0, 0, NB.width, NB.height / Anzahl_Zeilen);
+										Spalte = new Rect (Zeile.position.x, Zeile.position.y, Zeile.width / Anzahl_Spalten, Zeile.height);
+					
+										GUI_ZoD.Button_Rahmen_weg ();
+										if (GUI_ZoD.Button_Text ("DOWN", 7, Spalte)) {
+												seite++;
 										}
-										if (tmp_should_anzeige) {
-												GUILayout.BeginHorizontal ();
-												Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / SpaltenMax, Zeile1.height);
-												GUI_ZoD.Label (dieseitem.Name, 11, Spalte);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI_ZoD.Label ("Price: " + dieseitem.Gold + " G", 11, Spalte);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI_ZoD.Label ("Items in stock: " + dieseitem.Stock / 10, 11, Spalte);
-												switch (dieseitem.Type) {
-														case ItemType.weapon_melee:
-														case ItemType.weapon_range:
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Physical Damage: " + dieseitem.PhyAttack, 11, Spalte);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Magical Damage: " + dieseitem.MagAttack, 11, Spalte);
-																break;
-														case ItemType.armor_feet:
-														case ItemType.armor_hand:
-														case ItemType.armor_head:
-														case ItemType.armor_leg:
-														case ItemType.armor_torso:
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Physical Defense: " + dieseitem.PhyArmor, 11, Spalte);
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Magical Defense: " + dieseitem.MagArmor, 11, Spalte);
-																break;
-														case ItemType.potion:
-														case ItemType.accessorie:
-														case ItemType.utility:
-																Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-																GUI_ZoD.Label ("Effect: + " + dieseitem.Effect + " " + dieseitem.EffectType.ToString (), 11, Spalte);
-																break;
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										if (GUI_ZoD.Button_Text ("UP", 7, Spalte)) {
+												seite--;
+										}
+										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
+										GUI_ZoD.Button_Rahmen_hin ();
+								}
+								GUI_ZoD.EndArea ();
+				
+								GUI_ZoD.BeginArea ("InfoBereich", IB);
+								{
+										if (ShowItems.Count >= ausgewaehltesItem + 1) {
+												ItemData Anzeige_Item;
+												Anzeige_Item = ShowItems [ausgewaehltesItem];
+												int FiktiveShopID = 0; // Weil ich nicht weiß wies besser geht
+												for (int tmp=0; tmp<ItemScript.Item_List.Count; tmp++) {
+														if (Anzeige_Item.Name == ItemScript.Item_List [tmp].Name) {
+																FiktiveShopID = tmp;
+														}
 												}
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												GUI_ZoD.Label ("Weight: " + dieseitem.Weigth + " kg", 11, Spalte);
-												Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-												if (GUI_ZoD.Button_Text ("Buy", 11, Spalte)) {
-														kaufe_item (dieseitem);
-												}
-												Zeile1.position = new Vector2 (Zeile1.position.x, Zeile1.position.y + Zeile1.height + 5);
-												GUILayout.EndHorizontal ();
+												ItemScript.GUI_ItemDetails (Anzeige_Item, IB, p001, -1, -1, FiktiveShopID, true);
 										}
 								}
-								GUI_ZoD.EndScrollView ();
-								Scrollbereich.height = Zeile1.position.y + Zeile1.height;
-								GUILayout.EndArea ();
-								if (Input.GetKeyDown (KeyCode.Escape)) {
-										imshop = false;
-								}
+								GUI_ZoD.EndArea ();
 						}
+						GUI_ZoD.EndArea ();
 				}
 		}
 		

@@ -1,11 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataTools\Player_Files\PlayerBehaviour.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataTools\Objecte\shop.cs">
     <Files>
-      <File FileName="Assets\DataTools\Player_Files\PlayerBehaviour.cs" Line="475" Column="24" />
-      <File FileName="Assets\DataTools\Item\item.cs" Line="30" Column="34" />
-      <File FileName="Assets\DataTools\DataManager\GUI_Helper.cs" Line="106" Column="1" />
-      <File FileName="Assets\DataTools\Item\Data\ItemDataClass.cs" Line="124" Column="1" />
+      <File FileName="Assets\DataTools\Player_Files\PlayerBehaviour.cs" Line="695" Column="28" />
+      <File FileName="Assets\DataTools\Item\item.cs" Line="126" Column="7" />
+      <File FileName="Assets\DataTools\Objecte\shop.cs" Line="176" Column="26" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,9 +15,10 @@
               <Node name="Item" expanded="True">
                 <Node name="Data" expanded="True" />
               </Node>
-              <Node name="Player_Files" expanded="True">
-                <Node name="PlayerBehaviour.cs" selected="True" />
+              <Node name="Objecte" expanded="True">
+                <Node name="shop.cs" selected="True" />
               </Node>
+              <Node name="Player_Files" expanded="True" />
             </Node>
           </Node>
         </State>

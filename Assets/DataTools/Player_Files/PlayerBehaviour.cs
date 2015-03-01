@@ -618,7 +618,7 @@ public class PlayerBehaviour : MonoBehaviour {
 										Spalte.position = new Vector2 (Spalte.position.x + Spalte.width, Spalte.position.y);
 										GUI_ZoD.Label ("Weight: " + me.GGewicht + " / " + me.MaxGGewicht, 5, Spalte);
 								}
-								GUI_ZoD.EndBackground ();
+								GUI_ZoD.EndArea ();
 				
 								GUI_ZoD.BeginArea ("KategorieBereich", KB);
 								{
