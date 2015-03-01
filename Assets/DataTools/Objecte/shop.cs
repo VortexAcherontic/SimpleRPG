@@ -11,8 +11,7 @@ public class shop : MonoBehaviour {
 		GUI_Helper GUI_ZoD = new GUI_Helper ();
 		List<ObjShop> shops = new List<ObjShop> ();
 		PlayerBehaviour p001;
-		List<ItemData> item_liste = new List<ItemData> ();
-		List<AmmoData> ammo_liste = new List<AmmoData> ();
+		item ItemScript;
 		public bool imshop = false;
 		int anzeige_kat = 0;
 		Vector2 scroller = new Vector2 ();
@@ -34,9 +33,7 @@ public class shop : MonoBehaviour {
 				ObjShop newShop = CreateEmptyShop (new Vector2 (80, 80));
 				shops.Add (newShop);
 				refill_timer = refill_cooldown;
-		
-				item_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Item_List;
-				ammo_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Ammo_List;
+				ItemScript = GameObject.Find ("Uebergabe").GetComponent<item> ();
 				Scrollbereich = new Rect (0, 0, 0, 0);
 		}
 	
@@ -106,7 +103,7 @@ public class shop : MonoBehaviour {
 								int SpaltenMax = 8;
 								if (anzeige_kat == 5) {
 										if (CheckForQuiver ()) {
-												foreach (AmmoData dieseitem in ammo_liste) {
+												foreach (AmmoData dieseitem in ItemScript.Ammo_List) {
 														if (dieseitem.Type == ItemType.weapon_ammo) {
 																//GUILayout.BeginHorizontal ();
 																Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / SpaltenMax, Zeile1.height);
@@ -135,7 +132,7 @@ public class shop : MonoBehaviour {
 												GUI_ZoD.Label ("Equip a quiver before you buy ammo!", 11, new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width, Zeile1.height));
 										}
 								}
-								foreach (ItemData dieseitem in item_liste) {
+								foreach (ItemData dieseitem in ItemScript.Item_List) {
 										bool tmp_should_anzeige = false;
 										switch (anzeige_kat) {
 												case 0:
@@ -227,29 +224,44 @@ public class shop : MonoBehaviour {
 		}
 		
 		public void shops_refill () {
-				item_liste = GameObject.Find ("Uebergabe").GetComponent<item> ().Item_List;
-				int count_tmpitem = 0;
-				foreach (ItemData otmpitem in item_liste) {
-						ItemData tmpitem = otmpitem;
+				for (int ct=0; ct<ItemScript.Item_List.Count; ct++) {
+						ItemData tmpitem = ItemScript.Item_List [ct];
 						tmpitem.Stock += tmpitem.RefillMod;
-			
-						count_tmpitem++;
+						ItemScript.Item_List [ct] = tmpitem;
+				}
+				for (int ct=0; ct<ItemScript.Ammo_List.Count; ct++) {
+						AmmoData tmpitem = ItemScript.Ammo_List [ct];
+						tmpitem.Stock += tmpitem.RefillMod;
+						ItemScript.Ammo_List [ct] = tmpitem;
 				}
 		}
 		
 		public bool kaufe_item (ItemData diesesitem) {
+				int auswahl = 0;
+				for (int ct=0; ct<ItemScript.Item_List.Count; ct++) {
+						if (ItemScript.Item_List [ct].Name == diesesitem.Name) {
+								auswahl = ct;
+						}
+				}
 				bool check = false;
 				if (diesesitem.Type != ItemType.weapon_ammo) {
 						if ((p001.me.Creat.Gold >= diesesitem.Gold) && (diesesitem.Stock >= 10)) {
 								p001.me.Creat.Inventory.Add (diesesitem);
 								p001.me.Creat.Gold -= diesesitem.Gold;
 								diesesitem.Stock -= 10;
+								ItemScript.Item_List [auswahl] = diesesitem;
 								check = true;
 						}
 				}
 				return check;
 		}
 		public bool kaufe_item_ammo (AmmoData diesesitem) {
+				int auswahl = 0;
+				for (int ct=0; ct<ItemScript.Ammo_List.Count; ct++) {
+						if (ItemScript.Ammo_List [ct].Name == diesesitem.Name) {
+								auswahl = ct;
+						}
+				}
 				bool check = false;
 				foreach (ItemData c_obj in p001.me.Creat.Equipment) {
 						if (c_obj.Type == ItemType.utility) {
@@ -263,6 +275,7 @@ public class shop : MonoBehaviour {
 										Quiver.Capacity = Quiver.Ammo.Count;
 										p001.me.Creat.Gold -= diesesitem.Gold;
 										diesesitem.Stock -= 10;
+										ItemScript.Ammo_List [auswahl] = diesesitem;
 										check = true;
 								}
 						}

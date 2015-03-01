@@ -210,6 +210,7 @@ public class Player_Save : MonoBehaviour {
 				#region Char
 				Game.Creature.Position = _server_.GetVector3 ("character", "position");
 				Game.Creature.InitalStats.Gold = (int)_server_.data.GetObject ("character").GetNumber ("gold");
+				Game.Creature.Gold = Game.Creature.InitalStats.Gold;
 				Game.Creature.InitalStats.XP = (int)_server_.data.GetObject ("character").GetNumber ("xp");
 		
 				Game.Creature.InitalStats.Str = (int)_server_.data.GetObject ("character").GetNumber ("Str");
