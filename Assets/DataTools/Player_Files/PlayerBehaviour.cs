@@ -58,7 +58,9 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		Rect tmp_anzeige = new Rect (200, 200, 1520, 780);
 	
+		public Texture2D CharPic;
 		int ausgewaehltesItem = 0;
+		int ausgewaehltesTool = 0;
 		int seite = 0;
 		List<ItemData> ShowItems = new List<ItemData> ();
 		List<AmmoData> ShowAmmo = new List<AmmoData> ();
@@ -374,98 +376,6 @@ public class PlayerBehaviour : MonoBehaviour {
 						}		
 				}
 		}
-		/* GUIEquip alt
-		void GUIEquipment () {
-				Rect tmp_anzeige = new Rect (1920 / 2 - 800, 1080 / 2 - 400, 1600, 800);
-				Rect Spalte;
-				Rect Zeile1 = new Rect (0, 0, GUI_Scrollbereich.width, 20);
-				Rect AnzeigeScrollView = new Rect (0, 0 + 50, tmp_anzeige.width, tmp_anzeige.height - 40);
-				GUI_Scrollbereich.position = new Vector2 (0, 0);
-				GUI_Scrollbereich.width = AnzeigeScrollView.width - 50;
-		
-				if (GUI_Equipment) {
-						GUI_ZoD.BeginArea ("Area", tmp_anzeige);
-						{
-				
-								GUI_ZoD.Box ("Equip", 11, new Rect (0, 0, tmp_anzeige.width, tmp_anzeige.height));
-								GUILayout.Space (20);								
-								if ((GUI_ZoD.Button_Text ("Quit", 11, new Rect (tmp_anzeige.width - 40, 0, 40, 20))) || (Input.GetKey (KeyCode.Escape))) {
-										GUI_Equipment = false;
-								}
-								if (GUI_ZoD.Button_Text ("Swap to Iventory", 11, new Rect (tmp_anzeige.width - 150, 0, 110, 20))) {
-										GUI_Inventory = true;
-										GUI_Equipment = false;
-								}
-								Zeile1.position = new Vector2 (Zeile1.position.x, Zeile1.position.y + 20);
-				
-								foreach (ItemData dieseitem in me.Creat.Equipment) {
-					
-										GUILayout.BeginHorizontal ();
-										Spalte = new Rect (Zeile1.position.x, Zeile1.position.y, Zeile1.width / 7, Zeile1.height);
-										GUI_ZoD.Label (dieseitem.Name, 11, Spalte);
-										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-										switch (dieseitem.Type) {
-												case ItemType.weapon_melee:
-												case ItemType.weapon_range:
-														GUI_ZoD.Label ("Physical Damage: " + dieseitem.PhyAttack, 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI_ZoD.Label ("Magical Damage: " + dieseitem.MagAttack, 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI_ZoD.Label ("Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability, 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														break;
-												case ItemType.armor_feet:
-												case ItemType.armor_hand:
-												case ItemType.armor_head:
-												case ItemType.armor_leg:
-												case ItemType.armor_torso:
-														GUI_ZoD.Label ("Physical Defense: " + dieseitem.PhyArmor, 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI_ZoD.Label ("Magical Defense: " + dieseitem.MagArmor, 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI_ZoD.Label ("Durability: " + dieseitem.Durability + " / " + dieseitem.MaxDurability, 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														break;
-												case ItemType.accessorie:
-												case ItemType.potion:
-														GUI_ZoD.Label ("Effect: " + dieseitem.Effect, 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI_ZoD.Label ("" + dieseitem.EffectType.ToString (), 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														break;
-												case ItemType.utility:
-														GUI_ZoD.Label ("Capacity: " + dieseitem.Capacity + " / " + dieseitem.MaxCapacity, 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														GUI_ZoD.Label ("", 11, Spalte);
-														Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-														break;
-							
-										}
-					
-										GUI_ZoD.Label ("Weight: " + dieseitem.Weigth + " kg", 11, Spalte);
-										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-										if (GUI_ZoD.Button_Text ("Drop", 11, Spalte)) {
-												me.Creat.Equipment.Remove (dieseitem);
-										}
-										Spalte = new Rect (Spalte.position.x + Spalte.width, Spalte.position.y, Spalte.width, Spalte.height);
-										if (GUI_ZoD.Button_Text ("Unequip", 11, Spalte)) {
-												me.Unequip (dieseitem);
-												return;
-										}
-										Zeile1.position = new Vector2 (0, Zeile1.position.y + 20);
-					
-										GUILayout.EndHorizontal ();
-								}
-						}
-						GUILayout.EndArea ();
-				}
-		}
-		
-		int seite = 0;
-		int ausgewaehltesItem = 0;
-		public Texture2D GUI_BG;
-		public Texture2D GUI_Auswahl;
-	*/
 	
 		void GUIEquipment () {
 				if (GUI_Equipment) {
@@ -473,10 +383,10 @@ public class PlayerBehaviour : MonoBehaviour {
 						GUI_ZoD.BeginArea ("GUI_BG.name", tmp_anzeige);
 						{
 								Rect BB = new Rect (0, 0, tmp_anzeige.width, 100);
-								Rect KB = new Rect (BB.position.x, BB.position.y + BB.height, 200, tmp_anzeige.height - BB.height);
-								Rect IB = new Rect (tmp_anzeige.width - 300, KB.position.y, 300, KB.height);
-								Rect NB = new Rect (KB.position.x + KB.width, tmp_anzeige.height - 200, tmp_anzeige.width - KB.width - IB.width, 200);
-								Rect ITB = new Rect (NB.position.x, KB.position.y, NB.width, KB.height - NB.height);
+								Rect CS = new Rect (BB.position.x, BB.position.y + BB.height, 300, (tmp_anzeige.height - BB.height));
+								Rect EQi = new Rect (BB.width - CS.width, CS.position.y, CS.width, CS.height);
+								Rect RestFenster = new Rect (CS.position.x + CS.width, CS.position.y, tmp_anzeige.width - CS.width - EQi.width, tmp_anzeige.height - BB.height);
+								
 				
 								int Anzahl_Zeilen = 1;
 								int Anzahl_Spalten = 1;
@@ -521,21 +431,134 @@ public class PlayerBehaviour : MonoBehaviour {
 								//Characterbereich
 								//9+x Equipslots
 								// 4 links 1 helm 4 rechts und tools unterm character
+								GUI_ZoD.BeginArea ("Equipment Interface", RestFenster);
+								{
+										Rect Button = new Rect (0, 0, RestFenster.width, RestFenster.height);
+										ShowItems = new List<ItemData> ();
+										// 3/5 Equip
+										// 2/5 Tools
+										Rect R_Equip = new Rect (5, 5, Button.width - 5, (Button.height - 5) / 5 * 3);
+										Rect R_Tools = new Rect (R_Equip.position.x, R_Equip.position.y + R_Equip.height, R_Equip.width, (Button.height - 5) / 5 * 2);
+					
+										// Equip in 
+										// 1/5 Items
+										// 3/5 Char Bild
+										// 1/5 Items
+										Rect RE_Items1 = new Rect (R_Equip.position.x, R_Equip.position.y, R_Equip.width / 5, R_Equip.height);
+										Rect RE_Char = new Rect (RE_Items1.position.x + RE_Items1.width, RE_Items1.position.y, RE_Items1.width * 3, RE_Items1.height);
+										Rect RE_Items2 = new Rect (RE_Char.position.x + RE_Char.width, RE_Items1.position.y, RE_Items1.width, RE_Items1.height);
+					
+										// Nun erstmal alles Equip durchgehen was kein Tool ist!
+										Rect ItemLeft = new Rect (RE_Items1.position.x, RE_Items1.position.y, RE_Items1.width, RE_Items1.height / 5);
+										Rect ItemRight = new Rect (RE_Items2.position.x, RE_Items2.position.y, RE_Items2.width, RE_Items2.height / 5);
+										for (int eqcount=0; eqcount<me.Creat.Equipment.Count; eqcount++) {
+												ItemData tmpeq = me.Creat.Equipment [eqcount];
+												if (tmpeq.Type == ItemType.armor_head) {
+														int tmp_pos = 0;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemLeft.position.x, ItemLeft.position.y + (tmp_pos * ItemLeft.height), ItemLeft.width, ItemLeft.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+												if (tmpeq.Type == ItemType.armor_torso) {
+														int tmp_pos = 1;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemLeft.position.x, ItemLeft.position.y + (tmp_pos * ItemLeft.height), ItemLeft.width, ItemLeft.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+												if (tmpeq.Type == ItemType.armor_hand) {
+														int tmp_pos = 2;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemLeft.position.x, ItemLeft.position.y + (tmp_pos * ItemLeft.height), ItemLeft.width, ItemLeft.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+												if (tmpeq.Type == ItemType.armor_leg) {
+														int tmp_pos = 3;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemLeft.position.x, ItemLeft.position.y + (tmp_pos * ItemLeft.height), ItemLeft.width, ItemLeft.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+												if (tmpeq.Type == ItemType.armor_feet) {
+														int tmp_pos = 4;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemLeft.position.x, ItemLeft.position.y + (tmp_pos * ItemLeft.height), ItemLeft.width, ItemLeft.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+												if (tmpeq.Type == ItemType.weapon_melee) {
+														int tmp_pos = 0;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemRight.position.x, ItemRight.position.y + (tmp_pos * ItemRight.height), ItemRight.width, ItemRight.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+												if (tmpeq.Type == ItemType.weapon_range) {
+														int tmp_pos = 1;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemRight.position.x, ItemRight.position.y + (tmp_pos * ItemRight.height), ItemRight.width, ItemRight.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+												if (tmpeq.Type == ItemType.utility) {
+														int tmp_pos = 2;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemRight.position.x, ItemRight.position.y + (tmp_pos * ItemRight.height), ItemRight.width, ItemRight.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+												if (tmpeq.Type == ItemType.accessorie) {
+														int tmp_pos = 3;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemRight.position.x, ItemRight.position.y + (tmp_pos * ItemRight.height), ItemRight.width, ItemRight.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+												// Noch Leer
+												if (tmpeq.Type == ItemType.junk) {
+														int tmp_pos = 4;
+														if (GUI_ZoD.Button_Bild (tmpeq.texture, new Rect (ItemRight.position.x, ItemRight.position.y + (tmp_pos * ItemRight.height), ItemRight.width, ItemRight.height))) {
+																ausgewaehltesItem = eqcount;
+														}
+												}
+						
+												switch (tmpeq.Type) {
+														case ItemType.tool_gardener:
+														case ItemType.tool_herbalist:
+														case ItemType.tool_hunter:
+														case ItemType.tool_lumberjack:
+														case ItemType.tool_miner:
+																ShowItems.Add (tmpeq);
+																break;
+												}
+						
+										}
+										// Tools Anzeigen
+										ausgewaehltesTool = ItemScript.GUI_AnzeigeItemGrid (ShowItems, R_Tools, seite, ausgewaehltesTool);
+					
+					
+										// Char Anzegite
+										GUI_ZoD.DrawTexture (CharPic, RE_Char);
+								}
+								GUI_ZoD.EndArea ();
 				
-				
-								GUI_ZoD.BeginArea ("InfoBereich", IB);
+								GUI_ZoD.BeginArea ("Char Info", CS);
+								{
+					
+								}
+								GUI_ZoD.EndArea ();
+								GUI_ZoD.BeginArea ("Equip Info", EQi);
 								{
 					
 										Anzahl_Zeilen = 8;
 										Anzahl_Spalten = 1;
 					
-										Zeile = new Rect (0, 0, IB.width, IB.height / Anzahl_Zeilen);
+										Zeile = new Rect (0, 0, EQi.width, EQi.height / Anzahl_Zeilen);
 										Spalte = new Rect (Zeile.position.x, Zeile.position.y, Zeile.width / Anzahl_Spalten, Zeile.height);
 					
-										if (ShowItems.Count >= ausgewaehltesItem + 1) {
+										if (me.Creat.Equipment.Count >= ausgewaehltesItem + 1) {
 												ItemData Anzeige_Item;
-												Anzeige_Item = ShowItems [ausgewaehltesItem];
-												
+												Anzeige_Item = me.Creat.Equipment [ausgewaehltesItem];
+												int FiktiveEquipmetnID = 0; // Weil ich nicht weiß wies besser geht
+												for (int tmp=0; tmp<me.Creat.Equipment.Count; tmp++) {
+														if (Anzeige_Item.Name == me.Creat.Equipment [tmp].Name) {
+																FiktiveEquipmetnID = tmp;
+														}
+												}
+												ItemScript.GUI_ItemDetails (Anzeige_Item, EQi, this, -1, FiktiveEquipmetnID, -1, false);
 										}
 								}
 								GUI_ZoD.EndArea ();
