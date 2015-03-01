@@ -113,13 +113,13 @@ public class NPCBehaviour : MonoBehaviour {
 						}
 						foreach (skill name in SkillsToLearn) {
 								zeile.position = new Vector2 (tmp_anzeige.position.x + 5, zeile.position.y + zeile.height);
-								GUI_ZoD.Label (name.name + " | increases: " + name.Effect [0] + " | cost: " + name.cost, 11, zeile);
+								GUI_ZoD.Label (name.Name + " | increases: " + name.Effect [0] + " | cost: " + name.LearnPointsCost, 11, zeile);
 								zeile.position = new Vector2 (zeile.position.x + 600, zeile.position.y);
 								zeile.width = 400;
-								if (GUI_ZoD.Button_Text ("learn skill for " + name.spcost + " skillpoints.", 11, zeile)) {
-										if (triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.SkillPoints >= name.spcost) {
+								if (GUI_ZoD.Button_Text ("learn skill for " + name.LearnPointsCost + " skillpoints.", 11, zeile)) {
+										if (triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.SkillPoints >= name.LearnPointsCost) {
 												triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().SkillLearn (name);
-												triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.SkillPoints -= name.spcost;
+												triggerscript.Player_Obj.GetComponent<PlayerBehaviour> ().me.Creat.SkillPoints -= name.LearnPointsCost;
 										}
 								}
 								zeile.width = tmp_anzeige.width - 500;

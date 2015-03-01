@@ -15,25 +15,23 @@ public enum BattleStance {
 
 [System.Serializable]
 public struct Status {
-	
-		public string name;
-		public int lvl;
-		public float duration;
-	
+		public string Name;
+		public bool IsStaticEffect;
+		public int Level;
+		public float Duration;
 		public EffectType EffectType;
 		public int Effect;
-		public bool IsStaticEffect;
 }
 
 [System.Serializable]
 public struct skill {
-		public string name;
-		public int cost;
-		public int lvl;
+		public string Name;
+		public bool IsActive;
+		public int ManaCost;
+		public int Level;
 		public List<string> Effect;
-		public string target;
-		public int spcost;
-	
+		public string Target;
+		public int LearnPointsCost;
 }
 
 [System.Serializable]

@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DataTools\Creature\CompanionBehavior.cs" />
-     <Compile Include="Assets\DataTools\Creature\Data\CreatureController.cs" />
+     <Compile Include="Assets\DataTools\Creature\CreatureController.cs" />
      <Compile Include="Assets\DataTools\Creature\Data\CreatureDataClass.cs" />
      <Compile Include="Assets\DataTools\Creature\Data\CreatureDataList.cs" />
      <Compile Include="Assets\DataTools\Creature\Data\SkillsDataList.cs" />
@@ -57,11 +57,12 @@
      <Compile Include="Assets\DataTools\DataManager\DataManager.cs" />
      <Compile Include="Assets\DataTools\DataManager\GUI_Helper.cs" />
      <Compile Include="Assets\DataTools\Interactable\Door\Door.cs" />
+     <Compile Include="Assets\DataTools\Interactable\Gathering.cs" />
      <Compile Include="Assets\DataTools\Interactable\Lock.cs" />
      <Compile Include="Assets\DataTools\Interactable\Truhen\Chest.cs" />
-     <Compile Include="Assets\DataTools\Item\Data\AmmoDataList.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataClass.cs" />
      <Compile Include="Assets\DataTools\Item\Data\ItemDataList.cs" />
+     <Compile Include="Assets\DataTools\Item\item.cs" />
      <Compile Include="Assets\DataTools\Menue\GameOverScreen.cs" />
      <Compile Include="Assets\DataTools\Menue\mainmenu.cs" />
      <Compile Include="Assets\DataTools\Menue\registrierung.cs" />
@@ -70,7 +71,6 @@
      <Compile Include="Assets\DataTools\Objecte\Player_Trigger.cs" />
      <Compile Include="Assets\DataTools\Objecte\TextureSacleToTransformScale.cs" />
      <Compile Include="Assets\DataTools\Objecte\UebergabeScript.cs" />
-     <Compile Include="Assets\DataTools\Objecte\item.cs" />
      <Compile Include="Assets\DataTools\Objecte\shop.cs" />
      <Compile Include="Assets\DataTools\Player_Files\MouseLook.cs" />
      <Compile Include="Assets\DataTools\Player_Files\PlayerBehaviour.cs" />
@@ -91,6 +91,7 @@
      <None Include="Assets\_Import\ChronoSphere\Materials\Unlit-Alpha Shader.shader" />
      <None Include="Assets\_Import\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\_Import\Boomlagoon\JSON\Readme.txt" />
+     <None Include="Assets\DataTools\Item\Resources\_INFO.txt" />
      <None Include="Assets\Shader\$DSNA.shader" />
      <None Include="Assets\_Import\ChronoSphere\Using The Chronosphere.txt" />
      <None Include="Assets\_Import\ChronoSphere\Materials\Unlit-Alpha Shader Night 1.shader" />

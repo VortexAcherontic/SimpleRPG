@@ -55,6 +55,7 @@
      <None Include="Assets\_Import\ChronoSphere\Materials\Unlit-Alpha Shader.shader" />
      <None Include="Assets\_Import\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\_Import\Boomlagoon\JSON\Readme.txt" />
+     <None Include="Assets\DataTools\Item\Resources\_INFO.txt" />
      <None Include="Assets\Shader\$DSNA.shader" />
      <None Include="Assets\_Import\ChronoSphere\Using The Chronosphere.txt" />
      <None Include="Assets\_Import\ChronoSphere\Materials\Unlit-Alpha Shader Night 1.shader" />

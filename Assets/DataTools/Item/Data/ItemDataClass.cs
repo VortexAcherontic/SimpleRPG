@@ -8,6 +8,7 @@ using System.Collections.Generic;
  */
 
 public enum ItemType {
+		// Neue Typen immer am Ende anfügen um nicht alle bestehenden Sachen zu bearbeiten
 		junk,
 	
 		weapon_melee,
@@ -22,7 +23,13 @@ public enum ItemType {
 		potion,
 		accessorie,
 		utility,
-		
+	
+		craftmats,
+		tool_lumberjack,
+		tool_miner,
+		tool_herbalist,
+		tool_gardener,
+		tool_hunter,
 }
 
 public enum EffectType {

@@ -7,7 +7,12 @@ public class item : MonoBehaviour {
 		public List<AmmoData> Ammo_List = new List<AmmoData> ();
 		public ItemDataList DataListObj;
 		public void Start () {
-				DataListObj = (ItemDataList)Resources.Load ("Items");
+				LoadDataList ("Items");
+				LoadDataList ("Gather");
+		}
+	
+		void LoadDataList (string Dateiname) {
+				DataListObj = (ItemDataList)Resources.Load (Dateiname);
 				foreach (ItemData id in DataListObj.ItemList) {
 						Item_List.Add (id);
 				}
@@ -15,9 +20,20 @@ public class item : MonoBehaviour {
 						Ammo_List.Add (id);
 				}
 		}
+	
+		ItemData leeres_item () {
+				ItemData tmp_item = new ItemData ();
+				tmp_item.Name = "Dummy Item";
+				return tmp_item;
+		}
 		
 		public ItemData item_mit_name (string itembez) {
-				return DataListObj.item_mit_name (itembez);
+				foreach (ItemData obj in Item_List) {
+						if (obj.Name == itembez) {
+								return obj;
+						}
+				}
+				return leeres_item ();
 		}
 		
 }

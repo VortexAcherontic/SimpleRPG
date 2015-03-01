@@ -98,8 +98,8 @@ public class QuestController : MonoBehaviour {
 												tmpquest.finished = true;
 												AlleQuests [count_quest] = tmpquest;
 												
-												ItemDataList DataListObj;
-												DataListObj = (ItemDataList)Resources.Load ("Items");
+												item DataListObj;
+												DataListObj = GameObject.Find ("Uebergabe").GetComponent<item> ();
 												foreach (string tmploot in Quest.Loot) {
 														not.message = "Get " + tmploot;
 														p001.PickupList.Add (not);

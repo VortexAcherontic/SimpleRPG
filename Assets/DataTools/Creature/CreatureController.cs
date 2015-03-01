@@ -48,8 +48,8 @@ public class CreatureController : MonoBehaviour {
 				Creat.XP = Creat.InitalStats.XP;
 				Creat.Level = Creat.InitalStats.Level;
 		
-				ItemDataList DataListObj;
-				DataListObj = (ItemDataList)Resources.Load ("Items");
+				item DataListObj;
+				DataListObj = GameObject.Find ("Uebergabe").GetComponent<item> ();
 				// Equipment richtig eintragen
 				Creat.InitalStats.Equipment = new List<ItemData> ();
 				if (Creat.InitalStats.Equipment_Strings != null) {
@@ -328,35 +328,35 @@ public class CreatureController : MonoBehaviour {
 		
 				for (int i = 0; i<Creat.StatusEffects.Count; i++) {
 						Status tmpst = Creat.StatusEffects [i];
-						tmpst.duration -= Time.deltaTime;
+						tmpst.Duration -= Time.deltaTime;
 						Creat.StatusEffects [i] = tmpst;
-						if (Creat.StatusEffects [i].duration <= 0) {
+						if (Creat.StatusEffects [i].Duration <= 0) {
 								Creat.StatusEffects.RemoveAt (i);
 						} else {
 								switch (Creat.StatusEffects [i].EffectType) {
 										case EffectType.Health:
-												EffectHP += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												EffectHP += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].Level);
 												break;
 										case EffectType.Mana:
-												EffectMP += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												EffectMP += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].Level);
 												break;
 										case EffectType.Str:
-												Creat.Str += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												Creat.Str += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].Level);
 												break;
 										case EffectType.Agi:
-												Creat.Agi += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												Creat.Agi += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].Level);
 												break;
 										case EffectType.Dex:
-												Creat.Dex += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												Creat.Dex += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].Level);
 												break;
 										case EffectType.Int:
-												Creat.Int += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												Creat.Int += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].Level);
 												break;
 										case EffectType.Vit:
-												Creat.Vit += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												Creat.Vit += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].Level);
 												break;
 										case EffectType.Luc:
-												Creat.Luc += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].lvl);
+												Creat.Luc += (int)(Creat.StatusEffects [i].Effect * Creat.StatusEffects [i].Level);
 												break;
 								}
 						}

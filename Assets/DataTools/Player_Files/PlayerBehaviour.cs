@@ -224,18 +224,18 @@ public class PlayerBehaviour : MonoBehaviour {
 		void SkillUse (string Skillname) {
 				foreach (skill sk in me.Creat.Skills) {
 						
-						if (sk.name == Skillname) {
+						if (sk.Name == Skillname) {
 								foreach (Status st in me.alleStatus) {
 										Status tmpst = st;
-										if (st.name == sk.Effect [0]) {
-												if (me.Creat.MP >= sk.cost) {
-														me.Creat.MP -= sk.cost;
+										if (st.Name == sk.Effect [0]) {
+												if (me.Creat.MP >= sk.ManaCost) {
+														me.Creat.MP -= sk.ManaCost;
 														for (int i = 0; i<me.Creat.StatusEffects.Count; i++) {
-																if (me.Creat.StatusEffects [i].name == st.name) {
+																if (me.Creat.StatusEffects [i].Name == st.Name) {
 																		me.Creat.StatusEffects.RemoveAt (i);
 																}
 														}
-														tmpst.lvl = sk.lvl;
+														tmpst.Level = sk.Level;
 														me.Creat.StatusEffects.Add (tmpst);
 												}
 										}
@@ -245,14 +245,14 @@ public class PlayerBehaviour : MonoBehaviour {
 		}
 	
 		public void SkillLearn (skill s) {
-				Debug.Log (s.name);
+				Debug.Log (s.Name);
 				bool hatschon = false;
 				int count_skills = 0;
 				foreach (skill name in me.Creat.Skills) {
 						skill tmps = name;
-						if (tmps.name == s.name) {
+						if (tmps.Name == s.Name) {
 								hatschon = true;
-								tmps.lvl += 1;
+								tmps.Level += 1;
 								me.Creat.Skills [count_skills] = tmps;
 						}
 						count_skills++;
@@ -924,7 +924,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				for (int i =0; i<me.Creat.StatusEffects.Count; i++) {
 						tmp_pos_x = tmp_pos_x + tmp_lineheigth;
 						Pos = new Rect (1920 - tmp_pos_y, 0 + tmp_pos_x, tmp_pos_y, tmp_lineheigth);
-						GUI_ZoD.Label (me.Creat.StatusEffects [i].name + ": " + Mathf.Round (me.Creat.StatusEffects [i].duration * 100) / 100, 11, Pos);
+						GUI_ZoD.Label (me.Creat.StatusEffects [i].Name + ": " + Mathf.Round (me.Creat.StatusEffects [i].Duration * 100) / 100, 11, Pos);
 				}
 		}
 	
@@ -942,7 +942,7 @@ public class PlayerBehaviour : MonoBehaviour {
 								skill name = me.Creat.Skills [i];
 				
 								zeile.position = new Vector2 (tmp_anzeige.position.x, zeile.position.y + zeile.height);
-								GUI_ZoD.Label (name.name + " | increases: " + name.Effect [0] + " | cost: " + name.cost, 11, zeile);
+								GUI_ZoD.Label (name.Name + " | increases: " + name.Effect [0] + " | cost: " + name.ManaCost, 11, zeile);
 								zeile.position = new Vector2 (zeile.position.x + 300, zeile.position.y);
 								zeile.width = 50;
 								newKey [i] = GUI_ZoD.TextField (newKey [i], 11, zeile);
@@ -951,7 +951,7 @@ public class PlayerBehaviour : MonoBehaviour {
 								if (GUI_ZoD.Button_Text ("Assign skill to key!", 11, zeile)) {
 										SkillAndKeys tmp_obj = new SkillAndKeys ();
 										tmp_obj.key = newKey [i];
-										tmp_obj.action = name.name;
+										tmp_obj.action = name.Name;
 										for (int j = 0; j<skillkeys.Count; j++) {
 												if (skillkeys [j].key == newKey [i]) {
 														skillkeys.RemoveAt (i);
@@ -967,7 +967,7 @@ public class PlayerBehaviour : MonoBehaviour {
 						for (int i =0; i<me.Creat.Skills.Count; i++) {
 								newKey [i] = "";
 								for (int j=0; j<skillkeys.Count; j++) {
-										if (skillkeys [j].action == me.Creat.Skills [i].name) {
+										if (skillkeys [j].action == me.Creat.Skills [i].Name) {
 												newKey [i] = skillkeys [j].key;
 										}
 								}

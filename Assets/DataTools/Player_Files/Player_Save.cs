@@ -121,8 +121,8 @@ public class Player_Save : MonoBehaviour {
 				string[] tmpskills = new string[Game.Creature.Skills.Count];
 				int[] tmplevel = new int[Game.Creature.Skills.Count];
 				foreach (skill tmpobj in Game.Creature.Skills) {
-						tmpskills [i] = tmpobj.name;
-						tmplevel [i] = tmpobj.lvl;
+						tmpskills [i] = tmpobj.Name;
+						tmplevel [i] = tmpobj.Level;
 						i++;
 				}
 				Skills.Add ("count", Game.Creature.Skills.Count);
@@ -305,12 +305,12 @@ public class Player_Save : MonoBehaviour {
 								skill skilltolearn = new skill ();
 								for (int skillid=0; skillid<tmpskilllist.Count; skillid++) {
 										
-										if (tmpskilllist [skillid].name == dies.GetString ("name")) {
+										if (tmpskilllist [skillid].Name == dies.GetString ("name")) {
 												skilltolearn = tmpskilllist [skillid];
-												skilltolearn.lvl = (int)dies.GetNumber ("lvl");
+												skilltolearn.Level = (int)dies.GetNumber ("lvl");
 										}
 								}
-								if (skilltolearn.name != "") {
+								if (skilltolearn.Name != "") {
 										Game.Creature.Skills.Add (skilltolearn);
 								}
 						}
