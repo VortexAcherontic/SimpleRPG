@@ -51,25 +51,20 @@
      <Compile Include="Assets\DataTools\Quest\Editor\QuestDataInspector.cs" />
      <None Include="Assets\Credits.txt" />
      <None Include="Assets\todo.txt" />
-     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader Night.shader" />
-     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader.shader" />
-     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\Import\Boomlagoon\JSON\Readme.txt" />
-     <None Include="Assets\Import\Terrain Assets\Rocks\Stone\Bumped-Specular.txt" />
+     <None Include="Assets\_Import\ChronoSphere\Materials\Unlit-Alpha Shader Night.shader" />
+     <None Include="Assets\_Import\ChronoSphere\Materials\Unlit-Alpha Shader.shader" />
+     <None Include="Assets\_Import\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\_Import\Boomlagoon\JSON\Readme.txt" />
      <None Include="Assets\Shader\$DSNA.shader" />
-     <None Include="Assets\Import\ChronoSphere\Using The Chronosphere.txt" />
-     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader Night 1.shader" />
-     <None Include="Assets\Import\ChronoSphere\Materials\NewShader.shader" />
-     <None Include="Assets\Import\ChronoSphere\Materials\Unlit-Alpha Shader Dusk.shader" />
+     <None Include="Assets\_Import\ChronoSphere\Using The Chronosphere.txt" />
+     <None Include="Assets\_Import\ChronoSphere\Materials\Unlit-Alpha Shader Night 1.shader" />
+     <None Include="Assets\_Import\ChronoSphere\Materials\NewShader.shader" />
+     <None Include="Assets\_Import\ChronoSphere\Materials\Unlit-Alpha Shader Dusk.shader" />
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Programme/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{5F324233-33F1-2B38-6128-DB8D70C83E8C}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{2186E310-A797-22A1-B9EF-E1A067AE7D3A}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{F5457143-300F-2824-55C9-A513F45ADC04}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript.unityproj">
