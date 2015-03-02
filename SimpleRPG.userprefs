@@ -1,10 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataTools\Objecte\shop.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SunSystem.cs">
     <Files>
-      <File FileName="Assets\DataTools\Player_Files\PlayerBehaviour.cs" Line="695" Column="28" />
-      <File FileName="Assets\DataTools\Item\item.cs" Line="126" Column="7" />
-      <File FileName="Assets\DataTools\Objecte\shop.cs" Line="176" Column="26" />
+      <File FileName="Assets\SunSystem.cs" Line="13" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,14 +10,10 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="DataTools" expanded="True">
               <Node name="DataManager" expanded="True" />
-              <Node name="Item" expanded="True">
-                <Node name="Data" expanded="True" />
-              </Node>
-              <Node name="Objecte" expanded="True">
-                <Node name="shop.cs" selected="True" />
-              </Node>
+              <Node name="Item" expanded="True" />
               <Node name="Player_Files" expanded="True" />
             </Node>
+            <Node name="SunSystem.cs" selected="True" />
           </Node>
         </State>
       </Pad>

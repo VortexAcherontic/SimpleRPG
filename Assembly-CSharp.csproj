@@ -56,6 +56,7 @@
      <Compile Include="Assets\DataTools\Creature\NPCBehaviour.cs" />
      <Compile Include="Assets\DataTools\DataManager\DataManager.cs" />
      <Compile Include="Assets\DataTools\DataManager\GUI_Helper.cs" />
+     <Compile Include="Assets\DataTools\DataManager\GameTime.cs" />
      <Compile Include="Assets\DataTools\Interactable\Door\Door.cs" />
      <Compile Include="Assets\DataTools\Interactable\Gathering.cs" />
      <Compile Include="Assets\DataTools\Interactable\Lock.cs" />
@@ -83,6 +84,7 @@
      <Compile Include="Assets\DataTools\Quest\Data\QuestController.cs" />
      <Compile Include="Assets\DataTools\Quest\Data\QuestData.cs" />
      <Compile Include="Assets\DataTools\Quest\Data\QuestDataList.cs" />
+     <Compile Include="Assets\SunSystem.cs" />
      <Compile Include="Assets\_Import\Boomlagoon\JSON\JSONObject.cs" />
      <Compile Include="Assets\_Import\Boomlagoon\JSON\TestScene\JSONObjectTester.cs" />
      <Compile Include="Assets\_Import\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.cs" />
