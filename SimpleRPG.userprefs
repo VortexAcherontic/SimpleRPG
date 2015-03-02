@@ -1,16 +1,35 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SunSystem.cs">
     <Files>
       <File FileName="Assets\SunSystem.cs" Line="13" Column="1" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataTools\DataManager\GUI_Helper.cs">
+    <Files>
+      <File FileName="Assets\DataTools\DataManager\GUI_Helper.cs" Line="106" Column="1" />
+      <File FileName="Assets\DataTools\Player_Files\PlayerBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\DataTools\Item\item.cs" Line="1" Column="1" />
+      <File FileName="Assets\DataTools\Objecte\shop.cs" Line="176" Column="26" />
+>>>>>>> 15d2b3f0514024c331a7b95037cb35be4ef4b1e6
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="DataTools" expanded="True">
+<<<<<<< HEAD
               <Node name="DataManager" expanded="True" />
               <Node name="Item" expanded="True" />
+=======
+              <Node name="DataManager" expanded="True">
+                <Node name="GUI_Helper.cs" selected="True" />
+              </Node>
+              <Node name="Item" expanded="True">
+                <Node name="Data" expanded="True" />
+              </Node>
+              <Node name="Objecte" expanded="True" />
+>>>>>>> 15d2b3f0514024c331a7b95037cb35be4ef4b1e6
               <Node name="Player_Files" expanded="True" />
             </Node>
             <Node name="SunSystem.cs" selected="True" />
