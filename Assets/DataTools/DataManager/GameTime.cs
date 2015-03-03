@@ -39,25 +39,42 @@ public class GameTime : MonoBehaviour {
 	
 		void OnGUI () {
 				if (Dev_GUITime) {
-						string FormatedTime;
-						float TmpTime = Zeit;
-						int FormatedStunde = 0;
-						while (TmpTime>=Stunde) {
-								TmpTime -= Stunde;
-								FormatedStunde++;
-						}
-						int FormatedMinute = 0;
-						while (TmpTime>=Minute) {
-								TmpTime -= Minute;
-								FormatedMinute++;
-						}
-						int FormatedSekunde = 0;
-						while (TmpTime>=Sekunde) {
-								TmpTime -= Sekunde;
-								FormatedSekunde++;
-						}
-						FormatedTime = FormatedStunde + ":" + FormatedMinute + ":" + FormatedSekunde;
+						string FormatedTime = "";
+						FormatedTime = FormatTime (Zeit);
 						GUI_ZoD.Label (FormatedTime, 11, new Rect (1920 - 100, 0, 100, 20));
 				}
+		}
+	
+		public string FormatTime (float time) {
+				string FormatedTime = "";
+				float TmpTime = time;
+				int FormatedStunde = 0;
+				while (TmpTime>=Stunde) {
+						TmpTime -= Stunde;
+						FormatedStunde++;
+				}
+				int FormatedMinute = 0;
+				while (TmpTime>=Minute) {
+						TmpTime -= Minute;
+						FormatedMinute++;
+				}
+				int FormatedSekunde = 0;
+				while (TmpTime>=Sekunde) {
+						TmpTime -= Sekunde;
+						FormatedSekunde++;
+				}
+				FormatedTime = FormatedSekunde.ToString ();
+				if (FormatedSekunde < 10) {
+						FormatedTime = "0" + FormatedTime;
+				}
+				FormatedTime = FormatedMinute.ToString () + ":" + FormatedTime;
+				if (FormatedMinute < 10) {
+						FormatedTime = "0" + FormatedTime;
+				}
+				FormatedTime = FormatedStunde.ToString () + ":" + FormatedTime;
+				if (FormatedStunde < 10) {
+						FormatedTime = "0" + FormatedTime;
+				}
+				return FormatedTime;
 		}
 }
