@@ -95,15 +95,17 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 		void OnGUI () {
 				if (me.IsLoaded) {
+						// Static Windows
 						GUILevelUP ();
+						GUINotification ();
+						GUIBuff ();
+						GUIHotbar ();
+						// DragAble Windows
 						GUIInventory ();
 						GUIEquipment ();
 						GUIStatsOverview ();
-						GUINotification ();
-						GUIJournal ();
 						GUICharacter ();
-						GUIBuff ();
-						GUIHotbar ();
+						GUIJournal ();
 				}
 		}
 	
